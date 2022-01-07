@@ -1,0 +1,1036 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Wed Apr 28 12:37:54 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNROOT	_main
+    43                           	global	_PORTA
+    44                           psect	maintext,global,class=CODE,delta=2
+    45                           global __pmaintext
+    46  06DB                     __pmaintext:
+    47  0005                     _PORTA	set	5
+    48                           	global	_PORTB
+    49  0006                     _PORTB	set	6
+    50                           	global	_PORTC
+    51  0007                     _PORTC	set	7
+    52                           	global	_PORTD
+    53  0008                     _PORTD	set	8
+    54                           	global	_RA0
+    55  0028                     _RA0	set	40
+    56                           	global	_RA1
+    57  0029                     _RA1	set	41
+    58                           	global	_RC0
+    59  0038                     _RC0	set	56
+    60                           	global	_RC1
+    61  0039                     _RC1	set	57
+    62                           	global	_RC2
+    63  003A                     _RC2	set	58
+    64                           	global	_RC3
+    65  003B                     _RC3	set	59
+    66                           	global	_RC4
+    67  003C                     _RC4	set	60
+    68                           	global	_RC5
+    69  003D                     _RC5	set	61
+    70                           	global	_RC6
+    71  003E                     _RC6	set	62
+    72                           	global	_RC7
+    73  003F                     _RC7	set	63
+    74                           	global	_RD0
+    75  0040                     _RD0	set	64
+    76                           	global	_RD1
+    77  0041                     _RD1	set	65
+    78                           	global	_TRISA
+    79  0085                     _TRISA	set	133
+    80                           	global	_TRISB
+    81  0086                     _TRISB	set	134
+    82                           	global	_TRISC
+    83  0087                     _TRISC	set	135
+    84                           	global	_TRISD
+    85  0088                     _TRISD	set	136
+    86                           	global	_ANSEL
+    87  0188                     _ANSEL	set	392
+    88                           	global	_ANSELH
+    89  0189                     _ANSELH	set	393
+    90                           	file	"ledsegment.as"
+    91                           	line	#
+    92                           psect cinit,class=CODE,delta=2
+    93                           global start_initialization
+    94  06D7                     start_initialization:
+    95                           
+    96                           psect cinit,class=CODE,delta=2
+    97                           global end_of_initialization
+    98                           
+    99                           ;End of C runtime variable initialization code
+   100                           
+   101  06D7                     end_of_initialization:
+   102  06D7  0183               clrf status
+   103  06D8  120A  118A  2EDB   ljmp _main	;jump to C main() function
+   104                           psect	cstackCOMMON,class=COMMON,space=1
+   105                           global __pcstackCOMMON
+   106  0070                     __pcstackCOMMON:
+   107                           	global	?_main
+   108  0070                     ?_main:	; 0 bytes @ 0x0
+   109                           	global	??_main
+   110  0070                     ??_main:	; 0 bytes @ 0x0
+   111                           	global	main@x
+   112  0070                     main@x:	; 2 bytes @ 0x0
+   113  0070                     	ds	2
+   114 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+   115 ;;Auto spaces:   Size  Autos    Used
+   116 ;; COMMON          14      2       2
+   117 ;; BANK0           80      0       0
+   118 ;; BANK1           80      0       0
+   119 ;; BANK3           96      0       0
+   120 ;; BANK2           96      0       0
+   121                           
+   122 ;;
+   123 ;; Pointer list with targets:
+   124                           
+   125                           
+   126                           
+   127 ;;
+   128 ;; Critical Paths under _main in COMMON
+   129 ;;
+   130 ;;   None.
+   131 ;;
+   132 ;; Critical Paths under _main in BANK0
+   133 ;;
+   134 ;;   None.
+   135 ;;
+   136 ;; Critical Paths under _main in BANK1
+   137 ;;
+   138 ;;   None.
+   139 ;;
+   140 ;; Critical Paths under _main in BANK3
+   141 ;;
+   142 ;;   None.
+   143 ;;
+   144 ;; Critical Paths under _main in BANK2
+   145 ;;
+   146 ;;   None.
+   147                           
+   148 ;;
+   149 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   150 ;;
+   151                           
+   152 ;;
+   153 ;;Call Graph Tables:
+   154 ;;
+   155 ;; ---------------------------------------------------------------------------------
+   156 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   157 ;; ---------------------------------------------------------------------------------
+   158 ;; (0) _main                                                 2     2      0     300
+   159 ;;                                              0 COMMON     2     2      0
+   160 ;; ---------------------------------------------------------------------------------
+   161 ;; Estimated maximum stack depth 0
+   162 ;; ---------------------------------------------------------------------------------
+   163                           
+   164 ;; Call Graph Graphs:
+   165                           
+   166 ;; _main (ROOT)
+   167 ;;
+   168                           
+   169 ;; Address spaces:
+   170                           
+   171 ;;Name               Size   Autos  Total    Cost      Usage
+   172 ;;BITCOMMON            E      0       0       0        0.0%
+   173 ;;EEDATA             100      0       0       0        0.0%
+   174 ;;NULL                 0      0       0       0        0.0%
+   175 ;;CODE                 0      0       0       0        0.0%
+   176 ;;COMMON               E      2       2       1       14.3%
+   177 ;;BITSFR0              0      0       0       1        0.0%
+   178 ;;SFR0                 0      0       0       1        0.0%
+   179 ;;BITSFR1              0      0       0       2        0.0%
+   180 ;;SFR1                 0      0       0       2        0.0%
+   181 ;;STACK                0      0       0       2        0.0%
+   182 ;;ABS                  0      0       0       3        0.0%
+   183 ;;BITBANK0            50      0       0       4        0.0%
+   184 ;;BITSFR3              0      0       0       4        0.0%
+   185 ;;SFR3                 0      0       0       4        0.0%
+   186 ;;BANK0               50      0       0       5        0.0%
+   187 ;;BITSFR2              0      0       0       5        0.0%
+   188 ;;SFR2                 0      0       0       5        0.0%
+   189 ;;BITBANK1            50      0       0       6        0.0%
+   190 ;;BANK1               50      0       0       7        0.0%
+   191 ;;BITBANK3            60      0       0       8        0.0%
+   192 ;;BANK3               60      0       0       9        0.0%
+   193 ;;BITBANK2            60      0       0      10        0.0%
+   194 ;;BANK2               60      0       0      11        0.0%
+   195 ;;DATA                 0      0       0      12        0.0%
+   196                           
+   197                           	global	_main
+   198                           psect	maintext
+   199                           
+   200 ;; *************** function _main *****************
+   201 ;; Defined at:
+   202 ;;		line 3 in file "E:\KTU\Softwares\mplab\Ledsegment\ledsegment.c"
+   203 ;; Parameters:    Size  Location     Type
+   204 ;;		None
+   205 ;; Auto vars:     Size  Location     Type
+   206 ;;  x               2    0[COMMON] int 
+   207 ;; Return value:  Size  Location     Type
+   208 ;;		None               void
+   209 ;; Registers used:
+   210 ;;		wreg, status,2
+   211 ;; Tracked objects:
+   212 ;;		On entry : 17F/0
+   213 ;;		On exit  : 0/0
+   214 ;;		Unchanged: 0/0
+   215 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   216 ;;      Params:         0       0       0       0       0
+   217 ;;      Locals:         2       0       0       0       0
+   218 ;;      Temps:          0       0       0       0       0
+   219 ;;      Totals:         2       0       0       0       0
+   220 ;;Total ram usage:        2 bytes
+   221 ;; This function calls:
+   222 ;;		Nothing
+   223 ;; This function is called by:
+   224 ;;		Startup code after reset
+   225 ;; This function uses a non-reentrant model
+   226 ;;
+   227                           psect	maintext
+   228                           	file	"E:\KTU\Softwares\mplab\Ledsegment\ledsegment.c"
+   229                           	line	3
+   230                           	global	__size_of_main
+   231  0125                     	__size_of_main	equ	__end_of_main-_main
+   232                           	
+   233  06DB                     _main:	
+   234                           	opt	stack 8
+   235                           ; Regs used in _main: [wreg+status,2]
+   236                           	line	4
+   237                           	
+   238  06DB                     l1421:	
+   239                           ;ledsegment.c: 4: PORTA=0X00;
+   240  06DB  1283               	bcf	status, 5	;RP0=0, select bank0
+   241  06DC  1303               	bcf	status, 6	;RP1=0, select bank0
+   242  06DD  0185               	clrf	(5)	;volatile
+   243                           	line	5
+   244                           	
+   245  06DE                     l1423:	
+   246                           ;ledsegment.c: 5: TRISA=0X02;
+   247  06DE  3002               	movlw	(02h)
+   248  06DF  1683               	bsf	status, 5	;RP0=1, select bank1
+   249  06E0  1303               	bcf	status, 6	;RP1=0, select bank1
+   250  06E1  0085               	movwf	(133)^080h	;volatile
+   251                           	line	6
+   252                           	
+   253  06E2                     l1425:	
+   254                           ;ledsegment.c: 6: PORTB=0X00;
+   255  06E2  1283               	bcf	status, 5	;RP0=0, select bank0
+   256  06E3  1303               	bcf	status, 6	;RP1=0, select bank0
+   257  06E4  0186               	clrf	(6)	;volatile
+   258                           	line	7
+   259                           	
+   260  06E5                     l1427:	
+   261                           ;ledsegment.c: 7: TRISB=0X00;
+   262  06E5  1683               	bsf	status, 5	;RP0=1, select bank1
+   263  06E6  1303               	bcf	status, 6	;RP1=0, select bank1
+   264  06E7  0186               	clrf	(134)^080h	;volatile
+   265                           	line	8
+   266                           	
+   267  06E8                     l1429:	
+   268                           ;ledsegment.c: 8: PORTC=0X00;
+   269  06E8  1283               	bcf	status, 5	;RP0=0, select bank0
+   270  06E9  1303               	bcf	status, 6	;RP1=0, select bank0
+   271  06EA  0187               	clrf	(7)	;volatile
+   272                           	line	9
+   273                           	
+   274  06EB                     l1431:	
+   275                           ;ledsegment.c: 9: TRISC=0X00;
+   276  06EB  1683               	bsf	status, 5	;RP0=1, select bank1
+   277  06EC  1303               	bcf	status, 6	;RP1=0, select bank1
+   278  06ED  0187               	clrf	(135)^080h	;volatile
+   279                           	line	10
+   280                           	
+   281  06EE                     l1433:	
+   282                           ;ledsegment.c: 10: PORTD=0X00;
+   283  06EE  1283               	bcf	status, 5	;RP0=0, select bank0
+   284  06EF  1303               	bcf	status, 6	;RP1=0, select bank0
+   285  06F0  0188               	clrf	(8)	;volatile
+   286                           	line	11
+   287                           	
+   288  06F1                     l1435:	
+   289                           ;ledsegment.c: 11: TRISD=0X00;
+   290  06F1  1683               	bsf	status, 5	;RP0=1, select bank1
+   291  06F2  1303               	bcf	status, 6	;RP1=0, select bank1
+   292  06F3  0188               	clrf	(136)^080h	;volatile
+   293                           	line	12
+   294                           	
+   295  06F4                     l1437:	
+   296                           ;ledsegment.c: 12: ANSEL=0X00;
+   297  06F4  1683               	bsf	status, 5	;RP0=1, select bank3
+   298  06F5  1703               	bsf	status, 6	;RP1=1, select bank3
+   299  06F6  0188               	clrf	(392)^0180h	;volatile
+   300                           	line	13
+   301                           	
+   302  06F7                     l1439:	
+   303                           ;ledsegment.c: 13: ANSELH=0X00;
+   304  06F7  0189               	clrf	(393)^0180h	;volatile
+   305                           	line	14
+   306                           	
+   307  06F8                     l1441:	
+   308                           ;ledsegment.c: 14: int x=0;
+   309  06F8  01F0               	clrf	(main@x)
+   310  06F9  01F1               	clrf	(main@x+1)
+   311  06FA  2EFB               	goto	l1443
+   312                           	line	15
+   313                           ;ledsegment.c: 15: while(1)
+   314                           	
+   315  06FB                     l1025:	
+   316                           	line	17
+   317                           	
+   318  06FB                     l1443:	
+   319                           ;ledsegment.c: 16: {
+   320                           ;ledsegment.c: 17: if(RA0==1)
+   321  06FB  1283               	bcf	status, 5	;RP0=0, select bank0
+   322  06FC  1303               	bcf	status, 6	;RP1=0, select bank0
+   323  06FD  1C05               	btfss	(40/8),(40)&7
+   324  06FE  2F00               	goto	u11
+   325  06FF  2F01               	goto	u10
+   326  0700                     u11:
+   327  0700  2F0F               	goto	l1026
+   328  0701                     u10:
+   329                           	line	20
+   330                           	
+   331  0701                     l1445:	
+   332                           ;ledsegment.c: 18: {
+   333                           ;ledsegment.c: 20: PORTC=0X00;
+   334  0701  0187               	clrf	(7)	;volatile
+   335                           	line	21
+   336                           ;ledsegment.c: 21: PORTD=0X00;
+   337  0702  0188               	clrf	(8)	;volatile
+   338                           	line	22
+   339                           ;ledsegment.c: 22: while(RA0==1);
+   340  0703  2F04               	goto	l1027
+   341                           	
+   342  0704                     l1028:	
+   343                           	
+   344  0704                     l1027:	
+   345  0704  1805               	btfsc	(40/8),(40)&7
+   346  0705  2F07               	goto	u21
+   347  0706  2F08               	goto	u20
+   348  0707                     u21:
+   349  0707  2F04               	goto	l1027
+   350  0708                     u20:
+   351  0708  2F09               	goto	l1447
+   352                           	
+   353  0709                     l1029:	
+   354                           	line	23
+   355                           	
+   356  0709                     l1447:	
+   357                           ;ledsegment.c: 23: x++;
+   358  0709  3001               	movlw	low(01h)
+   359  070A  07F0               	addwf	(main@x),f
+   360  070B  1803               	skipnc
+   361  070C  0AF1               	incf	(main@x+1),f
+   362  070D  3000               	movlw	high(01h)
+   363  070E  07F1               	addwf	(main@x+1),f
+   364                           	line	24
+   365                           	
+   366  070F                     l1026:	
+   367                           	line	25
+   368                           ;ledsegment.c: 24: }
+   369                           ;ledsegment.c: 25: if(x==1)
+   370  070F  3001               	movlw	01h
+   371  0710  0670               	xorwf	(main@x),w
+   372  0711  0471               	iorwf	(main@x+1),w
+   373  0712  1D03               	skipz
+   374  0713  2F15               	goto	u31
+   375  0714  2F16               	goto	u30
+   376  0715                     u31:
+   377  0715  2F18               	goto	l1030
+   378  0716                     u30:
+   379                           	line	27
+   380                           	
+   381  0716                     l1449:	
+   382                           ;ledsegment.c: 26: {
+   383                           ;ledsegment.c: 27: PORTB=0XBF;
+   384  0716  30BF               	movlw	(0BFh)
+   385  0717  0086               	movwf	(6)	;volatile
+   386                           	line	28
+   387                           	
+   388  0718                     l1030:	
+   389                           	line	29
+   390                           ;ledsegment.c: 28: }
+   391                           ;ledsegment.c: 29: if(x==2)
+   392  0718  3002               	movlw	02h
+   393  0719  0670               	xorwf	(main@x),w
+   394  071A  0471               	iorwf	(main@x+1),w
+   395  071B  1D03               	skipz
+   396  071C  2F1E               	goto	u41
+   397  071D  2F1F               	goto	u40
+   398  071E                     u41:
+   399  071E  2F21               	goto	l1031
+   400  071F                     u40:
+   401                           	line	31
+   402                           	
+   403  071F                     l1451:	
+   404                           ;ledsegment.c: 30: {
+   405                           ;ledsegment.c: 31: PORTB=0X06;
+   406  071F  3006               	movlw	(06h)
+   407  0720  0086               	movwf	(6)	;volatile
+   408                           	line	32
+   409                           	
+   410  0721                     l1031:	
+   411                           	line	33
+   412                           ;ledsegment.c: 32: }
+   413                           ;ledsegment.c: 33: if(x==3)
+   414  0721  3003               	movlw	03h
+   415  0722  0670               	xorwf	(main@x),w
+   416  0723  0471               	iorwf	(main@x+1),w
+   417  0724  1D03               	skipz
+   418  0725  2F27               	goto	u51
+   419  0726  2F28               	goto	u50
+   420  0727                     u51:
+   421  0727  2F2A               	goto	l1032
+   422  0728                     u50:
+   423                           	line	35
+   424                           	
+   425  0728                     l1453:	
+   426                           ;ledsegment.c: 34: {
+   427                           ;ledsegment.c: 35: PORTB=0X5B;
+   428  0728  305B               	movlw	(05Bh)
+   429  0729  0086               	movwf	(6)	;volatile
+   430                           	line	36
+   431                           	
+   432  072A                     l1032:	
+   433                           	line	37
+   434                           ;ledsegment.c: 36: }
+   435                           ;ledsegment.c: 37: if(x==4)
+   436  072A  3004               	movlw	04h
+   437  072B  0670               	xorwf	(main@x),w
+   438  072C  0471               	iorwf	(main@x+1),w
+   439  072D  1D03               	skipz
+   440  072E  2F30               	goto	u61
+   441  072F  2F31               	goto	u60
+   442  0730                     u61:
+   443  0730  2F33               	goto	l1033
+   444  0731                     u60:
+   445                           	line	39
+   446                           	
+   447  0731                     l1455:	
+   448                           ;ledsegment.c: 38: {
+   449                           ;ledsegment.c: 39: PORTB=0X4F;
+   450  0731  304F               	movlw	(04Fh)
+   451  0732  0086               	movwf	(6)	;volatile
+   452                           	line	40
+   453                           	
+   454  0733                     l1033:	
+   455                           	line	41
+   456                           ;ledsegment.c: 40: }
+   457                           ;ledsegment.c: 41: if(x==5)
+   458  0733  3005               	movlw	05h
+   459  0734  0670               	xorwf	(main@x),w
+   460  0735  0471               	iorwf	(main@x+1),w
+   461  0736  1D03               	skipz
+   462  0737  2F39               	goto	u71
+   463  0738  2F3A               	goto	u70
+   464  0739                     u71:
+   465  0739  2F3C               	goto	l1034
+   466  073A                     u70:
+   467                           	line	43
+   468                           	
+   469  073A                     l1457:	
+   470                           ;ledsegment.c: 42: {
+   471                           ;ledsegment.c: 43: PORTB=0X66;
+   472  073A  3066               	movlw	(066h)
+   473  073B  0086               	movwf	(6)	;volatile
+   474                           	line	44
+   475                           	
+   476  073C                     l1034:	
+   477                           	line	45
+   478                           ;ledsegment.c: 44: }
+   479                           ;ledsegment.c: 45: if(x==6)
+   480  073C  3006               	movlw	06h
+   481  073D  0670               	xorwf	(main@x),w
+   482  073E  0471               	iorwf	(main@x+1),w
+   483  073F  1D03               	skipz
+   484  0740  2F42               	goto	u81
+   485  0741  2F43               	goto	u80
+   486  0742                     u81:
+   487  0742  2F45               	goto	l1035
+   488  0743                     u80:
+   489                           	line	47
+   490                           	
+   491  0743                     l1459:	
+   492                           ;ledsegment.c: 46: {
+   493                           ;ledsegment.c: 47: PORTB=0X6D;
+   494  0743  306D               	movlw	(06Dh)
+   495  0744  0086               	movwf	(6)	;volatile
+   496                           	line	48
+   497                           	
+   498  0745                     l1035:	
+   499                           	line	49
+   500                           ;ledsegment.c: 48: }
+   501                           ;ledsegment.c: 49: if(x==7)
+   502  0745  3007               	movlw	07h
+   503  0746  0670               	xorwf	(main@x),w
+   504  0747  0471               	iorwf	(main@x+1),w
+   505  0748  1D03               	skipz
+   506  0749  2F4B               	goto	u91
+   507  074A  2F4C               	goto	u90
+   508  074B                     u91:
+   509  074B  2F4E               	goto	l1036
+   510  074C                     u90:
+   511                           	line	51
+   512                           	
+   513  074C                     l1461:	
+   514                           ;ledsegment.c: 50: {
+   515                           ;ledsegment.c: 51: PORTB=0X7C;
+   516  074C  307C               	movlw	(07Ch)
+   517  074D  0086               	movwf	(6)	;volatile
+   518                           	line	52
+   519                           	
+   520  074E                     l1036:	
+   521                           	line	53
+   522                           ;ledsegment.c: 52: }
+   523                           ;ledsegment.c: 53: if(x==8)
+   524  074E  3008               	movlw	08h
+   525  074F  0670               	xorwf	(main@x),w
+   526  0750  0471               	iorwf	(main@x+1),w
+   527  0751  1D03               	skipz
+   528  0752  2F54               	goto	u101
+   529  0753  2F55               	goto	u100
+   530  0754                     u101:
+   531  0754  2F57               	goto	l1037
+   532  0755                     u100:
+   533                           	line	55
+   534                           	
+   535  0755                     l1463:	
+   536                           ;ledsegment.c: 54: {
+   537                           ;ledsegment.c: 55: PORTB=0X07;
+   538  0755  3007               	movlw	(07h)
+   539  0756  0086               	movwf	(6)	;volatile
+   540                           	line	56
+   541                           	
+   542  0757                     l1037:	
+   543                           	line	57
+   544                           ;ledsegment.c: 56: }
+   545                           ;ledsegment.c: 57: if(x==9)
+   546  0757  3009               	movlw	09h
+   547  0758  0670               	xorwf	(main@x),w
+   548  0759  0471               	iorwf	(main@x+1),w
+   549  075A  1D03               	skipz
+   550  075B  2F5D               	goto	u111
+   551  075C  2F5E               	goto	u110
+   552  075D                     u111:
+   553  075D  2F60               	goto	l1038
+   554  075E                     u110:
+   555                           	line	59
+   556                           	
+   557  075E                     l1465:	
+   558                           ;ledsegment.c: 58: {
+   559                           ;ledsegment.c: 59: PORTB=0XFF;
+   560  075E  30FF               	movlw	(0FFh)
+   561  075F  0086               	movwf	(6)	;volatile
+   562                           	line	60
+   563                           	
+   564  0760                     l1038:	
+   565                           	line	61
+   566                           ;ledsegment.c: 60: }
+   567                           ;ledsegment.c: 61: if(x==10)
+   568  0760  300A               	movlw	0Ah
+   569  0761  0670               	xorwf	(main@x),w
+   570  0762  0471               	iorwf	(main@x+1),w
+   571  0763  1D03               	skipz
+   572  0764  2F66               	goto	u121
+   573  0765  2F67               	goto	u120
+   574  0766                     u121:
+   575  0766  2F6C               	goto	l1471
+   576  0767                     u120:
+   577                           	line	63
+   578                           	
+   579  0767                     l1467:	
+   580                           ;ledsegment.c: 62: {
+   581                           ;ledsegment.c: 63: PORTB=0XE7;
+   582  0767  30E7               	movlw	(0E7h)
+   583  0768  0086               	movwf	(6)	;volatile
+   584                           	line	64
+   585                           	
+   586  0769                     l1469:	
+   587                           ;ledsegment.c: 64: x=0;
+   588  0769  01F0               	clrf	(main@x)
+   589  076A  01F1               	clrf	(main@x+1)
+   590  076B  2F6C               	goto	l1471
+   591                           	line	65
+   592                           	
+   593  076C                     l1039:	
+   594                           	line	66
+   595                           	
+   596  076C                     l1471:	
+   597                           ;ledsegment.c: 65: }
+   598                           ;ledsegment.c: 66: if(x==1 && RA1==1)
+   599  076C  3001               	movlw	01h
+   600  076D  0670               	xorwf	(main@x),w
+   601  076E  0471               	iorwf	(main@x+1),w
+   602  076F  1D03               	skipz
+   603  0770  2F72               	goto	u131
+   604  0771  2F73               	goto	u130
+   605  0772                     u131:
+   606  0772  2F7A               	goto	l1040
+   607  0773                     u130:
+   608                           	
+   609  0773                     l1473:	
+   610  0773  1C85               	btfss	(41/8),(41)&7
+   611  0774  2F76               	goto	u141
+   612  0775  2F77               	goto	u140
+   613  0776                     u141:
+   614  0776  2F7A               	goto	l1040
+   615  0777                     u140:
+   616                           	line	68
+   617                           	
+   618  0777                     l1475:	
+   619                           ;ledsegment.c: 67: {
+   620                           ;ledsegment.c: 68: PORTB=0XBF;
+   621  0777  30BF               	movlw	(0BFh)
+   622  0778  0086               	movwf	(6)	;volatile
+   623                           	line	69
+   624                           	
+   625  0779                     l1477:	
+   626                           ;ledsegment.c: 69: RC0=1;
+   627  0779  1407               	bsf	(56/8),(56)&7
+   628                           	line	70
+   629                           	
+   630  077A                     l1040:	
+   631                           	line	71
+   632                           ;ledsegment.c: 70: }
+   633                           ;ledsegment.c: 71: if(x==2 && RA1==1)
+   634  077A  3002               	movlw	02h
+   635  077B  0670               	xorwf	(main@x),w
+   636  077C  0471               	iorwf	(main@x+1),w
+   637  077D  1D03               	skipz
+   638  077E  2F80               	goto	u151
+   639  077F  2F81               	goto	u150
+   640  0780                     u151:
+   641  0780  2F88               	goto	l1041
+   642  0781                     u150:
+   643                           	
+   644  0781                     l1479:	
+   645  0781  1C85               	btfss	(41/8),(41)&7
+   646  0782  2F84               	goto	u161
+   647  0783  2F85               	goto	u160
+   648  0784                     u161:
+   649  0784  2F88               	goto	l1041
+   650  0785                     u160:
+   651                           	line	73
+   652                           	
+   653  0785                     l1481:	
+   654                           ;ledsegment.c: 72: {
+   655                           ;ledsegment.c: 73: PORTB=0X06;
+   656  0785  3006               	movlw	(06h)
+   657  0786  0086               	movwf	(6)	;volatile
+   658                           	line	74
+   659                           	
+   660  0787                     l1483:	
+   661                           ;ledsegment.c: 74: RC1=1;
+   662  0787  1487               	bsf	(57/8),(57)&7
+   663                           	line	75
+   664                           	
+   665  0788                     l1041:	
+   666                           	line	76
+   667                           ;ledsegment.c: 75: }
+   668                           ;ledsegment.c: 76: if(x==3 && RA1==1)
+   669  0788  3003               	movlw	03h
+   670  0789  0670               	xorwf	(main@x),w
+   671  078A  0471               	iorwf	(main@x+1),w
+   672  078B  1D03               	skipz
+   673  078C  2F8E               	goto	u171
+   674  078D  2F8F               	goto	u170
+   675  078E                     u171:
+   676  078E  2F96               	goto	l1042
+   677  078F                     u170:
+   678                           	
+   679  078F                     l1485:	
+   680  078F  1C85               	btfss	(41/8),(41)&7
+   681  0790  2F92               	goto	u181
+   682  0791  2F93               	goto	u180
+   683  0792                     u181:
+   684  0792  2F96               	goto	l1042
+   685  0793                     u180:
+   686                           	line	78
+   687                           	
+   688  0793                     l1487:	
+   689                           ;ledsegment.c: 77: {
+   690                           ;ledsegment.c: 78: PORTB=0X5B;
+   691  0793  305B               	movlw	(05Bh)
+   692  0794  0086               	movwf	(6)	;volatile
+   693                           	line	79
+   694                           	
+   695  0795                     l1489:	
+   696                           ;ledsegment.c: 79: RC2=1;
+   697  0795  1507               	bsf	(58/8),(58)&7
+   698                           	line	80
+   699                           	
+   700  0796                     l1042:	
+   701                           	line	81
+   702                           ;ledsegment.c: 80: }
+   703                           ;ledsegment.c: 81: if(x==4 && RA1==1)
+   704  0796  3004               	movlw	04h
+   705  0797  0670               	xorwf	(main@x),w
+   706  0798  0471               	iorwf	(main@x+1),w
+   707  0799  1D03               	skipz
+   708  079A  2F9C               	goto	u191
+   709  079B  2F9D               	goto	u190
+   710  079C                     u191:
+   711  079C  2FA4               	goto	l1043
+   712  079D                     u190:
+   713                           	
+   714  079D                     l1491:	
+   715  079D  1C85               	btfss	(41/8),(41)&7
+   716  079E  2FA0               	goto	u201
+   717  079F  2FA1               	goto	u200
+   718  07A0                     u201:
+   719  07A0  2FA4               	goto	l1043
+   720  07A1                     u200:
+   721                           	line	83
+   722                           	
+   723  07A1                     l1493:	
+   724                           ;ledsegment.c: 82: {
+   725                           ;ledsegment.c: 83: PORTB=0X4F;
+   726  07A1  304F               	movlw	(04Fh)
+   727  07A2  0086               	movwf	(6)	;volatile
+   728                           	line	84
+   729                           	
+   730  07A3                     l1495:	
+   731                           ;ledsegment.c: 84: RC3=1;
+   732  07A3  1587               	bsf	(59/8),(59)&7
+   733                           	line	85
+   734                           	
+   735  07A4                     l1043:	
+   736                           	line	86
+   737                           ;ledsegment.c: 85: }
+   738                           ;ledsegment.c: 86: if(x==5 && RA1==1)
+   739  07A4  3005               	movlw	05h
+   740  07A5  0670               	xorwf	(main@x),w
+   741  07A6  0471               	iorwf	(main@x+1),w
+   742  07A7  1D03               	skipz
+   743  07A8  2FAA               	goto	u211
+   744  07A9  2FAB               	goto	u210
+   745  07AA                     u211:
+   746  07AA  2FB2               	goto	l1044
+   747  07AB                     u210:
+   748                           	
+   749  07AB                     l1497:	
+   750  07AB  1C85               	btfss	(41/8),(41)&7
+   751  07AC  2FAE               	goto	u221
+   752  07AD  2FAF               	goto	u220
+   753  07AE                     u221:
+   754  07AE  2FB2               	goto	l1044
+   755  07AF                     u220:
+   756                           	line	88
+   757                           	
+   758  07AF                     l1499:	
+   759                           ;ledsegment.c: 87: {
+   760                           ;ledsegment.c: 88: PORTB=0X66;
+   761  07AF  3066               	movlw	(066h)
+   762  07B0  0086               	movwf	(6)	;volatile
+   763                           	line	89
+   764                           	
+   765  07B1                     l1501:	
+   766                           ;ledsegment.c: 89: RC4=1;
+   767  07B1  1607               	bsf	(60/8),(60)&7
+   768                           	line	90
+   769                           	
+   770  07B2                     l1044:	
+   771                           	line	91
+   772                           ;ledsegment.c: 90: }
+   773                           ;ledsegment.c: 91: if(x==6 && RA1==1)
+   774  07B2  3006               	movlw	06h
+   775  07B3  0670               	xorwf	(main@x),w
+   776  07B4  0471               	iorwf	(main@x+1),w
+   777  07B5  1D03               	skipz
+   778  07B6  2FB8               	goto	u231
+   779  07B7  2FB9               	goto	u230
+   780  07B8                     u231:
+   781  07B8  2FC0               	goto	l1045
+   782  07B9                     u230:
+   783                           	
+   784  07B9                     l1503:	
+   785  07B9  1C85               	btfss	(41/8),(41)&7
+   786  07BA  2FBC               	goto	u241
+   787  07BB  2FBD               	goto	u240
+   788  07BC                     u241:
+   789  07BC  2FC0               	goto	l1045
+   790  07BD                     u240:
+   791                           	line	93
+   792                           	
+   793  07BD                     l1505:	
+   794                           ;ledsegment.c: 92: {
+   795                           ;ledsegment.c: 93: PORTB=0X6D;
+   796  07BD  306D               	movlw	(06Dh)
+   797  07BE  0086               	movwf	(6)	;volatile
+   798                           	line	94
+   799                           	
+   800  07BF                     l1507:	
+   801                           ;ledsegment.c: 94: RC5=1;
+   802  07BF  1687               	bsf	(61/8),(61)&7
+   803                           	line	95
+   804                           	
+   805  07C0                     l1045:	
+   806                           	line	96
+   807                           ;ledsegment.c: 95: }
+   808                           ;ledsegment.c: 96: if(x==7 && RA1==1)
+   809  07C0  3007               	movlw	07h
+   810  07C1  0670               	xorwf	(main@x),w
+   811  07C2  0471               	iorwf	(main@x+1),w
+   812  07C3  1D03               	skipz
+   813  07C4  2FC6               	goto	u251
+   814  07C5  2FC7               	goto	u250
+   815  07C6                     u251:
+   816  07C6  2FCE               	goto	l1046
+   817  07C7                     u250:
+   818                           	
+   819  07C7                     l1509:	
+   820  07C7  1C85               	btfss	(41/8),(41)&7
+   821  07C8  2FCA               	goto	u261
+   822  07C9  2FCB               	goto	u260
+   823  07CA                     u261:
+   824  07CA  2FCE               	goto	l1046
+   825  07CB                     u260:
+   826                           	line	98
+   827                           	
+   828  07CB                     l1511:	
+   829                           ;ledsegment.c: 97: {
+   830                           ;ledsegment.c: 98: PORTB=0X7C;
+   831  07CB  307C               	movlw	(07Ch)
+   832  07CC  0086               	movwf	(6)	;volatile
+   833                           	line	99
+   834                           	
+   835  07CD                     l1513:	
+   836                           ;ledsegment.c: 99: RC6=1;
+   837  07CD  1707               	bsf	(62/8),(62)&7
+   838                           	line	100
+   839                           	
+   840  07CE                     l1046:	
+   841                           	line	101
+   842                           ;ledsegment.c: 100: }
+   843                           ;ledsegment.c: 101: if(x==8 && RA1==1)
+   844  07CE  3008               	movlw	08h
+   845  07CF  0670               	xorwf	(main@x),w
+   846  07D0  0471               	iorwf	(main@x+1),w
+   847  07D1  1D03               	skipz
+   848  07D2  2FD4               	goto	u271
+   849  07D3  2FD5               	goto	u270
+   850  07D4                     u271:
+   851  07D4  2FDC               	goto	l1047
+   852  07D5                     u270:
+   853                           	
+   854  07D5                     l1515:	
+   855  07D5  1C85               	btfss	(41/8),(41)&7
+   856  07D6  2FD8               	goto	u281
+   857  07D7  2FD9               	goto	u280
+   858  07D8                     u281:
+   859  07D8  2FDC               	goto	l1047
+   860  07D9                     u280:
+   861                           	line	103
+   862                           	
+   863  07D9                     l1517:	
+   864                           ;ledsegment.c: 102: {
+   865                           ;ledsegment.c: 103: PORTB=0X07;
+   866  07D9  3007               	movlw	(07h)
+   867  07DA  0086               	movwf	(6)	;volatile
+   868                           	line	104
+   869                           	
+   870  07DB                     l1519:	
+   871                           ;ledsegment.c: 104: RC7=1;
+   872  07DB  1787               	bsf	(63/8),(63)&7
+   873                           	line	105
+   874                           	
+   875  07DC                     l1047:	
+   876                           	line	106
+   877                           ;ledsegment.c: 105: }
+   878                           ;ledsegment.c: 106: if(x==9 && RA1==1)
+   879  07DC  3009               	movlw	09h
+   880  07DD  0670               	xorwf	(main@x),w
+   881  07DE  0471               	iorwf	(main@x+1),w
+   882  07DF  1D03               	skipz
+   883  07E0  2FE2               	goto	u291
+   884  07E1  2FE3               	goto	u290
+   885  07E2                     u291:
+   886  07E2  2FEA               	goto	l1048
+   887  07E3                     u290:
+   888                           	
+   889  07E3                     l1521:	
+   890  07E3  1C85               	btfss	(41/8),(41)&7
+   891  07E4  2FE6               	goto	u301
+   892  07E5  2FE7               	goto	u300
+   893  07E6                     u301:
+   894  07E6  2FEA               	goto	l1048
+   895  07E7                     u300:
+   896                           	line	108
+   897                           	
+   898  07E7                     l1523:	
+   899                           ;ledsegment.c: 107: {
+   900                           ;ledsegment.c: 108: PORTB=0XFF;
+   901  07E7  30FF               	movlw	(0FFh)
+   902  07E8  0086               	movwf	(6)	;volatile
+   903                           	line	109
+   904                           	
+   905  07E9                     l1525:	
+   906                           ;ledsegment.c: 109: RD0=1;
+   907  07E9  1408               	bsf	(64/8),(64)&7
+   908                           	line	110
+   909                           	
+   910  07EA                     l1048:	
+   911                           	line	111
+   912                           ;ledsegment.c: 110: }
+   913                           ;ledsegment.c: 111: if(x==10 && RA1==1)
+   914  07EA  300A               	movlw	0Ah
+   915  07EB  0670               	xorwf	(main@x),w
+   916  07EC  0471               	iorwf	(main@x+1),w
+   917  07ED  1D03               	skipz
+   918  07EE  2FF0               	goto	u311
+   919  07EF  2FF1               	goto	u310
+   920  07F0                     u311:
+   921  07F0  2EFB               	goto	l1443
+   922  07F1                     u310:
+   923                           	
+   924  07F1                     l1527:	
+   925  07F1  1C85               	btfss	(41/8),(41)&7
+   926  07F2  2FF4               	goto	u321
+   927  07F3  2FF5               	goto	u320
+   928  07F4                     u321:
+   929  07F4  2EFB               	goto	l1443
+   930  07F5                     u320:
+   931                           	line	113
+   932                           	
+   933  07F5                     l1529:	
+   934                           ;ledsegment.c: 112: {
+   935                           ;ledsegment.c: 113: PORTB=0XE7;
+   936  07F5  30E7               	movlw	(0E7h)
+   937  07F6  0086               	movwf	(6)	;volatile
+   938                           	line	114
+   939                           	
+   940  07F7                     l1531:	
+   941                           ;ledsegment.c: 114: RD1=1;
+   942  07F7  1488               	bsf	(65/8),(65)&7
+   943                           	line	115
+   944                           	
+   945  07F8                     l1533:	
+   946                           ;ledsegment.c: 115: x=0;
+   947  07F8  01F0               	clrf	(main@x)
+   948  07F9  01F1               	clrf	(main@x+1)
+   949  07FA  2EFB               	goto	l1443
+   950                           	line	116
+   951                           	
+   952  07FB                     l1049:	
+   953  07FB  2EFB               	goto	l1443
+   954                           	line	117
+   955                           	
+   956  07FC                     l1050:	
+   957                           	line	15
+   958  07FC  2EFB               	goto	l1443
+   959                           	
+   960  07FD                     l1051:	
+   961                           	line	118
+   962                           	
+   963  07FD                     l1052:	
+   964                           	global	start
+   965  07FD  120A  118A  2800   	ljmp	start
+   966                           	opt stack 0
+   967                           GLOBAL	__end_of_main
+   968  0800                     	__end_of_main:
+   969 ;; =============== function _main ends ============
+   970                           
+   971                           	signat	_main,88
+   972                           psect	maintext
+   973                           	global	btemp
+   974  007E                     	btemp set 07Eh
+   975                           
+   976                           	DABS	1,126,2	;btemp
+   977                           	global	wtemp0
+   978  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Wed Apr 28 12:37:54 2021
+
+                  u10 0701                    u11 0700                    u20 0708                    u21 0707  
+                  u30 0716                    u31 0715                    u40 071F                    u41 071E  
+                  u50 0728                    u51 0727                    u60 0731                    u61 0730  
+                  u70 073A                    u71 0739                    u80 0743                    u81 0742  
+                  u90 074C                    u91 074B                   _RA0 0028                   _RA1 0029  
+                 _RC0 0038                   _RC1 0039                   _RD0 0040                   _RC2 003A  
+                 _RD1 0041                   _RC3 003B                   _RC4 003C                   _RC5 003D  
+                 u100 0755                   _RC6 003E                   u101 0754                   _RC7 003F  
+                 u110 075E                   u111 075D                   u200 07A1                   u120 0767  
+                 u201 07A0                   u121 0766                   u210 07AB                   u130 0773  
+                 u211 07AA                   u131 0772                   u300 07E7                   u220 07AF  
+                 u140 0777                   u301 07E6                   u221 07AE                   u141 0776  
+                 u310 07F1                   u230 07B9                   u150 0781                   u311 07F0  
+                 u231 07B8                   u151 0780                   u320 07F5                   u240 07BD  
+                 u160 0785                   u321 07F4                   u241 07BC                   u161 0784  
+                 u250 07C7                   u170 078F                   u251 07C6                   u171 078E  
+                 u260 07CB                   u180 0793                   u261 07CA                   u181 0792  
+                 u270 07D5                   u190 079D                   u271 07D4                   u191 079C  
+                 u280 07D9                   u281 07D8                   u290 07E3                   u291 07E2  
+                l1030 0718                  l1031 0721                  l1040 077A                  l1032 072A  
+                l1041 0788                  l1033 0733                  l1025 06FB                  l1050 07FC  
+                l1042 0796                  l1034 073C                  l1026 070F                  l1051 07FD  
+                l1043 07A4                  l1035 0745                  l1027 0704                  l1052 07FD  
+                l1044 07B2                  l1036 074E                  l1028 0704                  l1045 07C0  
+                l1037 0757                  l1029 0709                  l1046 07CE                  l1038 0760  
+                l1047 07DC                  l1039 076C                  l1048 07EA                  l1049 07FB  
+                l1501 07B1                  l1421 06DB                  l1511 07CB                  l1503 07B9  
+                l1431 06EB                  l1423 06DE                  l1521 07E3                  l1513 07CD  
+                l1505 07BD                  l1441 06F8                  l1433 06EE                  l1425 06E2  
+                l1531 07F7                  l1523 07E7                  l1515 07D5                  l1507 07BF  
+                l1451 071F                  l1443 06FB                  l1435 06F1                  l1427 06E5  
+                l1533 07F8                  l1525 07E9                  l1517 07D9                  l1509 07C7  
+                l1461 074C                  l1453 0728                  l1445 0701                  l1437 06F4  
+                l1429 06E8                  l1527 07F1                  l1519 07DB                  l1471 076C  
+                l1463 0755                  l1455 0731                  l1447 0709                  l1439 06F7  
+                l1529 07F5                  l1481 0785                  l1473 0773                  l1465 075E  
+                l1457 073A                  l1449 0716                  l1491 079D                  l1483 0787  
+                l1475 0777                  l1467 0767                  l1459 0743                  l1493 07A1  
+                l1485 078F                  l1477 0779                  l1469 0769                  l1495 07A3  
+                l1487 0793                  l1479 0781                  l1497 07AB                  l1489 0795  
+                l1499 07AF                  _main 06DB                  btemp 007E                  start 0000  
+               ?_main 0070                 _ANSEL 0188                 _PORTA 0005                 _PORTB 0006  
+               _PORTC 0007                 _PORTD 0008                 _TRISA 0085                 _TRISB 0086  
+               _TRISC 0087                 _TRISD 0088                 main@x 0070                 status 0003  
+               wtemp0 007E          __end_of_main 0800                ??_main 0070                _ANSELH 0189  
+      __pcstackCOMMON 0070            __pmaintext 06DB  end_of_initialization 06D7   start_initialization 06D7  
+       __size_of_main 0125  

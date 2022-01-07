@@ -1,0 +1,848 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Thu May 20 13:08:47 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNROOT	_main
+    43                           	global	_PORTA
+    44                           psect	maintext,global,class=CODE,delta=2
+    45                           global __pmaintext
+    46  0745                     __pmaintext:
+    47  0005                     _PORTA	set	5
+    48                           	global	_PORTB
+    49  0006                     _PORTB	set	6
+    50                           	global	_PORTC
+    51  0007                     _PORTC	set	7
+    52                           	global	_RA0
+    53  0028                     _RA0	set	40
+    54                           	global	_RA1
+    55  0029                     _RA1	set	41
+    56                           	global	_RA2
+    57  002A                     _RA2	set	42
+    58                           	global	_RB0
+    59  0030                     _RB0	set	48
+    60                           	global	_RB1
+    61  0031                     _RB1	set	49
+    62                           	global	_RB2
+    63  0032                     _RB2	set	50
+    64                           	global	_RB3
+    65  0033                     _RB3	set	51
+    66                           	global	_TRISA
+    67  0085                     _TRISA	set	133
+    68                           	global	_TRISB
+    69  0086                     _TRISB	set	134
+    70                           	global	_TRISC
+    71  0087                     _TRISC	set	135
+    72                           	global	_ANSEL
+    73  0188                     _ANSEL	set	392
+    74                           	global	_ANSELH
+    75  0189                     _ANSELH	set	393
+    76                           	file	"keypad.as"
+    77                           	line	#
+    78                           psect cinit,class=CODE,delta=2
+    79                           global start_initialization
+    80  0741                     start_initialization:
+    81                           
+    82                           psect cinit,class=CODE,delta=2
+    83                           global end_of_initialization
+    84                           
+    85                           ;End of C runtime variable initialization code
+    86                           
+    87  0741                     end_of_initialization:
+    88  0741  0183               clrf status
+    89  0742  120A  118A  2F45   ljmp _main	;jump to C main() function
+    90                           psect	cstackCOMMON,class=COMMON,space=1
+    91                           global __pcstackCOMMON
+    92  0000                     __pcstackCOMMON:
+    93                           	global	?_main
+    94  0000                     ?_main:	; 0 bytes @ 0x0
+    95                           	global	??_main
+    96  0000                     ??_main:	; 0 bytes @ 0x0
+    97 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+    98 ;;Auto spaces:   Size  Autos    Used
+    99 ;; COMMON          14      0       0
+   100 ;; BANK0           80      0       0
+   101 ;; BANK1           80      0       0
+   102 ;; BANK3           96      0       0
+   103 ;; BANK2           96      0       0
+   104                           
+   105 ;;
+   106 ;; Pointer list with targets:
+   107                           
+   108                           
+   109                           
+   110 ;;
+   111 ;; Critical Paths under _main in COMMON
+   112 ;;
+   113 ;;   None.
+   114 ;;
+   115 ;; Critical Paths under _main in BANK0
+   116 ;;
+   117 ;;   None.
+   118 ;;
+   119 ;; Critical Paths under _main in BANK1
+   120 ;;
+   121 ;;   None.
+   122 ;;
+   123 ;; Critical Paths under _main in BANK3
+   124 ;;
+   125 ;;   None.
+   126 ;;
+   127 ;; Critical Paths under _main in BANK2
+   128 ;;
+   129 ;;   None.
+   130                           
+   131 ;;
+   132 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   133 ;;
+   134                           
+   135 ;;
+   136 ;;Call Graph Tables:
+   137 ;;
+   138 ;; ---------------------------------------------------------------------------------
+   139 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   140 ;; ---------------------------------------------------------------------------------
+   141 ;; (0) _main                                                 0     0      0       0
+   142 ;; ---------------------------------------------------------------------------------
+   143 ;; Estimated maximum stack depth 0
+   144 ;; ---------------------------------------------------------------------------------
+   145                           
+   146 ;; Call Graph Graphs:
+   147                           
+   148 ;; _main (ROOT)
+   149 ;;
+   150                           
+   151 ;; Address spaces:
+   152                           
+   153 ;;Name               Size   Autos  Total    Cost      Usage
+   154 ;;BITCOMMON            E      0       0       0        0.0%
+   155 ;;EEDATA             100      0       0       0        0.0%
+   156 ;;NULL                 0      0       0       0        0.0%
+   157 ;;CODE                 0      0       0       0        0.0%
+   158 ;;COMMON               E      0       0       1        0.0%
+   159 ;;BITSFR0              0      0       0       1        0.0%
+   160 ;;SFR0                 0      0       0       1        0.0%
+   161 ;;BITSFR1              0      0       0       2        0.0%
+   162 ;;SFR1                 0      0       0       2        0.0%
+   163 ;;STACK                0      0       0       2        0.0%
+   164 ;;ABS                  0      0       0       3        0.0%
+   165 ;;BITBANK0            50      0       0       4        0.0%
+   166 ;;BITSFR3              0      0       0       4        0.0%
+   167 ;;SFR3                 0      0       0       4        0.0%
+   168 ;;BANK0               50      0       0       5        0.0%
+   169 ;;BITSFR2              0      0       0       5        0.0%
+   170 ;;SFR2                 0      0       0       5        0.0%
+   171 ;;BITBANK1            50      0       0       6        0.0%
+   172 ;;BANK1               50      0       0       7        0.0%
+   173 ;;BITBANK3            60      0       0       8        0.0%
+   174 ;;BANK3               60      0       0       9        0.0%
+   175 ;;BITBANK2            60      0       0      10        0.0%
+   176 ;;BANK2               60      0       0      11        0.0%
+   177 ;;DATA                 0      0       0      12        0.0%
+   178                           
+   179                           	global	_main
+   180                           psect	maintext
+   181                           
+   182 ;; *************** function _main *****************
+   183 ;; Defined at:
+   184 ;;		line 3 in file "E:\KTU\Softwares\mplab\Keypad\keypad.c"
+   185 ;; Parameters:    Size  Location     Type
+   186 ;;		None
+   187 ;; Auto vars:     Size  Location     Type
+   188 ;;		None
+   189 ;; Return value:  Size  Location     Type
+   190 ;;		None               void
+   191 ;; Registers used:
+   192 ;;		wreg, status,2
+   193 ;; Tracked objects:
+   194 ;;		On entry : 17F/0
+   195 ;;		On exit  : 0/0
+   196 ;;		Unchanged: 0/0
+   197 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   198 ;;      Params:         0       0       0       0       0
+   199 ;;      Locals:         0       0       0       0       0
+   200 ;;      Temps:          0       0       0       0       0
+   201 ;;      Totals:         0       0       0       0       0
+   202 ;;Total ram usage:        0 bytes
+   203 ;; This function calls:
+   204 ;;		Nothing
+   205 ;; This function is called by:
+   206 ;;		Startup code after reset
+   207 ;; This function uses a non-reentrant model
+   208 ;;
+   209                           psect	maintext
+   210                           	file	"E:\KTU\Softwares\mplab\Keypad\keypad.c"
+   211                           	line	3
+   212                           	global	__size_of_main
+   213  00BB                     	__size_of_main	equ	__end_of_main-_main
+   214                           	
+   215  0745                     _main:	
+   216                           	opt	stack 8
+   217                           ; Regs used in _main: [wreg+status,2]
+   218                           	line	4
+   219                           	
+   220  0745                     l1437:	
+   221                           ;keypad.c: 4: PORTA=0X00;
+   222  0745  1283               	bcf	status, 5	;RP0=0, select bank0
+   223  0746  1303               	bcf	status, 6	;RP1=0, select bank0
+   224  0747  0185               	clrf	(5)	;volatile
+   225                           	line	5
+   226                           	
+   227  0748                     l1439:	
+   228                           ;keypad.c: 5: TRISA=0X07;
+   229  0748  3007               	movlw	(07h)
+   230  0749  1683               	bsf	status, 5	;RP0=1, select bank1
+   231  074A  1303               	bcf	status, 6	;RP1=0, select bank1
+   232  074B  0085               	movwf	(133)^080h	;volatile
+   233                           	line	6
+   234                           	
+   235  074C                     l1441:	
+   236                           ;keypad.c: 6: PORTB=0X00;
+   237  074C  1283               	bcf	status, 5	;RP0=0, select bank0
+   238  074D  1303               	bcf	status, 6	;RP1=0, select bank0
+   239  074E  0186               	clrf	(6)	;volatile
+   240                           	line	7
+   241                           	
+   242  074F                     l1443:	
+   243                           ;keypad.c: 7: TRISB=0X00;
+   244  074F  1683               	bsf	status, 5	;RP0=1, select bank1
+   245  0750  1303               	bcf	status, 6	;RP1=0, select bank1
+   246  0751  0186               	clrf	(134)^080h	;volatile
+   247                           	line	8
+   248                           	
+   249  0752                     l1445:	
+   250                           ;keypad.c: 8: PORTC=0X00;
+   251  0752  1283               	bcf	status, 5	;RP0=0, select bank0
+   252  0753  1303               	bcf	status, 6	;RP1=0, select bank0
+   253  0754  0187               	clrf	(7)	;volatile
+   254                           	line	9
+   255                           	
+   256  0755                     l1447:	
+   257                           ;keypad.c: 9: TRISC=0X00;
+   258  0755  1683               	bsf	status, 5	;RP0=1, select bank1
+   259  0756  1303               	bcf	status, 6	;RP1=0, select bank1
+   260  0757  0187               	clrf	(135)^080h	;volatile
+   261                           	line	10
+   262                           	
+   263  0758                     l1449:	
+   264                           ;keypad.c: 10: ANSEL=0X00;
+   265  0758  1683               	bsf	status, 5	;RP0=1, select bank3
+   266  0759  1703               	bsf	status, 6	;RP1=1, select bank3
+   267  075A  0188               	clrf	(392)^0180h	;volatile
+   268                           	line	11
+   269                           	
+   270  075B                     l1451:	
+   271                           ;keypad.c: 11: ANSELH=0X00;
+   272  075B  0189               	clrf	(393)^0180h	;volatile
+   273  075C  2F5D               	goto	l1453
+   274                           	line	12
+   275                           ;keypad.c: 12: while(1)
+   276                           	
+   277  075D                     l1025:	
+   278                           	line	14
+   279                           	
+   280  075D                     l1453:	
+   281                           ;keypad.c: 13: {
+   282                           ;keypad.c: 14: RB0=1;
+   283  075D  1283               	bcf	status, 5	;RP0=0, select bank0
+   284  075E  1303               	bcf	status, 6	;RP1=0, select bank0
+   285  075F  1406               	bsf	(48/8),(48)&7
+   286                           	line	15
+   287                           	
+   288  0760                     l1455:	
+   289                           ;keypad.c: 15: RB1=0;
+   290  0760  1086               	bcf	(49/8),(49)&7
+   291                           	line	16
+   292                           	
+   293  0761                     l1457:	
+   294                           ;keypad.c: 16: RB2=0;
+   295  0761  1106               	bcf	(50/8),(50)&7
+   296                           	line	17
+   297                           	
+   298  0762                     l1459:	
+   299                           ;keypad.c: 17: RB3=0;
+   300  0762  1186               	bcf	(51/8),(51)&7
+   301                           	line	18
+   302                           	
+   303  0763                     l1461:	
+   304                           ;keypad.c: 18: if(RA0==1)
+   305  0763  1C05               	btfss	(40/8),(40)&7
+   306  0764  2F66               	goto	u11
+   307  0765  2F67               	goto	u10
+   308  0766                     u11:
+   309  0766  2F71               	goto	l1467
+   310  0767                     u10:
+   311  0767  2F69               	goto	l1027
+   312                           	line	20
+   313                           	
+   314  0768                     l1463:	
+   315                           ;keypad.c: 19: {
+   316                           ;keypad.c: 20: while(RA0==1);
+   317  0768  2F69               	goto	l1027
+   318                           	
+   319  0769                     l1028:	
+   320                           	
+   321  0769                     l1027:	
+   322  0769  1805               	btfsc	(40/8),(40)&7
+   323  076A  2F6C               	goto	u21
+   324  076B  2F6D               	goto	u20
+   325  076C                     u21:
+   326  076C  2F69               	goto	l1027
+   327  076D                     u20:
+   328  076D  2F6E               	goto	l1465
+   329                           	
+   330  076E                     l1029:	
+   331                           	line	21
+   332                           	
+   333  076E                     l1465:	
+   334                           ;keypad.c: 21: PORTC=0X06;
+   335  076E  3006               	movlw	(06h)
+   336  076F  0087               	movwf	(7)	;volatile
+   337  0770  2F71               	goto	l1467
+   338                           	line	22
+   339                           	
+   340  0771                     l1026:	
+   341                           	line	23
+   342                           	
+   343  0771                     l1467:	
+   344                           ;keypad.c: 22: }
+   345                           ;keypad.c: 23: if(RA1==1)
+   346  0771  1C85               	btfss	(41/8),(41)&7
+   347  0772  2F74               	goto	u31
+   348  0773  2F75               	goto	u30
+   349  0774                     u31:
+   350  0774  2F7F               	goto	l1473
+   351  0775                     u30:
+   352  0775  2F77               	goto	l1031
+   353                           	line	25
+   354                           	
+   355  0776                     l1469:	
+   356                           ;keypad.c: 24: {
+   357                           ;keypad.c: 25: while(RA1==1);
+   358  0776  2F77               	goto	l1031
+   359                           	
+   360  0777                     l1032:	
+   361                           	
+   362  0777                     l1031:	
+   363  0777  1885               	btfsc	(41/8),(41)&7
+   364  0778  2F7A               	goto	u41
+   365  0779  2F7B               	goto	u40
+   366  077A                     u41:
+   367  077A  2F77               	goto	l1031
+   368  077B                     u40:
+   369  077B  2F7C               	goto	l1471
+   370                           	
+   371  077C                     l1033:	
+   372                           	line	26
+   373                           	
+   374  077C                     l1471:	
+   375                           ;keypad.c: 26: PORTC=0X5B;
+   376  077C  305B               	movlw	(05Bh)
+   377  077D  0087               	movwf	(7)	;volatile
+   378  077E  2F7F               	goto	l1473
+   379                           	line	27
+   380                           	
+   381  077F                     l1030:	
+   382                           	line	28
+   383                           	
+   384  077F                     l1473:	
+   385                           ;keypad.c: 27: }
+   386                           ;keypad.c: 28: if(RA2==1)
+   387  077F  1D05               	btfss	(42/8),(42)&7
+   388  0780  2F82               	goto	u51
+   389  0781  2F83               	goto	u50
+   390  0782                     u51:
+   391  0782  2F8D               	goto	l1479
+   392  0783                     u50:
+   393  0783  2F85               	goto	l1035
+   394                           	line	30
+   395                           	
+   396  0784                     l1475:	
+   397                           ;keypad.c: 29: {
+   398                           ;keypad.c: 30: while(RA2==1);
+   399  0784  2F85               	goto	l1035
+   400                           	
+   401  0785                     l1036:	
+   402                           	
+   403  0785                     l1035:	
+   404  0785  1905               	btfsc	(42/8),(42)&7
+   405  0786  2F88               	goto	u61
+   406  0787  2F89               	goto	u60
+   407  0788                     u61:
+   408  0788  2F85               	goto	l1035
+   409  0789                     u60:
+   410  0789  2F8A               	goto	l1477
+   411                           	
+   412  078A                     l1037:	
+   413                           	line	31
+   414                           	
+   415  078A                     l1477:	
+   416                           ;keypad.c: 31: PORTC=0X4F;
+   417  078A  304F               	movlw	(04Fh)
+   418  078B  0087               	movwf	(7)	;volatile
+   419  078C  2F8D               	goto	l1479
+   420                           	line	32
+   421                           	
+   422  078D                     l1034:	
+   423                           	line	33
+   424                           	
+   425  078D                     l1479:	
+   426                           ;keypad.c: 32: }
+   427                           ;keypad.c: 33: RB0=0;
+   428  078D  1006               	bcf	(48/8),(48)&7
+   429                           	line	34
+   430                           	
+   431  078E                     l1481:	
+   432                           ;keypad.c: 34: RB1=1;
+   433  078E  1486               	bsf	(49/8),(49)&7
+   434                           	line	35
+   435                           	
+   436  078F                     l1483:	
+   437                           ;keypad.c: 35: RB2=0;
+   438  078F  1106               	bcf	(50/8),(50)&7
+   439                           	line	36
+   440                           	
+   441  0790                     l1485:	
+   442                           ;keypad.c: 36: RB3=0;
+   443  0790  1186               	bcf	(51/8),(51)&7
+   444                           	line	37
+   445                           	
+   446  0791                     l1487:	
+   447                           ;keypad.c: 37: if(RA0==1)
+   448  0791  1C05               	btfss	(40/8),(40)&7
+   449  0792  2F94               	goto	u71
+   450  0793  2F95               	goto	u70
+   451  0794                     u71:
+   452  0794  2F9F               	goto	l1493
+   453  0795                     u70:
+   454  0795  2F97               	goto	l1039
+   455                           	line	39
+   456                           	
+   457  0796                     l1489:	
+   458                           ;keypad.c: 38: {
+   459                           ;keypad.c: 39: while(RA0==1);
+   460  0796  2F97               	goto	l1039
+   461                           	
+   462  0797                     l1040:	
+   463                           	
+   464  0797                     l1039:	
+   465  0797  1805               	btfsc	(40/8),(40)&7
+   466  0798  2F9A               	goto	u81
+   467  0799  2F9B               	goto	u80
+   468  079A                     u81:
+   469  079A  2F97               	goto	l1039
+   470  079B                     u80:
+   471  079B  2F9C               	goto	l1491
+   472                           	
+   473  079C                     l1041:	
+   474                           	line	40
+   475                           	
+   476  079C                     l1491:	
+   477                           ;keypad.c: 40: PORTC=0X66;
+   478  079C  3066               	movlw	(066h)
+   479  079D  0087               	movwf	(7)	;volatile
+   480  079E  2F9F               	goto	l1493
+   481                           	line	41
+   482                           	
+   483  079F                     l1038:	
+   484                           	line	42
+   485                           	
+   486  079F                     l1493:	
+   487                           ;keypad.c: 41: }
+   488                           ;keypad.c: 42: if(RA1==1)
+   489  079F  1C85               	btfss	(41/8),(41)&7
+   490  07A0  2FA2               	goto	u91
+   491  07A1  2FA3               	goto	u90
+   492  07A2                     u91:
+   493  07A2  2FAD               	goto	l1499
+   494  07A3                     u90:
+   495  07A3  2FA5               	goto	l1043
+   496                           	line	44
+   497                           	
+   498  07A4                     l1495:	
+   499                           ;keypad.c: 43: {
+   500                           ;keypad.c: 44: while(RA1==1);
+   501  07A4  2FA5               	goto	l1043
+   502                           	
+   503  07A5                     l1044:	
+   504                           	
+   505  07A5                     l1043:	
+   506  07A5  1885               	btfsc	(41/8),(41)&7
+   507  07A6  2FA8               	goto	u101
+   508  07A7  2FA9               	goto	u100
+   509  07A8                     u101:
+   510  07A8  2FA5               	goto	l1043
+   511  07A9                     u100:
+   512  07A9  2FAA               	goto	l1497
+   513                           	
+   514  07AA                     l1045:	
+   515                           	line	45
+   516                           	
+   517  07AA                     l1497:	
+   518                           ;keypad.c: 45: PORTC=0X6D;
+   519  07AA  306D               	movlw	(06Dh)
+   520  07AB  0087               	movwf	(7)	;volatile
+   521  07AC  2FAD               	goto	l1499
+   522                           	line	46
+   523                           	
+   524  07AD                     l1042:	
+   525                           	line	47
+   526                           	
+   527  07AD                     l1499:	
+   528                           ;keypad.c: 46: }
+   529                           ;keypad.c: 47: if(RA2==1)
+   530  07AD  1D05               	btfss	(42/8),(42)&7
+   531  07AE  2FB0               	goto	u111
+   532  07AF  2FB1               	goto	u110
+   533  07B0                     u111:
+   534  07B0  2FBB               	goto	l1505
+   535  07B1                     u110:
+   536  07B1  2FB3               	goto	l1047
+   537                           	line	49
+   538                           	
+   539  07B2                     l1501:	
+   540                           ;keypad.c: 48: {
+   541                           ;keypad.c: 49: while(RA2==1);
+   542  07B2  2FB3               	goto	l1047
+   543                           	
+   544  07B3                     l1048:	
+   545                           	
+   546  07B3                     l1047:	
+   547  07B3  1905               	btfsc	(42/8),(42)&7
+   548  07B4  2FB6               	goto	u121
+   549  07B5  2FB7               	goto	u120
+   550  07B6                     u121:
+   551  07B6  2FB3               	goto	l1047
+   552  07B7                     u120:
+   553  07B7  2FB8               	goto	l1503
+   554                           	
+   555  07B8                     l1049:	
+   556                           	line	50
+   557                           	
+   558  07B8                     l1503:	
+   559                           ;keypad.c: 50: PORTC=0X7C;
+   560  07B8  307C               	movlw	(07Ch)
+   561  07B9  0087               	movwf	(7)	;volatile
+   562  07BA  2FBB               	goto	l1505
+   563                           	line	51
+   564                           	
+   565  07BB                     l1046:	
+   566                           	line	52
+   567                           	
+   568  07BB                     l1505:	
+   569                           ;keypad.c: 51: }
+   570                           ;keypad.c: 52: RB0=0;
+   571  07BB  1006               	bcf	(48/8),(48)&7
+   572                           	line	53
+   573                           	
+   574  07BC                     l1507:	
+   575                           ;keypad.c: 53: RB1=0;
+   576  07BC  1086               	bcf	(49/8),(49)&7
+   577                           	line	54
+   578                           	
+   579  07BD                     l1509:	
+   580                           ;keypad.c: 54: RB2=1;
+   581  07BD  1506               	bsf	(50/8),(50)&7
+   582                           	line	55
+   583                           	
+   584  07BE                     l1511:	
+   585                           ;keypad.c: 55: RB3=0;
+   586  07BE  1186               	bcf	(51/8),(51)&7
+   587                           	line	56
+   588                           	
+   589  07BF                     l1513:	
+   590                           ;keypad.c: 56: if(RA0==1)
+   591  07BF  1C05               	btfss	(40/8),(40)&7
+   592  07C0  2FC2               	goto	u131
+   593  07C1  2FC3               	goto	u130
+   594  07C2                     u131:
+   595  07C2  2FCD               	goto	l1519
+   596  07C3                     u130:
+   597  07C3  2FC5               	goto	l1051
+   598                           	line	58
+   599                           	
+   600  07C4                     l1515:	
+   601                           ;keypad.c: 57: {
+   602                           ;keypad.c: 58: while(RA0==1);
+   603  07C4  2FC5               	goto	l1051
+   604                           	
+   605  07C5                     l1052:	
+   606                           	
+   607  07C5                     l1051:	
+   608  07C5  1805               	btfsc	(40/8),(40)&7
+   609  07C6  2FC8               	goto	u141
+   610  07C7  2FC9               	goto	u140
+   611  07C8                     u141:
+   612  07C8  2FC5               	goto	l1051
+   613  07C9                     u140:
+   614  07C9  2FCA               	goto	l1517
+   615                           	
+   616  07CA                     l1053:	
+   617                           	line	59
+   618                           	
+   619  07CA                     l1517:	
+   620                           ;keypad.c: 59: PORTC=0X07;
+   621  07CA  3007               	movlw	(07h)
+   622  07CB  0087               	movwf	(7)	;volatile
+   623  07CC  2FCD               	goto	l1519
+   624                           	line	60
+   625                           	
+   626  07CD                     l1050:	
+   627                           	line	61
+   628                           	
+   629  07CD                     l1519:	
+   630                           ;keypad.c: 60: }
+   631                           ;keypad.c: 61: if(RA1==1)
+   632  07CD  1C85               	btfss	(41/8),(41)&7
+   633  07CE  2FD0               	goto	u151
+   634  07CF  2FD1               	goto	u150
+   635  07D0                     u151:
+   636  07D0  2FDB               	goto	l1525
+   637  07D1                     u150:
+   638  07D1  2FD3               	goto	l1055
+   639                           	line	63
+   640                           	
+   641  07D2                     l1521:	
+   642                           ;keypad.c: 62: {
+   643                           ;keypad.c: 63: while(RA1==1);
+   644  07D2  2FD3               	goto	l1055
+   645                           	
+   646  07D3                     l1056:	
+   647                           	
+   648  07D3                     l1055:	
+   649  07D3  1885               	btfsc	(41/8),(41)&7
+   650  07D4  2FD6               	goto	u161
+   651  07D5  2FD7               	goto	u160
+   652  07D6                     u161:
+   653  07D6  2FD3               	goto	l1055
+   654  07D7                     u160:
+   655  07D7  2FD8               	goto	l1523
+   656                           	
+   657  07D8                     l1057:	
+   658                           	line	64
+   659                           	
+   660  07D8                     l1523:	
+   661                           ;keypad.c: 64: PORTC=0XFF;
+   662  07D8  30FF               	movlw	(0FFh)
+   663  07D9  0087               	movwf	(7)	;volatile
+   664  07DA  2FDB               	goto	l1525
+   665                           	line	65
+   666                           	
+   667  07DB                     l1054:	
+   668                           	line	66
+   669                           	
+   670  07DB                     l1525:	
+   671                           ;keypad.c: 65: }
+   672                           ;keypad.c: 66: if(RA2==1)
+   673  07DB  1D05               	btfss	(42/8),(42)&7
+   674  07DC  2FDE               	goto	u171
+   675  07DD  2FDF               	goto	u170
+   676  07DE                     u171:
+   677  07DE  2FE9               	goto	l1531
+   678  07DF                     u170:
+   679  07DF  2FE1               	goto	l1059
+   680                           	line	68
+   681                           	
+   682  07E0                     l1527:	
+   683                           ;keypad.c: 67: {
+   684                           ;keypad.c: 68: while(RA2==1);
+   685  07E0  2FE1               	goto	l1059
+   686                           	
+   687  07E1                     l1060:	
+   688                           	
+   689  07E1                     l1059:	
+   690  07E1  1905               	btfsc	(42/8),(42)&7
+   691  07E2  2FE4               	goto	u181
+   692  07E3  2FE5               	goto	u180
+   693  07E4                     u181:
+   694  07E4  2FE1               	goto	l1059
+   695  07E5                     u180:
+   696  07E5  2FE6               	goto	l1529
+   697                           	
+   698  07E6                     l1061:	
+   699                           	line	69
+   700                           	
+   701  07E6                     l1529:	
+   702                           ;keypad.c: 69: PORTC=0XE7;
+   703  07E6  30E7               	movlw	(0E7h)
+   704  07E7  0087               	movwf	(7)	;volatile
+   705  07E8  2FE9               	goto	l1531
+   706                           	line	70
+   707                           	
+   708  07E9                     l1058:	
+   709                           	line	71
+   710                           	
+   711  07E9                     l1531:	
+   712                           ;keypad.c: 70: }
+   713                           ;keypad.c: 71: RB0=0;
+   714  07E9  1006               	bcf	(48/8),(48)&7
+   715                           	line	72
+   716                           	
+   717  07EA                     l1533:	
+   718                           ;keypad.c: 72: RB1=0;
+   719  07EA  1086               	bcf	(49/8),(49)&7
+   720                           	line	73
+   721                           	
+   722  07EB                     l1535:	
+   723                           ;keypad.c: 73: RB2=0;
+   724  07EB  1106               	bcf	(50/8),(50)&7
+   725                           	line	74
+   726                           	
+   727  07EC                     l1537:	
+   728                           ;keypad.c: 74: RB3=1;
+   729  07EC  1586               	bsf	(51/8),(51)&7
+   730                           	line	75
+   731                           	
+   732  07ED                     l1539:	
+   733                           ;keypad.c: 75: if(RA1==1)
+   734  07ED  1C85               	btfss	(41/8),(41)&7
+   735  07EE  2FF0               	goto	u191
+   736  07EF  2FF1               	goto	u190
+   737  07F0                     u191:
+   738  07F0  2F5D               	goto	l1453
+   739  07F1                     u190:
+   740  07F1  2FF3               	goto	l1063
+   741                           	line	77
+   742                           	
+   743  07F2                     l1541:	
+   744                           ;keypad.c: 76: {
+   745                           ;keypad.c: 77: while(RA1==1);
+   746  07F2  2FF3               	goto	l1063
+   747                           	
+   748  07F3                     l1064:	
+   749                           	
+   750  07F3                     l1063:	
+   751  07F3  1885               	btfsc	(41/8),(41)&7
+   752  07F4  2FF6               	goto	u201
+   753  07F5  2FF7               	goto	u200
+   754  07F6                     u201:
+   755  07F6  2FF3               	goto	l1063
+   756  07F7                     u200:
+   757  07F7  2FF8               	goto	l1543
+   758                           	
+   759  07F8                     l1065:	
+   760                           	line	78
+   761                           	
+   762  07F8                     l1543:	
+   763                           ;keypad.c: 78: PORTC=0XBF;
+   764  07F8  30BF               	movlw	(0BFh)
+   765  07F9  0087               	movwf	(7)	;volatile
+   766  07FA  2F5D               	goto	l1453
+   767                           	line	79
+   768                           	
+   769  07FB                     l1062:	
+   770  07FB  2F5D               	goto	l1453
+   771                           	line	80
+   772                           	
+   773  07FC                     l1066:	
+   774                           	line	12
+   775  07FC  2F5D               	goto	l1453
+   776                           	
+   777  07FD                     l1067:	
+   778                           	line	81
+   779                           	
+   780  07FD                     l1068:	
+   781                           	global	start
+   782  07FD  120A  118A  2800   	ljmp	start
+   783                           	opt stack 0
+   784                           GLOBAL	__end_of_main
+   785  0800                     	__end_of_main:
+   786 ;; =============== function _main ends ============
+   787                           
+   788                           	signat	_main,88
+   789                           psect	maintext
+   790                           	global	btemp
+   791  007E                     	btemp set 07Eh
+   792                           
+   793                           	DABS	1,126,2	;btemp
+   794                           	global	wtemp0
+   795  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Thu May 20 13:08:47 2021
+
+                  u10 0767                    u11 0766                    u20 076D                    u21 076C  
+                  u30 0775                    u31 0774                    u40 077B                    u41 077A  
+                  u50 0783                    u51 0782                    u60 0789                    u61 0788  
+                  u70 0795                    u71 0794                    u80 079B                    u81 079A  
+                  u90 07A3                    u91 07A2                   _RA0 0028                   _RA1 0029  
+                 _RB0 0030                   _RA2 002A                   _RB1 0031                   _RB2 0032  
+                 _RB3 0033                   u100 07A9                   u101 07A8                   u110 07B1  
+                 u111 07B0                   u200 07F7                   u120 07B7                   u201 07F6  
+                 u121 07B6                   u130 07C3                   u131 07C2                   u140 07C9  
+                 u141 07C8                   u150 07D1                   u151 07D0                   u160 07D7  
+                 u161 07D6                   u170 07DF                   u171 07DE                   u180 07E5  
+                 u181 07E4                   u190 07F1                   u191 07F0                  l1030 077F  
+                l1031 0777                  l1040 0797                  l1032 0777                  l1041 079C  
+                l1033 077C                  l1025 075D                  l1050 07CD                  l1042 07AD  
+                l1034 078D                  l1026 0771                  l1051 07C5                  l1043 07A5  
+                l1035 0785                  l1027 0769                  l1060 07E1                  l1052 07C5  
+                l1044 07A5                  l1036 0785                  l1028 0769                  l1061 07E6  
+                l1053 07CA                  l1045 07AA                  l1037 078A                  l1029 076E  
+                l1062 07FB                  l1054 07DB                  l1046 07BB                  l1038 079F  
+                l1063 07F3                  l1055 07D3                  l1047 07B3                  l1039 0797  
+                l1064 07F3                  l1056 07D3                  l1048 07B3                  l1065 07F8  
+                l1057 07D8                  l1049 07B8                  l1066 07FC                  l1058 07E9  
+                l1067 07FD                  l1059 07E1                  l1068 07FD                  l1501 07B2  
+                l1511 07BE                  l1503 07B8                  l1521 07D2                  l1513 07BF  
+                l1505 07BB                  l1441 074C                  l1531 07E9                  l1523 07D8  
+                l1515 07C4                  l1507 07BC                  l1451 075B                  l1443 074F  
+                l1541 07F2                  l1533 07EA                  l1525 07DB                  l1517 07CA  
+                l1509 07BD                  l1461 0763                  l1453 075D                  l1445 0752  
+                l1437 0745                  l1543 07F8                  l1535 07EB                  l1527 07E0  
+                l1519 07CD                  l1471 077C                  l1463 0768                  l1455 0760  
+                l1447 0755                  l1439 0748                  l1537 07EC                  l1529 07E6  
+                l1481 078E                  l1473 077F                  l1465 076E                  l1457 0761  
+                l1449 0758                  l1539 07ED                  l1491 079C                  l1483 078F  
+                l1475 0784                  l1467 0771                  l1459 0762                  l1493 079F  
+                l1485 0790                  l1477 078A                  l1469 0776                  l1495 07A4  
+                l1487 0791                  l1479 078D                  l1497 07AA                  l1489 0796  
+                l1499 07AD                  _main 0745                  btemp 007E                  start 0000  
+               ?_main 0000                 _ANSEL 0188                 _PORTA 0005                 _PORTB 0006  
+               _PORTC 0007                 _TRISA 0085                 _TRISB 0086                 _TRISC 0087  
+               status 0003                 wtemp0 007E          __end_of_main 0800                ??_main 0000  
+              _ANSELH 0189        __pcstackCOMMON 0000            __pmaintext 0745  end_of_initialization 0741  
+ start_initialization 0741         __size_of_main 00BB  

@@ -1,0 +1,16 @@
+___awdiv: CODE, 905 0 116
+_delay: CODE, 622 0 20
+_display: CODE, 609 0 13
+___ftpack: CODE, 1021 0 123
+___awmod: CODE, 803 0 102
+_main: CODE, 1748 0 300
+_address: CODE, 596 0 13
+_type: CODE, 584 0 12
+_adc: CODE, 707 0 96
+_on: CODE, 572 0 12
+_pulse: CODE, 642 0 25
+___ftmul: CODE, 1510 0 238
+___awtoft: CODE, 667 0 40
+___fttol: CODE, 1144 0 166
+___ftdiv: CODE, 1310 0 200
+Total: 1476

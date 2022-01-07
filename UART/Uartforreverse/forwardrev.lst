@@ -1,0 +1,1673 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Sat Jun 26 11:58:12 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_pulse
+    43                           	FNCALL	_main,_type
+    44                           	FNCALL	_main,_on
+    45                           	FNCALL	_main,_rx
+    46                           	FNCALL	_rx,_display1
+    47                           	FNCALL	_rx,_strcmp
+    48                           	FNCALL	_display1,_pulse
+    49                           	FNCALL	_type,_pulse
+    50                           	FNCALL	_on,_pulse
+    51                           	FNCALL	_pulse,_delay
+    52                           	FNROOT	_main
+    53                           	global	rx@F1705
+    54                           	global	rx@F1707
+    55                           	global	rx@F1709
+    56                           psect	idataBANK0,class=CODE,space=0,delta=2
+    57                           global __pidataBANK0
+    58  06A7                     __pidataBANK0:
+    59                           	file	"E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+    60                           	line	69
+    61                           
+    62                           ;initializer for rx@F1705
+    63  06A7  3466               	retlw	066h
+    64  06A8  346F               	retlw	06Fh
+    65  06A9  3472               	retlw	072h
+    66  06AA  3477               	retlw	077h
+    67  06AB  3461               	retlw	061h
+    68  06AC  3472               	retlw	072h
+    69  06AD  3464               	retlw	064h
+    70  06AE  3400               	retlw	0
+    71  06AF  3400               	retlw	0
+    72  06B0  3400               	retlw	0
+    73                           	line	70
+    74                           
+    75                           ;initializer for rx@F1707
+    76  06B1  3472               	retlw	072h
+    77  06B2  3465               	retlw	065h
+    78  06B3  3476               	retlw	076h
+    79  06B4  3465               	retlw	065h
+    80  06B5  3472               	retlw	072h
+    81  06B6  3473               	retlw	073h
+    82  06B7  3465               	retlw	065h
+    83  06B8  3400               	retlw	0
+    84  06B9  3400               	retlw	0
+    85  06BA  3400               	retlw	0
+    86                           	line	71
+    87                           
+    88                           ;initializer for rx@F1709
+    89  06BB  3473               	retlw	073h
+    90  06BC  3474               	retlw	074h
+    91  06BD  346F               	retlw	06Fh
+    92  06BE  3470               	retlw	070h
+    93  06BF  3400               	retlw	0
+    94  06C0  3400               	retlw	0
+    95  06C1  3400               	retlw	0
+    96  06C2  3400               	retlw	0
+    97  06C3  3400               	retlw	0
+    98  06C4  3400               	retlw	0
+    99                           	global	_value
+   100                           	global	_ans
+   101                           	global	_PORTA
+   102  0005                     _PORTA	set	5
+   103                           	global	_PORTB
+   104  0006                     _PORTB	set	6
+   105                           	global	_PORTC
+   106  0007                     _PORTC	set	7
+   107                           	global	_PORTD
+   108  0008                     _PORTD	set	8
+   109                           	global	_PORTE
+   110  0009                     _PORTE	set	9
+   111                           	global	_RCREG
+   112  001A                     _RCREG	set	26
+   113                           	global	_RCSTA
+   114  0018                     _RCSTA	set	24
+   115                           	global	_RB0
+   116  0030                     _RB0	set	48
+   117                           	global	_RB1
+   118  0031                     _RB1	set	49
+   119                           	global	_RB2
+   120  0032                     _RB2	set	50
+   121                           	global	_RCIF
+   122  0065                     _RCIF	set	101
+   123                           	global	_RE0
+   124  0048                     _RE0	set	72
+   125                           	global	_RE1
+   126  0049                     _RE1	set	73
+   127                           	global	_RE2
+   128  004A                     _RE2	set	74
+   129                           	global	_SPBRG
+   130  0099                     _SPBRG	set	153
+   131                           	global	_TRISA
+   132  0085                     _TRISA	set	133
+   133                           	global	_TRISB
+   134  0086                     _TRISB	set	134
+   135                           	global	_TRISC
+   136  0087                     _TRISC	set	135
+   137                           	global	_TRISD
+   138  0088                     _TRISD	set	136
+   139                           	global	_TRISE
+   140  0089                     _TRISE	set	137
+   141                           	global	_TXSTA
+   142  0098                     _TXSTA	set	152
+   143                           	global	_ANSEL
+   144  0188                     _ANSEL	set	392
+   145                           	global	_ANSELH
+   146  0189                     _ANSELH	set	393
+   147                           	file	"forwardrev.as"
+   148                           	line	#
+   149                           psect cinit,class=CODE,delta=2
+   150                           global start_initialization
+   151  066C                     start_initialization:
+   152                           
+   153                           psect	bssBANK0,class=BANK0,space=1
+   154                           global __pbssBANK0
+   155  0064                     __pbssBANK0:
+   156  0064                     _value:
+   157  0064                            ds      1
+   158                           
+   159  0065                     _ans:
+   160  0065                            ds      10
+   161                           
+   162                           psect	dataBANK0,class=BANK0,space=1
+   163                           global __pdataBANK0
+   164  0046                     __pdataBANK0:
+   165                           	file	"E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+   166                           	line	69
+   167  0046                     rx@F1705:
+   168  0046                            ds      10
+   169                           
+   170                           psect	dataBANK0
+   171                           	file	"E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+   172                           	line	70
+   173  0050                     rx@F1707:
+   174  0050                            ds      10
+   175                           
+   176                           psect	dataBANK0
+   177                           	file	"E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+   178                           	line	71
+   179  005A                     rx@F1709:
+   180  005A                            ds      10
+   181                           
+   182                           ; Clear objects allocated to BANK0
+   183                           psect cinit,class=CODE,delta=2
+   184  066C  01E4               	clrf	((__pbssBANK0)+0)&07Fh
+   185  066D  01E5               	clrf	((__pbssBANK0)+1)&07Fh
+   186  066E  01E6               	clrf	((__pbssBANK0)+2)&07Fh
+   187  066F  01E7               	clrf	((__pbssBANK0)+3)&07Fh
+   188  0670  01E8               	clrf	((__pbssBANK0)+4)&07Fh
+   189  0671  01E9               	clrf	((__pbssBANK0)+5)&07Fh
+   190  0672  01EA               	clrf	((__pbssBANK0)+6)&07Fh
+   191  0673  01EB               	clrf	((__pbssBANK0)+7)&07Fh
+   192  0674  01EC               	clrf	((__pbssBANK0)+8)&07Fh
+   193  0675  01ED               	clrf	((__pbssBANK0)+9)&07Fh
+   194  0676  01EE               	clrf	((__pbssBANK0)+10)&07Fh
+   195                           global btemp
+   196                           psect inittext,class=CODE,delta=2
+   197                           global init_fetch,btemp
+   198                           ;	Called with low address in FSR and high address in W
+   199  062E                     init_fetch:
+   200  062E  087E               	movf btemp,w
+   201  062F  008A               	movwf pclath
+   202  0630  087F               	movf btemp+1,w
+   203  0631  0082               	movwf pc
+   204                           global init_ram
+   205                           ;Called with:
+   206                           ;	high address of idata address in btemp 
+   207                           ;	low address of idata address in btemp+1 
+   208                           ;	low address of data in FSR
+   209                           ;	high address + 1 of data in btemp-1
+   210  0632                     init_ram:
+   211  0632  262E  120A  118A   	fcall init_fetch
+   212  0635  0080               	movwf indf,f
+   213  0636  0A84               	incf fsr,f
+   214  0637  0804               	movf fsr,w
+   215  0638  067D               	xorwf btemp-1,w
+   216  0639  1903               	btfsc status,2
+   217  063A  3400               	retlw 0
+   218  063B  0AFF               	incf btemp+1,f
+   219  063C  1903               	btfsc status,2
+   220  063D  0AFE               	incf btemp,f
+   221  063E  2E32               	goto init_ram
+   222                           ; Initialize objects allocated to BANK0
+   223                           psect cinit,class=CODE,delta=2
+   224                           global init_ram, __pidataBANK0
+   225  0677  1383               	bcf	status, 7	;select IRP bank0
+   226  0678  3064               	movlw low(__pdataBANK0+30)
+   227  0679  00FD               	movwf btemp-1,f
+   228  067A  3006               	movlw high(__pidataBANK0)
+   229  067B  00FE               	movwf btemp,f
+   230  067C  30A7               	movlw low(__pidataBANK0)
+   231  067D  00FF               	movwf btemp+1,f
+   232  067E  3046               	movlw low(__pdataBANK0)
+   233  067F  0084               	movwf fsr,f
+   234  0680  120A  118A  2632   	fcall init_ram
+              120A  118A         
+   235                           psect cinit,class=CODE,delta=2
+   236                           global end_of_initialization
+   237                           
+   238                           ;End of C runtime variable initialization code
+   239                           
+   240  0685                     end_of_initialization:
+   241  0685  0183               clrf status
+   242  0686  120A  118A  2EEE   ljmp _main	;jump to C main() function
+   243                           psect	cstackCOMMON,class=COMMON,space=1
+   244                           global __pcstackCOMMON
+   245  0070                     __pcstackCOMMON:
+   246                           	global	?_delay
+   247  0070                     ?_delay:	; 0 bytes @ 0x0
+   248                           	global	?_pulse
+   249  0070                     ?_pulse:	; 0 bytes @ 0x0
+   250                           	global	?_on
+   251  0070                     ?_on:	; 0 bytes @ 0x0
+   252                           	global	?_type
+   253  0070                     ?_type:	; 0 bytes @ 0x0
+   254                           	global	?_display1
+   255  0070                     ?_display1:	; 0 bytes @ 0x0
+   256                           	global	?_rx
+   257  0070                     ?_rx:	; 0 bytes @ 0x0
+   258                           	global	?_main
+   259  0070                     ?_main:	; 0 bytes @ 0x0
+   260                           	global	?_strcmp
+   261  0070                     ?_strcmp:	; 2 bytes @ 0x0
+   262                           	global	strcmp@s2
+   263  0070                     strcmp@s2:	; 1 bytes @ 0x0
+   264                           	global	delay@del
+   265  0070                     delay@del:	; 2 bytes @ 0x0
+   266  0070                     	ds	2
+   267                           	global	??_strcmp
+   268  0072                     ??_strcmp:	; 0 bytes @ 0x2
+   269                           	global	??_delay
+   270  0072                     ??_delay:	; 0 bytes @ 0x2
+   271                           	global	??_pulse
+   272  0072                     ??_pulse:	; 0 bytes @ 0x2
+   273                           	global	??_on
+   274  0072                     ??_on:	; 0 bytes @ 0x2
+   275                           	global	??_type
+   276  0072                     ??_type:	; 0 bytes @ 0x2
+   277                           	global	??_display1
+   278  0072                     ??_display1:	; 0 bytes @ 0x2
+   279  0072                     	ds	1
+   280                           	global	display1@data
+   281  0073                     display1@data:	; 1 bytes @ 0x3
+   282  0073                     	ds	1
+   283                           	global	strcmp@r
+   284  0074                     strcmp@r:	; 1 bytes @ 0x4
+   285  0074                     	ds	1
+   286                           	global	strcmp@s1
+   287  0075                     strcmp@s1:	; 1 bytes @ 0x5
+   288  0075                     	ds	1
+   289                           	global	??_rx
+   290  0076                     ??_rx:	; 0 bytes @ 0x6
+   291  0076                     	ds	4
+   292                           	global	??_main
+   293  007A                     ??_main:	; 0 bytes @ 0xA
+   294                           psect	cstackBANK0,class=BANK0,space=1
+   295                           global __pcstackBANK0
+   296  0020                     __pcstackBANK0:
+   297                           	global	rx@forward
+   298  0020                     rx@forward:	; 10 bytes @ 0x0
+   299  0020                     	ds	10
+   300                           	global	rx@reverse
+   301  002A                     rx@reverse:	; 10 bytes @ 0xA
+   302  002A                     	ds	10
+   303                           	global	rx@stop
+   304  0034                     rx@stop:	; 10 bytes @ 0x14
+   305  0034                     	ds	10
+   306                           	global	rx@check1
+   307  003E                     rx@check1:	; 2 bytes @ 0x1E
+   308  003E                     	ds	2
+   309                           	global	rx@check2
+   310  0040                     rx@check2:	; 2 bytes @ 0x20
+   311  0040                     	ds	2
+   312                           	global	rx@check3
+   313  0042                     rx@check3:	; 2 bytes @ 0x22
+   314  0042                     	ds	2
+   315                           	global	rx@i
+   316  0044                     rx@i:	; 2 bytes @ 0x24
+   317  0044                     	ds	2
+   318 ;;Data sizes: Strings 0, constant 0, data 30, bss 11, persistent 0 stack 0
+   319 ;;Auto spaces:   Size  Autos    Used
+   320 ;; COMMON          14     10      10
+   321 ;; BANK0           80     38      79
+   322 ;; BANK1           80      0       0
+   323 ;; BANK3           96      0       0
+   324 ;; BANK2           96      0       0
+   325                           
+   326 ;;
+   327 ;; Pointer list with targets:
+   328                           
+   329 ;; ?_strcmp	int  size(1) Largest target is 0
+   330 ;;
+   331 ;; strcmp@s2	PTR const unsigned char  size(1) Largest target is 10
+   332 ;;		 -> rx@stop(BANK0[10]), rx@reverse(BANK0[10]), rx@forward(BANK0[10]), 
+   333 ;;
+   334 ;; strcmp@s1	PTR const unsigned char  size(1) Largest target is 10
+   335 ;;		 -> ans(BANK0[10]), 
+   336 ;;
+   337 ;; display1@data	PTR unsigned char  size(1) Largest target is 10
+   338 ;;		 -> ans(BANK0[10]), 
+   339 ;;
+   340                           
+   341                           
+   342 ;;
+   343 ;; Critical Paths under _main in COMMON
+   344 ;;
+   345 ;;   _main->_rx
+   346 ;;   _rx->_strcmp
+   347 ;;   _pulse->_delay
+   348 ;;
+   349 ;; Critical Paths under _main in BANK0
+   350 ;;
+   351 ;;   _main->_rx
+   352 ;;
+   353 ;; Critical Paths under _main in BANK1
+   354 ;;
+   355 ;;   None.
+   356 ;;
+   357 ;; Critical Paths under _main in BANK3
+   358 ;;
+   359 ;;   None.
+   360 ;;
+   361 ;; Critical Paths under _main in BANK2
+   362 ;;
+   363 ;;   None.
+   364                           
+   365 ;;
+   366 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   367 ;;
+   368                           
+   369 ;;
+   370 ;;Call Graph Tables:
+   371 ;;
+   372 ;; ---------------------------------------------------------------------------------
+   373 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   374 ;; ---------------------------------------------------------------------------------
+   375 ;; (0) _main                                                 0     0      0     409
+   376 ;;                              _pulse
+   377 ;;                               _type
+   378 ;;                                 _on
+   379 ;;                                 _rx
+   380 ;; ---------------------------------------------------------------------------------
+   381 ;; (1) _rx                                                  42    42      0     343
+   382 ;;                                              6 COMMON     4     4      0
+   383 ;;                                              0 BANK0     38    38      0
+   384 ;;                           _display1
+   385 ;;                             _strcmp
+   386 ;; ---------------------------------------------------------------------------------
+   387 ;; (2) _display1                                             2     2      0      67
+   388 ;;                                              2 COMMON     2     2      0
+   389 ;;                              _pulse
+   390 ;; ---------------------------------------------------------------------------------
+   391 ;; (1) _type                                                 0     0      0      22
+   392 ;;                              _pulse
+   393 ;; ---------------------------------------------------------------------------------
+   394 ;; (1) _on                                                   0     0      0      22
+   395 ;;                              _pulse
+   396 ;; ---------------------------------------------------------------------------------
+   397 ;; (3) _pulse                                                0     0      0      22
+   398 ;;                              _delay
+   399 ;; ---------------------------------------------------------------------------------
+   400 ;; (2) _strcmp                                               6     4      2      89
+   401 ;;                                              0 COMMON     6     4      2
+   402 ;; ---------------------------------------------------------------------------------
+   403 ;; (4) _delay                                                2     0      2      22
+   404 ;;                                              0 COMMON     2     0      2
+   405 ;; ---------------------------------------------------------------------------------
+   406 ;; Estimated maximum stack depth 4
+   407 ;; ---------------------------------------------------------------------------------
+   408                           
+   409 ;; Call Graph Graphs:
+   410                           
+   411 ;; _main (ROOT)
+   412 ;;   _pulse
+   413 ;;     _delay
+   414 ;;   _type
+   415 ;;     _pulse
+   416 ;;       _delay
+   417 ;;   _on
+   418 ;;     _pulse
+   419 ;;       _delay
+   420 ;;   _rx
+   421 ;;     _display1
+   422 ;;       _pulse
+   423 ;;         _delay
+   424 ;;     _strcmp
+   425 ;;
+   426                           
+   427 ;; Address spaces:
+   428                           
+   429 ;;Name               Size   Autos  Total    Cost      Usage
+   430 ;;BANK3               60      0       0       9        0.0%
+   431 ;;BITBANK3            60      0       0       8        0.0%
+   432 ;;SFR3                 0      0       0       4        0.0%
+   433 ;;BITSFR3              0      0       0       4        0.0%
+   434 ;;BANK2               60      0       0      11        0.0%
+   435 ;;BITBANK2            60      0       0      10        0.0%
+   436 ;;SFR2                 0      0       0       5        0.0%
+   437 ;;BITSFR2              0      0       0       5        0.0%
+   438 ;;SFR1                 0      0       0       2        0.0%
+   439 ;;BITSFR1              0      0       0       2        0.0%
+   440 ;;BANK1               50      0       0       7        0.0%
+   441 ;;BITBANK1            50      0       0       6        0.0%
+   442 ;;CODE                 0      0       0       0        0.0%
+   443 ;;DATA                 0      0      5D      12        0.0%
+   444 ;;ABS                  0      0      59       3        0.0%
+   445 ;;NULL                 0      0       0       0        0.0%
+   446 ;;STACK                0      0       4       2        0.0%
+   447 ;;BANK0               50     26      4F       5       98.8%
+   448 ;;BITBANK0            50      0       0       4        0.0%
+   449 ;;SFR0                 0      0       0       1        0.0%
+   450 ;;BITSFR0              0      0       0       1        0.0%
+   451 ;;COMMON               E      A       A       1       71.4%
+   452 ;;BITCOMMON            E      0       0       0        0.0%
+   453 ;;EEDATA             100      0       0       0        0.0%
+   454                           
+   455                           	global	_main
+   456                           psect	maintext,global,class=CODE,delta=2
+   457                           global __pmaintext
+   458  06EE                     __pmaintext:
+   459                           
+   460 ;; *************** function _main *****************
+   461 ;; Defined at:
+   462 ;;		line 101 in file "E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+   463 ;; Parameters:    Size  Location     Type
+   464 ;;		None
+   465 ;; Auto vars:     Size  Location     Type
+   466 ;;		None
+   467 ;; Return value:  Size  Location     Type
+   468 ;;		None               void
+   469 ;; Registers used:
+   470 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   471 ;; Tracked objects:
+   472 ;;		On entry : 17F/0
+   473 ;;		On exit  : 0/0
+   474 ;;		Unchanged: 0/0
+   475 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   476 ;;      Params:         0       0       0       0       0
+   477 ;;      Locals:         0       0       0       0       0
+   478 ;;      Temps:          0       0       0       0       0
+   479 ;;      Totals:         0       0       0       0       0
+   480 ;;Total ram usage:        0 bytes
+   481 ;; Hardware stack levels required when called:    4
+   482 ;; This function calls:
+   483 ;;		_pulse
+   484 ;;		_type
+   485 ;;		_on
+   486 ;;		_rx
+   487 ;; This function is called by:
+   488 ;;		Startup code after reset
+   489 ;; This function uses a non-reentrant model
+   490 ;;
+   491                           psect	maintext
+   492                           	file	"E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+   493                           	line	101
+   494                           	global	__size_of_main
+   495  0049                     	__size_of_main	equ	__end_of_main-_main
+   496                           	
+   497  06EE                     _main:	
+   498                           	opt	stack 4
+   499                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   500                           	line	102
+   501                           	
+   502  06EE                     l2447:	
+   503                           ;forwardrev.c: 102: PORTA=0X00;
+   504  06EE  1283               	bcf	status, 5	;RP0=0, select bank0
+   505  06EF  1303               	bcf	status, 6	;RP1=0, select bank0
+   506  06F0  0185               	clrf	(5)	;volatile
+   507                           	line	103
+   508                           ;forwardrev.c: 103: TRISA=0X00;
+   509  06F1  1683               	bsf	status, 5	;RP0=1, select bank1
+   510  06F2  1303               	bcf	status, 6	;RP1=0, select bank1
+   511  06F3  0185               	clrf	(133)^080h	;volatile
+   512                           	line	104
+   513                           ;forwardrev.c: 104: PORTB=0X00;
+   514  06F4  1283               	bcf	status, 5	;RP0=0, select bank0
+   515  06F5  1303               	bcf	status, 6	;RP1=0, select bank0
+   516  06F6  0186               	clrf	(6)	;volatile
+   517                           	line	105
+   518                           ;forwardrev.c: 105: TRISB=0X00;
+   519  06F7  1683               	bsf	status, 5	;RP0=1, select bank1
+   520  06F8  1303               	bcf	status, 6	;RP1=0, select bank1
+   521  06F9  0186               	clrf	(134)^080h	;volatile
+   522                           	line	106
+   523                           ;forwardrev.c: 106: PORTC=0X00;
+   524  06FA  1283               	bcf	status, 5	;RP0=0, select bank0
+   525  06FB  1303               	bcf	status, 6	;RP1=0, select bank0
+   526  06FC  0187               	clrf	(7)	;volatile
+   527                           	line	107
+   528                           	
+   529  06FD                     l2449:	
+   530                           ;forwardrev.c: 107: TRISC=0X80;
+   531  06FD  3080               	movlw	(080h)
+   532  06FE  1683               	bsf	status, 5	;RP0=1, select bank1
+   533  06FF  1303               	bcf	status, 6	;RP1=0, select bank1
+   534  0700  0087               	movwf	(135)^080h	;volatile
+   535                           	line	108
+   536                           	
+   537  0701                     l2451:	
+   538                           ;forwardrev.c: 108: PORTD=0X00;
+   539  0701  1283               	bcf	status, 5	;RP0=0, select bank0
+   540  0702  1303               	bcf	status, 6	;RP1=0, select bank0
+   541  0703  0188               	clrf	(8)	;volatile
+   542                           	line	109
+   543                           	
+   544  0704                     l2453:	
+   545                           ;forwardrev.c: 109: TRISD=0X00;
+   546  0704  1683               	bsf	status, 5	;RP0=1, select bank1
+   547  0705  1303               	bcf	status, 6	;RP1=0, select bank1
+   548  0706  0188               	clrf	(136)^080h	;volatile
+   549                           	line	110
+   550                           	
+   551  0707                     l2455:	
+   552                           ;forwardrev.c: 110: PORTE=0X00;
+   553  0707  1283               	bcf	status, 5	;RP0=0, select bank0
+   554  0708  1303               	bcf	status, 6	;RP1=0, select bank0
+   555  0709  0189               	clrf	(9)	;volatile
+   556                           	line	111
+   557                           	
+   558  070A                     l2457:	
+   559                           ;forwardrev.c: 111: TRISE=0X00;
+   560  070A  1683               	bsf	status, 5	;RP0=1, select bank1
+   561  070B  1303               	bcf	status, 6	;RP1=0, select bank1
+   562  070C  0189               	clrf	(137)^080h	;volatile
+   563                           	line	112
+   564                           	
+   565  070D                     l2459:	
+   566                           ;forwardrev.c: 112: ANSEL=0X00;
+   567  070D  1683               	bsf	status, 5	;RP0=1, select bank3
+   568  070E  1703               	bsf	status, 6	;RP1=1, select bank3
+   569  070F  0188               	clrf	(392)^0180h	;volatile
+   570                           	line	113
+   571                           	
+   572  0710                     l2461:	
+   573                           ;forwardrev.c: 113: ANSELH=0X00;
+   574  0710  0189               	clrf	(393)^0180h	;volatile
+   575                           	line	114
+   576                           	
+   577  0711                     l2463:	
+   578                           ;forwardrev.c: 114: TXSTA=0X26;
+   579  0711  3026               	movlw	(026h)
+   580  0712  1683               	bsf	status, 5	;RP0=1, select bank1
+   581  0713  1303               	bcf	status, 6	;RP1=0, select bank1
+   582  0714  0098               	movwf	(152)^080h	;volatile
+   583                           	line	115
+   584                           	
+   585  0715                     l2465:	
+   586                           ;forwardrev.c: 115: RCSTA=0X90;
+   587  0715  3090               	movlw	(090h)
+   588  0716  1283               	bcf	status, 5	;RP0=0, select bank0
+   589  0717  1303               	bcf	status, 6	;RP1=0, select bank0
+   590  0718  0098               	movwf	(24)	;volatile
+   591                           	line	116
+   592                           	
+   593  0719                     l2467:	
+   594                           ;forwardrev.c: 116: SPBRG=25;
+   595  0719  3019               	movlw	(019h)
+   596  071A  1683               	bsf	status, 5	;RP0=1, select bank1
+   597  071B  1303               	bcf	status, 6	;RP1=0, select bank1
+   598  071C  0099               	movwf	(153)^080h	;volatile
+   599                           	line	117
+   600                           	
+   601  071D                     l2469:	
+   602                           ;forwardrev.c: 117: pulse();
+   603  071D  120A  118A  2653   	fcall	_pulse
+              120A  118A         
+   604                           	line	118
+   605                           	
+   606  0722                     l2471:	
+   607                           ;forwardrev.c: 118: type();
+   608  0722  120A  118A  2622   	fcall	_type
+              120A  118A         
+   609                           	line	119
+   610                           	
+   611  0727                     l2473:	
+   612                           ;forwardrev.c: 119: on();
+   613  0727  120A  118A  2616   	fcall	_on
+              120A  118A         
+   614  072C  2F2D               	goto	l2475
+   615                           	line	120
+   616                           ;forwardrev.c: 120: while(1)
+   617                           	
+   618  072D                     l1075:	
+   619                           	line	122
+   620                           	
+   621  072D                     l2475:	
+   622                           ;forwardrev.c: 121: {
+   623                           ;forwardrev.c: 122: rx();
+   624  072D  120A  118A  2737   	fcall	_rx
+              120A  118A         
+   625  0732  2F2D               	goto	l2475
+   626                           	line	123
+   627                           	
+   628  0733                     l1076:	
+   629                           	line	120
+   630  0733  2F2D               	goto	l2475
+   631                           	
+   632  0734                     l1077:	
+   633                           	line	124
+   634                           	
+   635  0734                     l1078:	
+   636                           	global	start
+   637  0734  120A  118A  2800   	ljmp	start
+   638                           	opt stack 0
+   639                           GLOBAL	__end_of_main
+   640  0737                     	__end_of_main:
+   641 ;; =============== function _main ends ============
+   642                           
+   643                           	signat	_main,88
+   644                           	global	_rx
+   645                           psect	text231,local,class=CODE,delta=2
+   646                           global __ptext231
+   647  0737                     __ptext231:
+   648                           
+   649 ;; *************** function _rx *****************
+   650 ;; Defined at:
+   651 ;;		line 64 in file "E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+   652 ;; Parameters:    Size  Location     Type
+   653 ;;		None
+   654 ;; Auto vars:     Size  Location     Type
+   655 ;;  stop           10   20[BANK0 ] unsigned char [10]
+   656 ;;  reverse        10   10[BANK0 ] unsigned char [10]
+   657 ;;  forward        10    0[BANK0 ] unsigned char [10]
+   658 ;;  i               2   36[BANK0 ] int 
+   659 ;;  check3          2   34[BANK0 ] int 
+   660 ;;  check2          2   32[BANK0 ] int 
+   661 ;;  check1          2   30[BANK0 ] int 
+   662 ;; Return value:  Size  Location     Type
+   663 ;;		None               void
+   664 ;; Registers used:
+   665 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   666 ;; Tracked objects:
+   667 ;;		On entry : 0/0
+   668 ;;		On exit  : 0/0
+   669 ;;		Unchanged: 0/0
+   670 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   671 ;;      Params:         0       0       0       0       0
+   672 ;;      Locals:         0      38       0       0       0
+   673 ;;      Temps:          4       0       0       0       0
+   674 ;;      Totals:         4      38       0       0       0
+   675 ;;Total ram usage:       42 bytes
+   676 ;; Hardware stack levels used:    1
+   677 ;; Hardware stack levels required when called:    3
+   678 ;; This function calls:
+   679 ;;		_display1
+   680 ;;		_strcmp
+   681 ;; This function is called by:
+   682 ;;		_main
+   683 ;; This function uses a non-reentrant model
+   684 ;;
+   685                           psect	text231
+   686                           	file	"E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+   687                           	line	64
+   688                           	global	__size_of_rx
+   689  00C9                     	__size_of_rx	equ	__end_of_rx-_rx
+   690                           	
+   691  0737                     _rx:	
+   692                           	opt	stack 4
+   693                           ; Regs used in _rx: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   694                           	line	69
+   695                           	
+   696  0737                     l2405:	
+   697                           ;forwardrev.c: 65: int check1;
+   698                           ;forwardrev.c: 66: int check2;
+   699                           ;forwardrev.c: 67: int check3;
+   700                           ;forwardrev.c: 68: int i;
+   701                           ;forwardrev.c: 69: char forward[10]="forward";
+   702  0737  3020               	movlw	(rx@forward)&0ffh
+   703  0738  0084               	movwf	fsr0
+   704  0739  3046               	movlw	low(rx@F1705)
+   705  073A  00F6               	movwf	(??_rx+0)+0
+   706  073B  0804               	movf	fsr0,w
+   707  073C  00F7               	movwf	((??_rx+0)+0+1)
+   708  073D  300A               	movlw	10
+   709  073E  00F8               	movwf	((??_rx+0)+0+2)
+   710  073F                     u2310:
+   711  073F  0876               	movf	(??_rx+0)+0,w
+   712  0740  0084               	movwf	fsr0
+   713  0741  1383               	bcf	status, 7	;select IRP bank0
+   714                           	
+   715  0742  0800               	movf	indf,w
+   716  0743  00F9               	movwf	((??_rx+0)+0+3)
+   717  0744  0AF6               	incf	(??_rx+0)+0,f
+   718  0745  0877               	movf	((??_rx+0)+0+1),w
+   719  0746  0084               	movwf	fsr0
+   720                           	
+   721  0747  0879               	movf	((??_rx+0)+0+3),w
+   722  0748  0080               	movwf	indf
+   723  0749  0AF7               	incf	((??_rx+0)+0+1),f
+   724  074A  0BF8               	decfsz	((??_rx+0)+0+2),f
+   725  074B  2F3F               	goto	u2310
+   726                           	line	70
+   727                           ;forwardrev.c: 70: char reverse[10]="reverse";
+   728  074C  302A               	movlw	(rx@reverse)&0ffh
+   729  074D  0084               	movwf	fsr0
+   730  074E  3050               	movlw	low(rx@F1707)
+   731  074F  00F6               	movwf	(??_rx+0)+0
+   732  0750  0804               	movf	fsr0,w
+   733  0751  00F7               	movwf	((??_rx+0)+0+1)
+   734  0752  300A               	movlw	10
+   735  0753  00F8               	movwf	((??_rx+0)+0+2)
+   736  0754                     u2320:
+   737  0754  0876               	movf	(??_rx+0)+0,w
+   738  0755  0084               	movwf	fsr0
+   739  0756  1383               	bcf	status, 7	;select IRP bank0
+   740                           	
+   741  0757  0800               	movf	indf,w
+   742  0758  00F9               	movwf	((??_rx+0)+0+3)
+   743  0759  0AF6               	incf	(??_rx+0)+0,f
+   744  075A  0877               	movf	((??_rx+0)+0+1),w
+   745  075B  0084               	movwf	fsr0
+   746                           	
+   747  075C  0879               	movf	((??_rx+0)+0+3),w
+   748  075D  0080               	movwf	indf
+   749  075E  0AF7               	incf	((??_rx+0)+0+1),f
+   750  075F  0BF8               	decfsz	((??_rx+0)+0+2),f
+   751  0760  2F54               	goto	u2320
+   752                           	line	71
+   753                           ;forwardrev.c: 71: char stop[10]="stop";
+   754  0761  3034               	movlw	(rx@stop)&0ffh
+   755  0762  0084               	movwf	fsr0
+   756  0763  305A               	movlw	low(rx@F1709)
+   757  0764  00F6               	movwf	(??_rx+0)+0
+   758  0765  0804               	movf	fsr0,w
+   759  0766  00F7               	movwf	((??_rx+0)+0+1)
+   760  0767  300A               	movlw	10
+   761  0768  00F8               	movwf	((??_rx+0)+0+2)
+   762  0769                     u2330:
+   763  0769  0876               	movf	(??_rx+0)+0,w
+   764  076A  0084               	movwf	fsr0
+   765  076B  1383               	bcf	status, 7	;select IRP bank0
+   766                           	
+   767  076C  0800               	movf	indf,w
+   768  076D  00F9               	movwf	((??_rx+0)+0+3)
+   769  076E  0AF6               	incf	(??_rx+0)+0,f
+   770  076F  0877               	movf	((??_rx+0)+0+1),w
+   771  0770  0084               	movwf	fsr0
+   772                           	
+   773  0771  0879               	movf	((??_rx+0)+0+3),w
+   774  0772  0080               	movwf	indf
+   775  0773  0AF7               	incf	((??_rx+0)+0+1),f
+   776  0774  0BF8               	decfsz	((??_rx+0)+0+2),f
+   777  0775  2F69               	goto	u2330
+   778                           	line	72
+   779                           	
+   780  0776                     l2407:	
+   781                           ;forwardrev.c: 72: value='A';
+   782  0776  3041               	movlw	(041h)
+   783  0777  00F6               	movwf	(??_rx+0)+0
+   784  0778  0876               	movf	(??_rx+0)+0,w
+   785  0779  1283               	bcf	status, 5	;RP0=0, select bank0
+   786  077A  1303               	bcf	status, 6	;RP1=0, select bank0
+   787  077B  00E4               	movwf	(_value)
+   788                           	line	73
+   789                           	
+   790  077C                     l2409:	
+   791                           ;forwardrev.c: 73: for(i=0;value!=0x0D;i++)
+   792  077C  01C4               	clrf	(rx@i)
+   793  077D  01C5               	clrf	(rx@i+1)
+   794                           	
+   795  077E                     l2411:	
+   796  077E  0864               	movf	(_value),w
+   797  077F  3A0D               	xorlw	0Dh
+   798  0780  1D03               	skipz
+   799  0781  2F83               	goto	u2341
+   800  0782  2F84               	goto	u2340
+   801  0783                     u2341:
+   802  0783  2F87               	goto	l1066
+   803  0784                     u2340:
+   804  0784  2FA6               	goto	l2425
+   805                           	
+   806  0785                     l2413:	
+   807  0785  2FA6               	goto	l2425
+   808                           	line	74
+   809                           	
+   810  0786                     l1064:	
+   811                           	line	75
+   812                           ;forwardrev.c: 74: {
+   813                           ;forwardrev.c: 75: while(RCIF==0);
+   814  0786  2F87               	goto	l1066
+   815                           	
+   816  0787                     l1067:	
+   817                           	
+   818  0787                     l1066:	
+   819  0787  1E8C               	btfss	(101/8),(101)&7
+   820  0788  2F8A               	goto	u2351
+   821  0789  2F8B               	goto	u2350
+   822  078A                     u2351:
+   823  078A  2F87               	goto	l1066
+   824  078B                     u2350:
+   825  078B  2F8C               	goto	l2415
+   826                           	
+   827  078C                     l1068:	
+   828                           	line	76
+   829                           	
+   830  078C                     l2415:	
+   831                           ;forwardrev.c: 76: value=RCREG;
+   832  078C  081A               	movf	(26),w	;volatile
+   833  078D  00F6               	movwf	(??_rx+0)+0
+   834  078E  0876               	movf	(??_rx+0)+0,w
+   835  078F  00E4               	movwf	(_value)
+   836                           	line	78
+   837                           	
+   838  0790                     l2417:	
+   839                           ;forwardrev.c: 78: ans[i]=value;
+   840  0790  0864               	movf	(_value),w
+   841  0791  00F6               	movwf	(??_rx+0)+0
+   842  0792  0844               	movf	(rx@i),w
+   843  0793  3E65               	addlw	_ans&0ffh
+   844  0794  0084               	movwf	fsr0
+   845  0795  0876               	movf	(??_rx+0)+0,w
+   846  0796  1383               	bcf	status, 7	;select IRP bank0
+   847  0797  0080               	movwf	indf
+   848                           	line	79
+   849                           	
+   850  0798                     l2419:	
+   851                           ;forwardrev.c: 79: RCIF=0;
+   852  0798  128C               	bcf	(101/8),(101)&7
+   853                           	line	73
+   854                           	
+   855  0799                     l2421:	
+   856  0799  3001               	movlw	low(01h)
+   857  079A  07C4               	addwf	(rx@i),f
+   858  079B  1803               	skipnc
+   859  079C  0AC5               	incf	(rx@i+1),f
+   860  079D  3000               	movlw	high(01h)
+   861  079E  07C5               	addwf	(rx@i+1),f
+   862                           	
+   863  079F                     l2423:	
+   864  079F  0864               	movf	(_value),w
+   865  07A0  3A0D               	xorlw	0Dh
+   866  07A1  1D03               	skipz
+   867  07A2  2FA4               	goto	u2361
+   868  07A3  2FA5               	goto	u2360
+   869  07A4                     u2361:
+   870  07A4  2F87               	goto	l1066
+   871  07A5                     u2360:
+   872  07A5  2FA6               	goto	l2425
+   873                           	
+   874  07A6                     l1065:	
+   875                           	line	81
+   876                           	
+   877  07A6                     l2425:	
+   878                           ;forwardrev.c: 80: }
+   879                           ;forwardrev.c: 81: ans[i-1]='\0';
+   880  07A6  0844               	movf	(rx@i),w
+   881  07A7  3EFF               	addlw	0FFh
+   882  07A8  3E65               	addlw	_ans&0ffh
+   883  07A9  0084               	movwf	fsr0
+   884  07AA  0180               	clrf	indf
+   885                           	line	82
+   886                           	
+   887  07AB                     l2427:	
+   888                           ;forwardrev.c: 82: display1(&ans[0]);
+   889  07AB  3065               	movlw	(_ans)&0ffh
+   890  07AC  120A  118A  2689   	fcall	_display1
+              120A  118A         
+   891                           	line	83
+   892                           	
+   893  07B1                     l2429:	
+   894                           ;forwardrev.c: 83: check1=strcmp(ans,forward);
+   895  07B1  3020               	movlw	(rx@forward)&0ffh
+   896  07B2  00F6               	movwf	(??_rx+0)+0
+   897  07B3  0876               	movf	(??_rx+0)+0,w
+   898  07B4  00F0               	movwf	(?_strcmp)
+   899  07B5  3065               	movlw	(_ans)&0ffh
+   900  07B6  120A  118A  26C5   	fcall	_strcmp
+              120A  118A         
+   901  07BB  0871               	movf	(1+(?_strcmp)),w
+   902  07BC  1283               	bcf	status, 5	;RP0=0, select bank0
+   903  07BD  1303               	bcf	status, 6	;RP1=0, select bank0
+   904  07BE  01BF               	clrf	(rx@check1+1)
+   905  07BF  07BF               	addwf	(rx@check1+1)
+   906  07C0  0870               	movf	(0+(?_strcmp)),w
+   907  07C1  01BE               	clrf	(rx@check1)
+   908  07C2  07BE               	addwf	(rx@check1)
+   909                           
+   910                           	line	84
+   911                           	
+   912  07C3                     l2431:	
+   913                           ;forwardrev.c: 84: check2=strcmp(ans,reverse);
+   914  07C3  302A               	movlw	(rx@reverse)&0ffh
+   915  07C4  00F6               	movwf	(??_rx+0)+0
+   916  07C5  0876               	movf	(??_rx+0)+0,w
+   917  07C6  00F0               	movwf	(?_strcmp)
+   918  07C7  3065               	movlw	(_ans)&0ffh
+   919  07C8  120A  118A  26C5   	fcall	_strcmp
+              120A  118A         
+   920  07CD  0871               	movf	(1+(?_strcmp)),w
+   921  07CE  1283               	bcf	status, 5	;RP0=0, select bank0
+   922  07CF  1303               	bcf	status, 6	;RP1=0, select bank0
+   923  07D0  01C1               	clrf	(rx@check2+1)
+   924  07D1  07C1               	addwf	(rx@check2+1)
+   925  07D2  0870               	movf	(0+(?_strcmp)),w
+   926  07D3  01C0               	clrf	(rx@check2)
+   927  07D4  07C0               	addwf	(rx@check2)
+   928                           
+   929                           	line	85
+   930                           	
+   931  07D5                     l2433:	
+   932                           ;forwardrev.c: 85: check3=strcmp(ans,stop);
+   933  07D5  3034               	movlw	(rx@stop)&0ffh
+   934  07D6  00F6               	movwf	(??_rx+0)+0
+   935  07D7  0876               	movf	(??_rx+0)+0,w
+   936  07D8  00F0               	movwf	(?_strcmp)
+   937  07D9  3065               	movlw	(_ans)&0ffh
+   938  07DA  120A  118A  26C5   	fcall	_strcmp
+              120A  118A         
+   939  07DF  0871               	movf	(1+(?_strcmp)),w
+   940  07E0  1283               	bcf	status, 5	;RP0=0, select bank0
+   941  07E1  1303               	bcf	status, 6	;RP1=0, select bank0
+   942  07E2  01C3               	clrf	(rx@check3+1)
+   943  07E3  07C3               	addwf	(rx@check3+1)
+   944  07E4  0870               	movf	(0+(?_strcmp)),w
+   945  07E5  01C2               	clrf	(rx@check3)
+   946  07E6  07C2               	addwf	(rx@check3)
+   947                           
+   948                           	line	86
+   949                           	
+   950  07E7                     l2435:	
+   951                           ;forwardrev.c: 86: if(check1==0)
+   952  07E7  083F               	movf	((rx@check1+1)),w
+   953  07E8  043E               	iorwf	((rx@check1)),w
+   954  07E9  1D03               	skipz
+   955  07EA  2FEC               	goto	u2371
+   956  07EB  2FED               	goto	u2370
+   957  07EC                     u2371:
+   958  07EC  2FEF               	goto	l2439
+   959  07ED                     u2370:
+   960                           	line	88
+   961                           	
+   962  07ED                     l2437:	
+   963                           ;forwardrev.c: 87: {
+   964                           ;forwardrev.c: 88: RE0=1;
+   965  07ED  1409               	bsf	(72/8),(72)&7
+   966  07EE  2FEF               	goto	l2439
+   967                           	line	89
+   968                           	
+   969  07EF                     l1069:	
+   970                           	line	90
+   971                           	
+   972  07EF                     l2439:	
+   973                           ;forwardrev.c: 89: }
+   974                           ;forwardrev.c: 90: if(check2==0)
+   975  07EF  0841               	movf	((rx@check2+1)),w
+   976  07F0  0440               	iorwf	((rx@check2)),w
+   977  07F1  1D03               	skipz
+   978  07F2  2FF4               	goto	u2381
+   979  07F3  2FF5               	goto	u2380
+   980  07F4                     u2381:
+   981  07F4  2FF7               	goto	l2443
+   982  07F5                     u2380:
+   983                           	line	92
+   984                           	
+   985  07F5                     l2441:	
+   986                           ;forwardrev.c: 91: {
+   987                           ;forwardrev.c: 92: RE1=1;
+   988  07F5  1489               	bsf	(73/8),(73)&7
+   989  07F6  2FF7               	goto	l2443
+   990                           	line	93
+   991                           	
+   992  07F7                     l1070:	
+   993                           	line	94
+   994                           	
+   995  07F7                     l2443:	
+   996                           ;forwardrev.c: 93: }
+   997                           ;forwardrev.c: 94: if(check3==0)
+   998  07F7  0843               	movf	((rx@check3+1)),w
+   999  07F8  0442               	iorwf	((rx@check3)),w
+  1000  07F9  1D03               	skipz
+  1001  07FA  2FFC               	goto	u2391
+  1002  07FB  2FFD               	goto	u2390
+  1003  07FC                     u2391:
+  1004  07FC  2FFF               	goto	l1072
+  1005  07FD                     u2390:
+  1006                           	line	96
+  1007                           	
+  1008  07FD                     l2445:	
+  1009                           ;forwardrev.c: 95: {
+  1010                           ;forwardrev.c: 96: RE2=1;
+  1011  07FD  1509               	bsf	(74/8),(74)&7
+  1012  07FE  2FFF               	goto	l1072
+  1013                           	line	97
+  1014                           	
+  1015  07FF                     l1071:	
+  1016                           	line	98
+  1017                           	
+  1018  07FF                     l1072:	
+  1019  07FF  0008               	return
+  1020                           	opt stack 0
+  1021                           GLOBAL	__end_of_rx
+  1022  0800                     	__end_of_rx:
+  1023 ;; =============== function _rx ends ============
+  1024                           
+  1025                           	signat	_rx,88
+  1026                           	global	_display1
+  1027                           psect	text232,local,class=CODE,delta=2
+  1028                           global __ptext232
+  1029  0689                     __ptext232:
+  1030                           
+  1031 ;; *************** function _display1 *****************
+  1032 ;; Defined at:
+  1033 ;;		line 48 in file "E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+  1034 ;; Parameters:    Size  Location     Type
+  1035 ;;  data            1    wreg     PTR unsigned char 
+  1036 ;;		 -> ans(10), 
+  1037 ;; Auto vars:     Size  Location     Type
+  1038 ;;  data            1    3[COMMON] PTR unsigned char 
+  1039 ;;		 -> ans(10), 
+  1040 ;; Return value:  Size  Location     Type
+  1041 ;;		None               void
+  1042 ;; Registers used:
+  1043 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1044 ;; Tracked objects:
+  1045 ;;		On entry : 0/0
+  1046 ;;		On exit  : 0/0
+  1047 ;;		Unchanged: 0/0
+  1048 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1049 ;;      Params:         0       0       0       0       0
+  1050 ;;      Locals:         1       0       0       0       0
+  1051 ;;      Temps:          1       0       0       0       0
+  1052 ;;      Totals:         2       0       0       0       0
+  1053 ;;Total ram usage:        2 bytes
+  1054 ;; Hardware stack levels used:    1
+  1055 ;; Hardware stack levels required when called:    2
+  1056 ;; This function calls:
+  1057 ;;		_pulse
+  1058 ;; This function is called by:
+  1059 ;;		_rx
+  1060 ;; This function uses a non-reentrant model
+  1061 ;;
+  1062                           psect	text232
+  1063                           	file	"E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+  1064                           	line	48
+  1065                           	global	__size_of_display1
+  1066  001E                     	__size_of_display1	equ	__end_of_display1-_display1
+  1067                           	
+  1068  0689                     _display1:	
+  1069                           	opt	stack 4
+  1070                           ; Regs used in _display1: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1071                           ;display1@data stored from wreg
+  1072  0689  00F3               	movwf	(display1@data)
+  1073                           	line	49
+  1074                           	
+  1075  068A                     l2395:	
+  1076                           ;forwardrev.c: 49: while(*data)
+  1077  068A  2E9D               	goto	l2403
+  1078                           	
+  1079  068B                     l1053:	
+  1080                           	line	51
+  1081                           ;forwardrev.c: 50: {
+  1082                           ;forwardrev.c: 51: RB0=1;
+  1083  068B  1283               	bcf	status, 5	;RP0=0, select bank0
+  1084  068C  1303               	bcf	status, 6	;RP1=0, select bank0
+  1085  068D  1406               	bsf	(48/8),(48)&7
+  1086                           	line	52
+  1087                           ;forwardrev.c: 52: RB1=0;
+  1088  068E  1086               	bcf	(49/8),(49)&7
+  1089                           	line	53
+  1090                           	
+  1091  068F                     l2397:	
+  1092                           ;forwardrev.c: 53: PORTD=*data++;
+  1093  068F  0873               	movf	(display1@data),w
+  1094  0690  0084               	movwf	fsr0
+  1095  0691  0800               	movf	indf,w
+  1096  0692  0088               	movwf	(8)	;volatile
+  1097                           	
+  1098  0693                     l2399:	
+  1099  0693  3001               	movlw	(01h)
+  1100  0694  00F2               	movwf	(??_display1+0)+0
+  1101  0695  0872               	movf	(??_display1+0)+0,w
+  1102  0696  07F3               	addwf	(display1@data),f
+  1103                           	line	54
+  1104                           	
+  1105  0697                     l2401:	
+  1106                           ;forwardrev.c: 54: pulse();
+  1107  0697  120A  118A  2653   	fcall	_pulse
+              120A  118A         
+  1108  069C  2E9D               	goto	l2403
+  1109                           	line	55
+  1110                           	
+  1111  069D                     l1052:	
+  1112                           	line	49
+  1113                           	
+  1114  069D                     l2403:	
+  1115  069D  0873               	movf	(display1@data),w
+  1116  069E  0084               	movwf	fsr0
+  1117  069F  1383               	bcf	status, 7	;select IRP bank0
+  1118  06A0  0880               	movf	indf,f
+  1119  06A1  1D03               	skipz
+  1120  06A2  2EA4               	goto	u2301
+  1121  06A3  2EA5               	goto	u2300
+  1122  06A4                     u2301:
+  1123  06A4  2E8B               	goto	l1053
+  1124  06A5                     u2300:
+  1125  06A5  2EA6               	goto	l1055
+  1126                           	
+  1127  06A6                     l1054:	
+  1128                           	line	56
+  1129                           	
+  1130  06A6                     l1055:	
+  1131  06A6  0008               	return
+  1132                           	opt stack 0
+  1133                           GLOBAL	__end_of_display1
+  1134  06A7                     	__end_of_display1:
+  1135 ;; =============== function _display1 ends ============
+  1136                           
+  1137                           	signat	_display1,4216
+  1138                           	global	_type
+  1139                           psect	text233,local,class=CODE,delta=2
+  1140                           global __ptext233
+  1141  0622                     __ptext233:
+  1142                           
+  1143 ;; *************** function _type *****************
+  1144 ;; Defined at:
+  1145 ;;		line 27 in file "E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+  1146 ;; Parameters:    Size  Location     Type
+  1147 ;;		None
+  1148 ;; Auto vars:     Size  Location     Type
+  1149 ;;		None
+  1150 ;; Return value:  Size  Location     Type
+  1151 ;;		None               void
+  1152 ;; Registers used:
+  1153 ;;		wreg, status,2, status,0, pclath, cstack
+  1154 ;; Tracked objects:
+  1155 ;;		On entry : 0/0
+  1156 ;;		On exit  : 0/0
+  1157 ;;		Unchanged: 0/0
+  1158 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1159 ;;      Params:         0       0       0       0       0
+  1160 ;;      Locals:         0       0       0       0       0
+  1161 ;;      Temps:          0       0       0       0       0
+  1162 ;;      Totals:         0       0       0       0       0
+  1163 ;;Total ram usage:        0 bytes
+  1164 ;; Hardware stack levels used:    1
+  1165 ;; Hardware stack levels required when called:    2
+  1166 ;; This function calls:
+  1167 ;;		_pulse
+  1168 ;; This function is called by:
+  1169 ;;		_main
+  1170 ;; This function uses a non-reentrant model
+  1171 ;;
+  1172                           psect	text233
+  1173                           	file	"E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+  1174                           	line	27
+  1175                           	global	__size_of_type
+  1176  000C                     	__size_of_type	equ	__end_of_type-_type
+  1177                           	
+  1178  0622                     _type:	
+  1179                           	opt	stack 5
+  1180                           ; Regs used in _type: [wreg+status,2+status,0+pclath+cstack]
+  1181                           	line	28
+  1182                           	
+  1183  0622                     l2389:	
+  1184                           ;forwardrev.c: 28: RB0=0;
+  1185  0622  1283               	bcf	status, 5	;RP0=0, select bank0
+  1186  0623  1303               	bcf	status, 6	;RP1=0, select bank0
+  1187  0624  1006               	bcf	(48/8),(48)&7
+  1188                           	line	29
+  1189                           ;forwardrev.c: 29: RB1=0;
+  1190  0625  1086               	bcf	(49/8),(49)&7
+  1191                           	line	30
+  1192                           	
+  1193  0626                     l2391:	
+  1194                           ;forwardrev.c: 30: PORTD=0X38;
+  1195  0626  3038               	movlw	(038h)
+  1196  0627  0088               	movwf	(8)	;volatile
+  1197                           	line	31
+  1198                           	
+  1199  0628                     l2393:	
+  1200                           ;forwardrev.c: 31: pulse();
+  1201  0628  120A  118A  2653   	fcall	_pulse
+              120A  118A         
+  1202                           	line	32
+  1203                           	
+  1204  062D                     l1043:	
+  1205  062D  0008               	return
+  1206                           	opt stack 0
+  1207                           GLOBAL	__end_of_type
+  1208  062E                     	__end_of_type:
+  1209 ;; =============== function _type ends ============
+  1210                           
+  1211                           	signat	_type,88
+  1212                           	global	_on
+  1213                           psect	text234,local,class=CODE,delta=2
+  1214                           global __ptext234
+  1215  0616                     __ptext234:
+  1216                           
+  1217 ;; *************** function _on *****************
+  1218 ;; Defined at:
+  1219 ;;		line 20 in file "E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+  1220 ;; Parameters:    Size  Location     Type
+  1221 ;;		None
+  1222 ;; Auto vars:     Size  Location     Type
+  1223 ;;		None
+  1224 ;; Return value:  Size  Location     Type
+  1225 ;;		None               void
+  1226 ;; Registers used:
+  1227 ;;		wreg, status,2, status,0, pclath, cstack
+  1228 ;; Tracked objects:
+  1229 ;;		On entry : 0/0
+  1230 ;;		On exit  : 0/0
+  1231 ;;		Unchanged: 0/0
+  1232 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1233 ;;      Params:         0       0       0       0       0
+  1234 ;;      Locals:         0       0       0       0       0
+  1235 ;;      Temps:          0       0       0       0       0
+  1236 ;;      Totals:         0       0       0       0       0
+  1237 ;;Total ram usage:        0 bytes
+  1238 ;; Hardware stack levels used:    1
+  1239 ;; Hardware stack levels required when called:    2
+  1240 ;; This function calls:
+  1241 ;;		_pulse
+  1242 ;; This function is called by:
+  1243 ;;		_main
+  1244 ;; This function uses a non-reentrant model
+  1245 ;;
+  1246                           psect	text234
+  1247                           	file	"E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+  1248                           	line	20
+  1249                           	global	__size_of_on
+  1250  000C                     	__size_of_on	equ	__end_of_on-_on
+  1251                           	
+  1252  0616                     _on:	
+  1253                           	opt	stack 5
+  1254                           ; Regs used in _on: [wreg+status,2+status,0+pclath+cstack]
+  1255                           	line	21
+  1256                           	
+  1257  0616                     l2383:	
+  1258                           ;forwardrev.c: 21: RB0=0;
+  1259  0616  1283               	bcf	status, 5	;RP0=0, select bank0
+  1260  0617  1303               	bcf	status, 6	;RP1=0, select bank0
+  1261  0618  1006               	bcf	(48/8),(48)&7
+  1262                           	line	22
+  1263                           ;forwardrev.c: 22: RB1=0;
+  1264  0619  1086               	bcf	(49/8),(49)&7
+  1265                           	line	23
+  1266                           	
+  1267  061A                     l2385:	
+  1268                           ;forwardrev.c: 23: PORTD=0X0E;
+  1269  061A  300E               	movlw	(0Eh)
+  1270  061B  0088               	movwf	(8)	;volatile
+  1271                           	line	24
+  1272                           	
+  1273  061C                     l2387:	
+  1274                           ;forwardrev.c: 24: pulse();
+  1275  061C  120A  118A  2653   	fcall	_pulse
+              120A  118A         
+  1276                           	line	25
+  1277                           	
+  1278  0621                     l1040:	
+  1279  0621  0008               	return
+  1280                           	opt stack 0
+  1281                           GLOBAL	__end_of_on
+  1282  0622                     	__end_of_on:
+  1283 ;; =============== function _on ends ============
+  1284                           
+  1285                           	signat	_on,88
+  1286                           	global	_pulse
+  1287                           psect	text235,local,class=CODE,delta=2
+  1288                           global __ptext235
+  1289  0653                     __ptext235:
+  1290                           
+  1291 ;; *************** function _pulse *****************
+  1292 ;; Defined at:
+  1293 ;;		line 13 in file "E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+  1294 ;; Parameters:    Size  Location     Type
+  1295 ;;		None
+  1296 ;; Auto vars:     Size  Location     Type
+  1297 ;;		None
+  1298 ;; Return value:  Size  Location     Type
+  1299 ;;		None               void
+  1300 ;; Registers used:
+  1301 ;;		wreg, status,2, status,0, pclath, cstack
+  1302 ;; Tracked objects:
+  1303 ;;		On entry : 0/0
+  1304 ;;		On exit  : 0/0
+  1305 ;;		Unchanged: 0/0
+  1306 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1307 ;;      Params:         0       0       0       0       0
+  1308 ;;      Locals:         0       0       0       0       0
+  1309 ;;      Temps:          0       0       0       0       0
+  1310 ;;      Totals:         0       0       0       0       0
+  1311 ;;Total ram usage:        0 bytes
+  1312 ;; Hardware stack levels used:    1
+  1313 ;; Hardware stack levels required when called:    1
+  1314 ;; This function calls:
+  1315 ;;		_delay
+  1316 ;; This function is called by:
+  1317 ;;		_on
+  1318 ;;		_type
+  1319 ;;		_display1
+  1320 ;;		_main
+  1321 ;;		_address
+  1322 ;;		_display
+  1323 ;; This function uses a non-reentrant model
+  1324 ;;
+  1325                           psect	text235
+  1326                           	file	"E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+  1327                           	line	13
+  1328                           	global	__size_of_pulse
+  1329  0019                     	__size_of_pulse	equ	__end_of_pulse-_pulse
+  1330                           	
+  1331  0653                     _pulse:	
+  1332                           	opt	stack 4
+  1333                           ; Regs used in _pulse: [wreg+status,2+status,0+pclath+cstack]
+  1334                           	line	14
+  1335                           	
+  1336  0653                     l2377:	
+  1337                           ;forwardrev.c: 14: RB2=1;
+  1338  0653  1283               	bcf	status, 5	;RP0=0, select bank0
+  1339  0654  1303               	bcf	status, 6	;RP1=0, select bank0
+  1340  0655  1506               	bsf	(50/8),(50)&7
+  1341                           	line	15
+  1342                           	
+  1343  0656                     l2379:	
+  1344                           ;forwardrev.c: 15: delay(100);
+  1345  0656  3064               	movlw	low(064h)
+  1346  0657  00F0               	movwf	(?_delay)
+  1347  0658  3000               	movlw	high(064h)
+  1348  0659  00F1               	movwf	((?_delay))+1
+  1349  065A  120A  118A  263F   	fcall	_delay
+              120A  118A         
+  1350                           	line	16
+  1351                           	
+  1352  065F                     l2381:	
+  1353                           ;forwardrev.c: 16: RB2=0;
+  1354  065F  1283               	bcf	status, 5	;RP0=0, select bank0
+  1355  0660  1303               	bcf	status, 6	;RP1=0, select bank0
+  1356  0661  1106               	bcf	(50/8),(50)&7
+  1357                           	line	17
+  1358                           ;forwardrev.c: 17: delay(100);
+  1359  0662  3064               	movlw	low(064h)
+  1360  0663  00F0               	movwf	(?_delay)
+  1361  0664  3000               	movlw	high(064h)
+  1362  0665  00F1               	movwf	((?_delay))+1
+  1363  0666  120A  118A  263F   	fcall	_delay
+              120A  118A         
+  1364                           	line	18
+  1365                           	
+  1366  066B                     l1037:	
+  1367  066B  0008               	return
+  1368                           	opt stack 0
+  1369                           GLOBAL	__end_of_pulse
+  1370  066C                     	__end_of_pulse:
+  1371 ;; =============== function _pulse ends ============
+  1372                           
+  1373                           	signat	_pulse,88
+  1374                           	global	_strcmp
+  1375                           psect	text236,local,class=CODE,delta=2
+  1376                           global __ptext236
+  1377  06C5                     __ptext236:
+  1378                           
+  1379 ;; *************** function _strcmp *****************
+  1380 ;; Defined at:
+  1381 ;;		line 34 in file "../../common/strcmp.c"
+  1382 ;; Parameters:    Size  Location     Type
+  1383 ;;  s1              1    wreg     PTR const unsigned char 
+  1384 ;;		 -> ans(10), 
+  1385 ;;  s2              1    0[COMMON] PTR const unsigned char 
+  1386 ;;		 -> rx@stop(10), rx@reverse(10), rx@forward(10), 
+  1387 ;; Auto vars:     Size  Location     Type
+  1388 ;;  s1              1    5[COMMON] PTR const unsigned char 
+  1389 ;;		 -> ans(10), 
+  1390 ;;  r               1    4[COMMON] char 
+  1391 ;; Return value:  Size  Location     Type
+  1392 ;;                  2    0[COMMON] int 
+  1393 ;; Registers used:
+  1394 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  1395 ;; Tracked objects:
+  1396 ;;		On entry : 0/0
+  1397 ;;		On exit  : 0/0
+  1398 ;;		Unchanged: 0/0
+  1399 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1400 ;;      Params:         2       0       0       0       0
+  1401 ;;      Locals:         2       0       0       0       0
+  1402 ;;      Temps:          2       0       0       0       0
+  1403 ;;      Totals:         6       0       0       0       0
+  1404 ;;Total ram usage:        6 bytes
+  1405 ;; Hardware stack levels used:    1
+  1406 ;; This function calls:
+  1407 ;;		Nothing
+  1408 ;; This function is called by:
+  1409 ;;		_rx
+  1410 ;; This function uses a non-reentrant model
+  1411 ;;
+  1412                           psect	text236
+  1413                           	file	"C:\Program Files (x86)\HI-TECH Software\PICC\9.81\sources\strcmp.c"
+  1414                           	line	34
+  1415                           	global	__size_of_strcmp
+  1416  0029                     	__size_of_strcmp	equ	__end_of_strcmp-_strcmp
+  1417                           	
+  1418  06C5                     _strcmp:	
+  1419                           	opt	stack 6
+  1420                           ; Regs used in _strcmp: [wreg-fsr0h+status,2+status,0]
+  1421                           ;strcmp@s1 stored from wreg
+  1422  06C5  00F5               	movwf	(strcmp@s1)
+  1423                           	line	37
+  1424                           	
+  1425  06C6                     l2367:	
+  1426  06C6  2EC8               	goto	l2369
+  1427                           	
+  1428  06C7                     l1082:	
+  1429                           	line	38
+  1430  06C7  2EC8               	goto	l2369
+  1431                           	
+  1432  06C8                     l1081:	
+  1433                           	line	37
+  1434                           	
+  1435  06C8                     l2369:	
+  1436  06C8  0875               	movf	(strcmp@s1),w
+  1437  06C9  0084               	movwf	fsr
+  1438  06CA  1383               	bcf	status, 7	;select IRP bank0
+  1439  06CB  0800               	movf	indf,w
+  1440  06CC  00F2               	movwf	(??_strcmp+0)+0
+  1441  06CD  0870               	movf	(strcmp@s2),w
+  1442  06CE  0084               	movwf	fsr0
+  1443  06CF  3001               	movlw	01h
+  1444  06D0  07F0               	addwf	(strcmp@s2),f
+  1445  06D1  0300               	decf	indf,w
+  1446  06D2  3AFF               	xorlw	0ffh
+  1447  06D3  0772               	addwf	(??_strcmp+0)+0,w
+  1448  06D4  00F3               	movwf	(??_strcmp+1)+0
+  1449  06D5  0873               	movf	(??_strcmp+1)+0,w
+  1450  06D6  00F4               	movwf	(strcmp@r)
+  1451  06D7  08F4               	movf	((strcmp@r)),f
+  1452  06D8  1D03               	skipz
+  1453  06D9  2EDB               	goto	u2281
+  1454  06DA  2EDC               	goto	u2280
+  1455  06DB                     u2281:
+  1456  06DB  2EE7               	goto	l2373
+  1457  06DC                     u2280:
+  1458                           	
+  1459  06DC                     l2371:	
+  1460  06DC  0875               	movf	(strcmp@s1),w
+  1461  06DD  0084               	movwf	fsr0
+  1462  06DE  3001               	movlw	01h
+  1463  06DF  07F5               	addwf	(strcmp@s1),f
+  1464  06E0  0880               	movf	indf,f
+  1465  06E1  1D03               	skipz
+  1466  06E2  2EE4               	goto	u2291
+  1467  06E3  2EE5               	goto	u2290
+  1468  06E4                     u2291:
+  1469  06E4  2EC8               	goto	l2369
+  1470  06E5                     u2290:
+  1471  06E5  2EE7               	goto	l2373
+  1472                           	
+  1473  06E6                     l1084:	
+  1474  06E6  2EE7               	goto	l2373
+  1475                           	
+  1476  06E7                     l1085:	
+  1477                           	line	39
+  1478                           	
+  1479  06E7                     l2373:	
+  1480  06E7  0874               	movf	(strcmp@r),w
+  1481  06E8  00F0               	movwf	(?_strcmp)
+  1482  06E9  01F1               	clrf	(?_strcmp+1)
+  1483  06EA  1BF0               	btfsc	(?_strcmp),7
+  1484  06EB  03F1               	decf	(?_strcmp+1),f
+  1485  06EC  2EED               	goto	l1086
+  1486                           	
+  1487  06ED                     l2375:	
+  1488                           	line	40
+  1489                           	
+  1490  06ED                     l1086:	
+  1491  06ED  0008               	return
+  1492                           	opt stack 0
+  1493                           GLOBAL	__end_of_strcmp
+  1494  06EE                     	__end_of_strcmp:
+  1495 ;; =============== function _strcmp ends ============
+  1496                           
+  1497                           	signat	_strcmp,8314
+  1498                           	global	_delay
+  1499                           psect	text237,local,class=CODE,delta=2
+  1500                           global __ptext237
+  1501  063F                     __ptext237:
+  1502                           
+  1503 ;; *************** function _delay *****************
+  1504 ;; Defined at:
+  1505 ;;		line 9 in file "E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+  1506 ;; Parameters:    Size  Location     Type
+  1507 ;;  del             2    0[COMMON] int 
+  1508 ;; Auto vars:     Size  Location     Type
+  1509 ;;		None
+  1510 ;; Return value:  Size  Location     Type
+  1511 ;;		None               void
+  1512 ;; Registers used:
+  1513 ;;		wreg
+  1514 ;; Tracked objects:
+  1515 ;;		On entry : 0/0
+  1516 ;;		On exit  : 0/0
+  1517 ;;		Unchanged: 0/0
+  1518 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1519 ;;      Params:         2       0       0       0       0
+  1520 ;;      Locals:         0       0       0       0       0
+  1521 ;;      Temps:          0       0       0       0       0
+  1522 ;;      Totals:         2       0       0       0       0
+  1523 ;;Total ram usage:        2 bytes
+  1524 ;; Hardware stack levels used:    1
+  1525 ;; This function calls:
+  1526 ;;		Nothing
+  1527 ;; This function is called by:
+  1528 ;;		_pulse
+  1529 ;; This function uses a non-reentrant model
+  1530 ;;
+  1531                           psect	text237
+  1532                           	file	"E:\KTU\Softwares\MP lab\UART\Uartforreverse\forwardrev.c"
+  1533                           	line	9
+  1534                           	global	__size_of_delay
+  1535  0014                     	__size_of_delay	equ	__end_of_delay-_delay
+  1536                           	
+  1537  063F                     _delay:	
+  1538                           	opt	stack 4
+  1539                           ; Regs used in _delay: [wreg]
+  1540                           	line	10
+  1541                           	
+  1542  063F                     l2351:	
+  1543                           ;forwardrev.c: 10: while(del--);
+  1544  063F  2E41               	goto	l2353
+  1545                           	
+  1546  0640                     l1032:	
+  1547  0640  2E41               	goto	l2353
+  1548                           	
+  1549  0641                     l1031:	
+  1550                           	
+  1551  0641                     l2353:	
+  1552  0641  30FF               	movlw	low(-1)
+  1553  0642  07F0               	addwf	(delay@del),f
+  1554  0643  1803               	skipnc
+  1555  0644  0AF1               	incf	(delay@del+1),f
+  1556  0645  30FF               	movlw	high(-1)
+  1557  0646  07F1               	addwf	(delay@del+1),f
+  1558  0647  30FF               	movlw	high(-1)
+  1559  0648  0671               	xorwf	((delay@del+1)),w
+  1560  0649  1D03               	skipz
+  1561  064A  2E4D               	goto	u2275
+  1562  064B  30FF               	movlw	low(-1)
+  1563  064C  0670               	xorwf	((delay@del)),w
+  1564  064D                     u2275:
+  1565                           
+  1566  064D  1D03               	skipz
+  1567  064E  2E50               	goto	u2271
+  1568  064F  2E51               	goto	u2270
+  1569  0650                     u2271:
+  1570  0650  2E41               	goto	l2353
+  1571  0651                     u2270:
+  1572  0651  2E52               	goto	l1034
+  1573                           	
+  1574  0652                     l1033:	
+  1575                           	line	11
+  1576                           	
+  1577  0652                     l1034:	
+  1578  0652  0008               	return
+  1579                           	opt stack 0
+  1580                           GLOBAL	__end_of_delay
+  1581  0653                     	__end_of_delay:
+  1582 ;; =============== function _delay ends ============
+  1583                           
+  1584                           	signat	_delay,4216
+  1585                           psect	text238,local,class=CODE,delta=2
+  1586                           global __ptext238
+  1587  0000                     __ptext238:
+  1588                           	global	btemp
+  1589  007E                     	btemp set 07Eh
+  1590                           
+  1591                           	DABS	1,126,2	;btemp
+  1592                           	global	wtemp0
+  1593  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Sat Jun 26 11:58:12 2021
+
+                   pc 0002                    _on 0616                    _rx 0737                    fsr 0004  
+                 ?_on 0070                   ?_rx 0070                   _RB0 0030                   _RB1 0031  
+                 _RB2 0032                   _RE0 0048                   _RE1 0049                   _RE2 004A  
+                 _ans 0065                   fsr0 0004                   indf 0000                   rx@i 0044  
+                ??_on 0072                  ??_rx 0076                  l1031 0641                  l1032 0640  
+                l1040 0621                  l1033 0652                  l1034 0652                  l1043 062D  
+                l1052 069D                  l1037 066B                  l1053 068B                  l1054 06A6  
+                l1070 07F7                  l1055 06A6                  l1071 07FF                  l1072 07FF  
+                l1064 0786                  l1081 06C8                  l1065 07A6                  l1082 06C7  
+                l1066 0787                  l1067 0787                  l1075 072D                  l1084 06E6  
+                l1068 078C                  l1076 0733                  l1085 06E7                  l1069 07EF  
+                l1077 0734                  l1086 06ED                  l1078 0734                  l2401 0697  
+                l2403 069D                  l2411 077E                  l2421 0799                  l2413 0785  
+                l2405 0737                  l2351 063F                  l2431 07C3                  l2423 079F  
+                l2415 078C                  l2407 0776                  l2353 0641                  l2441 07F5  
+                l2433 07D5                  l2417 0790                  l2425 07A6                  l2409 077C  
+                l2371 06DC                  l2443 07F7                  l2435 07E7                  l2427 07AB  
+                l2419 0798                  l2451 0701                  l2373 06E7                  l2381 065F  
+                l2445 07FD                  l2437 07ED                  l2429 07B1                  l2461 0710  
+                l2453 0704                  l2375 06ED                  l2367 06C6                  l2383 0616  
+                l2391 0626                  l2439 07EF                  l2471 0722                  l2463 0711  
+                l2455 0707                  l2447 06EE                  l2369 06C8                  l2377 0653  
+                l2385 061A                  l2393 0628                  l2473 0727                  l2465 0715  
+                l2457 070A                  l2449 06FD                  l2379 0656                  l2387 061C  
+                l2395 068A                  l2475 072D                  l2467 0719                  l2459 070D  
+                l2389 0622                  l2397 068F                  l2469 071D                  l2399 0693  
+                u2300 06A5                  u2301 06A4                  u2310 073F                  u2320 0754  
+                u2330 0769                  u2340 0784                  u2341 0783                  u2270 0651  
+                u2350 078B                  u2271 0650                  u2351 078A                  u2280 06DC  
+                u2360 07A5                  u2281 06DB                  u2361 07A4                  u2290 06E5  
+                u2370 07ED                  u2275 064D                  u2291 06E4                  u2371 07EC  
+                u2380 07F5                  u2381 07F4                  u2390 07FD                  u2391 07FC  
+                _RCIF 0065                  _main 06EE                  btemp 007E                  _type 0622  
+                start 0000          display1@data 0073                 ?_main 0070                 _ANSEL 0188  
+               ?_type 0070                 _RCREG 001A                 _RCSTA 0018                 _SPBRG 0099  
+               _PORTA 0005                 _PORTB 0006                 _PORTC 0007                 _PORTD 0008  
+               _PORTE 0009                 _TRISA 0085                 _TRISB 0086                 _TRISC 0087  
+               _TRISD 0088                 _TRISE 0089                 _TXSTA 0098                 _delay 063F  
+               _value 0064                 _pulse 0653                 pclath 000A                 status 0003  
+               wtemp0 007E          __end_of_main 0737          __end_of_type 062E                ??_main 007A  
+              ??_type 0072                ?_delay 0070                ?_pulse 0070                _ANSELH 0189  
+    __end_of_display1 06A7                _strcmp 06C5                rx@stop 0034        __pcstackCOMMON 0070  
+        __pidataBANK0 06A7         __end_of_delay 0653         __end_of_pulse 066C            __end_of_on 0622  
+          __end_of_rx 0800               ??_delay 0072               ??_pulse 0072            __pbssBANK0 0064  
+          __pmaintext 06EE               ?_strcmp 0070             ?_display1 0070       __size_of_strcmp 0029  
+             rx@F1705 0046               rx@F1707 0050               rx@F1709 005A            ??_display1 0072  
+end_of_initialization 0685               init_ram 0632               strcmp@r 0074        __end_of_strcmp 06EE  
+ start_initialization 066C           __pdataBANK0 0046              ??_strcmp 0072         __pcstackBANK0 0020  
+   __size_of_display1 001E             __ptext231 0737             __ptext232 0689             __ptext233 0622  
+           __ptext234 0616             __ptext235 0653             __ptext236 06C5             __ptext237 063F  
+           __ptext238 0000        __size_of_delay 0014        __size_of_pulse 0019           __size_of_on 000C  
+         __size_of_rx 00C9             init_fetch 062E             rx@forward 0020             rx@reverse 002A  
+            _display1 0689         __size_of_main 0049         __size_of_type 000C              delay@del 0070  
+            rx@check1 003E              rx@check2 0040              rx@check3 0042              strcmp@s1 0075  
+            strcmp@s2 0070  

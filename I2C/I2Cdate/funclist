@@ -1,0 +1,15 @@
+_init: CODE, 1374 0 24
+_delay: CODE, 1332 0 20
+_word: CODE, 1458 0 38
+_main: CODE, 1496 0 168
+_conv: CODE, 1664 0 384
+_I2C_Stop: CODE, 1290 0 9
+_data: CODE, 1320 0 12
+_I2C_Read: CODE, 1423 0 35
+_I2C_Send: CODE, 1352 0 22
+_pulse: CODE, 1398 0 25
+_I2C_Start: CODE, 1281 0 9
+_wait: CODE, 1272 0 9
+_disp: CODE, 1308 0 12
+_I2C_Restart: CODE, 1299 0 9
+Total: 776

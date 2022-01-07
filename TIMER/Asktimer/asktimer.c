@@ -1,0 +1,278 @@
+#include<pic.h>
+__CONFIG(0X2CE4);
+#define RS RA0
+#define RW RA1  
+#define EN RA2
+int count=0;
+void timer0()
+{
+	if(T0IF==1)
+	{
+		count++;
+	}
+	T0IF=0;
+}
+void delay(int del)
+{
+	while(del--);
+}
+void pulse()
+{
+	EN=1;
+	delay(100);
+	EN=0;
+	delay(100);
+}
+void on()
+{
+	RS=0;
+	RW=0;
+	PORTB=0X0E;
+	pulse();
+}
+void type()
+{
+	RS=0;
+	RW=0;
+	PORTB=0X38;
+	pulse();
+}
+void address(char data)
+{
+	RS=0;
+	RW=0;
+	PORTB=data;
+	pulse();
+}
+void display(char data)
+{
+	RS=1;
+	RW=0;
+	PORTB=data;
+	pulse();
+}
+void clear()
+{
+	RS=0;
+	RW=0;
+	PORTB=0X01;
+	pulse();
+}
+void main()
+{
+	PORTA=0X00;
+	TRISA=0X00;
+	PORTB=0X00;
+	TRISB=0X00;
+	PORTC=0X00;
+	TRISC=0X00;
+	PORTD=0X00;
+	TRISD=0X07;
+	ANSEL=0X00;
+	ANSELH=0X00;
+	OPTION_REG=0X07;
+	char first[20]="1st led duration";
+	char second[20]="2nd led duration";
+	char process[10]="Processing";
+	int control=1;
+	int i,j=0;
+	char arr1,arr2;
+	int val1,val2;
+	on();
+	type();
+	while(1)
+	{
+		if(control==1)
+		{
+			for(i=0;i<15;i++)
+			{
+				address(0X80+i);
+				display(first[i]);
+			}
+			control=2;
+		}
+		if(control==2)
+		{
+			address(0XC0+0);
+			display(arr1);
+			RD3=1;RD4=0;RD5=0;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr1='1';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr1='2';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr1='3';
+			}	
+			RD3=0;RD4=1;RD5=0;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr1='4';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr1='5';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr1='6';
+			}	
+			RD3=0;RD4=0;RD5=1;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr1='7';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr1='8';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr1='9';
+			}
+			RD3=0;RD4=0;RD5=0;RD6=1;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				control=3;
+				clear();
+			}
+			//val1=0X30-arr1; 
+			//val1=(int)arr1;
+			val1= arr1-'0';
+		}
+		if(control==10)
+		{
+			address(0X80+0);
+			display(val1);
+		}
+		if(control==3)
+		{
+			clear();
+			for(i=0;i<15;i++)
+			{
+				address(0X80+i);
+				display(second[i]);
+			}
+			control=4;
+		}
+		if(control==4)
+		{
+			//clear();
+			address(0XC0+0);
+			display(arr2);
+			RD3=1;RD4=0;RD5=0;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr2='1';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr2='2';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr2='3';
+			}	
+			RD3=0;RD4=1;RD5=0;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr2='4';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr2='5';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr2='6';
+			}	
+			RD3=0;RD4=0;RD5=1;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr2='7';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr2='8';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr2='9';
+			}
+			RD3=0;RD4=0;RD5=0;RD6=1;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				control=5;
+			}
+			//val2=0X30-arr2; 
+			val2= arr2-'0';
+		}
+		if(control==5)
+		{
+			clear();
+			for(i=0;i<10;i++)
+			{
+				address(0XC0+i);
+				display(process[i]);
+			}
+			control=6;
+		}
+		if(control==6)
+		{	
+			timer0();
+			if(count>=0 && count<=val1*15)
+			{
+				RC0=1;
+			}
+			if(count>val1*15)
+			{
+				RC0=0;
+				control=7;
+				count=0;
+			}
+			//count=0;
+		}
+		if(control==7)
+		{
+			timer0();
+			if(count>=0 && count<=val2*15)
+			{
+				RC1=1;
+			}
+			if(count>val2*15)
+			{
+				RC1=0;
+				control=1;
+				count=0;
+				clear();
+				arr1='\0';
+				arr2='\0';
+			}
+		}		
+	}
+}
+				

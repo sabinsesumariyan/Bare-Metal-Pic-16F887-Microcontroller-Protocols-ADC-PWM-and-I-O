@@ -1,0 +1,9 @@
+_delay: CODE, 1599 0 20
+_display1: CODE, 1673 0 30
+_main: CODE, 1774 0 73
+_type: CODE, 1570 0 12
+_strcmp: CODE, 1733 0 41
+_on: CODE, 1558 0 12
+_pulse: CODE, 1619 0 25
+_rx: CODE, 1847 0 201
+Total: 414

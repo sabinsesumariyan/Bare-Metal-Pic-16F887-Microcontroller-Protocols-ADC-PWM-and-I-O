@@ -1,0 +1,2180 @@
+opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+
+opt pagewidth 120
+
+	opt lm
+
+	processor	16F887
+clrc	macro
+	bcf	3,0
+	endm
+clrz	macro
+	bcf	3,2
+	endm
+setc	macro
+	bsf	3,0
+	endm
+setz	macro
+	bsf	3,2
+	endm
+skipc	macro
+	btfss	3,0
+	endm
+skipz	macro
+	btfss	3,2
+	endm
+skipnc	macro
+	btfsc	3,0
+	endm
+skipnz	macro
+	btfsc	3,2
+	endm
+indf	equ	0
+indf0	equ	0
+pc	equ	2
+pcl	equ	2
+status	equ	3
+fsr	equ	4
+fsr0	equ	4
+c	equ	1
+z	equ	0
+pclath	equ	10
+	FNCALL	_main,_on
+	FNCALL	_main,_type
+	FNCALL	_main,_adc1
+	FNCALL	_main,_address
+	FNCALL	_main,___awmod
+	FNCALL	_main,_display
+	FNCALL	_main,___awdiv
+	FNCALL	_main,_adc2
+	FNCALL	_display,_pulse
+	FNCALL	_address,_pulse
+	FNCALL	_type,_pulse
+	FNCALL	_on,_pulse
+	FNCALL	_pulse,_delay
+	FNROOT	_main
+	global	_tot1
+	global	_tot2
+	global	_ADCON0
+psect	text262,local,class=CODE,delta=2
+global __ptext262
+__ptext262:
+_ADCON0	set	31
+	global	_ADRESH
+_ADRESH	set	30
+	global	_PORTA
+_PORTA	set	5
+	global	_PORTB
+_PORTB	set	6
+	global	_PORTC
+_PORTC	set	7
+	global	_PORTD
+_PORTD	set	8
+	global	_GO
+_GO	set	249
+	global	_RD0
+_RD0	set	64
+	global	_RD1
+_RD1	set	65
+	global	_RD2
+_RD2	set	66
+	global	_ADCON1
+_ADCON1	set	159
+	global	_ADRESL
+_ADRESL	set	158
+	global	_TRISA
+_TRISA	set	133
+	global	_TRISB
+_TRISB	set	134
+	global	_TRISC
+_TRISC	set	135
+	global	_TRISD
+_TRISD	set	136
+	global	_ANSEL
+_ANSEL	set	392
+	global	_ANSELH
+_ANSELH	set	393
+	file	"2pot.as"
+	line	#
+psect cinit,class=CODE,delta=2
+global start_initialization
+start_initialization:
+
+psect	bssBANK0,class=BANK0,space=1
+global __pbssBANK0
+__pbssBANK0:
+_tot1:
+       ds      2
+
+_tot2:
+       ds      2
+
+; Clear objects allocated to BANK0
+psect cinit,class=CODE,delta=2
+	clrf	((__pbssBANK0)+0)&07Fh
+	clrf	((__pbssBANK0)+1)&07Fh
+	clrf	((__pbssBANK0)+2)&07Fh
+	clrf	((__pbssBANK0)+3)&07Fh
+psect cinit,class=CODE,delta=2
+global end_of_initialization
+
+;End of C runtime variable initialization code
+
+end_of_initialization:
+clrf status
+ljmp _main	;jump to C main() function
+psect	cstackCOMMON,class=COMMON,space=1
+global __pcstackCOMMON
+__pcstackCOMMON:
+	global	??_adc1
+??_adc1:	; 0 bytes @ 0x0
+	global	??_adc2
+??_adc2:	; 0 bytes @ 0x0
+	global	?_delay
+?_delay:	; 0 bytes @ 0x0
+	global	?_pulse
+?_pulse:	; 0 bytes @ 0x0
+	global	?_on
+?_on:	; 0 bytes @ 0x0
+	global	?_type
+?_type:	; 0 bytes @ 0x0
+	global	?_address
+?_address:	; 0 bytes @ 0x0
+	global	?_display
+?_display:	; 0 bytes @ 0x0
+	global	?_main
+?_main:	; 0 bytes @ 0x0
+	global	?_adc1
+?_adc1:	; 2 bytes @ 0x0
+	global	?_adc2
+?_adc2:	; 2 bytes @ 0x0
+	global	?___awdiv
+?___awdiv:	; 2 bytes @ 0x0
+	global	?___awmod
+?___awmod:	; 2 bytes @ 0x0
+	global	delay@del
+delay@del:	; 2 bytes @ 0x0
+	global	___awdiv@divisor
+___awdiv@divisor:	; 2 bytes @ 0x0
+	global	___awmod@divisor
+___awmod@divisor:	; 2 bytes @ 0x0
+	ds	2
+	global	??_delay
+??_delay:	; 0 bytes @ 0x2
+	global	??_pulse
+??_pulse:	; 0 bytes @ 0x2
+	global	??_on
+??_on:	; 0 bytes @ 0x2
+	global	??_type
+??_type:	; 0 bytes @ 0x2
+	global	??_address
+??_address:	; 0 bytes @ 0x2
+	global	??_display
+??_display:	; 0 bytes @ 0x2
+	global	address@data
+address@data:	; 1 bytes @ 0x2
+	global	display@data
+display@data:	; 1 bytes @ 0x2
+	global	adc1@high
+adc1@high:	; 2 bytes @ 0x2
+	global	adc2@high
+adc2@high:	; 2 bytes @ 0x2
+	global	___awdiv@dividend
+___awdiv@dividend:	; 2 bytes @ 0x2
+	global	___awmod@dividend
+___awmod@dividend:	; 2 bytes @ 0x2
+	ds	2
+	global	??___awdiv
+??___awdiv:	; 0 bytes @ 0x4
+	global	??___awmod
+??___awmod:	; 0 bytes @ 0x4
+	global	adc1@low
+adc1@low:	; 2 bytes @ 0x4
+	global	adc2@low
+adc2@low:	; 2 bytes @ 0x4
+	ds	1
+	global	___awdiv@counter
+___awdiv@counter:	; 1 bytes @ 0x5
+	global	___awmod@counter
+___awmod@counter:	; 1 bytes @ 0x5
+	ds	1
+	global	___awdiv@sign
+___awdiv@sign:	; 1 bytes @ 0x6
+	global	___awmod@sign
+___awmod@sign:	; 1 bytes @ 0x6
+	ds	1
+	global	___awdiv@quotient
+___awdiv@quotient:	; 2 bytes @ 0x7
+	ds	2
+	global	??_main
+??_main:	; 0 bytes @ 0x9
+	global	main@i
+main@i:	; 2 bytes @ 0x9
+	ds	2
+	global	main@i_1797
+main@i_1797:	; 2 bytes @ 0xB
+	ds	2
+;;Data sizes: Strings 0, constant 0, data 0, bss 4, persistent 0 stack 0
+;;Auto spaces:   Size  Autos    Used
+;; COMMON          14     13      13
+;; BANK0           80      0       4
+;; BANK1           80      0       0
+;; BANK3           96      0       0
+;; BANK2           96      0       0
+
+;;
+;; Pointer list with targets:
+
+;; ?___awdiv	int  size(1) Largest target is 0
+;;
+;; ?___awmod	int  size(1) Largest target is 0
+;;
+;; ?_adc2	int  size(1) Largest target is 0
+;;
+;; ?_adc1	int  size(1) Largest target is 0
+;;
+
+
+;;
+;; Critical Paths under _main in COMMON
+;;
+;;   _main->___awdiv
+;;   _pulse->_delay
+;;
+;; Critical Paths under _main in BANK0
+;;
+;;   None.
+;;
+;; Critical Paths under _main in BANK1
+;;
+;;   None.
+;;
+;; Critical Paths under _main in BANK3
+;;
+;;   None.
+;;
+;; Critical Paths under _main in BANK2
+;;
+;;   None.
+
+;;
+;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+;;
+
+;;
+;;Call Graph Tables:
+;;
+;; ---------------------------------------------------------------------------------
+;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+;; ---------------------------------------------------------------------------------
+;; (0) _main                                                 4     4      0    1220
+;;                                              9 COMMON     4     4      0
+;;                                 _on
+;;                               _type
+;;                               _adc1
+;;                            _address
+;;                            ___awmod
+;;                            _display
+;;                            ___awdiv
+;;                               _adc2
+;; ---------------------------------------------------------------------------------
+;; (1) _display                                              1     1      0      44
+;;                                              2 COMMON     1     1      0
+;;                              _pulse
+;; ---------------------------------------------------------------------------------
+;; (1) _address                                              1     1      0      44
+;;                                              2 COMMON     1     1      0
+;;                              _pulse
+;; ---------------------------------------------------------------------------------
+;; (1) _type                                                 0     0      0      22
+;;                              _pulse
+;; ---------------------------------------------------------------------------------
+;; (1) _on                                                   0     0      0      22
+;;                              _pulse
+;; ---------------------------------------------------------------------------------
+;; (2) _pulse                                                0     0      0      22
+;;                              _delay
+;; ---------------------------------------------------------------------------------
+;; (1) ___awmod                                              7     3      4     296
+;;                                              0 COMMON     7     3      4
+;; ---------------------------------------------------------------------------------
+;; (1) ___awdiv                                              9     5      4     300
+;;                                              0 COMMON     9     5      4
+;; ---------------------------------------------------------------------------------
+;; (3) _delay                                                2     0      2      22
+;;                                              0 COMMON     2     0      2
+;; ---------------------------------------------------------------------------------
+;; (1) _adc2                                                 6     6      0     178
+;;                                              0 COMMON     6     6      0
+;; ---------------------------------------------------------------------------------
+;; (1) _adc1                                                 6     6      0     178
+;;                                              0 COMMON     6     6      0
+;; ---------------------------------------------------------------------------------
+;; Estimated maximum stack depth 3
+;; ---------------------------------------------------------------------------------
+
+;; Call Graph Graphs:
+
+;; _main (ROOT)
+;;   _on
+;;     _pulse
+;;       _delay
+;;   _type
+;;     _pulse
+;;       _delay
+;;   _adc1
+;;   _address
+;;     _pulse
+;;       _delay
+;;   ___awmod
+;;   _display
+;;     _pulse
+;;       _delay
+;;   ___awdiv
+;;   _adc2
+;;
+
+;; Address spaces:
+
+;;Name               Size   Autos  Total    Cost      Usage
+;;BITCOMMON            E      0       0       0        0.0%
+;;EEDATA             100      0       0       0        0.0%
+;;NULL                 0      0       0       0        0.0%
+;;CODE                 0      0       0       0        0.0%
+;;COMMON               E      D       D       1       92.9%
+;;BITSFR0              0      0       0       1        0.0%
+;;SFR0                 0      0       0       1        0.0%
+;;BITSFR1              0      0       0       2        0.0%
+;;SFR1                 0      0       0       2        0.0%
+;;STACK                0      0       3       2        0.0%
+;;ABS                  0      0      11       3        0.0%
+;;BITBANK0            50      0       0       4        0.0%
+;;BITSFR3              0      0       0       4        0.0%
+;;SFR3                 0      0       0       4        0.0%
+;;BANK0               50      0       4       5        5.0%
+;;BITSFR2              0      0       0       5        0.0%
+;;SFR2                 0      0       0       5        0.0%
+;;BITBANK1            50      0       0       6        0.0%
+;;BANK1               50      0       0       7        0.0%
+;;BITBANK3            60      0       0       8        0.0%
+;;BANK3               60      0       0       9        0.0%
+;;BITBANK2            60      0       0      10        0.0%
+;;BANK2               60      0       0      11        0.0%
+;;DATA                 0      0      14      12        0.0%
+
+	global	_main
+psect	maintext,global,class=CODE,delta=2
+global __pmaintext
+__pmaintext:
+
+;; *************** function _main *****************
+;; Defined at:
+;;		line 83 in file "E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;  i               2   11[COMMON] int 
+;;  i               2    9[COMMON] int 
+;; Return value:  Size  Location     Type
+;;		None               void
+;; Registers used:
+;;		wreg, status,2, status,0, pclath, cstack
+;; Tracked objects:
+;;		On entry : 17F/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         4       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         4       0       0       0       0
+;;Total ram usage:        4 bytes
+;; Hardware stack levels required when called:    3
+;; This function calls:
+;;		_on
+;;		_type
+;;		_adc1
+;;		_address
+;;		___awmod
+;;		_display
+;;		___awdiv
+;;		_adc2
+;; This function is called by:
+;;		Startup code after reset
+;; This function uses a non-reentrant model
+;;
+psect	maintext
+	file	"E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+	line	83
+	global	__size_of_main
+	__size_of_main	equ	__end_of_main-_main
+	
+_main:	
+	opt	stack 5
+; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+	line	84
+	
+l2548:	
+;2pot.c: 84: PORTA=0X00;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	clrf	(5)	;volatile
+	line	85
+	
+l2550:	
+;2pot.c: 85: TRISA=0X01;
+	movlw	(01h)
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	status, 6	;RP1=0, select bank1
+	movwf	(133)^080h	;volatile
+	line	86
+	
+l2552:	
+;2pot.c: 86: PORTB=0X00;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	clrf	(6)	;volatile
+	line	87
+;2pot.c: 87: TRISB=0X02;
+	movlw	(02h)
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	status, 6	;RP1=0, select bank1
+	movwf	(134)^080h	;volatile
+	line	88
+	
+l2554:	
+;2pot.c: 88: PORTC=0X00;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	clrf	(7)	;volatile
+	line	89
+	
+l2556:	
+;2pot.c: 89: TRISC=0X00;
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	status, 6	;RP1=0, select bank1
+	clrf	(135)^080h	;volatile
+	line	90
+	
+l2558:	
+;2pot.c: 90: PORTD=0X00;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	clrf	(8)	;volatile
+	line	91
+	
+l2560:	
+;2pot.c: 91: TRISD=0X00;
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	status, 6	;RP1=0, select bank1
+	clrf	(136)^080h	;volatile
+	line	92
+;2pot.c: 92: ANSEL=0X01;
+	movlw	(01h)
+	bsf	status, 5	;RP0=1, select bank3
+	bsf	status, 6	;RP1=1, select bank3
+	movwf	(392)^0180h	;volatile
+	line	93
+;2pot.c: 93: ANSELH=0X04;
+	movlw	(04h)
+	movwf	(393)^0180h	;volatile
+	line	94
+	
+l2562:	
+;2pot.c: 94: on();
+	fcall	_on
+	line	95
+	
+l2564:	
+;2pot.c: 95: type();
+	fcall	_type
+	goto	l2566
+	line	96
+;2pot.c: 96: while(1)
+	
+l1070:	
+	line	98
+	
+l2566:	
+;2pot.c: 97: {
+;2pot.c: 98: adc1();
+	fcall	_adc1
+	line	99
+	
+l2568:	
+;2pot.c: 99: for(int i=3;i>=0;i--)
+	movlw	low(03h)
+	movwf	(main@i)
+	movlw	high(03h)
+	movwf	((main@i))+1
+	
+l2570:	
+	btfss	(main@i+1),7
+	goto	u2591
+	goto	u2590
+u2591:
+	goto	l2574
+u2590:
+	goto	l2580
+	
+l2572:	
+	goto	l2580
+	line	100
+	
+l1071:	
+	line	101
+	
+l2574:	
+;2pot.c: 100: {
+;2pot.c: 101: address(0X80+i);
+	movf	(main@i),w
+	addlw	080h
+	fcall	_address
+	line	102
+;2pot.c: 102: display(0X30+(tot1%10));
+	movlw	low(0Ah)
+	movwf	(?___awmod)
+	movlw	high(0Ah)
+	movwf	((?___awmod))+1
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movf	(_tot1+1),w
+	clrf	1+(?___awmod)+02h
+	addwf	1+(?___awmod)+02h
+	movf	(_tot1),w
+	clrf	0+(?___awmod)+02h
+	addwf	0+(?___awmod)+02h
+
+	fcall	___awmod
+	movf	(0+(?___awmod)),w
+	addlw	030h
+	fcall	_display
+	line	103
+;2pot.c: 103: tot1=tot1/10;
+	movlw	low(0Ah)
+	movwf	(?___awdiv)
+	movlw	high(0Ah)
+	movwf	((?___awdiv))+1
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movf	(_tot1+1),w
+	clrf	1+(?___awdiv)+02h
+	addwf	1+(?___awdiv)+02h
+	movf	(_tot1),w
+	clrf	0+(?___awdiv)+02h
+	addwf	0+(?___awdiv)+02h
+
+	fcall	___awdiv
+	movf	(1+(?___awdiv)),w
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	clrf	(_tot1+1)
+	addwf	(_tot1+1)
+	movf	(0+(?___awdiv)),w
+	clrf	(_tot1)
+	addwf	(_tot1)
+
+	line	99
+	
+l2576:	
+	movlw	low(-1)
+	addwf	(main@i),f
+	skipnc
+	incf	(main@i+1),f
+	movlw	high(-1)
+	addwf	(main@i+1),f
+	
+l2578:	
+	btfss	(main@i+1),7
+	goto	u2601
+	goto	u2600
+u2601:
+	goto	l2574
+u2600:
+	goto	l2580
+	
+l1072:	
+	line	105
+	
+l2580:	
+;2pot.c: 104: }
+;2pot.c: 105: adc2();
+	fcall	_adc2
+	line	106
+	
+l2582:	
+;2pot.c: 106: for(int i=3;i>=0;i--)
+	movlw	low(03h)
+	movwf	(main@i_1797)
+	movlw	high(03h)
+	movwf	((main@i_1797))+1
+	
+l2584:	
+	btfss	(main@i_1797+1),7
+	goto	u2611
+	goto	u2610
+u2611:
+	goto	l2588
+u2610:
+	goto	l2566
+	
+l2586:	
+	goto	l2566
+	line	107
+	
+l1073:	
+	line	108
+	
+l2588:	
+;2pot.c: 107: {
+;2pot.c: 108: address(0XC0+i);
+	movf	(main@i_1797),w
+	addlw	0C0h
+	fcall	_address
+	line	109
+;2pot.c: 109: display(0X30+(tot2%10));
+	movlw	low(0Ah)
+	movwf	(?___awmod)
+	movlw	high(0Ah)
+	movwf	((?___awmod))+1
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movf	(_tot2+1),w
+	clrf	1+(?___awmod)+02h
+	addwf	1+(?___awmod)+02h
+	movf	(_tot2),w
+	clrf	0+(?___awmod)+02h
+	addwf	0+(?___awmod)+02h
+
+	fcall	___awmod
+	movf	(0+(?___awmod)),w
+	addlw	030h
+	fcall	_display
+	line	110
+;2pot.c: 110: tot2=tot2/10;
+	movlw	low(0Ah)
+	movwf	(?___awdiv)
+	movlw	high(0Ah)
+	movwf	((?___awdiv))+1
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movf	(_tot2+1),w
+	clrf	1+(?___awdiv)+02h
+	addwf	1+(?___awdiv)+02h
+	movf	(_tot2),w
+	clrf	0+(?___awdiv)+02h
+	addwf	0+(?___awdiv)+02h
+
+	fcall	___awdiv
+	movf	(1+(?___awdiv)),w
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	clrf	(_tot2+1)
+	addwf	(_tot2+1)
+	movf	(0+(?___awdiv)),w
+	clrf	(_tot2)
+	addwf	(_tot2)
+
+	line	106
+	
+l2590:	
+	movlw	low(-1)
+	addwf	(main@i_1797),f
+	skipnc
+	incf	(main@i_1797+1),f
+	movlw	high(-1)
+	addwf	(main@i_1797+1),f
+	
+l2592:	
+	btfss	(main@i_1797+1),7
+	goto	u2621
+	goto	u2620
+u2621:
+	goto	l2588
+u2620:
+	goto	l2566
+	
+l1074:	
+	goto	l2566
+	line	112
+	
+l1075:	
+	line	96
+	goto	l2566
+	
+l1076:	
+	line	113
+	
+l1077:	
+	global	start
+	ljmp	start
+	opt stack 0
+GLOBAL	__end_of_main
+	__end_of_main:
+;; =============== function _main ends ============
+
+	signat	_main,88
+	global	_display
+psect	text263,local,class=CODE,delta=2
+global __ptext263
+__ptext263:
+
+;; *************** function _display *****************
+;; Defined at:
+;;		line 76 in file "E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+;; Parameters:    Size  Location     Type
+;;  data            1    wreg     unsigned char 
+;; Auto vars:     Size  Location     Type
+;;  data            1    2[COMMON] unsigned char 
+;; Return value:  Size  Location     Type
+;;		None               void
+;; Registers used:
+;;		wreg, status,2, status,0, pclath, cstack
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         1       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         1       0       0       0       0
+;;Total ram usage:        1 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    2
+;; This function calls:
+;;		_pulse
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text263
+	file	"E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+	line	76
+	global	__size_of_display
+	__size_of_display	equ	__end_of_display-_display
+	
+_display:	
+	opt	stack 5
+; Regs used in _display: [wreg+status,2+status,0+pclath+cstack]
+;display@data stored from wreg
+	movwf	(display@data)
+	line	77
+	
+l2542:	
+;2pot.c: 77: RD0=1;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	bsf	(64/8),(64)&7
+	line	78
+;2pot.c: 78: RD1=0;
+	bcf	(65/8),(65)&7
+	line	79
+	
+l2544:	
+;2pot.c: 79: PORTC=data;
+	movf	(display@data),w
+	movwf	(7)	;volatile
+	line	80
+	
+l2546:	
+;2pot.c: 80: pulse();
+	fcall	_pulse
+	line	81
+	
+l1067:	
+	return
+	opt stack 0
+GLOBAL	__end_of_display
+	__end_of_display:
+;; =============== function _display ends ============
+
+	signat	_display,4216
+	global	_address
+psect	text264,local,class=CODE,delta=2
+global __ptext264
+__ptext264:
+
+;; *************** function _address *****************
+;; Defined at:
+;;		line 69 in file "E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+;; Parameters:    Size  Location     Type
+;;  data            1    wreg     unsigned char 
+;; Auto vars:     Size  Location     Type
+;;  data            1    2[COMMON] unsigned char 
+;; Return value:  Size  Location     Type
+;;		None               void
+;; Registers used:
+;;		wreg, status,2, status,0, pclath, cstack
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         1       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         1       0       0       0       0
+;;Total ram usage:        1 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    2
+;; This function calls:
+;;		_pulse
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text264
+	file	"E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+	line	69
+	global	__size_of_address
+	__size_of_address	equ	__end_of_address-_address
+	
+_address:	
+	opt	stack 5
+; Regs used in _address: [wreg+status,2+status,0+pclath+cstack]
+;address@data stored from wreg
+	movwf	(address@data)
+	line	70
+	
+l2536:	
+;2pot.c: 70: RD0=0;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	bcf	(64/8),(64)&7
+	line	71
+;2pot.c: 71: RD1=0;
+	bcf	(65/8),(65)&7
+	line	72
+	
+l2538:	
+;2pot.c: 72: PORTC= data;
+	movf	(address@data),w
+	movwf	(7)	;volatile
+	line	73
+	
+l2540:	
+;2pot.c: 73: pulse();
+	fcall	_pulse
+	line	74
+	
+l1064:	
+	return
+	opt stack 0
+GLOBAL	__end_of_address
+	__end_of_address:
+;; =============== function _address ends ============
+
+	signat	_address,4216
+	global	_type
+psect	text265,local,class=CODE,delta=2
+global __ptext265
+__ptext265:
+
+;; *************** function _type *****************
+;; Defined at:
+;;		line 62 in file "E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;		None               void
+;; Registers used:
+;;		wreg, status,2, status,0, pclath, cstack
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         0       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         0       0       0       0       0
+;;Total ram usage:        0 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    2
+;; This function calls:
+;;		_pulse
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text265
+	file	"E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+	line	62
+	global	__size_of_type
+	__size_of_type	equ	__end_of_type-_type
+	
+_type:	
+	opt	stack 5
+; Regs used in _type: [wreg+status,2+status,0+pclath+cstack]
+	line	63
+	
+l2530:	
+;2pot.c: 63: RD0=0;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	bcf	(64/8),(64)&7
+	line	64
+;2pot.c: 64: RD1=0;
+	bcf	(65/8),(65)&7
+	line	65
+	
+l2532:	
+;2pot.c: 65: PORTC=0X38;
+	movlw	(038h)
+	movwf	(7)	;volatile
+	line	66
+	
+l2534:	
+;2pot.c: 66: pulse();
+	fcall	_pulse
+	line	67
+	
+l1061:	
+	return
+	opt stack 0
+GLOBAL	__end_of_type
+	__end_of_type:
+;; =============== function _type ends ============
+
+	signat	_type,88
+	global	_on
+psect	text266,local,class=CODE,delta=2
+global __ptext266
+__ptext266:
+
+;; *************** function _on *****************
+;; Defined at:
+;;		line 55 in file "E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;		None               void
+;; Registers used:
+;;		wreg, status,2, status,0, pclath, cstack
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         0       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         0       0       0       0       0
+;;Total ram usage:        0 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    2
+;; This function calls:
+;;		_pulse
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text266
+	file	"E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+	line	55
+	global	__size_of_on
+	__size_of_on	equ	__end_of_on-_on
+	
+_on:	
+	opt	stack 5
+; Regs used in _on: [wreg+status,2+status,0+pclath+cstack]
+	line	56
+	
+l2524:	
+;2pot.c: 56: RD0=0;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	bcf	(64/8),(64)&7
+	line	57
+;2pot.c: 57: RD1=0;
+	bcf	(65/8),(65)&7
+	line	58
+	
+l2526:	
+;2pot.c: 58: PORTC=0X0E;
+	movlw	(0Eh)
+	movwf	(7)	;volatile
+	line	59
+	
+l2528:	
+;2pot.c: 59: pulse();
+	fcall	_pulse
+	line	60
+	
+l1058:	
+	return
+	opt stack 0
+GLOBAL	__end_of_on
+	__end_of_on:
+;; =============== function _on ends ============
+
+	signat	_on,88
+	global	_pulse
+psect	text267,local,class=CODE,delta=2
+global __ptext267
+__ptext267:
+
+;; *************** function _pulse *****************
+;; Defined at:
+;;		line 48 in file "E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;		None               void
+;; Registers used:
+;;		wreg, status,2, status,0, pclath, cstack
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         0       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         0       0       0       0       0
+;;Total ram usage:        0 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    1
+;; This function calls:
+;;		_delay
+;; This function is called by:
+;;		_on
+;;		_type
+;;		_address
+;;		_display
+;; This function uses a non-reentrant model
+;;
+psect	text267
+	file	"E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+	line	48
+	global	__size_of_pulse
+	__size_of_pulse	equ	__end_of_pulse-_pulse
+	
+_pulse:	
+	opt	stack 5
+; Regs used in _pulse: [wreg+status,2+status,0+pclath+cstack]
+	line	49
+	
+l2518:	
+;2pot.c: 49: RD2=1;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	bsf	(66/8),(66)&7
+	line	50
+	
+l2520:	
+;2pot.c: 50: delay(100);
+	movlw	low(064h)
+	movwf	(?_delay)
+	movlw	high(064h)
+	movwf	((?_delay))+1
+	fcall	_delay
+	line	51
+	
+l2522:	
+;2pot.c: 51: RD2=0;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	bcf	(66/8),(66)&7
+	line	52
+;2pot.c: 52: delay(100);
+	movlw	low(064h)
+	movwf	(?_delay)
+	movlw	high(064h)
+	movwf	((?_delay))+1
+	fcall	_delay
+	line	53
+	
+l1055:	
+	return
+	opt stack 0
+GLOBAL	__end_of_pulse
+	__end_of_pulse:
+;; =============== function _pulse ends ============
+
+	signat	_pulse,88
+	global	___awmod
+psect	text268,local,class=CODE,delta=2
+global __ptext268
+__ptext268:
+
+;; *************** function ___awmod *****************
+;; Defined at:
+;;		line 5 in file "C:\Program Files (x86)\HI-TECH Software\PICC\9.81\sources\awmod.c"
+;; Parameters:    Size  Location     Type
+;;  divisor         2    0[COMMON] int 
+;;  dividend        2    2[COMMON] int 
+;; Auto vars:     Size  Location     Type
+;;  sign            1    6[COMMON] unsigned char 
+;;  counter         1    5[COMMON] unsigned char 
+;; Return value:  Size  Location     Type
+;;                  2    0[COMMON] int 
+;; Registers used:
+;;		wreg, status,2, status,0
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         4       0       0       0       0
+;;      Locals:         2       0       0       0       0
+;;      Temps:          1       0       0       0       0
+;;      Totals:         7       0       0       0       0
+;;Total ram usage:        7 bytes
+;; Hardware stack levels used:    1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text268
+	file	"C:\Program Files (x86)\HI-TECH Software\PICC\9.81\sources\awmod.c"
+	line	5
+	global	__size_of___awmod
+	__size_of___awmod	equ	__end_of___awmod-___awmod
+	
+___awmod:	
+	opt	stack 7
+; Regs used in ___awmod: [wreg+status,2+status,0]
+	line	8
+	
+l2484:	
+	clrf	(___awmod@sign)
+	line	9
+	btfss	(___awmod@dividend+1),7
+	goto	u2501
+	goto	u2500
+u2501:
+	goto	l2488
+u2500:
+	line	10
+	
+l2486:	
+	comf	(___awmod@dividend),f
+	comf	(___awmod@dividend+1),f
+	incf	(___awmod@dividend),f
+	skipnz
+	incf	(___awmod@dividend+1),f
+	line	11
+	clrf	(___awmod@sign)
+	bsf	status,0
+	rlf	(___awmod@sign),f
+	goto	l2488
+	line	12
+	
+l1294:	
+	line	13
+	
+l2488:	
+	btfss	(___awmod@divisor+1),7
+	goto	u2511
+	goto	u2510
+u2511:
+	goto	l2492
+u2510:
+	line	14
+	
+l2490:	
+	comf	(___awmod@divisor),f
+	comf	(___awmod@divisor+1),f
+	incf	(___awmod@divisor),f
+	skipnz
+	incf	(___awmod@divisor+1),f
+	goto	l2492
+	
+l1295:	
+	line	15
+	
+l2492:	
+	movf	(___awmod@divisor+1),w
+	iorwf	(___awmod@divisor),w
+	skipnz
+	goto	u2521
+	goto	u2520
+u2521:
+	goto	l2510
+u2520:
+	line	16
+	
+l2494:	
+	clrf	(___awmod@counter)
+	bsf	status,0
+	rlf	(___awmod@counter),f
+	line	17
+	goto	l2500
+	
+l1298:	
+	line	18
+	
+l2496:	
+	movlw	01h
+	
+u2535:
+	clrc
+	rlf	(___awmod@divisor),f
+	rlf	(___awmod@divisor+1),f
+	addlw	-1
+	skipz
+	goto	u2535
+	line	19
+	
+l2498:	
+	movlw	(01h)
+	movwf	(??___awmod+0)+0
+	movf	(??___awmod+0)+0,w
+	addwf	(___awmod@counter),f
+	goto	l2500
+	line	20
+	
+l1297:	
+	line	17
+	
+l2500:	
+	btfss	(___awmod@divisor+1),(15)&7
+	goto	u2541
+	goto	u2540
+u2541:
+	goto	l2496
+u2540:
+	goto	l2502
+	
+l1299:	
+	goto	l2502
+	line	21
+	
+l1300:	
+	line	22
+	
+l2502:	
+	movf	(___awmod@divisor+1),w
+	subwf	(___awmod@dividend+1),w
+	skipz
+	goto	u2555
+	movf	(___awmod@divisor),w
+	subwf	(___awmod@dividend),w
+u2555:
+	skipc
+	goto	u2551
+	goto	u2550
+u2551:
+	goto	l2506
+u2550:
+	line	23
+	
+l2504:	
+	movf	(___awmod@divisor),w
+	subwf	(___awmod@dividend),f
+	movf	(___awmod@divisor+1),w
+	skipc
+	decf	(___awmod@dividend+1),f
+	subwf	(___awmod@dividend+1),f
+	goto	l2506
+	
+l1301:	
+	line	24
+	
+l2506:	
+	movlw	01h
+	
+u2565:
+	clrc
+	rrf	(___awmod@divisor+1),f
+	rrf	(___awmod@divisor),f
+	addlw	-1
+	skipz
+	goto	u2565
+	line	25
+	
+l2508:	
+	movlw	low(01h)
+	subwf	(___awmod@counter),f
+	btfss	status,2
+	goto	u2571
+	goto	u2570
+u2571:
+	goto	l2502
+u2570:
+	goto	l2510
+	
+l1302:	
+	goto	l2510
+	line	26
+	
+l1296:	
+	line	27
+	
+l2510:	
+	movf	(___awmod@sign),w
+	skipz
+	goto	u2580
+	goto	l2514
+u2580:
+	line	28
+	
+l2512:	
+	comf	(___awmod@dividend),f
+	comf	(___awmod@dividend+1),f
+	incf	(___awmod@dividend),f
+	skipnz
+	incf	(___awmod@dividend+1),f
+	goto	l2514
+	
+l1303:	
+	line	29
+	
+l2514:	
+	movf	(___awmod@dividend+1),w
+	clrf	(?___awmod+1)
+	addwf	(?___awmod+1)
+	movf	(___awmod@dividend),w
+	clrf	(?___awmod)
+	addwf	(?___awmod)
+
+	goto	l1304
+	
+l2516:	
+	line	30
+	
+l1304:	
+	return
+	opt stack 0
+GLOBAL	__end_of___awmod
+	__end_of___awmod:
+;; =============== function ___awmod ends ============
+
+	signat	___awmod,8314
+	global	___awdiv
+psect	text269,local,class=CODE,delta=2
+global __ptext269
+__ptext269:
+
+;; *************** function ___awdiv *****************
+;; Defined at:
+;;		line 5 in file "C:\Program Files (x86)\HI-TECH Software\PICC\9.81\sources\awdiv.c"
+;; Parameters:    Size  Location     Type
+;;  divisor         2    0[COMMON] int 
+;;  dividend        2    2[COMMON] int 
+;; Auto vars:     Size  Location     Type
+;;  quotient        2    7[COMMON] int 
+;;  sign            1    6[COMMON] unsigned char 
+;;  counter         1    5[COMMON] unsigned char 
+;; Return value:  Size  Location     Type
+;;                  2    0[COMMON] int 
+;; Registers used:
+;;		wreg, status,2, status,0
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         4       0       0       0       0
+;;      Locals:         4       0       0       0       0
+;;      Temps:          1       0       0       0       0
+;;      Totals:         9       0       0       0       0
+;;Total ram usage:        9 bytes
+;; Hardware stack levels used:    1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text269
+	file	"C:\Program Files (x86)\HI-TECH Software\PICC\9.81\sources\awdiv.c"
+	line	5
+	global	__size_of___awdiv
+	__size_of___awdiv	equ	__end_of___awdiv-___awdiv
+	
+___awdiv:	
+	opt	stack 7
+; Regs used in ___awdiv: [wreg+status,2+status,0]
+	line	9
+	
+l2444:	
+	clrf	(___awdiv@sign)
+	line	10
+	btfss	(___awdiv@divisor+1),7
+	goto	u2401
+	goto	u2400
+u2401:
+	goto	l2448
+u2400:
+	line	11
+	
+l2446:	
+	comf	(___awdiv@divisor),f
+	comf	(___awdiv@divisor+1),f
+	incf	(___awdiv@divisor),f
+	skipnz
+	incf	(___awdiv@divisor+1),f
+	line	12
+	clrf	(___awdiv@sign)
+	bsf	status,0
+	rlf	(___awdiv@sign),f
+	goto	l2448
+	line	13
+	
+l1226:	
+	line	14
+	
+l2448:	
+	btfss	(___awdiv@dividend+1),7
+	goto	u2411
+	goto	u2410
+u2411:
+	goto	l2454
+u2410:
+	line	15
+	
+l2450:	
+	comf	(___awdiv@dividend),f
+	comf	(___awdiv@dividend+1),f
+	incf	(___awdiv@dividend),f
+	skipnz
+	incf	(___awdiv@dividend+1),f
+	line	16
+	
+l2452:	
+	movlw	(01h)
+	movwf	(??___awdiv+0)+0
+	movf	(??___awdiv+0)+0,w
+	xorwf	(___awdiv@sign),f
+	goto	l2454
+	line	17
+	
+l1227:	
+	line	18
+	
+l2454:	
+	clrf	(___awdiv@quotient)
+	clrf	(___awdiv@quotient+1)
+	line	19
+	
+l2456:	
+	movf	(___awdiv@divisor+1),w
+	iorwf	(___awdiv@divisor),w
+	skipnz
+	goto	u2421
+	goto	u2420
+u2421:
+	goto	l2476
+u2420:
+	line	20
+	
+l2458:	
+	clrf	(___awdiv@counter)
+	bsf	status,0
+	rlf	(___awdiv@counter),f
+	line	21
+	goto	l2464
+	
+l1230:	
+	line	22
+	
+l2460:	
+	movlw	01h
+	
+u2435:
+	clrc
+	rlf	(___awdiv@divisor),f
+	rlf	(___awdiv@divisor+1),f
+	addlw	-1
+	skipz
+	goto	u2435
+	line	23
+	
+l2462:	
+	movlw	(01h)
+	movwf	(??___awdiv+0)+0
+	movf	(??___awdiv+0)+0,w
+	addwf	(___awdiv@counter),f
+	goto	l2464
+	line	24
+	
+l1229:	
+	line	21
+	
+l2464:	
+	btfss	(___awdiv@divisor+1),(15)&7
+	goto	u2441
+	goto	u2440
+u2441:
+	goto	l2460
+u2440:
+	goto	l2466
+	
+l1231:	
+	goto	l2466
+	line	25
+	
+l1232:	
+	line	26
+	
+l2466:	
+	movlw	01h
+	
+u2455:
+	clrc
+	rlf	(___awdiv@quotient),f
+	rlf	(___awdiv@quotient+1),f
+	addlw	-1
+	skipz
+	goto	u2455
+	line	27
+	movf	(___awdiv@divisor+1),w
+	subwf	(___awdiv@dividend+1),w
+	skipz
+	goto	u2465
+	movf	(___awdiv@divisor),w
+	subwf	(___awdiv@dividend),w
+u2465:
+	skipc
+	goto	u2461
+	goto	u2460
+u2461:
+	goto	l2472
+u2460:
+	line	28
+	
+l2468:	
+	movf	(___awdiv@divisor),w
+	subwf	(___awdiv@dividend),f
+	movf	(___awdiv@divisor+1),w
+	skipc
+	decf	(___awdiv@dividend+1),f
+	subwf	(___awdiv@dividend+1),f
+	line	29
+	
+l2470:	
+	bsf	(___awdiv@quotient)+(0/8),(0)&7
+	goto	l2472
+	line	30
+	
+l1233:	
+	line	31
+	
+l2472:	
+	movlw	01h
+	
+u2475:
+	clrc
+	rrf	(___awdiv@divisor+1),f
+	rrf	(___awdiv@divisor),f
+	addlw	-1
+	skipz
+	goto	u2475
+	line	32
+	
+l2474:	
+	movlw	low(01h)
+	subwf	(___awdiv@counter),f
+	btfss	status,2
+	goto	u2481
+	goto	u2480
+u2481:
+	goto	l2466
+u2480:
+	goto	l2476
+	
+l1234:	
+	goto	l2476
+	line	33
+	
+l1228:	
+	line	34
+	
+l2476:	
+	movf	(___awdiv@sign),w
+	skipz
+	goto	u2490
+	goto	l2480
+u2490:
+	line	35
+	
+l2478:	
+	comf	(___awdiv@quotient),f
+	comf	(___awdiv@quotient+1),f
+	incf	(___awdiv@quotient),f
+	skipnz
+	incf	(___awdiv@quotient+1),f
+	goto	l2480
+	
+l1235:	
+	line	36
+	
+l2480:	
+	movf	(___awdiv@quotient+1),w
+	clrf	(?___awdiv+1)
+	addwf	(?___awdiv+1)
+	movf	(___awdiv@quotient),w
+	clrf	(?___awdiv)
+	addwf	(?___awdiv)
+
+	goto	l1236
+	
+l2482:	
+	line	37
+	
+l1236:	
+	return
+	opt stack 0
+GLOBAL	__end_of___awdiv
+	__end_of___awdiv:
+;; =============== function ___awdiv ends ============
+
+	signat	___awdiv,8314
+	global	_delay
+psect	text270,local,class=CODE,delta=2
+global __ptext270
+__ptext270:
+
+;; *************** function _delay *****************
+;; Defined at:
+;;		line 44 in file "E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+;; Parameters:    Size  Location     Type
+;;  del             2    0[COMMON] int 
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;		None               void
+;; Registers used:
+;;		wreg
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         2       0       0       0       0
+;;      Locals:         0       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         2       0       0       0       0
+;;Total ram usage:        2 bytes
+;; Hardware stack levels used:    1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_pulse
+;; This function uses a non-reentrant model
+;;
+psect	text270
+	file	"E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+	line	44
+	global	__size_of_delay
+	__size_of_delay	equ	__end_of_delay-_delay
+	
+_delay:	
+	opt	stack 5
+; Regs used in _delay: [wreg]
+	line	45
+	
+l2440:	
+;2pot.c: 45: while(del--);
+	goto	l2442
+	
+l1050:	
+	goto	l2442
+	
+l1049:	
+	
+l2442:	
+	movlw	low(-1)
+	addwf	(delay@del),f
+	skipnc
+	incf	(delay@del+1),f
+	movlw	high(-1)
+	addwf	(delay@del+1),f
+	movlw	high(-1)
+	xorwf	((delay@del+1)),w
+	skipz
+	goto	u2395
+	movlw	low(-1)
+	xorwf	((delay@del)),w
+u2395:
+
+	skipz
+	goto	u2391
+	goto	u2390
+u2391:
+	goto	l2442
+u2390:
+	goto	l1052
+	
+l1051:	
+	line	46
+	
+l1052:	
+	return
+	opt stack 0
+GLOBAL	__end_of_delay
+	__end_of_delay:
+;; =============== function _delay ends ============
+
+	signat	_delay,4216
+	global	_adc2
+psect	text271,local,class=CODE,delta=2
+global __ptext271
+__ptext271:
+
+;; *************** function _adc2 *****************
+;; Defined at:
+;;		line 23 in file "E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;  low             2    4[COMMON] int 
+;;  high            2    2[COMMON] int 
+;; Return value:  Size  Location     Type
+;;                  2  1038[COMMON] int 
+;; Registers used:
+;;		wreg, status,2, status,0
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         4       0       0       0       0
+;;      Temps:          2       0       0       0       0
+;;      Totals:         6       0       0       0       0
+;;Total ram usage:        6 bytes
+;; Hardware stack levels used:    1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text271
+	file	"E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+	line	23
+	global	__size_of_adc2
+	__size_of_adc2	equ	__end_of_adc2-_adc2
+	
+_adc2:	
+	opt	stack 7
+; Regs used in _adc2: [wreg+status,2+status,0]
+	line	25
+	
+l2418:	
+;2pot.c: 24: int high,low;
+;2pot.c: 25: ADCON0=0X2B;
+	movlw	(02Bh)
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movwf	(31)	;volatile
+	line	26
+;2pot.c: 26: ADCON1=0X80;
+	movlw	(080h)
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	status, 6	;RP1=0, select bank1
+	movwf	(159)^080h	;volatile
+	line	27
+;2pot.c: 27: while(GO!=0);
+	goto	l1039
+	
+l1040:	
+	
+l1039:	
+	bcf	status, 5	;RP0=0, select bank0
+	btfsc	(249/8),(249)&7
+	goto	u2341
+	goto	u2340
+u2341:
+	goto	l1039
+u2340:
+	goto	l2420
+	
+l1041:	
+	line	28
+	
+l2420:	
+;2pot.c: 28: low=ADRESL;
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	status, 6	;RP1=0, select bank1
+	movf	(158)^080h,w	;volatile
+	movwf	(??_adc2+0)+0
+	clrf	(??_adc2+0)+0+1
+	movf	0+(??_adc2+0)+0,w
+	movwf	(adc2@low)
+	movf	1+(??_adc2+0)+0,w
+	movwf	(adc2@low+1)
+	line	29
+;2pot.c: 29: high=ADRESH;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movf	(30),w	;volatile
+	movwf	(??_adc2+0)+0
+	clrf	(??_adc2+0)+0+1
+	movf	0+(??_adc2+0)+0,w
+	movwf	(adc2@high)
+	movf	1+(??_adc2+0)+0,w
+	movwf	(adc2@high+1)
+	line	30
+	
+l2422:	
+;2pot.c: 30: if(high==0)
+	movf	((adc2@high+1)),w
+	iorwf	((adc2@high)),w
+	skipz
+	goto	u2351
+	goto	u2350
+u2351:
+	goto	l2426
+u2350:
+	line	31
+	
+l2424:	
+;2pot.c: 31: tot2 = low+0;
+	movf	(adc2@low+1),w
+	clrf	(_tot2+1)
+	addwf	(_tot2+1)
+	movf	(adc2@low),w
+	clrf	(_tot2)
+	addwf	(_tot2)
+
+	goto	l2426
+	
+l1042:	
+	line	32
+	
+l2426:	
+;2pot.c: 32: if(high==1)
+	movlw	01h
+	xorwf	(adc2@high),w
+	iorwf	(adc2@high+1),w
+	skipz
+	goto	u2361
+	goto	u2360
+u2361:
+	goto	l2430
+u2360:
+	line	33
+	
+l2428:	
+;2pot.c: 33: tot2 = low+256;
+	movf	(adc2@low),w
+	addlw	low(0100h)
+	movwf	(_tot2)
+	movf	(adc2@low+1),w
+	skipnc
+	addlw	1
+	addlw	high(0100h)
+	movwf	1+(_tot2)
+	goto	l2430
+	
+l1043:	
+	line	34
+	
+l2430:	
+;2pot.c: 34: if(high==2)
+	movlw	02h
+	xorwf	(adc2@high),w
+	iorwf	(adc2@high+1),w
+	skipz
+	goto	u2371
+	goto	u2370
+u2371:
+	goto	l2434
+u2370:
+	line	35
+	
+l2432:	
+;2pot.c: 35: tot2 = low+512;
+	movf	(adc2@low),w
+	addlw	low(0200h)
+	movwf	(_tot2)
+	movf	(adc2@low+1),w
+	skipnc
+	addlw	1
+	addlw	high(0200h)
+	movwf	1+(_tot2)
+	goto	l2434
+	
+l1044:	
+	line	36
+	
+l2434:	
+;2pot.c: 36: if(high==3)
+	movlw	03h
+	xorwf	(adc2@high),w
+	iorwf	(adc2@high+1),w
+	skipz
+	goto	u2381
+	goto	u2380
+u2381:
+	goto	l1046
+u2380:
+	line	37
+	
+l2436:	
+;2pot.c: 37: tot2 = low+768;
+	movf	(adc2@low),w
+	addlw	low(0300h)
+	movwf	(_tot2)
+	movf	(adc2@low+1),w
+	skipnc
+	addlw	1
+	addlw	high(0300h)
+	movwf	1+(_tot2)
+	goto	l1046
+	
+l1045:	
+	goto	l1046
+	line	38
+	
+l2438:	
+	line	39
+;2pot.c: 38: return tot2;
+;	Return value of _adc2 is never used
+	
+l1046:	
+	return
+	opt stack 0
+GLOBAL	__end_of_adc2
+	__end_of_adc2:
+;; =============== function _adc2 ends ============
+
+	signat	_adc2,90
+	global	_adc1
+psect	text272,local,class=CODE,delta=2
+global __ptext272
+__ptext272:
+
+;; *************** function _adc1 *****************
+;; Defined at:
+;;		line 5 in file "E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;  low             2    4[COMMON] int 
+;;  high            2    2[COMMON] int 
+;; Return value:  Size  Location     Type
+;;                  2  1028[COMMON] int 
+;; Registers used:
+;;		wreg, status,2, status,0
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         4       0       0       0       0
+;;      Temps:          2       0       0       0       0
+;;      Totals:         6       0       0       0       0
+;;Total ram usage:        6 bytes
+;; Hardware stack levels used:    1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text272
+	file	"E:\KTU\Softwares\MP lab\ADC\2potadc\2pot.c"
+	line	5
+	global	__size_of_adc1
+	__size_of_adc1	equ	__end_of_adc1-_adc1
+	
+_adc1:	
+	opt	stack 7
+; Regs used in _adc1: [wreg+status,2+status,0]
+	line	7
+	
+l2396:	
+;2pot.c: 6: int high,low;
+;2pot.c: 7: ADCON0=0X83;
+	movlw	(083h)
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movwf	(31)	;volatile
+	line	8
+;2pot.c: 8: ADCON1=0X80;
+	movlw	(080h)
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	status, 6	;RP1=0, select bank1
+	movwf	(159)^080h	;volatile
+	line	9
+;2pot.c: 9: while(GO!=0);
+	goto	l1029
+	
+l1030:	
+	
+l1029:	
+	bcf	status, 5	;RP0=0, select bank0
+	btfsc	(249/8),(249)&7
+	goto	u2291
+	goto	u2290
+u2291:
+	goto	l1029
+u2290:
+	goto	l2398
+	
+l1031:	
+	line	10
+	
+l2398:	
+;2pot.c: 10: low=ADRESL;
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	status, 6	;RP1=0, select bank1
+	movf	(158)^080h,w	;volatile
+	movwf	(??_adc1+0)+0
+	clrf	(??_adc1+0)+0+1
+	movf	0+(??_adc1+0)+0,w
+	movwf	(adc1@low)
+	movf	1+(??_adc1+0)+0,w
+	movwf	(adc1@low+1)
+	line	11
+;2pot.c: 11: high=ADRESH;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movf	(30),w	;volatile
+	movwf	(??_adc1+0)+0
+	clrf	(??_adc1+0)+0+1
+	movf	0+(??_adc1+0)+0,w
+	movwf	(adc1@high)
+	movf	1+(??_adc1+0)+0,w
+	movwf	(adc1@high+1)
+	line	12
+	
+l2400:	
+;2pot.c: 12: if(high==0)
+	movf	((adc1@high+1)),w
+	iorwf	((adc1@high)),w
+	skipz
+	goto	u2301
+	goto	u2300
+u2301:
+	goto	l2404
+u2300:
+	line	13
+	
+l2402:	
+;2pot.c: 13: tot1 = low+0;
+	movf	(adc1@low+1),w
+	clrf	(_tot1+1)
+	addwf	(_tot1+1)
+	movf	(adc1@low),w
+	clrf	(_tot1)
+	addwf	(_tot1)
+
+	goto	l2404
+	
+l1032:	
+	line	14
+	
+l2404:	
+;2pot.c: 14: if(high==1)
+	movlw	01h
+	xorwf	(adc1@high),w
+	iorwf	(adc1@high+1),w
+	skipz
+	goto	u2311
+	goto	u2310
+u2311:
+	goto	l2408
+u2310:
+	line	15
+	
+l2406:	
+;2pot.c: 15: tot1 = low+256;
+	movf	(adc1@low),w
+	addlw	low(0100h)
+	movwf	(_tot1)
+	movf	(adc1@low+1),w
+	skipnc
+	addlw	1
+	addlw	high(0100h)
+	movwf	1+(_tot1)
+	goto	l2408
+	
+l1033:	
+	line	16
+	
+l2408:	
+;2pot.c: 16: if(high==2)
+	movlw	02h
+	xorwf	(adc1@high),w
+	iorwf	(adc1@high+1),w
+	skipz
+	goto	u2321
+	goto	u2320
+u2321:
+	goto	l2412
+u2320:
+	line	17
+	
+l2410:	
+;2pot.c: 17: tot1 = low+512;
+	movf	(adc1@low),w
+	addlw	low(0200h)
+	movwf	(_tot1)
+	movf	(adc1@low+1),w
+	skipnc
+	addlw	1
+	addlw	high(0200h)
+	movwf	1+(_tot1)
+	goto	l2412
+	
+l1034:	
+	line	18
+	
+l2412:	
+;2pot.c: 18: if(high==3)
+	movlw	03h
+	xorwf	(adc1@high),w
+	iorwf	(adc1@high+1),w
+	skipz
+	goto	u2331
+	goto	u2330
+u2331:
+	goto	l1036
+u2330:
+	line	19
+	
+l2414:	
+;2pot.c: 19: tot1 = low+768;
+	movf	(adc1@low),w
+	addlw	low(0300h)
+	movwf	(_tot1)
+	movf	(adc1@low+1),w
+	skipnc
+	addlw	1
+	addlw	high(0300h)
+	movwf	1+(_tot1)
+	goto	l1036
+	
+l1035:	
+	goto	l1036
+	line	20
+	
+l2416:	
+	line	21
+;2pot.c: 20: return tot1;
+;	Return value of _adc1 is never used
+	
+l1036:	
+	return
+	opt stack 0
+GLOBAL	__end_of_adc1
+	__end_of_adc1:
+;; =============== function _adc1 ends ============
+
+	signat	_adc1,90
+psect	text273,local,class=CODE,delta=2
+global __ptext273
+__ptext273:
+	global	btemp
+	btemp set 07Eh
+
+	DABS	1,126,2	;btemp
+	global	wtemp0
+	wtemp0 set btemp
+	end

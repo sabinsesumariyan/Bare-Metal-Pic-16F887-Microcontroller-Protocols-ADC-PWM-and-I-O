@@ -1,0 +1,812 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Sat May 08 11:54:44 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_sabin
+    43                           	FNROOT	_main
+    44                           	global	main@F1606
+    45                           psect	idataBANK0,class=CODE,space=0,delta=2
+    46                           global __pidataBANK0
+    47  06F4                     __pidataBANK0:
+    48                           	file	"E:\KTU\Softwares\mplab\Doublesegment\doublesegment.c"
+    49                           	line	25
+    50                           
+    51                           ;initializer for main@F1606
+    52  06F4  34BF               	retlw	0BFh
+    53  06F5  3406               	retlw	06h
+    54  06F6  345B               	retlw	05Bh
+    55  06F7  344F               	retlw	04Fh
+    56  06F8  3466               	retlw	066h
+    57  06F9  346D               	retlw	06Dh
+    58  06FA  347C               	retlw	07Ch
+    59  06FB  3407               	retlw	07h
+    60  06FC  34FF               	retlw	0FFh
+    61  06FD  34E7               	retlw	0E7h
+    62                           	global	_PORTA
+    63  0005                     _PORTA	set	5
+    64                           	global	_PORTC
+    65  0007                     _PORTC	set	7
+    66                           	global	_RA0
+    67  0028                     _RA0	set	40
+    68                           	global	_RA1
+    69  0029                     _RA1	set	41
+    70                           	global	_RB0
+    71  0030                     _RB0	set	48
+    72                           	global	_TRISA
+    73  0085                     _TRISA	set	133
+    74                           	global	_TRISC
+    75  0087                     _TRISC	set	135
+    76                           	global	_ANSEL
+    77  0188                     _ANSEL	set	392
+    78                           	global	_ANSELH
+    79  0189                     _ANSELH	set	393
+    80                           	file	"doublesegment.as"
+    81                           	line	#
+    82                           psect cinit,class=CODE,delta=2
+    83                           global start_initialization
+    84  070F                     start_initialization:
+    85                           
+    86                           psect	dataBANK0,class=BANK0,space=1
+    87                           global __pdataBANK0
+    88  0030                     __pdataBANK0:
+    89                           	file	"E:\KTU\Softwares\mplab\Doublesegment\doublesegment.c"
+    90  0030                     main@F1606:
+    91  0030                            ds      10
+    92                           
+    93                           global btemp
+    94                           psect inittext,class=CODE,delta=2
+    95                           global init_fetch,btemp
+    96                           ;	Called with low address in FSR and high address in W
+    97  06FE                     init_fetch:
+    98  06FE  087E               	movf btemp,w
+    99  06FF  008A               	movwf pclath
+   100  0700  087F               	movf btemp+1,w
+   101  0701  0082               	movwf pc
+   102                           global init_ram
+   103                           ;Called with:
+   104                           ;	high address of idata address in btemp 
+   105                           ;	low address of idata address in btemp+1 
+   106                           ;	low address of data in FSR
+   107                           ;	high address + 1 of data in btemp-1
+   108  0702                     init_ram:
+   109  0702  26FE  120A  118A   	fcall init_fetch
+   110  0705  0080               	movwf indf,f
+   111  0706  0A84               	incf fsr,f
+   112  0707  0804               	movf fsr,w
+   113  0708  067D               	xorwf btemp-1,w
+   114  0709  1903               	btfsc status,2
+   115  070A  3400               	retlw 0
+   116  070B  0AFF               	incf btemp+1,f
+   117  070C  1903               	btfsc status,2
+   118  070D  0AFE               	incf btemp,f
+   119  070E  2F02               	goto init_ram
+   120                           ; Initialize objects allocated to BANK0
+   121                           psect cinit,class=CODE,delta=2
+   122                           global init_ram, __pidataBANK0
+   123  070F  1383               	bcf	status, 7	;select IRP bank0
+   124  0710  303A               	movlw low(__pdataBANK0+10)
+   125  0711  00FD               	movwf btemp-1,f
+   126  0712  3006               	movlw high(__pidataBANK0)
+   127  0713  00FE               	movwf btemp,f
+   128  0714  30F4               	movlw low(__pidataBANK0)
+   129  0715  00FF               	movwf btemp+1,f
+   130  0716  3030               	movlw low(__pdataBANK0)
+   131  0717  0084               	movwf fsr,f
+   132  0718  120A  118A  2702   	fcall init_ram
+              120A  118A         
+   133                           psect cinit,class=CODE,delta=2
+   134                           global end_of_initialization
+   135                           
+   136                           ;End of C runtime variable initialization code
+   137                           
+   138  071D                     end_of_initialization:
+   139  071D  0183               clrf status
+   140  071E  120A  118A  2F44   ljmp _main	;jump to C main() function
+   141                           psect	cstackCOMMON,class=COMMON,space=1
+   142                           global __pcstackCOMMON
+   143  0070                     __pcstackCOMMON:
+   144                           	global	?_main
+   145  0070                     ?_main:	; 0 bytes @ 0x0
+   146                           	global	?_sabin
+   147  0070                     ?_sabin:	; 2 bytes @ 0x0
+   148                           	global	sabin@i
+   149  0070                     sabin@i:	; 2 bytes @ 0x0
+   150  0070                     	ds	2
+   151                           	global	??_sabin
+   152  0072                     ??_sabin:	; 0 bytes @ 0x2
+   153                           	global	sabin@count
+   154  0072                     sabin@count:	; 2 bytes @ 0x2
+   155  0072                     	ds	2
+   156                           	global	??_main
+   157  0074                     ??_main:	; 0 bytes @ 0x4
+   158  0074                     	ds	4
+   159                           psect	cstackBANK0,class=BANK0,space=1
+   160                           global __pcstackBANK0
+   161  0020                     __pcstackBANK0:
+   162                           	global	main@arr
+   163  0020                     main@arr:	; 10 bytes @ 0x0
+   164  0020                     	ds	10
+   165                           	global	main@count
+   166  002A                     main@count:	; 2 bytes @ 0xA
+   167  002A                     	ds	2
+   168                           	global	main@j
+   169  002C                     main@j:	; 2 bytes @ 0xC
+   170  002C                     	ds	2
+   171                           	global	main@i
+   172  002E                     main@i:	; 2 bytes @ 0xE
+   173  002E                     	ds	2
+   174 ;;Data sizes: Strings 0, constant 0, data 10, bss 0, persistent 0 stack 0
+   175 ;;Auto spaces:   Size  Autos    Used
+   176 ;; COMMON          14      8       8
+   177 ;; BANK0           80     16      26
+   178 ;; BANK1           80      0       0
+   179 ;; BANK3           96      0       0
+   180 ;; BANK2           96      0       0
+   181                           
+   182 ;;
+   183 ;; Pointer list with targets:
+   184                           
+   185                           
+   186                           
+   187 ;;
+   188 ;; Critical Paths under _main in COMMON
+   189 ;;
+   190 ;;   _main->_sabin
+   191 ;;
+   192 ;; Critical Paths under _main in BANK0
+   193 ;;
+   194 ;;   None.
+   195 ;;
+   196 ;; Critical Paths under _main in BANK1
+   197 ;;
+   198 ;;   None.
+   199 ;;
+   200 ;; Critical Paths under _main in BANK3
+   201 ;;
+   202 ;;   None.
+   203 ;;
+   204 ;; Critical Paths under _main in BANK2
+   205 ;;
+   206 ;;   None.
+   207                           
+   208 ;;
+   209 ;;Main: autosize = 0, tempsize = 4, incstack = 0, save=0
+   210 ;;
+   211                           
+   212 ;;
+   213 ;;Call Graph Tables:
+   214 ;;
+   215 ;; ---------------------------------------------------------------------------------
+   216 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   217 ;; ---------------------------------------------------------------------------------
+   218 ;; (0) _main                                                20    20      0     255
+   219 ;;                                              4 COMMON     4     4      0
+   220 ;;                                              0 BANK0     16    16      0
+   221 ;;                              _sabin
+   222 ;; ---------------------------------------------------------------------------------
+   223 ;; (1) _sabin                                                4     2      2      47
+   224 ;;                                              0 COMMON     4     2      2
+   225 ;; ---------------------------------------------------------------------------------
+   226 ;; Estimated maximum stack depth 1
+   227 ;; ---------------------------------------------------------------------------------
+   228                           
+   229 ;; Call Graph Graphs:
+   230                           
+   231 ;; _main (ROOT)
+   232 ;;   _sabin
+   233 ;;
+   234                           
+   235 ;; Address spaces:
+   236                           
+   237 ;;Name               Size   Autos  Total    Cost      Usage
+   238 ;;BANK3               60      0       0       9        0.0%
+   239 ;;BITBANK3            60      0       0       8        0.0%
+   240 ;;SFR3                 0      0       0       4        0.0%
+   241 ;;BITSFR3              0      0       0       4        0.0%
+   242 ;;BANK2               60      0       0      11        0.0%
+   243 ;;BITBANK2            60      0       0      10        0.0%
+   244 ;;SFR2                 0      0       0       5        0.0%
+   245 ;;BITSFR2              0      0       0       5        0.0%
+   246 ;;SFR1                 0      0       0       2        0.0%
+   247 ;;BITSFR1              0      0       0       2        0.0%
+   248 ;;BANK1               50      0       0       7        0.0%
+   249 ;;BITBANK1            50      0       0       6        0.0%
+   250 ;;CODE                 0      0       0       0        0.0%
+   251 ;;DATA                 0      0      23      12        0.0%
+   252 ;;ABS                  0      0      22       3        0.0%
+   253 ;;NULL                 0      0       0       0        0.0%
+   254 ;;STACK                0      0       1       2        0.0%
+   255 ;;BANK0               50     10      1A       5       32.5%
+   256 ;;BITBANK0            50      0       0       4        0.0%
+   257 ;;SFR0                 0      0       0       1        0.0%
+   258 ;;BITSFR0              0      0       0       1        0.0%
+   259 ;;COMMON               E      8       8       1       57.1%
+   260 ;;BITCOMMON            E      0       0       0        0.0%
+   261 ;;EEDATA             100      0       0       0        0.0%
+   262                           
+   263                           	global	_main
+   264                           psect	maintext,global,class=CODE,delta=2
+   265                           global __pmaintext
+   266  0744                     __pmaintext:
+   267                           
+   268 ;; *************** function _main *****************
+   269 ;; Defined at:
+   270 ;;		line 15 in file "E:\KTU\Softwares\mplab\Doublesegment\doublesegment.c"
+   271 ;; Parameters:    Size  Location     Type
+   272 ;;		None
+   273 ;; Auto vars:     Size  Location     Type
+   274 ;;  arr            10    0[BANK0 ] unsigned char [10]
+   275 ;;  i               2   14[BANK0 ] int 
+   276 ;;  j               2   12[BANK0 ] int 
+   277 ;;  count           2   10[BANK0 ] int 
+   278 ;; Return value:  Size  Location     Type
+   279 ;;		None               void
+   280 ;; Registers used:
+   281 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   282 ;; Tracked objects:
+   283 ;;		On entry : 17F/0
+   284 ;;		On exit  : 0/0
+   285 ;;		Unchanged: 0/0
+   286 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   287 ;;      Params:         0       0       0       0       0
+   288 ;;      Locals:         0      16       0       0       0
+   289 ;;      Temps:          4       0       0       0       0
+   290 ;;      Totals:         4      16       0       0       0
+   291 ;;Total ram usage:       20 bytes
+   292 ;; Hardware stack levels required when called:    1
+   293 ;; This function calls:
+   294 ;;		_sabin
+   295 ;; This function is called by:
+   296 ;;		Startup code after reset
+   297 ;; This function uses a non-reentrant model
+   298 ;;
+   299                           psect	maintext
+   300                           	file	"E:\KTU\Softwares\mplab\Doublesegment\doublesegment.c"
+   301                           	line	15
+   302                           	global	__size_of_main
+   303  00BC                     	__size_of_main	equ	__end_of_main-_main
+   304                           	
+   305  0744                     _main:	
+   306                           	opt	stack 7
+   307                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   308                           	line	16
+   309                           	
+   310  0744                     l2241:	
+   311                           ;doublesegment.c: 16: PORTA=0X00;
+   312  0744  1283               	bcf	status, 5	;RP0=0, select bank0
+   313  0745  1303               	bcf	status, 6	;RP1=0, select bank0
+   314  0746  0185               	clrf	(5)	;volatile
+   315                           	line	17
+   316                           ;doublesegment.c: 17: TRISA=0X00;
+   317  0747  1683               	bsf	status, 5	;RP0=1, select bank1
+   318  0748  1303               	bcf	status, 6	;RP1=0, select bank1
+   319  0749  0185               	clrf	(133)^080h	;volatile
+   320                           	line	18
+   321                           ;doublesegment.c: 18: PORTC=0X00;
+   322  074A  1283               	bcf	status, 5	;RP0=0, select bank0
+   323  074B  1303               	bcf	status, 6	;RP1=0, select bank0
+   324  074C  0187               	clrf	(7)	;volatile
+   325                           	line	19
+   326                           ;doublesegment.c: 19: TRISC=0X00;
+   327  074D  1683               	bsf	status, 5	;RP0=1, select bank1
+   328  074E  1303               	bcf	status, 6	;RP1=0, select bank1
+   329  074F  0187               	clrf	(135)^080h	;volatile
+   330                           	line	20
+   331                           ;doublesegment.c: 20: ANSEL=0X00;
+   332  0750  1683               	bsf	status, 5	;RP0=1, select bank3
+   333  0751  1703               	bsf	status, 6	;RP1=1, select bank3
+   334  0752  0188               	clrf	(392)^0180h	;volatile
+   335                           	line	21
+   336                           ;doublesegment.c: 21: ANSELH=0X00;
+   337  0753  0189               	clrf	(393)^0180h	;volatile
+   338                           	line	22
+   339                           ;doublesegment.c: 22: int count=0;
+   340  0754  1283               	bcf	status, 5	;RP0=0, select bank0
+   341  0755  1303               	bcf	status, 6	;RP1=0, select bank0
+   342  0756  01AA               	clrf	(main@count)
+   343  0757  01AB               	clrf	(main@count+1)
+   344                           	line	25
+   345                           	
+   346  0758                     l2243:	
+   347                           ;doublesegment.c: 23: int j;
+   348                           ;doublesegment.c: 24: int i;
+   349                           ;doublesegment.c: 25: char arr[]= {0XBF,0X06,0X5B,0X4F,0X66,0X6D,0X7C,0X07,0XFF,0XE7};
+   350  0758  3020               	movlw	(main@arr)&0ffh
+   351  0759  0084               	movwf	fsr0
+   352  075A  3030               	movlw	low(main@F1606)
+   353  075B  00F4               	movwf	(??_main+0)+0
+   354  075C  0804               	movf	fsr0,w
+   355  075D  00F5               	movwf	((??_main+0)+0+1)
+   356  075E  300A               	movlw	10
+   357  075F  00F6               	movwf	((??_main+0)+0+2)
+   358  0760                     u2230:
+   359  0760  0874               	movf	(??_main+0)+0,w
+   360  0761  0084               	movwf	fsr0
+   361  0762  1383               	bcf	status, 7	;select IRP bank0
+   362                           	
+   363  0763  0800               	movf	indf,w
+   364  0764  00F7               	movwf	((??_main+0)+0+3)
+   365  0765  0AF4               	incf	(??_main+0)+0,f
+   366  0766  0875               	movf	((??_main+0)+0+1),w
+   367  0767  0084               	movwf	fsr0
+   368                           	
+   369  0768  0877               	movf	((??_main+0)+0+3),w
+   370  0769  0080               	movwf	indf
+   371  076A  0AF5               	incf	((??_main+0)+0+1),f
+   372  076B  0BF6               	decfsz	((??_main+0)+0+2),f
+   373  076C  2F60               	goto	u2230
+   374  076D  2F6E               	goto	l2245
+   375                           	line	26
+   376                           ;doublesegment.c: 26: while(1)
+   377                           	
+   378  076E                     l1033:	
+   379                           	line	29
+   380                           	
+   381  076E                     l2245:	
+   382                           ;doublesegment.c: 27: {
+   383                           ;doublesegment.c: 29: for(i=0;i<10;i++)
+   384  076E  1283               	bcf	status, 5	;RP0=0, select bank0
+   385  076F  1303               	bcf	status, 6	;RP1=0, select bank0
+   386  0770  01AE               	clrf	(main@i)
+   387  0771  01AF               	clrf	(main@i+1)
+   388                           	
+   389  0772                     l2247:	
+   390  0772  082F               	movf	(main@i+1),w
+   391  0773  3A80               	xorlw	80h
+   392  0774  00FF               	movwf	btemp+1
+   393  0775  3080               	movlw	(high(0Ah))^80h
+   394  0776  027F               	subwf	btemp+1,w
+   395  0777  1D03               	skipz
+   396  0778  2F7B               	goto	u2245
+   397  0779  300A               	movlw	low(0Ah)
+   398  077A  022E               	subwf	(main@i),w
+   399  077B                     u2245:
+   400                           
+   401  077B  1C03               	skipc
+   402  077C  2F7E               	goto	u2241
+   403  077D  2F7F               	goto	u2240
+   404  077E                     u2241:
+   405  077E  2F81               	goto	l2251
+   406  077F                     u2240:
+   407  077F  2F6E               	goto	l2245
+   408                           	
+   409  0780                     l2249:	
+   410  0780  2F6E               	goto	l2245
+   411                           	line	30
+   412                           	
+   413  0781                     l1034:	
+   414                           	line	32
+   415                           	
+   416  0781                     l2251:	
+   417                           ;doublesegment.c: 30: {
+   418                           ;doublesegment.c: 32: for(j=0;j<10;)
+   419  0781  1283               	bcf	status, 5	;RP0=0, select bank0
+   420  0782  1303               	bcf	status, 6	;RP1=0, select bank0
+   421  0783  01AC               	clrf	(main@j)
+   422  0784  01AD               	clrf	(main@j+1)
+   423                           	
+   424  0785                     l2253:	
+   425  0785  082D               	movf	(main@j+1),w
+   426  0786  3A80               	xorlw	80h
+   427  0787  00FF               	movwf	btemp+1
+   428  0788  3080               	movlw	(high(0Ah))^80h
+   429  0789  027F               	subwf	btemp+1,w
+   430  078A  1D03               	skipz
+   431  078B  2F8E               	goto	u2255
+   432  078C  300A               	movlw	low(0Ah)
+   433  078D  022C               	subwf	(main@j),w
+   434  078E                     u2255:
+   435                           
+   436  078E  1C03               	skipc
+   437  078F  2F91               	goto	u2251
+   438  0790  2F92               	goto	u2250
+   439  0791                     u2251:
+   440  0791  2F94               	goto	l1036
+   441  0792                     u2250:
+   442  0792  2FE5               	goto	l2275
+   443                           	
+   444  0793                     l2255:	
+   445  0793  2FE5               	goto	l2275
+   446                           	line	33
+   447                           	
+   448  0794                     l1036:	
+   449                           	line	34
+   450                           ;doublesegment.c: 33: {
+   451                           ;doublesegment.c: 34: if(RB0==1)
+   452  0794  1283               	bcf	status, 5	;RP0=0, select bank0
+   453  0795  1303               	bcf	status, 6	;RP1=0, select bank0
+   454  0796  1C06               	btfss	(48/8),(48)&7
+   455  0797  2F99               	goto	u2261
+   456  0798  2F9A               	goto	u2260
+   457  0799                     u2261:
+   458  0799  2FD7               	goto	l2273
+   459  079A                     u2260:
+   460                           	line	36
+   461                           	
+   462  079A                     l2257:	
+   463                           ;doublesegment.c: 35: {
+   464                           ;doublesegment.c: 36: sabin(arr[i]);
+   465  079A  082E               	movf	(main@i),w
+   466  079B  3E20               	addlw	main@arr&0ffh
+   467  079C  0084               	movwf	fsr0
+   468  079D  1383               	bcf	status, 7	;select IRP bank0
+   469  079E  0800               	movf	indf,w
+   470  079F  00F4               	movwf	(??_main+0)+0
+   471  07A0  01F5               	clrf	(??_main+0)+0+1
+   472  07A1  0874               	movf	0+(??_main+0)+0,w
+   473  07A2  00F0               	movwf	(?_sabin)
+   474  07A3  0875               	movf	1+(??_main+0)+0,w
+   475  07A4  00F1               	movwf	(?_sabin+1)
+   476  07A5  120A  118A  2721   	fcall	_sabin
+              120A  118A         
+   477                           	line	37
+   478                           	
+   479  07AA                     l2259:	
+   480                           ;doublesegment.c: 37: RA0=1;RA1=0;
+   481  07AA  1283               	bcf	status, 5	;RP0=0, select bank0
+   482  07AB  1303               	bcf	status, 6	;RP1=0, select bank0
+   483  07AC  1405               	bsf	(40/8),(40)&7
+   484                           	
+   485  07AD                     l2261:	
+   486  07AD  1085               	bcf	(41/8),(41)&7
+   487                           	line	38
+   488                           ;doublesegment.c: 38: while(count<30000)
+   489  07AE  2FBE               	goto	l2267
+   490                           	
+   491  07AF                     l1040:	
+   492                           	line	40
+   493                           	
+   494  07AF                     l2263:	
+   495                           ;doublesegment.c: 39: {
+   496                           ;doublesegment.c: 40: PORTC=arr[j];
+   497  07AF  1283               	bcf	status, 5	;RP0=0, select bank0
+   498  07B0  1303               	bcf	status, 6	;RP1=0, select bank0
+   499  07B1  082C               	movf	(main@j),w
+   500  07B2  3E20               	addlw	main@arr&0ffh
+   501  07B3  0084               	movwf	fsr0
+   502  07B4  1383               	bcf	status, 7	;select IRP bank0
+   503  07B5  0800               	movf	indf,w
+   504  07B6  0087               	movwf	(7)	;volatile
+   505                           	line	41
+   506                           	
+   507  07B7                     l2265:	
+   508                           ;doublesegment.c: 41: count++;
+   509  07B7  3001               	movlw	low(01h)
+   510  07B8  07AA               	addwf	(main@count),f
+   511  07B9  1803               	skipnc
+   512  07BA  0AAB               	incf	(main@count+1),f
+   513  07BB  3000               	movlw	high(01h)
+   514  07BC  07AB               	addwf	(main@count+1),f
+   515  07BD  2FBE               	goto	l2267
+   516                           	line	42
+   517                           	
+   518  07BE                     l1039:	
+   519                           	line	38
+   520                           	
+   521  07BE                     l2267:	
+   522  07BE  082B               	movf	(main@count+1),w
+   523  07BF  3A80               	xorlw	80h
+   524  07C0  00FF               	movwf	btemp+1
+   525  07C1  30F5               	movlw	(high(07530h))^80h
+   526  07C2  027F               	subwf	btemp+1,w
+   527  07C3  1D03               	skipz
+   528  07C4  2FC7               	goto	u2275
+   529  07C5  3030               	movlw	low(07530h)
+   530  07C6  022A               	subwf	(main@count),w
+   531  07C7                     u2275:
+   532                           
+   533  07C7  1C03               	skipc
+   534  07C8  2FCA               	goto	u2271
+   535  07C9  2FCB               	goto	u2270
+   536  07CA                     u2271:
+   537  07CA  2FAF               	goto	l2263
+   538  07CB                     u2270:
+   539  07CB  2FCC               	goto	l2269
+   540                           	
+   541  07CC                     l1041:	
+   542                           	line	43
+   543                           	
+   544  07CC                     l2269:	
+   545                           ;doublesegment.c: 42: }
+   546                           ;doublesegment.c: 43: count=0;
+   547  07CC  1283               	bcf	status, 5	;RP0=0, select bank0
+   548  07CD  1303               	bcf	status, 6	;RP1=0, select bank0
+   549  07CE  01AA               	clrf	(main@count)
+   550  07CF  01AB               	clrf	(main@count+1)
+   551                           	line	44
+   552                           	
+   553  07D0                     l2271:	
+   554                           ;doublesegment.c: 44: j++;
+   555  07D0  3001               	movlw	low(01h)
+   556  07D1  07AC               	addwf	(main@j),f
+   557  07D2  1803               	skipnc
+   558  07D3  0AAD               	incf	(main@j+1),f
+   559  07D4  3000               	movlw	high(01h)
+   560  07D5  07AD               	addwf	(main@j+1),f
+   561  07D6  2FD7               	goto	l2273
+   562                           	line	45
+   563                           	
+   564  07D7                     l1038:	
+   565                           	line	32
+   566                           	
+   567  07D7                     l2273:	
+   568  07D7  082D               	movf	(main@j+1),w
+   569  07D8  3A80               	xorlw	80h
+   570  07D9  00FF               	movwf	btemp+1
+   571  07DA  3080               	movlw	(high(0Ah))^80h
+   572  07DB  027F               	subwf	btemp+1,w
+   573  07DC  1D03               	skipz
+   574  07DD  2FE0               	goto	u2285
+   575  07DE  300A               	movlw	low(0Ah)
+   576  07DF  022C               	subwf	(main@j),w
+   577  07E0                     u2285:
+   578                           
+   579  07E0  1C03               	skipc
+   580  07E1  2FE3               	goto	u2281
+   581  07E2  2FE4               	goto	u2280
+   582  07E3                     u2281:
+   583  07E3  2F94               	goto	l1036
+   584  07E4                     u2280:
+   585  07E4  2FE5               	goto	l2275
+   586                           	
+   587  07E5                     l1037:	
+   588                           	line	29
+   589                           	
+   590  07E5                     l2275:	
+   591  07E5  3001               	movlw	low(01h)
+   592  07E6  1283               	bcf	status, 5	;RP0=0, select bank0
+   593  07E7  1303               	bcf	status, 6	;RP1=0, select bank0
+   594  07E8  07AE               	addwf	(main@i),f
+   595  07E9  1803               	skipnc
+   596  07EA  0AAF               	incf	(main@i+1),f
+   597  07EB  3000               	movlw	high(01h)
+   598  07EC  07AF               	addwf	(main@i+1),f
+   599                           	
+   600  07ED                     l2277:	
+   601  07ED  082F               	movf	(main@i+1),w
+   602  07EE  3A80               	xorlw	80h
+   603  07EF  00FF               	movwf	btemp+1
+   604  07F0  3080               	movlw	(high(0Ah))^80h
+   605  07F1  027F               	subwf	btemp+1,w
+   606  07F2  1D03               	skipz
+   607  07F3  2FF6               	goto	u2295
+   608  07F4  300A               	movlw	low(0Ah)
+   609  07F5  022E               	subwf	(main@i),w
+   610  07F6                     u2295:
+   611                           
+   612  07F6  1C03               	skipc
+   613  07F7  2FF9               	goto	u2291
+   614  07F8  2FFA               	goto	u2290
+   615  07F9                     u2291:
+   616  07F9  2F81               	goto	l2251
+   617  07FA                     u2290:
+   618  07FA  2F6E               	goto	l2245
+   619                           	
+   620  07FB                     l1035:	
+   621  07FB  2F6E               	goto	l2245
+   622                           	line	48
+   623                           	
+   624  07FC                     l1042:	
+   625                           	line	26
+   626  07FC  2F6E               	goto	l2245
+   627                           	
+   628  07FD                     l1043:	
+   629                           	line	49
+   630                           	
+   631  07FD                     l1044:	
+   632                           	global	start
+   633  07FD  120A  118A  2800   	ljmp	start
+   634                           	opt stack 0
+   635                           GLOBAL	__end_of_main
+   636  0800                     	__end_of_main:
+   637 ;; =============== function _main ends ============
+   638                           
+   639                           	signat	_main,88
+   640                           	global	_sabin
+   641                           psect	text85,local,class=CODE,delta=2
+   642                           global __ptext85
+   643  0721                     __ptext85:
+   644                           
+   645 ;; *************** function _sabin *****************
+   646 ;; Defined at:
+   647 ;;		line 3 in file "E:\KTU\Softwares\mplab\Doublesegment\doublesegment.c"
+   648 ;; Parameters:    Size  Location     Type
+   649 ;;  i               2    0[COMMON] int 
+   650 ;; Auto vars:     Size  Location     Type
+   651 ;;  count           2    2[COMMON] int 
+   652 ;; Return value:  Size  Location     Type
+   653 ;;                  2    0[COMMON] int 
+   654 ;; Registers used:
+   655 ;;		wreg, status,2, btemp+1
+   656 ;; Tracked objects:
+   657 ;;		On entry : 0/0
+   658 ;;		On exit  : 0/0
+   659 ;;		Unchanged: 0/0
+   660 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   661 ;;      Params:         2       0       0       0       0
+   662 ;;      Locals:         2       0       0       0       0
+   663 ;;      Temps:          0       0       0       0       0
+   664 ;;      Totals:         4       0       0       0       0
+   665 ;;Total ram usage:        4 bytes
+   666 ;; Hardware stack levels used:    1
+   667 ;; This function calls:
+   668 ;;		Nothing
+   669 ;; This function is called by:
+   670 ;;		_main
+   671 ;; This function uses a non-reentrant model
+   672 ;;
+   673                           psect	text85
+   674                           	file	"E:\KTU\Softwares\mplab\Doublesegment\doublesegment.c"
+   675                           	line	3
+   676                           	global	__size_of_sabin
+   677  0023                     	__size_of_sabin	equ	__end_of_sabin-_sabin
+   678                           	
+   679  0721                     _sabin:	
+   680                           	opt	stack 7
+   681                           ; Regs used in _sabin: [wreg+status,2+btemp+1]
+   682                           	line	4
+   683                           	
+   684  0721                     l2229:	
+   685                           ;doublesegment.c: 4: int count=0;
+   686  0721  01F2               	clrf	(sabin@count)
+   687  0722  01F3               	clrf	(sabin@count+1)
+   688                           	line	5
+   689                           	
+   690  0723                     l2231:	
+   691                           ;doublesegment.c: 5: RA0=0;RA1=1;
+   692  0723  1283               	bcf	status, 5	;RP0=0, select bank0
+   693  0724  1303               	bcf	status, 6	;RP1=0, select bank0
+   694  0725  1005               	bcf	(40/8),(40)&7
+   695                           	
+   696  0726                     l2233:	
+   697  0726  1485               	bsf	(41/8),(41)&7
+   698                           	line	6
+   699                           ;doublesegment.c: 6: while(count<30000)
+   700  0727  2F33               	goto	l2237
+   701                           	
+   702  0728                     l1026:	
+   703                           	line	8
+   704                           	
+   705  0728                     l2235:	
+   706                           ;doublesegment.c: 7: {
+   707                           ;doublesegment.c: 8: count++;
+   708  0728  3001               	movlw	low(01h)
+   709  0729  07F2               	addwf	(sabin@count),f
+   710  072A  1803               	skipnc
+   711  072B  0AF3               	incf	(sabin@count+1),f
+   712  072C  3000               	movlw	high(01h)
+   713  072D  07F3               	addwf	(sabin@count+1),f
+   714                           	line	9
+   715                           ;doublesegment.c: 9: PORTC=i;
+   716  072E  0870               	movf	(sabin@i),w
+   717  072F  1283               	bcf	status, 5	;RP0=0, select bank0
+   718  0730  1303               	bcf	status, 6	;RP1=0, select bank0
+   719  0731  0087               	movwf	(7)	;volatile
+   720  0732  2F33               	goto	l2237
+   721                           	line	10
+   722                           	
+   723  0733                     l1025:	
+   724                           	line	6
+   725                           	
+   726  0733                     l2237:	
+   727  0733  0873               	movf	(sabin@count+1),w
+   728  0734  3A80               	xorlw	80h
+   729  0735  00FF               	movwf	btemp+1
+   730  0736  30F5               	movlw	(high(07530h))^80h
+   731  0737  027F               	subwf	btemp+1,w
+   732  0738  1D03               	skipz
+   733  0739  2F3C               	goto	u2225
+   734  073A  3030               	movlw	low(07530h)
+   735  073B  0272               	subwf	(sabin@count),w
+   736  073C                     u2225:
+   737                           
+   738  073C  1C03               	skipc
+   739  073D  2F3F               	goto	u2221
+   740  073E  2F40               	goto	u2220
+   741  073F                     u2221:
+   742  073F  2F28               	goto	l2235
+   743  0740                     u2220:
+   744  0740  2F41               	goto	l2239
+   745                           	
+   746  0741                     l1027:	
+   747                           	line	11
+   748                           	
+   749  0741                     l2239:	
+   750                           ;doublesegment.c: 10: }
+   751                           ;doublesegment.c: 11: count=0;
+   752  0741  01F2               	clrf	(sabin@count)
+   753  0742  01F3               	clrf	(sabin@count+1)
+   754                           	line	12
+   755                           	
+   756  0743                     l1028:	
+   757  0743  0008               	return
+   758                           	opt stack 0
+   759                           GLOBAL	__end_of_sabin
+   760  0744                     	__end_of_sabin:
+   761 ;; =============== function _sabin ends ============
+   762                           
+   763                           	signat	_sabin,4218
+   764                           psect	text86,local,class=CODE,delta=2
+   765                           global __ptext86
+   766  0000                     __ptext86:
+   767                           	global	btemp
+   768  007E                     	btemp set 07Eh
+   769                           
+   770                           	DABS	1,126,2	;btemp
+   771                           	global	wtemp0
+   772  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Sat May 08 11:54:44 2021
+
+                   pc 0002                    fsr 0004                   _RA0 0028                   _RA1 0029  
+                 _RB0 0030                   fsr0 0004                   indf 0000                  l1040 07AF  
+                l1025 0733                  l1041 07CC                  l1033 076E                  l1026 0728  
+                l1042 07FC                  l1034 0781                  l1027 0741                  l1043 07FD  
+                l1035 07FB                  l1028 0743                  l1044 07FD                  l1036 0794  
+                l1037 07E5                  l1038 07D7                  l1039 07BE                  l2231 0723  
+                l2233 0726                  l2241 0744                  l2235 0728                  l2251 0781  
+                l2243 0758                  l2237 0733                  l2229 0721                  l2261 07AD  
+                l2253 0785                  l2245 076E                  l2239 0741                  l2271 07D0  
+                l2263 07AF                  l2255 0793                  l2247 0772                  l2265 07B7  
+                l2257 079A                  l2273 07D7                  l2249 0780                  l2267 07BE  
+                l2259 07AA                  l2275 07E5                  l2277 07ED                  l2269 07CC  
+                u2220 0740                  u2221 073F                  u2230 0760                  u2240 077F  
+                u2225 073C                  u2241 077E                  u2250 0792                  u2251 0791  
+                u2260 079A                  u2261 0799                  u2245 077B                  u2270 07CB  
+                u2271 07CA                  u2255 078E                  u2280 07E4                  u2281 07E3  
+                u2290 07FA                  u2291 07F9                  u2275 07C7                  u2285 07E0  
+                u2295 07F6                  _main 0744                  btemp 007E                  start 0000  
+               ?_main 0070                 _ANSEL 0188                 _PORTA 0005                 _PORTC 0007  
+               _TRISA 0085                 _TRISC 0087                 _sabin 0721                 main@i 002E  
+               main@j 002C                 pclath 000A                 status 0003                 wtemp0 007E  
+        __end_of_main 0800                ??_main 0074                ?_sabin 0070                _ANSELH 0189  
+              sabin@i 0070        __pcstackCOMMON 0070          __pidataBANK0 06F4         __end_of_sabin 0744  
+             ??_sabin 0072            __pmaintext 0744               main@arr 0020  end_of_initialization 071D  
+             init_ram 0702   start_initialization 070F            sabin@count 0072           __pdataBANK0 0030  
+       __pcstackBANK0 0020        __size_of_sabin 0023             main@F1606 0030             main@count 002A  
+           init_fetch 06FE              __ptext85 0721              __ptext86 0000         __size_of_main 00BC  

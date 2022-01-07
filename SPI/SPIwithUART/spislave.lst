@@ -1,0 +1,1183 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Fri Jul 02 12:10:17 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_on
+    43                           	FNCALL	_main,_type
+    44                           	FNCALL	_main,_slave
+    45                           	FNCALL	_main,_delay
+    46                           	FNCALL	_slave,_delay
+    47                           	FNCALL	_slave,_address
+    48                           	FNCALL	_slave,_display
+    49                           	FNCALL	_display,_pulse
+    50                           	FNCALL	_address,_pulse
+    51                           	FNCALL	_type,_pulse
+    52                           	FNCALL	_on,_pulse
+    53                           	FNCALL	_pulse,_delay
+    54                           	FNROOT	_main
+    55                           	global	_data
+    56                           	global	_PORTB
+    57                           psect	text216,local,class=CODE,delta=2
+    58                           global __ptext216
+    59  0000                     __ptext216:
+    60  0006                     _PORTB	set	6
+    61                           	global	_PORTC
+    62  0007                     _PORTC	set	7
+    63                           	global	_PORTD
+    64  0008                     _PORTD	set	8
+    65                           	global	_SSPBUF
+    66  0013                     _SSPBUF	set	19
+    67                           	global	_SSPCON
+    68  0014                     _SSPCON	set	20
+    69                           	global	_RB0
+    70  0030                     _RB0	set	48
+    71                           	global	_RB1
+    72  0031                     _RB1	set	49
+    73                           	global	_RB2
+    74  0032                     _RB2	set	50
+    75                           	global	_SSPIF
+    76  0063                     _SSPIF	set	99
+    77                           	global	_SSPSTAT
+    78  0094                     _SSPSTAT	set	148
+    79                           	global	_TRISB
+    80  0086                     _TRISB	set	134
+    81                           	global	_TRISC
+    82  0087                     _TRISC	set	135
+    83                           	global	_TRISD
+    84  0088                     _TRISD	set	136
+    85                           	global	_ANSEL
+    86  0188                     _ANSEL	set	392
+    87                           	global	_ANSELH
+    88  0189                     _ANSELH	set	393
+    89                           	file	"spislave.as"
+    90                           	line	#
+    91                           psect cinit,class=CODE,delta=2
+    92                           global start_initialization
+    93  0737                     start_initialization:
+    94                           
+    95                           psect	bssBANK0,class=BANK0,space=1
+    96                           global __pbssBANK0
+    97  0020                     __pbssBANK0:
+    98  0020                     _data:
+    99  0020                            ds      10
+   100                           
+   101                           ; Clear objects allocated to BANK0
+   102                           psect cinit,class=CODE,delta=2
+   103  0737  01A0               	clrf	((__pbssBANK0)+0)&07Fh
+   104  0738  01A1               	clrf	((__pbssBANK0)+1)&07Fh
+   105  0739  01A2               	clrf	((__pbssBANK0)+2)&07Fh
+   106  073A  01A3               	clrf	((__pbssBANK0)+3)&07Fh
+   107  073B  01A4               	clrf	((__pbssBANK0)+4)&07Fh
+   108  073C  01A5               	clrf	((__pbssBANK0)+5)&07Fh
+   109  073D  01A6               	clrf	((__pbssBANK0)+6)&07Fh
+   110  073E  01A7               	clrf	((__pbssBANK0)+7)&07Fh
+   111  073F  01A8               	clrf	((__pbssBANK0)+8)&07Fh
+   112  0740  01A9               	clrf	((__pbssBANK0)+9)&07Fh
+   113                           psect cinit,class=CODE,delta=2
+   114                           global end_of_initialization
+   115                           
+   116                           ;End of C runtime variable initialization code
+   117                           
+   118  0741                     end_of_initialization:
+   119  0741  0183               clrf status
+   120  0742  120A  118A  2F72   ljmp _main	;jump to C main() function
+   121                           psect	cstackCOMMON,class=COMMON,space=1
+   122                           global __pcstackCOMMON
+   123  0070                     __pcstackCOMMON:
+   124                           	global	?_delay
+   125  0070                     ?_delay:	; 0 bytes @ 0x0
+   126                           	global	?_pulse
+   127  0070                     ?_pulse:	; 0 bytes @ 0x0
+   128                           	global	?_on
+   129  0070                     ?_on:	; 0 bytes @ 0x0
+   130                           	global	?_type
+   131  0070                     ?_type:	; 0 bytes @ 0x0
+   132                           	global	?_address
+   133  0070                     ?_address:	; 0 bytes @ 0x0
+   134                           	global	?_display
+   135  0070                     ?_display:	; 0 bytes @ 0x0
+   136                           	global	?_slave
+   137  0070                     ?_slave:	; 0 bytes @ 0x0
+   138                           	global	?_main
+   139  0070                     ?_main:	; 0 bytes @ 0x0
+   140                           	global	delay@del
+   141  0070                     delay@del:	; 2 bytes @ 0x0
+   142  0070                     	ds	2
+   143                           	global	??_delay
+   144  0072                     ??_delay:	; 0 bytes @ 0x2
+   145                           	global	??_pulse
+   146  0072                     ??_pulse:	; 0 bytes @ 0x2
+   147                           	global	??_on
+   148  0072                     ??_on:	; 0 bytes @ 0x2
+   149                           	global	??_type
+   150  0072                     ??_type:	; 0 bytes @ 0x2
+   151                           	global	??_address
+   152  0072                     ??_address:	; 0 bytes @ 0x2
+   153                           	global	??_display
+   154  0072                     ??_display:	; 0 bytes @ 0x2
+   155                           	global	address@data
+   156  0072                     address@data:	; 1 bytes @ 0x2
+   157                           	global	display@data
+   158  0072                     display@data:	; 1 bytes @ 0x2
+   159  0072                     	ds	1
+   160                           	global	??_slave
+   161  0073                     ??_slave:	; 0 bytes @ 0x3
+   162  0073                     	ds	1
+   163                           	global	slave@i
+   164  0074                     slave@i:	; 2 bytes @ 0x4
+   165  0074                     	ds	2
+   166                           	global	??_main
+   167  0076                     ??_main:	; 0 bytes @ 0x6
+   168 ;;Data sizes: Strings 0, constant 0, data 0, bss 10, persistent 0 stack 0
+   169 ;;Auto spaces:   Size  Autos    Used
+   170 ;; COMMON          14      6       6
+   171 ;; BANK0           80      0      10
+   172 ;; BANK1           80      0       0
+   173 ;; BANK3           96      0       0
+   174 ;; BANK2           96      0       0
+   175                           
+   176 ;;
+   177 ;; Pointer list with targets:
+   178                           
+   179                           
+   180                           
+   181 ;;
+   182 ;; Critical Paths under _main in COMMON
+   183 ;;
+   184 ;;   _main->_slave
+   185 ;;   _slave->_address
+   186 ;;   _slave->_display
+   187 ;;   _pulse->_delay
+   188 ;;
+   189 ;; Critical Paths under _main in BANK0
+   190 ;;
+   191 ;;   None.
+   192 ;;
+   193 ;; Critical Paths under _main in BANK1
+   194 ;;
+   195 ;;   None.
+   196 ;;
+   197 ;; Critical Paths under _main in BANK3
+   198 ;;
+   199 ;;   None.
+   200 ;;
+   201 ;; Critical Paths under _main in BANK2
+   202 ;;
+   203 ;;   None.
+   204                           
+   205 ;;
+   206 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   207 ;;
+   208                           
+   209 ;;
+   210 ;;Call Graph Tables:
+   211 ;;
+   212 ;; ---------------------------------------------------------------------------------
+   213 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   214 ;; ---------------------------------------------------------------------------------
+   215 ;; (0) _main                                                 0     0      0     288
+   216 ;;                                 _on
+   217 ;;                               _type
+   218 ;;                              _slave
+   219 ;;                              _delay
+   220 ;; ---------------------------------------------------------------------------------
+   221 ;; (1) _slave                                                3     3      0     222
+   222 ;;                                              3 COMMON     3     3      0
+   223 ;;                              _delay
+   224 ;;                            _address
+   225 ;;                            _display
+   226 ;; ---------------------------------------------------------------------------------
+   227 ;; (2) _display                                              1     1      0      44
+   228 ;;                                              2 COMMON     1     1      0
+   229 ;;                              _pulse
+   230 ;; ---------------------------------------------------------------------------------
+   231 ;; (2) _address                                              1     1      0      44
+   232 ;;                                              2 COMMON     1     1      0
+   233 ;;                              _pulse
+   234 ;; ---------------------------------------------------------------------------------
+   235 ;; (1) _type                                                 0     0      0      22
+   236 ;;                              _pulse
+   237 ;; ---------------------------------------------------------------------------------
+   238 ;; (1) _on                                                   0     0      0      22
+   239 ;;                              _pulse
+   240 ;; ---------------------------------------------------------------------------------
+   241 ;; (3) _pulse                                                0     0      0      22
+   242 ;;                              _delay
+   243 ;; ---------------------------------------------------------------------------------
+   244 ;; (1) _delay                                                2     0      2      22
+   245 ;;                                              0 COMMON     2     0      2
+   246 ;; ---------------------------------------------------------------------------------
+   247 ;; Estimated maximum stack depth 3
+   248 ;; ---------------------------------------------------------------------------------
+   249                           
+   250 ;; Call Graph Graphs:
+   251                           
+   252 ;; _main (ROOT)
+   253 ;;   _on
+   254 ;;     _pulse
+   255 ;;       _delay
+   256 ;;   _type
+   257 ;;     _pulse
+   258 ;;       _delay
+   259 ;;   _slave
+   260 ;;     _delay
+   261 ;;     _address
+   262 ;;       _pulse
+   263 ;;         _delay
+   264 ;;     _display
+   265 ;;       _pulse
+   266 ;;         _delay
+   267 ;;   _delay
+   268 ;;
+   269                           
+   270 ;; Address spaces:
+   271                           
+   272 ;;Name               Size   Autos  Total    Cost      Usage
+   273 ;;BITCOMMON            E      0       0       0        0.0%
+   274 ;;EEDATA             100      0       0       0        0.0%
+   275 ;;NULL                 0      0       0       0        0.0%
+   276 ;;CODE                 0      0       0       0        0.0%
+   277 ;;COMMON               E      6       6       1       42.9%
+   278 ;;BITSFR0              0      0       0       1        0.0%
+   279 ;;SFR0                 0      0       0       1        0.0%
+   280 ;;BITSFR1              0      0       0       2        0.0%
+   281 ;;SFR1                 0      0       0       2        0.0%
+   282 ;;STACK                0      0       4       2        0.0%
+   283 ;;ABS                  0      0      10       3        0.0%
+   284 ;;BITBANK0            50      0       0       4        0.0%
+   285 ;;BITSFR3              0      0       0       4        0.0%
+   286 ;;SFR3                 0      0       0       4        0.0%
+   287 ;;BANK0               50      0       A       5       12.5%
+   288 ;;BITSFR2              0      0       0       5        0.0%
+   289 ;;SFR2                 0      0       0       5        0.0%
+   290 ;;BITBANK1            50      0       0       6        0.0%
+   291 ;;BANK1               50      0       0       7        0.0%
+   292 ;;BITBANK3            60      0       0       8        0.0%
+   293 ;;BANK3               60      0       0       9        0.0%
+   294 ;;BITBANK2            60      0       0      10        0.0%
+   295 ;;BANK2               60      0       0      11        0.0%
+   296 ;;DATA                 0      0      14      12        0.0%
+   297                           
+   298                           	global	_main
+   299                           psect	maintext,global,class=CODE,delta=2
+   300                           global __pmaintext
+   301  0772                     __pmaintext:
+   302                           
+   303 ;; *************** function _main *****************
+   304 ;; Defined at:
+   305 ;;		line 58 in file "E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   306 ;; Parameters:    Size  Location     Type
+   307 ;;		None
+   308 ;; Auto vars:     Size  Location     Type
+   309 ;;		None
+   310 ;; Return value:  Size  Location     Type
+   311 ;;		None               void
+   312 ;; Registers used:
+   313 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   314 ;; Tracked objects:
+   315 ;;		On entry : 17F/0
+   316 ;;		On exit  : 0/0
+   317 ;;		Unchanged: 0/0
+   318 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   319 ;;      Params:         0       0       0       0       0
+   320 ;;      Locals:         0       0       0       0       0
+   321 ;;      Temps:          0       0       0       0       0
+   322 ;;      Totals:         0       0       0       0       0
+   323 ;;Total ram usage:        0 bytes
+   324 ;; Hardware stack levels required when called:    4
+   325 ;; This function calls:
+   326 ;;		_on
+   327 ;;		_type
+   328 ;;		_slave
+   329 ;;		_delay
+   330 ;; This function is called by:
+   331 ;;		Startup code after reset
+   332 ;; This function uses a non-reentrant model
+   333 ;;
+   334                           psect	maintext
+   335                           	file	"E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   336                           	line	58
+   337                           	global	__size_of_main
+   338  003D                     	__size_of_main	equ	__end_of_main-_main
+   339                           	
+   340  0772                     _main:	
+   341                           	opt	stack 4
+   342                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   343                           	line	59
+   344                           	
+   345  0772                     l2324:	
+   346                           ;spislave.c: 59: PORTB=0X00;
+   347  0772  1283               	bcf	status, 5	;RP0=0, select bank0
+   348  0773  1303               	bcf	status, 6	;RP1=0, select bank0
+   349  0774  0186               	clrf	(6)	;volatile
+   350                           	line	60
+   351                           ;spislave.c: 60: TRISB=0X00;
+   352  0775  1683               	bsf	status, 5	;RP0=1, select bank1
+   353  0776  1303               	bcf	status, 6	;RP1=0, select bank1
+   354  0777  0186               	clrf	(134)^080h	;volatile
+   355                           	line	61
+   356                           ;spislave.c: 61: PORTC=0X00;
+   357  0778  1283               	bcf	status, 5	;RP0=0, select bank0
+   358  0779  1303               	bcf	status, 6	;RP1=0, select bank0
+   359  077A  0187               	clrf	(7)	;volatile
+   360                           	line	62
+   361                           ;spislave.c: 62: TRISC=0X00;
+   362  077B  1683               	bsf	status, 5	;RP0=1, select bank1
+   363  077C  1303               	bcf	status, 6	;RP1=0, select bank1
+   364  077D  0187               	clrf	(135)^080h	;volatile
+   365                           	line	63
+   366                           ;spislave.c: 63: PORTD=0X00;
+   367  077E  1283               	bcf	status, 5	;RP0=0, select bank0
+   368  077F  1303               	bcf	status, 6	;RP1=0, select bank0
+   369  0780  0188               	clrf	(8)	;volatile
+   370                           	line	64
+   371                           	
+   372  0781                     l2326:	
+   373                           ;spislave.c: 64: TRISC=0X18;
+   374  0781  3018               	movlw	(018h)
+   375  0782  1683               	bsf	status, 5	;RP0=1, select bank1
+   376  0783  1303               	bcf	status, 6	;RP1=0, select bank1
+   377  0784  0087               	movwf	(135)^080h	;volatile
+   378                           	line	65
+   379                           	
+   380  0785                     l2328:	
+   381                           ;spislave.c: 65: TRISD=0X00;
+   382  0785  0188               	clrf	(136)^080h	;volatile
+   383                           	line	66
+   384                           	
+   385  0786                     l2330:	
+   386                           ;spislave.c: 66: ANSEL=0X00;
+   387  0786  1683               	bsf	status, 5	;RP0=1, select bank3
+   388  0787  1703               	bsf	status, 6	;RP1=1, select bank3
+   389  0788  0188               	clrf	(392)^0180h	;volatile
+   390                           	line	67
+   391                           	
+   392  0789                     l2332:	
+   393                           ;spislave.c: 67: ANSELH=0X00;
+   394  0789  0189               	clrf	(393)^0180h	;volatile
+   395                           	line	68
+   396                           	
+   397  078A                     l2334:	
+   398                           ;spislave.c: 68: SSPSTAT=0x00;
+   399  078A  1683               	bsf	status, 5	;RP0=1, select bank1
+   400  078B  1303               	bcf	status, 6	;RP1=0, select bank1
+   401  078C  0194               	clrf	(148)^080h	;volatile
+   402                           	line	69
+   403                           	
+   404  078D                     l2336:	
+   405                           ;spislave.c: 69: SSPCON=0x25;
+   406  078D  3025               	movlw	(025h)
+   407  078E  1283               	bcf	status, 5	;RP0=0, select bank0
+   408  078F  1303               	bcf	status, 6	;RP1=0, select bank0
+   409  0790  0094               	movwf	(20)	;volatile
+   410                           	line	70
+   411                           	
+   412  0791                     l2338:	
+   413                           ;spislave.c: 70: on();
+   414  0791  120A  118A  2705   	fcall	_on
+              120A  118A         
+   415                           	line	71
+   416                           	
+   417  0796                     l2340:	
+   418                           ;spislave.c: 71: type();
+   419  0796  120A  118A  2711   	fcall	_type
+              120A  118A         
+   420  079B  2F9C               	goto	l2342
+   421                           	line	72
+   422                           ;spislave.c: 72: while(1)
+   423                           	
+   424  079C                     l1056:	
+   425                           	line	74
+   426                           	
+   427  079C                     l2342:	
+   428                           ;spislave.c: 73: {
+   429                           ;spislave.c: 74: slave();
+   430  079C  120A  118A  27AF   	fcall	_slave
+              120A  118A         
+   431                           	line	75
+   432                           	
+   433  07A1                     l2344:	
+   434                           ;spislave.c: 75: delay(1000);
+   435  07A1  30E8               	movlw	low(03E8h)
+   436  07A2  00F0               	movwf	(?_delay)
+   437  07A3  3003               	movlw	high(03E8h)
+   438  07A4  00F1               	movwf	((?_delay))+1
+   439  07A5  120A  118A  2745   	fcall	_delay
+              120A  118A         
+   440  07AA  2F9C               	goto	l2342
+   441                           	line	76
+   442                           	
+   443  07AB                     l1057:	
+   444                           	line	72
+   445  07AB  2F9C               	goto	l2342
+   446                           	
+   447  07AC                     l1058:	
+   448                           	line	77
+   449                           	
+   450  07AC                     l1059:	
+   451                           	global	start
+   452  07AC  120A  118A  2800   	ljmp	start
+   453                           	opt stack 0
+   454                           GLOBAL	__end_of_main
+   455  07AF                     	__end_of_main:
+   456 ;; =============== function _main ends ============
+   457                           
+   458                           	signat	_main,88
+   459                           	global	_slave
+   460                           psect	text217,local,class=CODE,delta=2
+   461                           global __ptext217
+   462  07AF                     __ptext217:
+   463                           
+   464 ;; *************** function _slave *****************
+   465 ;; Defined at:
+   466 ;;		line 46 in file "E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   467 ;; Parameters:    Size  Location     Type
+   468 ;;		None
+   469 ;; Auto vars:     Size  Location     Type
+   470 ;;  i               2    4[COMMON] int 
+   471 ;; Return value:  Size  Location     Type
+   472 ;;		None               void
+   473 ;; Registers used:
+   474 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   475 ;; Tracked objects:
+   476 ;;		On entry : 0/0
+   477 ;;		On exit  : 0/0
+   478 ;;		Unchanged: 0/0
+   479 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   480 ;;      Params:         0       0       0       0       0
+   481 ;;      Locals:         2       0       0       0       0
+   482 ;;      Temps:          1       0       0       0       0
+   483 ;;      Totals:         3       0       0       0       0
+   484 ;;Total ram usage:        3 bytes
+   485 ;; Hardware stack levels used:    1
+   486 ;; Hardware stack levels required when called:    3
+   487 ;; This function calls:
+   488 ;;		_delay
+   489 ;;		_address
+   490 ;;		_display
+   491 ;; This function is called by:
+   492 ;;		_main
+   493 ;; This function uses a non-reentrant model
+   494 ;;
+   495                           psect	text217
+   496                           	file	"E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   497                           	line	46
+   498                           	global	__size_of_slave
+   499  0051                     	__size_of_slave	equ	__end_of_slave-_slave
+   500                           	
+   501  07AF                     _slave:	
+   502                           	opt	stack 4
+   503                           ; Regs used in _slave: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   504                           	line	47
+   505                           	
+   506  07AF                     l2304:	
+   507                           ;spislave.c: 47: for(int i=0;i<10;i++)
+   508  07AF  01F4               	clrf	(slave@i)
+   509  07B0  01F5               	clrf	(slave@i+1)
+   510                           	
+   511  07B1                     l2306:	
+   512  07B1  0875               	movf	(slave@i+1),w
+   513  07B2  3A80               	xorlw	80h
+   514  07B3  00FF               	movwf	btemp+1
+   515  07B4  3080               	movlw	(high(0Ah))^80h
+   516  07B5  027F               	subwf	btemp+1,w
+   517  07B6  1D03               	skipz
+   518  07B7  2FBA               	goto	u2195
+   519  07B8  300A               	movlw	low(0Ah)
+   520  07B9  0274               	subwf	(slave@i),w
+   521  07BA                     u2195:
+   522                           
+   523  07BA  1C03               	skipc
+   524  07BB  2FBD               	goto	u2191
+   525  07BC  2FBE               	goto	u2190
+   526  07BD                     u2191:
+   527  07BD  2FC1               	goto	l1050
+   528  07BE                     u2190:
+   529  07BE  2FFF               	goto	l1053
+   530                           	
+   531  07BF                     l2308:	
+   532  07BF  2FFF               	goto	l1053
+   533                           	line	48
+   534                           	
+   535  07C0                     l1048:	
+   536                           	line	49
+   537                           ;spislave.c: 48: {
+   538                           ;spislave.c: 49: while(SSPIF==0);
+   539  07C0  2FC1               	goto	l1050
+   540                           	
+   541  07C1                     l1051:	
+   542                           	
+   543  07C1                     l1050:	
+   544  07C1  1283               	bcf	status, 5	;RP0=0, select bank0
+   545  07C2  1303               	bcf	status, 6	;RP1=0, select bank0
+   546  07C3  1D8C               	btfss	(99/8),(99)&7
+   547  07C4  2FC6               	goto	u2201
+   548  07C5  2FC7               	goto	u2200
+   549  07C6                     u2201:
+   550  07C6  2FC1               	goto	l1050
+   551  07C7                     u2200:
+   552  07C7  2FC8               	goto	l2310
+   553                           	
+   554  07C8                     l1052:	
+   555                           	line	50
+   556                           	
+   557  07C8                     l2310:	
+   558                           ;spislave.c: 50: data[i] = SSPBUF;
+   559  07C8  0813               	movf	(19),w	;volatile
+   560  07C9  00F3               	movwf	(??_slave+0)+0
+   561  07CA  0874               	movf	(slave@i),w
+   562  07CB  3E20               	addlw	_data&0ffh
+   563  07CC  0084               	movwf	fsr0
+   564  07CD  0873               	movf	(??_slave+0)+0,w
+   565  07CE  1383               	bcf	status, 7	;select IRP bank0
+   566  07CF  0080               	movwf	indf
+   567                           	line	51
+   568                           	
+   569  07D0                     l2312:	
+   570                           ;spislave.c: 51: SSPIF = 0;
+   571  07D0  118C               	bcf	(99/8),(99)&7
+   572                           	line	52
+   573                           	
+   574  07D1                     l2314:	
+   575                           ;spislave.c: 52: delay(1000);
+   576  07D1  30E8               	movlw	low(03E8h)
+   577  07D2  00F0               	movwf	(?_delay)
+   578  07D3  3003               	movlw	high(03E8h)
+   579  07D4  00F1               	movwf	((?_delay))+1
+   580  07D5  120A  118A  2745   	fcall	_delay
+              120A  118A         
+   581                           	line	53
+   582                           	
+   583  07DA                     l2316:	
+   584                           ;spislave.c: 53: address(0x80+i);
+   585  07DA  0874               	movf	(slave@i),w
+   586  07DB  3E80               	addlw	080h
+   587  07DC  120A  118A  271D   	fcall	_address
+              120A  118A         
+   588                           	line	54
+   589                           	
+   590  07E1                     l2318:	
+   591                           ;spislave.c: 54: display(data[i]);
+   592  07E1  0874               	movf	(slave@i),w
+   593  07E2  3E20               	addlw	_data&0ffh
+   594  07E3  0084               	movwf	fsr0
+   595  07E4  1383               	bcf	status, 7	;select IRP bank0
+   596  07E5  0800               	movf	indf,w
+   597  07E6  120A  118A  272A   	fcall	_display
+              120A  118A         
+   598                           	line	47
+   599                           	
+   600  07EB                     l2320:	
+   601  07EB  3001               	movlw	low(01h)
+   602  07EC  07F4               	addwf	(slave@i),f
+   603  07ED  1803               	skipnc
+   604  07EE  0AF5               	incf	(slave@i+1),f
+   605  07EF  3000               	movlw	high(01h)
+   606  07F0  07F5               	addwf	(slave@i+1),f
+   607                           	
+   608  07F1                     l2322:	
+   609  07F1  0875               	movf	(slave@i+1),w
+   610  07F2  3A80               	xorlw	80h
+   611  07F3  00FF               	movwf	btemp+1
+   612  07F4  3080               	movlw	(high(0Ah))^80h
+   613  07F5  027F               	subwf	btemp+1,w
+   614  07F6  1D03               	skipz
+   615  07F7  2FFA               	goto	u2215
+   616  07F8  300A               	movlw	low(0Ah)
+   617  07F9  0274               	subwf	(slave@i),w
+   618  07FA                     u2215:
+   619                           
+   620  07FA  1C03               	skipc
+   621  07FB  2FFD               	goto	u2211
+   622  07FC  2FFE               	goto	u2210
+   623  07FD                     u2211:
+   624  07FD  2FC1               	goto	l1050
+   625  07FE                     u2210:
+   626  07FE  2FFF               	goto	l1053
+   627                           	
+   628  07FF                     l1049:	
+   629                           	line	56
+   630                           	
+   631  07FF                     l1053:	
+   632  07FF  0008               	return
+   633                           	opt stack 0
+   634                           GLOBAL	__end_of_slave
+   635  0800                     	__end_of_slave:
+   636 ;; =============== function _slave ends ============
+   637                           
+   638                           	signat	_slave,88
+   639                           	global	_display
+   640                           psect	text218,local,class=CODE,delta=2
+   641                           global __ptext218
+   642  072A                     __ptext218:
+   643                           
+   644 ;; *************** function _display *****************
+   645 ;; Defined at:
+   646 ;;		line 39 in file "E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   647 ;; Parameters:    Size  Location     Type
+   648 ;;  data            1    wreg     unsigned char 
+   649 ;; Auto vars:     Size  Location     Type
+   650 ;;  data            1    2[COMMON] unsigned char 
+   651 ;; Return value:  Size  Location     Type
+   652 ;;		None               void
+   653 ;; Registers used:
+   654 ;;		wreg, status,2, status,0, pclath, cstack
+   655 ;; Tracked objects:
+   656 ;;		On entry : 0/0
+   657 ;;		On exit  : 0/0
+   658 ;;		Unchanged: 0/0
+   659 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   660 ;;      Params:         0       0       0       0       0
+   661 ;;      Locals:         1       0       0       0       0
+   662 ;;      Temps:          0       0       0       0       0
+   663 ;;      Totals:         1       0       0       0       0
+   664 ;;Total ram usage:        1 bytes
+   665 ;; Hardware stack levels used:    1
+   666 ;; Hardware stack levels required when called:    2
+   667 ;; This function calls:
+   668 ;;		_pulse
+   669 ;; This function is called by:
+   670 ;;		_slave
+   671 ;; This function uses a non-reentrant model
+   672 ;;
+   673                           psect	text218
+   674                           	file	"E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   675                           	line	39
+   676                           	global	__size_of_display
+   677  000D                     	__size_of_display	equ	__end_of_display-_display
+   678                           	
+   679  072A                     _display:	
+   680                           	opt	stack 4
+   681                           ; Regs used in _display: [wreg+status,2+status,0+pclath+cstack]
+   682                           ;display@data stored from wreg
+   683  072A  00F2               	movwf	(display@data)
+   684                           	line	40
+   685                           	
+   686  072B                     l2298:	
+   687                           ;spislave.c: 40: RB0=1;
+   688  072B  1283               	bcf	status, 5	;RP0=0, select bank0
+   689  072C  1303               	bcf	status, 6	;RP1=0, select bank0
+   690  072D  1406               	bsf	(48/8),(48)&7
+   691                           	line	41
+   692                           ;spislave.c: 41: RB1=0;
+   693  072E  1086               	bcf	(49/8),(49)&7
+   694                           	line	42
+   695                           	
+   696  072F                     l2300:	
+   697                           ;spislave.c: 42: PORTD=data;
+   698  072F  0872               	movf	(display@data),w
+   699  0730  0088               	movwf	(8)	;volatile
+   700                           	line	43
+   701                           	
+   702  0731                     l2302:	
+   703                           ;spislave.c: 43: pulse();
+   704  0731  120A  118A  2759   	fcall	_pulse
+              120A  118A         
+   705                           	line	44
+   706                           	
+   707  0736                     l1045:	
+   708  0736  0008               	return
+   709                           	opt stack 0
+   710                           GLOBAL	__end_of_display
+   711  0737                     	__end_of_display:
+   712 ;; =============== function _display ends ============
+   713                           
+   714                           	signat	_display,4216
+   715                           	global	_address
+   716                           psect	text219,local,class=CODE,delta=2
+   717                           global __ptext219
+   718  071D                     __ptext219:
+   719                           
+   720 ;; *************** function _address *****************
+   721 ;; Defined at:
+   722 ;;		line 32 in file "E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   723 ;; Parameters:    Size  Location     Type
+   724 ;;  data            1    wreg     unsigned char 
+   725 ;; Auto vars:     Size  Location     Type
+   726 ;;  data            1    2[COMMON] unsigned char 
+   727 ;; Return value:  Size  Location     Type
+   728 ;;		None               void
+   729 ;; Registers used:
+   730 ;;		wreg, status,2, status,0, pclath, cstack
+   731 ;; Tracked objects:
+   732 ;;		On entry : 0/0
+   733 ;;		On exit  : 0/0
+   734 ;;		Unchanged: 0/0
+   735 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   736 ;;      Params:         0       0       0       0       0
+   737 ;;      Locals:         1       0       0       0       0
+   738 ;;      Temps:          0       0       0       0       0
+   739 ;;      Totals:         1       0       0       0       0
+   740 ;;Total ram usage:        1 bytes
+   741 ;; Hardware stack levels used:    1
+   742 ;; Hardware stack levels required when called:    2
+   743 ;; This function calls:
+   744 ;;		_pulse
+   745 ;; This function is called by:
+   746 ;;		_slave
+   747 ;; This function uses a non-reentrant model
+   748 ;;
+   749                           psect	text219
+   750                           	file	"E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   751                           	line	32
+   752                           	global	__size_of_address
+   753  000D                     	__size_of_address	equ	__end_of_address-_address
+   754                           	
+   755  071D                     _address:	
+   756                           	opt	stack 4
+   757                           ; Regs used in _address: [wreg+status,2+status,0+pclath+cstack]
+   758                           ;address@data stored from wreg
+   759  071D  00F2               	movwf	(address@data)
+   760                           	line	33
+   761                           	
+   762  071E                     l2292:	
+   763                           ;spislave.c: 33: RB0=0;
+   764  071E  1283               	bcf	status, 5	;RP0=0, select bank0
+   765  071F  1303               	bcf	status, 6	;RP1=0, select bank0
+   766  0720  1006               	bcf	(48/8),(48)&7
+   767                           	line	34
+   768                           ;spislave.c: 34: RB1=0;
+   769  0721  1086               	bcf	(49/8),(49)&7
+   770                           	line	35
+   771                           	
+   772  0722                     l2294:	
+   773                           ;spislave.c: 35: PORTD= data;
+   774  0722  0872               	movf	(address@data),w
+   775  0723  0088               	movwf	(8)	;volatile
+   776                           	line	36
+   777                           	
+   778  0724                     l2296:	
+   779                           ;spislave.c: 36: pulse();
+   780  0724  120A  118A  2759   	fcall	_pulse
+              120A  118A         
+   781                           	line	37
+   782                           	
+   783  0729                     l1042:	
+   784  0729  0008               	return
+   785                           	opt stack 0
+   786                           GLOBAL	__end_of_address
+   787  072A                     	__end_of_address:
+   788 ;; =============== function _address ends ============
+   789                           
+   790                           	signat	_address,4216
+   791                           	global	_type
+   792                           psect	text220,local,class=CODE,delta=2
+   793                           global __ptext220
+   794  0711                     __ptext220:
+   795                           
+   796 ;; *************** function _type *****************
+   797 ;; Defined at:
+   798 ;;		line 25 in file "E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   799 ;; Parameters:    Size  Location     Type
+   800 ;;		None
+   801 ;; Auto vars:     Size  Location     Type
+   802 ;;		None
+   803 ;; Return value:  Size  Location     Type
+   804 ;;		None               void
+   805 ;; Registers used:
+   806 ;;		wreg, status,2, status,0, pclath, cstack
+   807 ;; Tracked objects:
+   808 ;;		On entry : 0/0
+   809 ;;		On exit  : 0/0
+   810 ;;		Unchanged: 0/0
+   811 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   812 ;;      Params:         0       0       0       0       0
+   813 ;;      Locals:         0       0       0       0       0
+   814 ;;      Temps:          0       0       0       0       0
+   815 ;;      Totals:         0       0       0       0       0
+   816 ;;Total ram usage:        0 bytes
+   817 ;; Hardware stack levels used:    1
+   818 ;; Hardware stack levels required when called:    2
+   819 ;; This function calls:
+   820 ;;		_pulse
+   821 ;; This function is called by:
+   822 ;;		_main
+   823 ;; This function uses a non-reentrant model
+   824 ;;
+   825                           psect	text220
+   826                           	file	"E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   827                           	line	25
+   828                           	global	__size_of_type
+   829  000C                     	__size_of_type	equ	__end_of_type-_type
+   830                           	
+   831  0711                     _type:	
+   832                           	opt	stack 5
+   833                           ; Regs used in _type: [wreg+status,2+status,0+pclath+cstack]
+   834                           	line	26
+   835                           	
+   836  0711                     l2286:	
+   837                           ;spislave.c: 26: RB0=0;
+   838  0711  1283               	bcf	status, 5	;RP0=0, select bank0
+   839  0712  1303               	bcf	status, 6	;RP1=0, select bank0
+   840  0713  1006               	bcf	(48/8),(48)&7
+   841                           	line	27
+   842                           ;spislave.c: 27: RB1=0;
+   843  0714  1086               	bcf	(49/8),(49)&7
+   844                           	line	28
+   845                           	
+   846  0715                     l2288:	
+   847                           ;spislave.c: 28: PORTD=0X38;
+   848  0715  3038               	movlw	(038h)
+   849  0716  0088               	movwf	(8)	;volatile
+   850                           	line	29
+   851                           	
+   852  0717                     l2290:	
+   853                           ;spislave.c: 29: pulse();
+   854  0717  120A  118A  2759   	fcall	_pulse
+              120A  118A         
+   855                           	line	30
+   856                           	
+   857  071C                     l1039:	
+   858  071C  0008               	return
+   859                           	opt stack 0
+   860                           GLOBAL	__end_of_type
+   861  071D                     	__end_of_type:
+   862 ;; =============== function _type ends ============
+   863                           
+   864                           	signat	_type,88
+   865                           	global	_on
+   866                           psect	text221,local,class=CODE,delta=2
+   867                           global __ptext221
+   868  0705                     __ptext221:
+   869                           
+   870 ;; *************** function _on *****************
+   871 ;; Defined at:
+   872 ;;		line 18 in file "E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   873 ;; Parameters:    Size  Location     Type
+   874 ;;		None
+   875 ;; Auto vars:     Size  Location     Type
+   876 ;;		None
+   877 ;; Return value:  Size  Location     Type
+   878 ;;		None               void
+   879 ;; Registers used:
+   880 ;;		wreg, status,2, status,0, pclath, cstack
+   881 ;; Tracked objects:
+   882 ;;		On entry : 0/0
+   883 ;;		On exit  : 0/0
+   884 ;;		Unchanged: 0/0
+   885 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   886 ;;      Params:         0       0       0       0       0
+   887 ;;      Locals:         0       0       0       0       0
+   888 ;;      Temps:          0       0       0       0       0
+   889 ;;      Totals:         0       0       0       0       0
+   890 ;;Total ram usage:        0 bytes
+   891 ;; Hardware stack levels used:    1
+   892 ;; Hardware stack levels required when called:    2
+   893 ;; This function calls:
+   894 ;;		_pulse
+   895 ;; This function is called by:
+   896 ;;		_main
+   897 ;; This function uses a non-reentrant model
+   898 ;;
+   899                           psect	text221
+   900                           	file	"E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   901                           	line	18
+   902                           	global	__size_of_on
+   903  000C                     	__size_of_on	equ	__end_of_on-_on
+   904                           	
+   905  0705                     _on:	
+   906                           	opt	stack 5
+   907                           ; Regs used in _on: [wreg+status,2+status,0+pclath+cstack]
+   908                           	line	19
+   909                           	
+   910  0705                     l2280:	
+   911                           ;spislave.c: 19: RB0=0;
+   912  0705  1283               	bcf	status, 5	;RP0=0, select bank0
+   913  0706  1303               	bcf	status, 6	;RP1=0, select bank0
+   914  0707  1006               	bcf	(48/8),(48)&7
+   915                           	line	20
+   916                           ;spislave.c: 20: RB1=0;
+   917  0708  1086               	bcf	(49/8),(49)&7
+   918                           	line	21
+   919                           	
+   920  0709                     l2282:	
+   921                           ;spislave.c: 21: PORTD=0X0E;
+   922  0709  300E               	movlw	(0Eh)
+   923  070A  0088               	movwf	(8)	;volatile
+   924                           	line	22
+   925                           	
+   926  070B                     l2284:	
+   927                           ;spislave.c: 22: pulse();
+   928  070B  120A  118A  2759   	fcall	_pulse
+              120A  118A         
+   929                           	line	23
+   930                           	
+   931  0710                     l1036:	
+   932  0710  0008               	return
+   933                           	opt stack 0
+   934                           GLOBAL	__end_of_on
+   935  0711                     	__end_of_on:
+   936 ;; =============== function _on ends ============
+   937                           
+   938                           	signat	_on,88
+   939                           	global	_pulse
+   940                           psect	text222,local,class=CODE,delta=2
+   941                           global __ptext222
+   942  0759                     __ptext222:
+   943                           
+   944 ;; *************** function _pulse *****************
+   945 ;; Defined at:
+   946 ;;		line 11 in file "E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   947 ;; Parameters:    Size  Location     Type
+   948 ;;		None
+   949 ;; Auto vars:     Size  Location     Type
+   950 ;;		None
+   951 ;; Return value:  Size  Location     Type
+   952 ;;		None               void
+   953 ;; Registers used:
+   954 ;;		wreg, status,2, status,0, pclath, cstack
+   955 ;; Tracked objects:
+   956 ;;		On entry : 0/0
+   957 ;;		On exit  : 0/0
+   958 ;;		Unchanged: 0/0
+   959 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   960 ;;      Params:         0       0       0       0       0
+   961 ;;      Locals:         0       0       0       0       0
+   962 ;;      Temps:          0       0       0       0       0
+   963 ;;      Totals:         0       0       0       0       0
+   964 ;;Total ram usage:        0 bytes
+   965 ;; Hardware stack levels used:    1
+   966 ;; Hardware stack levels required when called:    1
+   967 ;; This function calls:
+   968 ;;		_delay
+   969 ;; This function is called by:
+   970 ;;		_on
+   971 ;;		_type
+   972 ;;		_address
+   973 ;;		_display
+   974 ;; This function uses a non-reentrant model
+   975 ;;
+   976                           psect	text222
+   977                           	file	"E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+   978                           	line	11
+   979                           	global	__size_of_pulse
+   980  0019                     	__size_of_pulse	equ	__end_of_pulse-_pulse
+   981                           	
+   982  0759                     _pulse:	
+   983                           	opt	stack 4
+   984                           ; Regs used in _pulse: [wreg+status,2+status,0+pclath+cstack]
+   985                           	line	12
+   986                           	
+   987  0759                     l2274:	
+   988                           ;spislave.c: 12: RB2=1;
+   989  0759  1283               	bcf	status, 5	;RP0=0, select bank0
+   990  075A  1303               	bcf	status, 6	;RP1=0, select bank0
+   991  075B  1506               	bsf	(50/8),(50)&7
+   992                           	line	13
+   993                           	
+   994  075C                     l2276:	
+   995                           ;spislave.c: 13: delay(100);
+   996  075C  3064               	movlw	low(064h)
+   997  075D  00F0               	movwf	(?_delay)
+   998  075E  3000               	movlw	high(064h)
+   999  075F  00F1               	movwf	((?_delay))+1
+  1000  0760  120A  118A  2745   	fcall	_delay
+              120A  118A         
+  1001                           	line	14
+  1002                           	
+  1003  0765                     l2278:	
+  1004                           ;spislave.c: 14: RB2=0;
+  1005  0765  1283               	bcf	status, 5	;RP0=0, select bank0
+  1006  0766  1303               	bcf	status, 6	;RP1=0, select bank0
+  1007  0767  1106               	bcf	(50/8),(50)&7
+  1008                           	line	15
+  1009                           ;spislave.c: 15: delay(100);
+  1010  0768  3064               	movlw	low(064h)
+  1011  0769  00F0               	movwf	(?_delay)
+  1012  076A  3000               	movlw	high(064h)
+  1013  076B  00F1               	movwf	((?_delay))+1
+  1014  076C  120A  118A  2745   	fcall	_delay
+              120A  118A         
+  1015                           	line	16
+  1016                           	
+  1017  0771                     l1033:	
+  1018  0771  0008               	return
+  1019                           	opt stack 0
+  1020                           GLOBAL	__end_of_pulse
+  1021  0772                     	__end_of_pulse:
+  1022 ;; =============== function _pulse ends ============
+  1023                           
+  1024                           	signat	_pulse,88
+  1025                           	global	_delay
+  1026                           psect	text223,local,class=CODE,delta=2
+  1027                           global __ptext223
+  1028  0745                     __ptext223:
+  1029                           
+  1030 ;; *************** function _delay *****************
+  1031 ;; Defined at:
+  1032 ;;		line 7 in file "E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+  1033 ;; Parameters:    Size  Location     Type
+  1034 ;;  del             2    0[COMMON] int 
+  1035 ;; Auto vars:     Size  Location     Type
+  1036 ;;		None
+  1037 ;; Return value:  Size  Location     Type
+  1038 ;;		None               void
+  1039 ;; Registers used:
+  1040 ;;		wreg
+  1041 ;; Tracked objects:
+  1042 ;;		On entry : 0/0
+  1043 ;;		On exit  : 0/0
+  1044 ;;		Unchanged: 0/0
+  1045 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1046 ;;      Params:         2       0       0       0       0
+  1047 ;;      Locals:         0       0       0       0       0
+  1048 ;;      Temps:          0       0       0       0       0
+  1049 ;;      Totals:         2       0       0       0       0
+  1050 ;;Total ram usage:        2 bytes
+  1051 ;; Hardware stack levels used:    1
+  1052 ;; This function calls:
+  1053 ;;		Nothing
+  1054 ;; This function is called by:
+  1055 ;;		_pulse
+  1056 ;;		_slave
+  1057 ;;		_main
+  1058 ;; This function uses a non-reentrant model
+  1059 ;;
+  1060                           psect	text223
+  1061                           	file	"E:\KTU\Softwares\MP lab\SPI\SPIwithUART\spislave.c"
+  1062                           	line	7
+  1063                           	global	__size_of_delay
+  1064  0014                     	__size_of_delay	equ	__end_of_delay-_delay
+  1065                           	
+  1066  0745                     _delay:	
+  1067                           	opt	stack 7
+  1068                           ; Regs used in _delay: [wreg]
+  1069                           	line	8
+  1070                           	
+  1071  0745                     l2270:	
+  1072                           ;spislave.c: 8: while(del--);
+  1073  0745  2F47               	goto	l2272
+  1074                           	
+  1075  0746                     l1028:	
+  1076  0746  2F47               	goto	l2272
+  1077                           	
+  1078  0747                     l1027:	
+  1079                           	
+  1080  0747                     l2272:	
+  1081  0747  30FF               	movlw	low(-1)
+  1082  0748  07F0               	addwf	(delay@del),f
+  1083  0749  1803               	skipnc
+  1084  074A  0AF1               	incf	(delay@del+1),f
+  1085  074B  30FF               	movlw	high(-1)
+  1086  074C  07F1               	addwf	(delay@del+1),f
+  1087  074D  30FF               	movlw	high(-1)
+  1088  074E  0671               	xorwf	((delay@del+1)),w
+  1089  074F  1D03               	skipz
+  1090  0750  2F53               	goto	u2185
+  1091  0751  30FF               	movlw	low(-1)
+  1092  0752  0670               	xorwf	((delay@del)),w
+  1093  0753                     u2185:
+  1094                           
+  1095  0753  1D03               	skipz
+  1096  0754  2F56               	goto	u2181
+  1097  0755  2F57               	goto	u2180
+  1098  0756                     u2181:
+  1099  0756  2F47               	goto	l2272
+  1100  0757                     u2180:
+  1101  0757  2F58               	goto	l1030
+  1102                           	
+  1103  0758                     l1029:	
+  1104                           	line	9
+  1105                           	
+  1106  0758                     l1030:	
+  1107  0758  0008               	return
+  1108                           	opt stack 0
+  1109                           GLOBAL	__end_of_delay
+  1110  0759                     	__end_of_delay:
+  1111 ;; =============== function _delay ends ============
+  1112                           
+  1113                           	signat	_delay,4216
+  1114                           psect	text224,local,class=CODE,delta=2
+  1115                           global __ptext224
+  1116  0000                     __ptext224:
+  1117                           	global	btemp
+  1118  007E                     	btemp set 07Eh
+  1119                           
+  1120                           	DABS	1,126,2	;btemp
+  1121                           	global	wtemp0
+  1122  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Fri Jul 02 12:10:17 2021
+
+                  _on 0705                   ?_on 0070                   _RB0 0030                   _RB1 0031  
+                 _RB2 0032                   fsr0 0004                   indf 0000                  ??_on 0072  
+                l1030 0758                  l1033 0771                  l1042 0729                  l1050 07C1  
+                l1027 0747                  l1051 07C1                  l1028 0746                  l1036 0710  
+                l1052 07C8                  l1029 0758                  l1045 0736                  l1053 07FF  
+                l1039 071C                  l1048 07C0                  l1056 079C                  l1049 07FF  
+                l1057 07AB                  l1058 07AC                  l1059 07AC                  l2300 072F  
+                l2302 0731                  l2310 07C8                  l2320 07EB                  l2312 07D0  
+                l2304 07AF                  l2322 07F1                  l2314 07D1                  l2306 07B1  
+                l2330 0786                  l2316 07DA                  l2308 07BF                  l2340 0796  
+                l2332 0789                  l2324 0772                  l2270 0745                  l2318 07E1  
+                l2342 079C                  l2334 078A                  l2326 0781                  l2272 0747  
+                l2280 0705                  l2344 07A1                  l2336 078D                  l2328 0785  
+                l2274 0759                  l2282 0709                  l2290 0717                  l2338 0791  
+                l2276 075C                  l2284 070B                  l2292 071E                  l2278 0765  
+                l2286 0711                  l2294 0722                  l2288 0715                  l2296 0724  
+                l2298 072B                  u2200 07C7                  u2201 07C6                  u2210 07FE  
+                u2211 07FD                  u2215 07FA                  u2180 0757                  u2181 0756  
+                u2190 07BE                  u2191 07BD                  u2185 0753                  u2195 07BA  
+         display@data 0072                  _data 0020                  _main 0772                  btemp 007E  
+                _type 0711                  start 0000                 ?_main 0070                 _ANSEL 0188  
+               ?_type 0070       __end_of_address 072A                 _PORTB 0006                 _PORTC 0007  
+               _PORTD 0008                 _TRISB 0086                 _TRISC 0087                 _TRISD 0088  
+               _SSPIF 0063       __end_of_display 0737                 _delay 0745                 _slave 07AF  
+               _pulse 0759                 status 0003                 wtemp0 007E          __end_of_main 07AF  
+        __end_of_type 071D                ??_main 0076                ??_type 0072                ?_delay 0070  
+              ?_slave 0070                ?_pulse 0070                _ANSELH 0189                _SSPCON 0014  
+              _SSPBUF 0013             ??_address 0072             ??_display 0072                slave@i 0074  
+      __pcstackCOMMON 0070         __end_of_delay 0759         __end_of_slave 0800         __end_of_pulse 0772  
+          __end_of_on 0711               ??_delay 0072               ??_slave 0073               ??_pulse 0072  
+          __pbssBANK0 0020            __pmaintext 0772               _SSPSTAT 0094               _address 071D  
+             _display 072A  end_of_initialization 0741   start_initialization 0737             __ptext220 0711  
+           __ptext221 0705             __ptext222 0759             __ptext223 0745             __ptext224 0000  
+           __ptext216 0000             __ptext217 07AF             __ptext218 072A             __ptext219 071D  
+            ?_address 0070              ?_display 0070        __size_of_delay 0014        __size_of_slave 0051  
+      __size_of_pulse 0019           __size_of_on 000C           address@data 0072      __size_of_address 000D  
+    __size_of_display 000D         __size_of_main 003D         __size_of_type 000C              delay@del 0070  

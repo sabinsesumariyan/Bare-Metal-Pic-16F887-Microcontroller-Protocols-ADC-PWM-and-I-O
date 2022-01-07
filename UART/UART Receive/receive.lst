@@ -1,0 +1,1146 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Wed Jun 23 13:06:54 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           # 4 "E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+    43                           	psect config,class=CONFIG,delta=2 ;#
+    44                           # 4 "E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+    45  2007  2CE2               	dw 0X2CE2 ;#
+    46                           	FNCALL	_main,_pulse
+    47                           	FNCALL	_main,_type
+    48                           	FNCALL	_main,_on
+    49                           	FNCALL	_main,_address
+    50                           	FNCALL	_main,_rx
+    51                           	FNCALL	_rx,_display
+    52                           	FNCALL	_rx,_tx
+    53                           	FNCALL	_display,_pulse
+    54                           	FNCALL	_address,_pulse
+    55                           	FNCALL	_on,_pulse
+    56                           	FNCALL	_type,_pulse
+    57                           	FNROOT	_main
+    58                           	global	_ch
+    59                           	global	_PORTA
+    60                           psect	text132,local,class=CODE,delta=2
+    61                           global __ptext132
+    62  0000                     __ptext132:
+    63  0005                     _PORTA	set	5
+    64                           	global	_PORTB
+    65  0006                     _PORTB	set	6
+    66                           	global	_PORTC
+    67  0007                     _PORTC	set	7
+    68                           	global	_PORTD
+    69  0008                     _PORTD	set	8
+    70                           	global	_PORTE
+    71  0009                     _PORTE	set	9
+    72                           	global	_RCREG
+    73  001A                     _RCREG	set	26
+    74                           	global	_RCSTA
+    75  0018                     _RCSTA	set	24
+    76                           	global	_TXREG
+    77  0019                     _TXREG	set	25
+    78                           	global	_RCIF
+    79  0065                     _RCIF	set	101
+    80                           	global	_RE0
+    81  0048                     _RE0	set	72
+    82                           	global	_RE1
+    83  0049                     _RE1	set	73
+    84                           	global	_RE2
+    85  004A                     _RE2	set	74
+    86                           	global	_TXIF
+    87  0064                     _TXIF	set	100
+    88                           	global	_SPBRG
+    89  0099                     _SPBRG	set	153
+    90                           	global	_TRISA
+    91  0085                     _TRISA	set	133
+    92                           	global	_TRISB
+    93  0086                     _TRISB	set	134
+    94                           	global	_TRISC
+    95  0087                     _TRISC	set	135
+    96                           	global	_TRISD
+    97  0088                     _TRISD	set	136
+    98                           	global	_TRISE
+    99  0089                     _TRISE	set	137
+   100                           	global	_TXSTA
+   101  0098                     _TXSTA	set	152
+   102                           	global	_ANSEL
+   103  0188                     _ANSEL	set	392
+   104                           	global	_ANSELH
+   105  0189                     _ANSELH	set	393
+   106                           	file	"receive.as"
+   107                           	line	#
+   108                           psect cinit,class=CODE,delta=2
+   109                           global start_initialization
+   110  0739                     start_initialization:
+   111                           
+   112                           psect	bssCOMMON,class=COMMON,space=1
+   113                           global __pbssCOMMON
+   114  0074                     __pbssCOMMON:
+   115  0074                     _ch:
+   116  0074                            ds      1
+   117                           
+   118                           ; Clear objects allocated to COMMON
+   119                           psect cinit,class=CODE,delta=2
+   120  0739  01F4               	clrf	((__pbssCOMMON)+0)&07Fh
+   121                           psect cinit,class=CODE,delta=2
+   122                           global end_of_initialization
+   123                           
+   124                           ;End of C runtime variable initialization code
+   125                           
+   126  073A                     end_of_initialization:
+   127  073A  0183               clrf status
+   128  073B  120A  118A  2FB1   ljmp _main	;jump to C main() function
+   129                           psect	cstackCOMMON,class=COMMON,space=1
+   130                           global __pcstackCOMMON
+   131  0070                     __pcstackCOMMON:
+   132                           	global	?_pulse
+   133  0070                     ?_pulse:	; 0 bytes @ 0x0
+   134                           	global	??_pulse
+   135  0070                     ??_pulse:	; 0 bytes @ 0x0
+   136                           	global	?_type
+   137  0070                     ?_type:	; 0 bytes @ 0x0
+   138                           	global	?_on
+   139  0070                     ?_on:	; 0 bytes @ 0x0
+   140                           	global	?_address
+   141  0070                     ?_address:	; 0 bytes @ 0x0
+   142                           	global	?_display
+   143  0070                     ?_display:	; 0 bytes @ 0x0
+   144                           	global	?_tx
+   145  0070                     ?_tx:	; 0 bytes @ 0x0
+   146                           	global	??_tx
+   147  0070                     ??_tx:	; 0 bytes @ 0x0
+   148                           	global	?_rx
+   149  0070                     ?_rx:	; 0 bytes @ 0x0
+   150                           	global	?_main
+   151  0070                     ?_main:	; 0 bytes @ 0x0
+   152                           	global	tx@p
+   153  0070                     tx@p:	; 1 bytes @ 0x0
+   154  0070                     	ds	2
+   155                           	global	??_type
+   156  0072                     ??_type:	; 0 bytes @ 0x2
+   157                           	global	??_on
+   158  0072                     ??_on:	; 0 bytes @ 0x2
+   159                           	global	??_address
+   160  0072                     ??_address:	; 0 bytes @ 0x2
+   161                           	global	??_display
+   162  0072                     ??_display:	; 0 bytes @ 0x2
+   163                           	global	address@x
+   164  0072                     address@x:	; 1 bytes @ 0x2
+   165                           	global	display@x
+   166  0072                     display@x:	; 1 bytes @ 0x2
+   167  0072                     	ds	1
+   168                           	global	??_rx
+   169  0073                     ??_rx:	; 0 bytes @ 0x3
+   170  0073                     	ds	1
+   171                           	global	??_main
+   172  0074                     ??_main:	; 0 bytes @ 0x4
+   173 ;;Data sizes: Strings 0, constant 0, data 0, bss 1, persistent 0 stack 0
+   174 ;;Auto spaces:   Size  Autos    Used
+   175 ;; COMMON          14      4       5
+   176 ;; BANK0           80      0       0
+   177 ;; BANK1           80      0       0
+   178 ;; BANK3           96      0       0
+   179 ;; BANK2           96      0       0
+   180                           
+   181 ;;
+   182 ;; Pointer list with targets:
+   183                           
+   184                           
+   185                           
+   186 ;;
+   187 ;; Critical Paths under _main in COMMON
+   188 ;;
+   189 ;;   _main->_rx
+   190 ;;   _rx->_display
+   191 ;;   _display->_pulse
+   192 ;;   _address->_pulse
+   193 ;;   _on->_pulse
+   194 ;;   _type->_pulse
+   195 ;;
+   196 ;; Critical Paths under _main in BANK0
+   197 ;;
+   198 ;;   None.
+   199 ;;
+   200 ;; Critical Paths under _main in BANK1
+   201 ;;
+   202 ;;   None.
+   203 ;;
+   204 ;; Critical Paths under _main in BANK3
+   205 ;;
+   206 ;;   None.
+   207 ;;
+   208 ;; Critical Paths under _main in BANK2
+   209 ;;
+   210 ;;   None.
+   211                           
+   212 ;;
+   213 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   214 ;;
+   215                           
+   216 ;;
+   217 ;;Call Graph Tables:
+   218 ;;
+   219 ;; ---------------------------------------------------------------------------------
+   220 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   221 ;; ---------------------------------------------------------------------------------
+   222 ;; (0) _main                                                 0     0      0      45
+   223 ;;                              _pulse
+   224 ;;                               _type
+   225 ;;                                 _on
+   226 ;;                            _address
+   227 ;;                                 _rx
+   228 ;; ---------------------------------------------------------------------------------
+   229 ;; (1) _rx                                                   1     1      0      30
+   230 ;;                                              3 COMMON     1     1      0
+   231 ;;                            _display
+   232 ;;                                 _tx
+   233 ;; ---------------------------------------------------------------------------------
+   234 ;; (2) _display                                              1     1      0      15
+   235 ;;                                              2 COMMON     1     1      0
+   236 ;;                              _pulse
+   237 ;; ---------------------------------------------------------------------------------
+   238 ;; (1) _address                                              1     1      0      15
+   239 ;;                                              2 COMMON     1     1      0
+   240 ;;                              _pulse
+   241 ;; ---------------------------------------------------------------------------------
+   242 ;; (1) _on                                                   0     0      0       0
+   243 ;;                              _pulse
+   244 ;; ---------------------------------------------------------------------------------
+   245 ;; (1) _type                                                 0     0      0       0
+   246 ;;                              _pulse
+   247 ;; ---------------------------------------------------------------------------------
+   248 ;; (3) _pulse                                                2     2      0       0
+   249 ;;                                              0 COMMON     2     2      0
+   250 ;; ---------------------------------------------------------------------------------
+   251 ;; (2) _tx                                                   1     1      0      15
+   252 ;;                                              0 COMMON     1     1      0
+   253 ;; ---------------------------------------------------------------------------------
+   254 ;; Estimated maximum stack depth 3
+   255 ;; ---------------------------------------------------------------------------------
+   256                           
+   257 ;; Call Graph Graphs:
+   258                           
+   259 ;; _main (ROOT)
+   260 ;;   _pulse
+   261 ;;   _type
+   262 ;;     _pulse
+   263 ;;   _on
+   264 ;;     _pulse
+   265 ;;   _address
+   266 ;;     _pulse
+   267 ;;   _rx
+   268 ;;     _display
+   269 ;;       _pulse
+   270 ;;     _tx
+   271 ;;
+   272                           
+   273 ;; Address spaces:
+   274                           
+   275 ;;Name               Size   Autos  Total    Cost      Usage
+   276 ;;BITCOMMON            E      0       0       0        0.0%
+   277 ;;EEDATA             100      0       0       0        0.0%
+   278 ;;NULL                 0      0       0       0        0.0%
+   279 ;;CODE                 0      0       0       0        0.0%
+   280 ;;COMMON               E      4       5       1       35.7%
+   281 ;;BITSFR0              0      0       0       1        0.0%
+   282 ;;SFR0                 0      0       0       1        0.0%
+   283 ;;BITSFR1              0      0       0       2        0.0%
+   284 ;;SFR1                 0      0       0       2        0.0%
+   285 ;;STACK                0      0       3       2        0.0%
+   286 ;;ABS                  0      0       5       3        0.0%
+   287 ;;BITBANK0            50      0       0       4        0.0%
+   288 ;;BITSFR3              0      0       0       4        0.0%
+   289 ;;SFR3                 0      0       0       4        0.0%
+   290 ;;BANK0               50      0       0       5        0.0%
+   291 ;;BITSFR2              0      0       0       5        0.0%
+   292 ;;SFR2                 0      0       0       5        0.0%
+   293 ;;BITBANK1            50      0       0       6        0.0%
+   294 ;;BANK1               50      0       0       7        0.0%
+   295 ;;BITBANK3            60      0       0       8        0.0%
+   296 ;;BANK3               60      0       0       9        0.0%
+   297 ;;BITBANK2            60      0       0      10        0.0%
+   298 ;;BANK2               60      0       0      11        0.0%
+   299 ;;DATA                 0      0       8      12        0.0%
+   300                           
+   301                           	global	_main
+   302                           psect	maintext,global,class=CODE,delta=2
+   303                           global __pmaintext
+   304  07B1                     __pmaintext:
+   305                           
+   306 ;; *************** function _main *****************
+   307 ;; Defined at:
+   308 ;;		line 64 in file "E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   309 ;; Parameters:    Size  Location     Type
+   310 ;;		None
+   311 ;; Auto vars:     Size  Location     Type
+   312 ;;		None
+   313 ;; Return value:  Size  Location     Type
+   314 ;;		None               void
+   315 ;; Registers used:
+   316 ;;		wreg, status,2, status,0, pclath, cstack
+   317 ;; Tracked objects:
+   318 ;;		On entry : 17F/0
+   319 ;;		On exit  : 0/0
+   320 ;;		Unchanged: 0/0
+   321 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   322 ;;      Params:         0       0       0       0       0
+   323 ;;      Locals:         0       0       0       0       0
+   324 ;;      Temps:          0       0       0       0       0
+   325 ;;      Totals:         0       0       0       0       0
+   326 ;;Total ram usage:        0 bytes
+   327 ;; Hardware stack levels required when called:    3
+   328 ;; This function calls:
+   329 ;;		_pulse
+   330 ;;		_type
+   331 ;;		_on
+   332 ;;		_address
+   333 ;;		_rx
+   334 ;; This function is called by:
+   335 ;;		Startup code after reset
+   336 ;; This function uses a non-reentrant model
+   337 ;;
+   338                           psect	maintext
+   339                           	file	"E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   340                           	line	64
+   341                           	global	__size_of_main
+   342  004F                     	__size_of_main	equ	__end_of_main-_main
+   343                           	
+   344  07B1                     _main:	
+   345                           	opt	stack 5
+   346                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   347                           	line	65
+   348                           	
+   349  07B1                     l2236:	
+   350                           ;receive.c: 65: PORTA=0X00;
+   351  07B1  1283               	bcf	status, 5	;RP0=0, select bank0
+   352  07B2  1303               	bcf	status, 6	;RP1=0, select bank0
+   353  07B3  0185               	clrf	(5)	;volatile
+   354                           	line	66
+   355                           ;receive.c: 66: TRISA=0X00;
+   356  07B4  1683               	bsf	status, 5	;RP0=1, select bank1
+   357  07B5  1303               	bcf	status, 6	;RP1=0, select bank1
+   358  07B6  0185               	clrf	(133)^080h	;volatile
+   359                           	line	67
+   360                           ;receive.c: 67: PORTB=0X00;
+   361  07B7  1283               	bcf	status, 5	;RP0=0, select bank0
+   362  07B8  1303               	bcf	status, 6	;RP1=0, select bank0
+   363  07B9  0186               	clrf	(6)	;volatile
+   364                           	line	68
+   365                           ;receive.c: 68: TRISB=0X00;
+   366  07BA  1683               	bsf	status, 5	;RP0=1, select bank1
+   367  07BB  1303               	bcf	status, 6	;RP1=0, select bank1
+   368  07BC  0186               	clrf	(134)^080h	;volatile
+   369                           	line	69
+   370                           ;receive.c: 69: PORTC=0X00;
+   371  07BD  1283               	bcf	status, 5	;RP0=0, select bank0
+   372  07BE  1303               	bcf	status, 6	;RP1=0, select bank0
+   373  07BF  0187               	clrf	(7)	;volatile
+   374                           	line	70
+   375                           	
+   376  07C0                     l2238:	
+   377                           ;receive.c: 70: TRISC=0X80;
+   378  07C0  3080               	movlw	(080h)
+   379  07C1  1683               	bsf	status, 5	;RP0=1, select bank1
+   380  07C2  1303               	bcf	status, 6	;RP1=0, select bank1
+   381  07C3  0087               	movwf	(135)^080h	;volatile
+   382                           	line	71
+   383                           	
+   384  07C4                     l2240:	
+   385                           ;receive.c: 71: PORTD=0X00;
+   386  07C4  1283               	bcf	status, 5	;RP0=0, select bank0
+   387  07C5  1303               	bcf	status, 6	;RP1=0, select bank0
+   388  07C6  0188               	clrf	(8)	;volatile
+   389                           	line	72
+   390                           	
+   391  07C7                     l2242:	
+   392                           ;receive.c: 72: TRISD=0X00;
+   393  07C7  1683               	bsf	status, 5	;RP0=1, select bank1
+   394  07C8  1303               	bcf	status, 6	;RP1=0, select bank1
+   395  07C9  0188               	clrf	(136)^080h	;volatile
+   396                           	line	73
+   397                           	
+   398  07CA                     l2244:	
+   399                           ;receive.c: 73: PORTE=0X00;
+   400  07CA  1283               	bcf	status, 5	;RP0=0, select bank0
+   401  07CB  1303               	bcf	status, 6	;RP1=0, select bank0
+   402  07CC  0189               	clrf	(9)	;volatile
+   403                           	line	74
+   404                           	
+   405  07CD                     l2246:	
+   406                           ;receive.c: 74: TRISE=0X00;
+   407  07CD  1683               	bsf	status, 5	;RP0=1, select bank1
+   408  07CE  1303               	bcf	status, 6	;RP1=0, select bank1
+   409  07CF  0189               	clrf	(137)^080h	;volatile
+   410                           	line	75
+   411                           	
+   412  07D0                     l2248:	
+   413                           ;receive.c: 75: ANSEL=0X00;
+   414  07D0  1683               	bsf	status, 5	;RP0=1, select bank3
+   415  07D1  1703               	bsf	status, 6	;RP1=1, select bank3
+   416  07D2  0188               	clrf	(392)^0180h	;volatile
+   417                           	line	76
+   418                           	
+   419  07D3                     l2250:	
+   420                           ;receive.c: 76: ANSELH=0X00;
+   421  07D3  0189               	clrf	(393)^0180h	;volatile
+   422                           	line	77
+   423                           	
+   424  07D4                     l2252:	
+   425                           ;receive.c: 77: TXSTA=0X26;
+   426  07D4  3026               	movlw	(026h)
+   427  07D5  1683               	bsf	status, 5	;RP0=1, select bank1
+   428  07D6  1303               	bcf	status, 6	;RP1=0, select bank1
+   429  07D7  0098               	movwf	(152)^080h	;volatile
+   430                           	line	78
+   431                           	
+   432  07D8                     l2254:	
+   433                           ;receive.c: 78: RCSTA=0X90;
+   434  07D8  3090               	movlw	(090h)
+   435  07D9  1283               	bcf	status, 5	;RP0=0, select bank0
+   436  07DA  1303               	bcf	status, 6	;RP1=0, select bank0
+   437  07DB  0098               	movwf	(24)	;volatile
+   438                           	line	79
+   439                           	
+   440  07DC                     l2256:	
+   441                           ;receive.c: 79: SPBRG=25;
+   442  07DC  3019               	movlw	(019h)
+   443  07DD  1683               	bsf	status, 5	;RP0=1, select bank1
+   444  07DE  1303               	bcf	status, 6	;RP1=0, select bank1
+   445  07DF  0099               	movwf	(153)^080h	;volatile
+   446                           	line	80
+   447                           	
+   448  07E0                     l2258:	
+   449                           ;receive.c: 80: pulse();
+   450  07E0  120A  118A  277C   	fcall	_pulse
+              120A  118A         
+   451                           	line	81
+   452                           	
+   453  07E5                     l2260:	
+   454                           ;receive.c: 81: type();
+   455  07E5  120A  118A  274A   	fcall	_type
+              120A  118A         
+   456                           	line	82
+   457                           	
+   458  07EA                     l2262:	
+   459                           ;receive.c: 82: on();
+   460  07EA  120A  118A  2756   	fcall	_on
+              120A  118A         
+   461  07EF  2FF0               	goto	l2264
+   462                           	line	83
+   463                           ;receive.c: 83: while(1)
+   464                           	
+   465  07F0                     l1056:	
+   466                           	line	85
+   467                           	
+   468  07F0                     l2264:	
+   469                           ;receive.c: 84: {
+   470                           ;receive.c: 85: address(0X80);
+   471  07F0  3080               	movlw	(080h)
+   472  07F1  120A  118A  2762   	fcall	_address
+              120A  118A         
+   473                           	line	86
+   474                           	
+   475  07F6                     l2266:	
+   476                           ;receive.c: 86: rx();
+   477  07F6  120A  118A  2795   	fcall	_rx
+              120A  118A         
+   478  07FB  2FF0               	goto	l2264
+   479                           	line	87
+   480                           	
+   481  07FC                     l1057:	
+   482                           	line	83
+   483  07FC  2FF0               	goto	l2264
+   484                           	
+   485  07FD                     l1058:	
+   486                           	line	88
+   487                           	
+   488  07FD                     l1059:	
+   489                           	global	start
+   490  07FD  120A  118A  2800   	ljmp	start
+   491                           	opt stack 0
+   492                           GLOBAL	__end_of_main
+   493  0800                     	__end_of_main:
+   494 ;; =============== function _main ends ============
+   495                           
+   496                           	signat	_main,88
+   497                           	global	_rx
+   498                           psect	text133,local,class=CODE,delta=2
+   499                           global __ptext133
+   500  0795                     __ptext133:
+   501                           
+   502 ;; *************** function _rx *****************
+   503 ;; Defined at:
+   504 ;;		line 54 in file "E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   505 ;; Parameters:    Size  Location     Type
+   506 ;;		None
+   507 ;; Auto vars:     Size  Location     Type
+   508 ;;		None
+   509 ;; Return value:  Size  Location     Type
+   510 ;;		None               void
+   511 ;; Registers used:
+   512 ;;		wreg, status,2, status,0, pclath, cstack
+   513 ;; Tracked objects:
+   514 ;;		On entry : 0/0
+   515 ;;		On exit  : 0/0
+   516 ;;		Unchanged: 0/0
+   517 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   518 ;;      Params:         0       0       0       0       0
+   519 ;;      Locals:         0       0       0       0       0
+   520 ;;      Temps:          1       0       0       0       0
+   521 ;;      Totals:         1       0       0       0       0
+   522 ;;Total ram usage:        1 bytes
+   523 ;; Hardware stack levels used:    1
+   524 ;; Hardware stack levels required when called:    2
+   525 ;; This function calls:
+   526 ;;		_display
+   527 ;;		_tx
+   528 ;; This function is called by:
+   529 ;;		_main
+   530 ;; This function uses a non-reentrant model
+   531 ;;
+   532                           psect	text133
+   533                           	file	"E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   534                           	line	54
+   535                           	global	__size_of_rx
+   536  001C                     	__size_of_rx	equ	__end_of_rx-_rx
+   537                           	
+   538  0795                     _rx:	
+   539                           	opt	stack 5
+   540                           ; Regs used in _rx: [wreg+status,2+status,0+pclath+cstack]
+   541                           	line	55
+   542                           	
+   543  0795                     l2226:	
+   544                           ;receive.c: 55: while(RCIF==0);
+   545  0795  2F96               	goto	l1050
+   546                           	
+   547  0796                     l1051:	
+   548                           	
+   549  0796                     l1050:	
+   550  0796  1283               	bcf	status, 5	;RP0=0, select bank0
+   551  0797  1303               	bcf	status, 6	;RP1=0, select bank0
+   552  0798  1E8C               	btfss	(101/8),(101)&7
+   553  0799  2F9B               	goto	u2151
+   554  079A  2F9C               	goto	u2150
+   555  079B                     u2151:
+   556  079B  2F96               	goto	l1050
+   557  079C                     u2150:
+   558  079C  2F9D               	goto	l2228
+   559                           	
+   560  079D                     l1052:	
+   561                           	line	56
+   562                           	
+   563  079D                     l2228:	
+   564                           ;receive.c: 56: ch=RCREG;
+   565  079D  081A               	movf	(26),w	;volatile
+   566  079E  00F3               	movwf	(??_rx+0)+0
+   567  079F  0873               	movf	(??_rx+0)+0,w
+   568  07A0  00F4               	movwf	(_ch)
+   569                           	line	57
+   570                           	
+   571  07A1                     l2230:	
+   572                           ;receive.c: 57: display(ch);
+   573  07A1  0874               	movf	(_ch),w
+   574  07A2  120A  118A  276F   	fcall	_display
+              120A  118A         
+   575                           	line	58
+   576                           	
+   577  07A7                     l2232:	
+   578                           ;receive.c: 58: tx(ch);
+   579  07A7  0874               	movf	(_ch),w
+   580  07A8  120A  118A  273E   	fcall	_tx
+              120A  118A         
+   581                           	line	59
+   582                           	
+   583  07AD                     l2234:	
+   584                           ;receive.c: 59: RCIF=0;
+   585  07AD  1283               	bcf	status, 5	;RP0=0, select bank0
+   586  07AE  1303               	bcf	status, 6	;RP1=0, select bank0
+   587  07AF  128C               	bcf	(101/8),(101)&7
+   588                           	line	60
+   589                           	
+   590  07B0                     l1053:	
+   591  07B0  0008               	return
+   592                           	opt stack 0
+   593                           GLOBAL	__end_of_rx
+   594  07B1                     	__end_of_rx:
+   595 ;; =============== function _rx ends ============
+   596                           
+   597                           	signat	_rx,88
+   598                           	global	_display
+   599                           psect	text134,local,class=CODE,delta=2
+   600                           global __ptext134
+   601  076F                     __ptext134:
+   602                           
+   603 ;; *************** function _display *****************
+   604 ;; Defined at:
+   605 ;;		line 39 in file "E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   606 ;; Parameters:    Size  Location     Type
+   607 ;;  x               1    wreg     unsigned char 
+   608 ;; Auto vars:     Size  Location     Type
+   609 ;;  x               1    2[COMMON] unsigned char 
+   610 ;; Return value:  Size  Location     Type
+   611 ;;		None               void
+   612 ;; Registers used:
+   613 ;;		wreg, status,2, status,0, pclath, cstack
+   614 ;; Tracked objects:
+   615 ;;		On entry : 0/0
+   616 ;;		On exit  : 0/0
+   617 ;;		Unchanged: 0/0
+   618 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   619 ;;      Params:         0       0       0       0       0
+   620 ;;      Locals:         1       0       0       0       0
+   621 ;;      Temps:          0       0       0       0       0
+   622 ;;      Totals:         1       0       0       0       0
+   623 ;;Total ram usage:        1 bytes
+   624 ;; Hardware stack levels used:    1
+   625 ;; Hardware stack levels required when called:    1
+   626 ;; This function calls:
+   627 ;;		_pulse
+   628 ;; This function is called by:
+   629 ;;		_rx
+   630 ;; This function uses a non-reentrant model
+   631 ;;
+   632                           psect	text134
+   633                           	file	"E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   634                           	line	39
+   635                           	global	__size_of_display
+   636  000D                     	__size_of_display	equ	__end_of_display-_display
+   637                           	
+   638  076F                     _display:	
+   639                           	opt	stack 5
+   640                           ; Regs used in _display: [wreg+status,2+status,0+pclath+cstack]
+   641                           ;display@x stored from wreg
+   642  076F  00F2               	movwf	(display@x)
+   643                           	line	40
+   644                           	
+   645  0770                     l2220:	
+   646                           ;receive.c: 40: RE1=0;
+   647  0770  1283               	bcf	status, 5	;RP0=0, select bank0
+   648  0771  1303               	bcf	status, 6	;RP1=0, select bank0
+   649  0772  1089               	bcf	(73/8),(73)&7
+   650                           	line	41
+   651                           ;receive.c: 41: RE2=1;
+   652  0773  1509               	bsf	(74/8),(74)&7
+   653                           	line	42
+   654                           	
+   655  0774                     l2222:	
+   656                           ;receive.c: 42: PORTD=x;
+   657  0774  0872               	movf	(display@x),w
+   658  0775  0088               	movwf	(8)	;volatile
+   659                           	line	43
+   660                           	
+   661  0776                     l2224:	
+   662                           ;receive.c: 43: pulse();
+   663  0776  120A  118A  277C   	fcall	_pulse
+              120A  118A         
+   664                           	line	45
+   665                           	
+   666  077B                     l1041:	
+   667  077B  0008               	return
+   668                           	opt stack 0
+   669                           GLOBAL	__end_of_display
+   670  077C                     	__end_of_display:
+   671 ;; =============== function _display ends ============
+   672                           
+   673                           	signat	_display,4216
+   674                           	global	_address
+   675                           psect	text135,local,class=CODE,delta=2
+   676                           global __ptext135
+   677  0762                     __ptext135:
+   678                           
+   679 ;; *************** function _address *****************
+   680 ;; Defined at:
+   681 ;;		line 32 in file "E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   682 ;; Parameters:    Size  Location     Type
+   683 ;;  x               1    wreg     unsigned char 
+   684 ;; Auto vars:     Size  Location     Type
+   685 ;;  x               1    2[COMMON] unsigned char 
+   686 ;; Return value:  Size  Location     Type
+   687 ;;		None               void
+   688 ;; Registers used:
+   689 ;;		wreg, status,2, status,0, pclath, cstack
+   690 ;; Tracked objects:
+   691 ;;		On entry : 0/0
+   692 ;;		On exit  : 0/0
+   693 ;;		Unchanged: 0/0
+   694 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   695 ;;      Params:         0       0       0       0       0
+   696 ;;      Locals:         1       0       0       0       0
+   697 ;;      Temps:          0       0       0       0       0
+   698 ;;      Totals:         1       0       0       0       0
+   699 ;;Total ram usage:        1 bytes
+   700 ;; Hardware stack levels used:    1
+   701 ;; Hardware stack levels required when called:    1
+   702 ;; This function calls:
+   703 ;;		_pulse
+   704 ;; This function is called by:
+   705 ;;		_main
+   706 ;; This function uses a non-reentrant model
+   707 ;;
+   708                           psect	text135
+   709                           	file	"E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   710                           	line	32
+   711                           	global	__size_of_address
+   712  000D                     	__size_of_address	equ	__end_of_address-_address
+   713                           	
+   714  0762                     _address:	
+   715                           	opt	stack 6
+   716                           ; Regs used in _address: [wreg+status,2+status,0+pclath+cstack]
+   717                           ;address@x stored from wreg
+   718  0762  00F2               	movwf	(address@x)
+   719                           	line	33
+   720                           	
+   721  0763                     l2214:	
+   722                           ;receive.c: 33: RE1=0;
+   723  0763  1283               	bcf	status, 5	;RP0=0, select bank0
+   724  0764  1303               	bcf	status, 6	;RP1=0, select bank0
+   725  0765  1089               	bcf	(73/8),(73)&7
+   726                           	line	34
+   727                           ;receive.c: 34: RE2=0;
+   728  0766  1109               	bcf	(74/8),(74)&7
+   729                           	line	35
+   730                           	
+   731  0767                     l2216:	
+   732                           ;receive.c: 35: PORTD=x;
+   733  0767  0872               	movf	(address@x),w
+   734  0768  0088               	movwf	(8)	;volatile
+   735                           	line	36
+   736                           	
+   737  0769                     l2218:	
+   738                           ;receive.c: 36: pulse();
+   739  0769  120A  118A  277C   	fcall	_pulse
+              120A  118A         
+   740                           	line	37
+   741                           	
+   742  076E                     l1038:	
+   743  076E  0008               	return
+   744                           	opt stack 0
+   745                           GLOBAL	__end_of_address
+   746  076F                     	__end_of_address:
+   747 ;; =============== function _address ends ============
+   748                           
+   749                           	signat	_address,4216
+   750                           	global	_on
+   751                           psect	text136,local,class=CODE,delta=2
+   752                           global __ptext136
+   753  0756                     __ptext136:
+   754                           
+   755 ;; *************** function _on *****************
+   756 ;; Defined at:
+   757 ;;		line 25 in file "E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   758 ;; Parameters:    Size  Location     Type
+   759 ;;		None
+   760 ;; Auto vars:     Size  Location     Type
+   761 ;;		None
+   762 ;; Return value:  Size  Location     Type
+   763 ;;		None               void
+   764 ;; Registers used:
+   765 ;;		wreg, status,2, status,0, pclath, cstack
+   766 ;; Tracked objects:
+   767 ;;		On entry : 0/0
+   768 ;;		On exit  : 0/0
+   769 ;;		Unchanged: 0/0
+   770 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   771 ;;      Params:         0       0       0       0       0
+   772 ;;      Locals:         0       0       0       0       0
+   773 ;;      Temps:          0       0       0       0       0
+   774 ;;      Totals:         0       0       0       0       0
+   775 ;;Total ram usage:        0 bytes
+   776 ;; Hardware stack levels used:    1
+   777 ;; Hardware stack levels required when called:    1
+   778 ;; This function calls:
+   779 ;;		_pulse
+   780 ;; This function is called by:
+   781 ;;		_main
+   782 ;; This function uses a non-reentrant model
+   783 ;;
+   784                           psect	text136
+   785                           	file	"E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   786                           	line	25
+   787                           	global	__size_of_on
+   788  000C                     	__size_of_on	equ	__end_of_on-_on
+   789                           	
+   790  0756                     _on:	
+   791                           	opt	stack 6
+   792                           ; Regs used in _on: [wreg+status,2+status,0+pclath+cstack]
+   793                           	line	26
+   794                           	
+   795  0756                     l2208:	
+   796                           ;receive.c: 26: RE1=0;
+   797  0756  1283               	bcf	status, 5	;RP0=0, select bank0
+   798  0757  1303               	bcf	status, 6	;RP1=0, select bank0
+   799  0758  1089               	bcf	(73/8),(73)&7
+   800                           	line	27
+   801                           ;receive.c: 27: RE2=0;
+   802  0759  1109               	bcf	(74/8),(74)&7
+   803                           	line	28
+   804                           	
+   805  075A                     l2210:	
+   806                           ;receive.c: 28: PORTD=0x0C;
+   807  075A  300C               	movlw	(0Ch)
+   808  075B  0088               	movwf	(8)	;volatile
+   809                           	line	29
+   810                           	
+   811  075C                     l2212:	
+   812                           ;receive.c: 29: pulse();
+   813  075C  120A  118A  277C   	fcall	_pulse
+              120A  118A         
+   814                           	line	30
+   815                           	
+   816  0761                     l1035:	
+   817  0761  0008               	return
+   818                           	opt stack 0
+   819                           GLOBAL	__end_of_on
+   820  0762                     	__end_of_on:
+   821 ;; =============== function _on ends ============
+   822                           
+   823                           	signat	_on,88
+   824                           	global	_type
+   825                           psect	text137,local,class=CODE,delta=2
+   826                           global __ptext137
+   827  074A                     __ptext137:
+   828                           
+   829 ;; *************** function _type *****************
+   830 ;; Defined at:
+   831 ;;		line 18 in file "E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   832 ;; Parameters:    Size  Location     Type
+   833 ;;		None
+   834 ;; Auto vars:     Size  Location     Type
+   835 ;;		None
+   836 ;; Return value:  Size  Location     Type
+   837 ;;		None               void
+   838 ;; Registers used:
+   839 ;;		wreg, status,2, status,0, pclath, cstack
+   840 ;; Tracked objects:
+   841 ;;		On entry : 0/0
+   842 ;;		On exit  : 0/0
+   843 ;;		Unchanged: 0/0
+   844 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   845 ;;      Params:         0       0       0       0       0
+   846 ;;      Locals:         0       0       0       0       0
+   847 ;;      Temps:          0       0       0       0       0
+   848 ;;      Totals:         0       0       0       0       0
+   849 ;;Total ram usage:        0 bytes
+   850 ;; Hardware stack levels used:    1
+   851 ;; Hardware stack levels required when called:    1
+   852 ;; This function calls:
+   853 ;;		_pulse
+   854 ;; This function is called by:
+   855 ;;		_main
+   856 ;; This function uses a non-reentrant model
+   857 ;;
+   858                           psect	text137
+   859                           	file	"E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   860                           	line	18
+   861                           	global	__size_of_type
+   862  000C                     	__size_of_type	equ	__end_of_type-_type
+   863                           	
+   864  074A                     _type:	
+   865                           	opt	stack 6
+   866                           ; Regs used in _type: [wreg+status,2+status,0+pclath+cstack]
+   867                           	line	19
+   868                           	
+   869  074A                     l2202:	
+   870                           ;receive.c: 19: RE1=0;
+   871  074A  1283               	bcf	status, 5	;RP0=0, select bank0
+   872  074B  1303               	bcf	status, 6	;RP1=0, select bank0
+   873  074C  1089               	bcf	(73/8),(73)&7
+   874                           	line	20
+   875                           ;receive.c: 20: RE2=0;
+   876  074D  1109               	bcf	(74/8),(74)&7
+   877                           	line	21
+   878                           	
+   879  074E                     l2204:	
+   880                           ;receive.c: 21: PORTD=0X38;
+   881  074E  3038               	movlw	(038h)
+   882  074F  0088               	movwf	(8)	;volatile
+   883                           	line	22
+   884                           	
+   885  0750                     l2206:	
+   886                           ;receive.c: 22: pulse();
+   887  0750  120A  118A  277C   	fcall	_pulse
+              120A  118A         
+   888                           	line	23
+   889                           	
+   890  0755                     l1032:	
+   891  0755  0008               	return
+   892                           	opt stack 0
+   893                           GLOBAL	__end_of_type
+   894  0756                     	__end_of_type:
+   895 ;; =============== function _type ends ============
+   896                           
+   897                           	signat	_type,88
+   898                           	global	_pulse
+   899                           psect	text138,local,class=CODE,delta=2
+   900                           global __ptext138
+   901  077C                     __ptext138:
+   902                           
+   903 ;; *************** function _pulse *****************
+   904 ;; Defined at:
+   905 ;;		line 11 in file "E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   906 ;; Parameters:    Size  Location     Type
+   907 ;;		None
+   908 ;; Auto vars:     Size  Location     Type
+   909 ;;		None
+   910 ;; Return value:  Size  Location     Type
+   911 ;;		None               void
+   912 ;; Registers used:
+   913 ;;		wreg
+   914 ;; Tracked objects:
+   915 ;;		On entry : 0/0
+   916 ;;		On exit  : 0/0
+   917 ;;		Unchanged: 0/0
+   918 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   919 ;;      Params:         0       0       0       0       0
+   920 ;;      Locals:         0       0       0       0       0
+   921 ;;      Temps:          2       0       0       0       0
+   922 ;;      Totals:         2       0       0       0       0
+   923 ;;Total ram usage:        2 bytes
+   924 ;; Hardware stack levels used:    1
+   925 ;; This function calls:
+   926 ;;		Nothing
+   927 ;; This function is called by:
+   928 ;;		_type
+   929 ;;		_on
+   930 ;;		_address
+   931 ;;		_display
+   932 ;;		_main
+   933 ;; This function uses a non-reentrant model
+   934 ;;
+   935                           psect	text138
+   936                           	file	"E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+   937                           	line	11
+   938                           	global	__size_of_pulse
+   939  0019                     	__size_of_pulse	equ	__end_of_pulse-_pulse
+   940                           	
+   941  077C                     _pulse:	
+   942                           	opt	stack 5
+   943                           ; Regs used in _pulse: [wreg]
+   944                           	line	12
+   945                           	
+   946  077C                     l2196:	
+   947                           ;receive.c: 12: RE0=1;
+   948  077C  1283               	bcf	status, 5	;RP0=0, select bank0
+   949  077D  1303               	bcf	status, 6	;RP1=0, select bank0
+   950  077E  1409               	bsf	(72/8),(72)&7
+   951                           	line	13
+   952                           	
+   953  077F                     l2198:	
+   954                           ;receive.c: 13: _delay((unsigned long)((10)*(4000000/4000.0)));
+   955                           	opt asmopt_off
+   956  077F  300D               movlw	13
+   957  0780  00F1               movwf	((??_pulse+0)+0+1),f
+   958  0781  30FB               	movlw	251
+   959  0782  00F0               movwf	((??_pulse+0)+0),f
+   960  0783                     u2167:
+   961  0783  0BF0               	decfsz	((??_pulse+0)+0),f
+   962  0784  2F83               	goto	u2167
+   963  0785  0BF1               	decfsz	((??_pulse+0)+0+1),f
+   964  0786  2F83               	goto	u2167
+   965  0787  2F88               	nop2
+   966                           opt asmopt_on
+   967                           
+   968                           	line	14
+   969                           	
+   970  0788                     l2200:	
+   971                           ;receive.c: 14: RE0=0;
+   972  0788  1283               	bcf	status, 5	;RP0=0, select bank0
+   973  0789  1303               	bcf	status, 6	;RP1=0, select bank0
+   974  078A  1009               	bcf	(72/8),(72)&7
+   975                           	line	15
+   976                           ;receive.c: 15: _delay((unsigned long)((10)*(4000000/4000.0)));
+   977                           	opt asmopt_off
+   978  078B  300D               movlw	13
+   979  078C  00F1               movwf	((??_pulse+0)+0+1),f
+   980  078D  30FB               	movlw	251
+   981  078E  00F0               movwf	((??_pulse+0)+0),f
+   982  078F                     u2177:
+   983  078F  0BF0               	decfsz	((??_pulse+0)+0),f
+   984  0790  2F8F               	goto	u2177
+   985  0791  0BF1               	decfsz	((??_pulse+0)+0+1),f
+   986  0792  2F8F               	goto	u2177
+   987  0793  2F94               	nop2
+   988                           opt asmopt_on
+   989                           
+   990                           	line	16
+   991                           	
+   992  0794                     l1029:	
+   993  0794  0008               	return
+   994                           	opt stack 0
+   995                           GLOBAL	__end_of_pulse
+   996  0795                     	__end_of_pulse:
+   997 ;; =============== function _pulse ends ============
+   998                           
+   999                           	signat	_pulse,88
+  1000                           	global	_tx
+  1001                           psect	text139,local,class=CODE,delta=2
+  1002                           global __ptext139
+  1003  073E                     __ptext139:
+  1004                           
+  1005 ;; *************** function _tx *****************
+  1006 ;; Defined at:
+  1007 ;;		line 48 in file "E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+  1008 ;; Parameters:    Size  Location     Type
+  1009 ;;  p               1    wreg     unsigned char 
+  1010 ;; Auto vars:     Size  Location     Type
+  1011 ;;  p               1    0[COMMON] unsigned char 
+  1012 ;; Return value:  Size  Location     Type
+  1013 ;;		None               void
+  1014 ;; Registers used:
+  1015 ;;		wreg
+  1016 ;; Tracked objects:
+  1017 ;;		On entry : 0/0
+  1018 ;;		On exit  : 0/0
+  1019 ;;		Unchanged: 0/0
+  1020 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1021 ;;      Params:         0       0       0       0       0
+  1022 ;;      Locals:         1       0       0       0       0
+  1023 ;;      Temps:          0       0       0       0       0
+  1024 ;;      Totals:         1       0       0       0       0
+  1025 ;;Total ram usage:        1 bytes
+  1026 ;; Hardware stack levels used:    1
+  1027 ;; This function calls:
+  1028 ;;		Nothing
+  1029 ;; This function is called by:
+  1030 ;;		_rx
+  1031 ;; This function uses a non-reentrant model
+  1032 ;;
+  1033                           psect	text139
+  1034                           	file	"E:\KTU\Softwares\MP lab\UART\Receive\receive.c"
+  1035                           	line	48
+  1036                           	global	__size_of_tx
+  1037  000C                     	__size_of_tx	equ	__end_of_tx-_tx
+  1038                           	
+  1039  073E                     _tx:	
+  1040                           	opt	stack 6
+  1041                           ; Regs used in _tx: [wreg]
+  1042                           ;tx@p stored from wreg
+  1043  073E  00F0               	movwf	(tx@p)
+  1044                           	line	49
+  1045                           	
+  1046  073F                     l1428:	
+  1047                           ;receive.c: 49: TXREG=p;
+  1048  073F  0870               	movf	(tx@p),w
+  1049  0740  1283               	bcf	status, 5	;RP0=0, select bank0
+  1050  0741  1303               	bcf	status, 6	;RP1=0, select bank0
+  1051  0742  0099               	movwf	(25)	;volatile
+  1052                           	line	50
+  1053                           ;receive.c: 50: while(TXIF==0);
+  1054  0743  2F44               	goto	l1044
+  1055                           	
+  1056  0744                     l1045:	
+  1057                           	
+  1058  0744                     l1044:	
+  1059  0744  1E0C               	btfss	(100/8),(100)&7
+  1060  0745  2F47               	goto	u11
+  1061  0746  2F48               	goto	u10
+  1062  0747                     u11:
+  1063  0747  2F44               	goto	l1044
+  1064  0748                     u10:
+  1065                           	
+  1066  0748                     l1046:	
+  1067                           	line	51
+  1068                           ;receive.c: 51: TXIF=0;
+  1069  0748  120C               	bcf	(100/8),(100)&7
+  1070                           	line	52
+  1071                           	
+  1072  0749                     l1047:	
+  1073  0749  0008               	return
+  1074                           	opt stack 0
+  1075                           GLOBAL	__end_of_tx
+  1076  074A                     	__end_of_tx:
+  1077 ;; =============== function _tx ends ============
+  1078                           
+  1079                           	signat	_tx,4216
+  1080                           psect	text140,local,class=CODE,delta=2
+  1081                           global __ptext140
+  1082  0000                     __ptext140:
+  1083                           	global	btemp
+  1084  007E                     	btemp set 07Eh
+  1085                           
+  1086                           	DABS	1,126,2	;btemp
+  1087                           	global	wtemp0
+  1088  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Wed Jun 23 13:06:54 2021
+
+                  u10 0748                    u11 0747                    _ch 0074                    _on 0756  
+                  _rx 0795                    _tx 073E                   ?_on 0070                   ?_rx 0070  
+                 ?_tx 0070                   _RE0 0048                   _RE1 0049                   _RE2 004A  
+                 tx@p 0070                  ??_on 0072                  ??_rx 0073                  ??_tx 0070  
+                l1032 0755                  l1041 077B                  l1050 0796                  l1035 0761  
+                l1051 0796                  l1044 0744                  l1052 079D                  l1045 0744  
+                l1029 0794                  l1053 07B0                  l1046 0748                  l1038 076E  
+                l1047 0749                  l2200 0788                  l1056 07F0                  l1057 07FC  
+                l2202 074A                  l2210 075A                  l1058 07FD                  l1059 07FD  
+                l2204 074E                  l2212 075C                  l2220 0770                  l2206 0750  
+                l2214 0763                  l2222 0774                  l2230 07A1                  l2208 0756  
+                l2216 0767                  l2224 0776                  l2232 07A7                  l2240 07C4  
+                l2218 0769                  l2234 07AD                  l2226 0795                  l2250 07D3  
+                l2242 07C7                  l1428 073F                  l2228 079D                  l2260 07E5  
+                l2252 07D4                  l2244 07CA                  l2236 07B1                  l2262 07EA  
+                l2254 07D8                  l2246 07CD                  l2238 07C0                  l2264 07F0  
+                l2256 07DC                  l2248 07D0                  l2266 07F6                  l2258 07E0  
+                l2196 077C                  l2198 077F                  u2150 079C                  u2151 079B  
+                u2167 0783                  u2177 078F                  _RCIF 0065                  _TXIF 0064  
+                _main 07B1                  btemp 007E                  _type 074A                  start 0000  
+               ?_main 0070                 _ANSEL 0188                 ?_type 0070                 _RCREG 001A  
+               _RCSTA 0018       __end_of_address 076F                 _SPBRG 0099                 _PORTA 0005  
+               _PORTB 0006                 _PORTC 0007                 _PORTD 0008                 _PORTE 0009  
+               _TRISA 0085                 _TRISB 0086                 _TRISC 0087                 _TRISD 0088  
+               _TRISE 0089                 _TXREG 0019                 _TXSTA 0098       __end_of_display 077C  
+               _pulse 077C                 status 0003                 wtemp0 007E          __end_of_main 0800  
+        __end_of_type 0756                ??_main 0074                ??_type 0072                ?_pulse 0070  
+              _ANSELH 0189             ??_address 0072             ??_display 0072        __pcstackCOMMON 0070  
+       __end_of_pulse 0795            __end_of_on 0762            __end_of_rx 07B1            __end_of_tx 074A  
+             ??_pulse 0070            __pmaintext 07B1               _address 0762               _display 076F  
+end_of_initialization 073A   start_initialization 0739           __pbssCOMMON 0074             __ptext140 0000  
+           __ptext132 0000             __ptext133 0795             __ptext134 076F             __ptext135 0762  
+           __ptext136 0756             __ptext137 074A             __ptext138 077C             __ptext139 073E  
+            ?_address 0070              ?_display 0070        __size_of_pulse 0019           __size_of_on 000C  
+         __size_of_rx 001C           __size_of_tx 000C      __size_of_address 000D      __size_of_display 000D  
+            address@x 0072         __size_of_main 004F         __size_of_type 000C              display@x 0072  

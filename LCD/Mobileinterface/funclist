@@ -1,0 +1,8 @@
+_delay: CODE, 1173 0 20
+_display: CODE, 1143 0 13
+_main: CODE, 1279 0 769
+_address: CODE, 1130 0 13
+_type: CODE, 1118 0 12
+_on: CODE, 1106 0 12
+_pulse: CODE, 1193 0 25
+Total: 864

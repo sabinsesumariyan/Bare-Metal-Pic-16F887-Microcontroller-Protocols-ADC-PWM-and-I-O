@@ -1,0 +1,11 @@
+___awdiv: CODE, 1732 0 116
+_delay: CODE, 1489 0 20
+_display: CODE, 1476 0 13
+___awmod: CODE, 1630 0 102
+_main: CODE, 1848 0 200
+_address: CODE, 1463 0 13
+_type: CODE, 1451 0 12
+_adc: CODE, 1534 0 96
+_on: CODE, 1439 0 12
+_pulse: CODE, 1509 0 25
+Total: 609

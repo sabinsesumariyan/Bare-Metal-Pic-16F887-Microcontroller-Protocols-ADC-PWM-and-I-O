@@ -1,0 +1,5 @@
+_delay: CODE, 1859 0 20
+_main: CODE, 1959 0 89
+_eeprom_read: CODE, 1879 0 31
+_eeprom_write: CODE, 1910 0 49
+Total: 189

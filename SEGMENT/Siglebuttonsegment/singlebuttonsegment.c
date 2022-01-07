@@ -1,0 +1,62 @@
+#include<pic.h>
+void main()
+{
+	PORTA=0X00;
+	PORTB=0X00;
+	TRISA=0X01;
+	TRISB=0X00;
+	ANSEL=0X00;
+	ANSELH=0X00;
+	int x=0;
+	while(1)
+	{
+		if(RA0==1)
+		{
+			PORTB=0X00;
+			while(RA0==1);
+			x++;
+		}
+		if(x==1)
+		{
+			PORTB=0XBF;
+		}
+		if(x==2)
+		{
+			PORTB=0X06;
+		}
+		if(x==3)
+		{
+			PORTB=0X5B;
+		}
+		if(x==4)
+		{
+			PORTB=0X4F;
+		}
+		if(x==5)
+		{
+			PORTB=0X66;
+		}
+		if(x==6)
+		{
+			PORTB=0X6D;
+		}
+		if(x==7)
+		{
+			PORTB=0X7C;
+		}
+		if(x==8)
+		{
+			PORTB=0X07;
+		}
+		if(x==9)
+		{
+			PORTB=0XFF;
+		}
+		if(x==10)
+		{
+			PORTB=0XE7;
+			x=0;
+		}
+	}
+}	
+	

@@ -1,0 +1,1386 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Wed Apr 07 12:10:14 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_led1
+    43                           	FNCALL	_main,_led2
+    44                           	FNCALL	_main,_led3
+    45                           	FNCALL	_main,_led4
+    46                           	FNCALL	_main,_led5
+    47                           	FNCALL	_main,_led6
+    48                           	FNCALL	_main,_led7
+    49                           	FNCALL	_main,_led8
+    50                           	FNROOT	_main
+    51                           	global	_PORTA
+    52                           psect	text144,local,class=CODE,delta=2
+    53                           global __ptext144
+    54  0000                     __ptext144:
+    55  0005                     _PORTA	set	5
+    56                           	global	_PORTB
+    57  0006                     _PORTB	set	6
+    58                           	global	_TRISA
+    59  0085                     _TRISA	set	133
+    60                           	global	_TRISB
+    61  0086                     _TRISB	set	134
+    62                           	global	_ANSEL
+    63  0188                     _ANSEL	set	392
+    64                           	global	_ANSELH
+    65  0189                     _ANSELH	set	393
+    66                           	file	"oddevenled.as"
+    67                           	line	#
+    68                           psect cinit,class=CODE,delta=2
+    69                           global start_initialization
+    70  06C5                     start_initialization:
+    71                           
+    72                           psect cinit,class=CODE,delta=2
+    73                           global end_of_initialization
+    74                           
+    75                           ;End of C runtime variable initialization code
+    76                           
+    77  06C5                     end_of_initialization:
+    78  06C5  0183               clrf status
+    79  06C6  120A  118A  2FB1   ljmp _main	;jump to C main() function
+    80                           psect	cstackCOMMON,class=COMMON,space=1
+    81                           global __pcstackCOMMON
+    82  0070                     __pcstackCOMMON:
+    83                           	global	?_led1
+    84  0070                     ?_led1:	; 0 bytes @ 0x0
+    85                           	global	??_led1
+    86  0070                     ??_led1:	; 0 bytes @ 0x0
+    87                           	global	?_led2
+    88  0070                     ?_led2:	; 0 bytes @ 0x0
+    89                           	global	??_led2
+    90  0070                     ??_led2:	; 0 bytes @ 0x0
+    91                           	global	?_led3
+    92  0070                     ?_led3:	; 0 bytes @ 0x0
+    93                           	global	??_led3
+    94  0070                     ??_led3:	; 0 bytes @ 0x0
+    95                           	global	?_led4
+    96  0070                     ?_led4:	; 0 bytes @ 0x0
+    97                           	global	??_led4
+    98  0070                     ??_led4:	; 0 bytes @ 0x0
+    99                           	global	?_led5
+   100  0070                     ?_led5:	; 0 bytes @ 0x0
+   101                           	global	??_led5
+   102  0070                     ??_led5:	; 0 bytes @ 0x0
+   103                           	global	?_led6
+   104  0070                     ?_led6:	; 0 bytes @ 0x0
+   105                           	global	??_led6
+   106  0070                     ??_led6:	; 0 bytes @ 0x0
+   107                           	global	?_led7
+   108  0070                     ?_led7:	; 0 bytes @ 0x0
+   109                           	global	??_led7
+   110  0070                     ??_led7:	; 0 bytes @ 0x0
+   111                           	global	?_led8
+   112  0070                     ?_led8:	; 0 bytes @ 0x0
+   113                           	global	??_led8
+   114  0070                     ??_led8:	; 0 bytes @ 0x0
+   115                           	global	?_main
+   116  0070                     ?_main:	; 0 bytes @ 0x0
+   117                           	global	led1@count
+   118  0070                     led1@count:	; 2 bytes @ 0x0
+   119                           	global	led2@count
+   120  0070                     led2@count:	; 2 bytes @ 0x0
+   121                           	global	led3@count
+   122  0070                     led3@count:	; 2 bytes @ 0x0
+   123                           	global	led4@count
+   124  0070                     led4@count:	; 2 bytes @ 0x0
+   125                           	global	led5@count
+   126  0070                     led5@count:	; 2 bytes @ 0x0
+   127                           	global	led6@count
+   128  0070                     led6@count:	; 2 bytes @ 0x0
+   129                           	global	led7@count
+   130  0070                     led7@count:	; 2 bytes @ 0x0
+   131                           	global	led8@count
+   132  0070                     led8@count:	; 2 bytes @ 0x0
+   133  0070                     	ds	2
+   134                           	global	??_main
+   135  0072                     ??_main:	; 0 bytes @ 0x2
+   136                           	global	main@m
+   137  0072                     main@m:	; 2 bytes @ 0x2
+   138  0072                     	ds	2
+   139 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+   140 ;;Auto spaces:   Size  Autos    Used
+   141 ;; COMMON          14      4       4
+   142 ;; BANK0           80      0       0
+   143 ;; BANK1           80      0       0
+   144 ;; BANK3           96      0       0
+   145 ;; BANK2           96      0       0
+   146                           
+   147 ;;
+   148 ;; Pointer list with targets:
+   149                           
+   150                           
+   151                           
+   152 ;;
+   153 ;; Critical Paths under _main in COMMON
+   154 ;;
+   155 ;;   _main->_led1
+   156 ;;   _main->_led2
+   157 ;;   _main->_led3
+   158 ;;   _main->_led4
+   159 ;;   _main->_led5
+   160 ;;   _main->_led6
+   161 ;;   _main->_led7
+   162 ;;   _main->_led8
+   163 ;;
+   164 ;; Critical Paths under _main in BANK0
+   165 ;;
+   166 ;;   None.
+   167 ;;
+   168 ;; Critical Paths under _main in BANK1
+   169 ;;
+   170 ;;   None.
+   171 ;;
+   172 ;; Critical Paths under _main in BANK3
+   173 ;;
+   174 ;;   None.
+   175 ;;
+   176 ;; Critical Paths under _main in BANK2
+   177 ;;
+   178 ;;   None.
+   179                           
+   180 ;;
+   181 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   182 ;;
+   183                           
+   184 ;;
+   185 ;;Call Graph Tables:
+   186 ;;
+   187 ;; ---------------------------------------------------------------------------------
+   188 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   189 ;; ---------------------------------------------------------------------------------
+   190 ;; (0) _main                                                 2     2      0     135
+   191 ;;                                              2 COMMON     2     2      0
+   192 ;;                               _led1
+   193 ;;                               _led2
+   194 ;;                               _led3
+   195 ;;                               _led4
+   196 ;;                               _led5
+   197 ;;                               _led6
+   198 ;;                               _led7
+   199 ;;                               _led8
+   200 ;; ---------------------------------------------------------------------------------
+   201 ;; (1) _led8                                                 2     2      0      15
+   202 ;;                                              0 COMMON     2     2      0
+   203 ;; ---------------------------------------------------------------------------------
+   204 ;; (1) _led7                                                 2     2      0      15
+   205 ;;                                              0 COMMON     2     2      0
+   206 ;; ---------------------------------------------------------------------------------
+   207 ;; (1) _led6                                                 2     2      0      15
+   208 ;;                                              0 COMMON     2     2      0
+   209 ;; ---------------------------------------------------------------------------------
+   210 ;; (1) _led5                                                 2     2      0      15
+   211 ;;                                              0 COMMON     2     2      0
+   212 ;; ---------------------------------------------------------------------------------
+   213 ;; (1) _led4                                                 2     2      0      15
+   214 ;;                                              0 COMMON     2     2      0
+   215 ;; ---------------------------------------------------------------------------------
+   216 ;; (1) _led3                                                 2     2      0      15
+   217 ;;                                              0 COMMON     2     2      0
+   218 ;; ---------------------------------------------------------------------------------
+   219 ;; (1) _led2                                                 2     2      0      15
+   220 ;;                                              0 COMMON     2     2      0
+   221 ;; ---------------------------------------------------------------------------------
+   222 ;; (1) _led1                                                 2     2      0      15
+   223 ;;                                              0 COMMON     2     2      0
+   224 ;; ---------------------------------------------------------------------------------
+   225 ;; Estimated maximum stack depth 1
+   226 ;; ---------------------------------------------------------------------------------
+   227                           
+   228 ;; Call Graph Graphs:
+   229                           
+   230 ;; _main (ROOT)
+   231 ;;   _led1
+   232 ;;   _led2
+   233 ;;   _led3
+   234 ;;   _led4
+   235 ;;   _led5
+   236 ;;   _led6
+   237 ;;   _led7
+   238 ;;   _led8
+   239 ;;
+   240                           
+   241 ;; Address spaces:
+   242                           
+   243 ;;Name               Size   Autos  Total    Cost      Usage
+   244 ;;BITCOMMON            E      0       0       0        0.0%
+   245 ;;EEDATA             100      0       0       0        0.0%
+   246 ;;NULL                 0      0       0       0        0.0%
+   247 ;;CODE                 0      0       0       0        0.0%
+   248 ;;COMMON               E      4       4       1       28.6%
+   249 ;;BITSFR0              0      0       0       1        0.0%
+   250 ;;SFR0                 0      0       0       1        0.0%
+   251 ;;BITSFR1              0      0       0       2        0.0%
+   252 ;;SFR1                 0      0       0       2        0.0%
+   253 ;;STACK                0      0       1       2        0.0%
+   254 ;;ABS                  0      0       0       3        0.0%
+   255 ;;BITBANK0            50      0       0       4        0.0%
+   256 ;;BITSFR3              0      0       0       4        0.0%
+   257 ;;SFR3                 0      0       0       4        0.0%
+   258 ;;BANK0               50      0       0       5        0.0%
+   259 ;;BITSFR2              0      0       0       5        0.0%
+   260 ;;SFR2                 0      0       0       5        0.0%
+   261 ;;BITBANK1            50      0       0       6        0.0%
+   262 ;;BANK1               50      0       0       7        0.0%
+   263 ;;BITBANK3            60      0       0       8        0.0%
+   264 ;;BANK3               60      0       0       9        0.0%
+   265 ;;BITBANK2            60      0       0      10        0.0%
+   266 ;;BANK2               60      0       0      11        0.0%
+   267 ;;DATA                 0      0       0      12        0.0%
+   268                           
+   269                           	global	_main
+   270                           psect	maintext,global,class=CODE,delta=2
+   271                           global __pmaintext
+   272  07B1                     __pmaintext:
+   273                           
+   274 ;; *************** function _main *****************
+   275 ;; Defined at:
+   276 ;;		line 75 in file "E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+   277 ;; Parameters:    Size  Location     Type
+   278 ;;		None
+   279 ;; Auto vars:     Size  Location     Type
+   280 ;;  m               2    2[COMMON] int 
+   281 ;; Return value:  Size  Location     Type
+   282 ;;		None               void
+   283 ;; Registers used:
+   284 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   285 ;; Tracked objects:
+   286 ;;		On entry : 17F/0
+   287 ;;		On exit  : 0/0
+   288 ;;		Unchanged: 0/0
+   289 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   290 ;;      Params:         0       0       0       0       0
+   291 ;;      Locals:         2       0       0       0       0
+   292 ;;      Temps:          0       0       0       0       0
+   293 ;;      Totals:         2       0       0       0       0
+   294 ;;Total ram usage:        2 bytes
+   295 ;; Hardware stack levels required when called:    1
+   296 ;; This function calls:
+   297 ;;		_led1
+   298 ;;		_led2
+   299 ;;		_led3
+   300 ;;		_led4
+   301 ;;		_led5
+   302 ;;		_led6
+   303 ;;		_led7
+   304 ;;		_led8
+   305 ;; This function is called by:
+   306 ;;		Startup code after reset
+   307 ;; This function uses a non-reentrant model
+   308 ;;
+   309                           psect	maintext
+   310                           	file	"E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+   311                           	line	75
+   312                           	global	__size_of_main
+   313  004F                     	__size_of_main	equ	__end_of_main-_main
+   314                           	
+   315  07B1                     _main:	
+   316                           	opt	stack 7
+   317                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   318                           	line	76
+   319                           	
+   320  07B1                     l2260:	
+   321                           ;oddevenled.c: 76: int m=1;
+   322  07B1  3001               	movlw	low(01h)
+   323  07B2  00F2               	movwf	(main@m)
+   324  07B3  3000               	movlw	high(01h)
+   325  07B4  00F3               	movwf	((main@m))+1
+   326                           	line	77
+   327                           	
+   328  07B5                     l2262:	
+   329                           ;oddevenled.c: 77: PORTA=0X00;
+   330  07B5  1283               	bcf	status, 5	;RP0=0, select bank0
+   331  07B6  1303               	bcf	status, 6	;RP1=0, select bank0
+   332  07B7  0185               	clrf	(5)	;volatile
+   333                           	line	78
+   334                           	
+   335  07B8                     l2264:	
+   336                           ;oddevenled.c: 78: PORTB=0X00;
+   337  07B8  0186               	clrf	(6)	;volatile
+   338                           	line	79
+   339                           	
+   340  07B9                     l2266:	
+   341                           ;oddevenled.c: 79: TRISA=0X00;
+   342  07B9  1683               	bsf	status, 5	;RP0=1, select bank1
+   343  07BA  1303               	bcf	status, 6	;RP1=0, select bank1
+   344  07BB  0185               	clrf	(133)^080h	;volatile
+   345                           	line	80
+   346                           	
+   347  07BC                     l2268:	
+   348                           ;oddevenled.c: 80: TRISB=0X00;
+   349  07BC  0186               	clrf	(134)^080h	;volatile
+   350                           	line	81
+   351                           	
+   352  07BD                     l2270:	
+   353                           ;oddevenled.c: 81: ANSEL=0X00;
+   354  07BD  1683               	bsf	status, 5	;RP0=1, select bank3
+   355  07BE  1703               	bsf	status, 6	;RP1=1, select bank3
+   356  07BF  0188               	clrf	(392)^0180h	;volatile
+   357                           	line	82
+   358                           	
+   359  07C0                     l2272:	
+   360                           ;oddevenled.c: 82: ANSELH=0X00;
+   361  07C0  0189               	clrf	(393)^0180h	;volatile
+   362                           	line	83
+   363                           ;oddevenled.c: 83: while(1)
+   364                           	
+   365  07C1                     l1073:	
+   366                           	line	85
+   367                           ;oddevenled.c: 84: {
+   368                           ;oddevenled.c: 85: if(m==1)
+   369  07C1  3001               	movlw	01h
+   370  07C2  0672               	xorwf	(main@m),w
+   371  07C3  0473               	iorwf	(main@m+1),w
+   372  07C4  1D03               	skipz
+   373  07C5  2FC7               	goto	u2221
+   374  07C6  2FC8               	goto	u2220
+   375  07C7                     u2221:
+   376  07C7  2FC1               	goto	l1073
+   377  07C8                     u2220:
+   378                           	line	87
+   379                           	
+   380  07C8                     l2274:	
+   381                           ;oddevenled.c: 86: {
+   382                           ;oddevenled.c: 87: led1();
+   383  07C8  120A  118A  26C9   	fcall	_led1
+              120A  118A         
+   384                           	line	88
+   385                           ;oddevenled.c: 88: led2();
+   386  07CD  120A  118A  26E6   	fcall	_led2
+              120A  118A         
+   387                           	line	89
+   388                           ;oddevenled.c: 89: led3();
+   389  07D2  120A  118A  2703   	fcall	_led3
+              120A  118A         
+   390                           	line	90
+   391                           ;oddevenled.c: 90: led4();
+   392  07D7  120A  118A  2720   	fcall	_led4
+              120A  118A         
+   393                           	line	91
+   394                           	
+   395  07DC                     l2276:	
+   396                           ;oddevenled.c: 91: PORTA=0X00;
+   397  07DC  1283               	bcf	status, 5	;RP0=0, select bank0
+   398  07DD  1303               	bcf	status, 6	;RP1=0, select bank0
+   399  07DE  0185               	clrf	(5)	;volatile
+   400                           	line	92
+   401                           	
+   402  07DF                     l2278:	
+   403                           ;oddevenled.c: 92: led5();
+   404  07DF  120A  118A  273D   	fcall	_led5
+              120A  118A         
+   405                           	line	93
+   406                           	
+   407  07E4                     l2280:	
+   408                           ;oddevenled.c: 93: led6();
+   409  07E4  120A  118A  275A   	fcall	_led6
+              120A  118A         
+   410                           	line	94
+   411                           	
+   412  07E9                     l2282:	
+   413                           ;oddevenled.c: 94: led7();
+   414  07E9  120A  118A  2777   	fcall	_led7
+              120A  118A         
+   415                           	line	95
+   416                           	
+   417  07EE                     l2284:	
+   418                           ;oddevenled.c: 95: led8();
+   419  07EE  120A  118A  2794   	fcall	_led8
+              120A  118A         
+   420                           	line	96
+   421                           	
+   422  07F3                     l2286:	
+   423                           ;oddevenled.c: 96: PORTB=0X00;
+   424  07F3  1283               	bcf	status, 5	;RP0=0, select bank0
+   425  07F4  1303               	bcf	status, 6	;RP1=0, select bank0
+   426  07F5  0186               	clrf	(6)	;volatile
+   427                           	line	97
+   428                           	
+   429  07F6                     l2288:	
+   430                           ;oddevenled.c: 97: m=2;
+   431  07F6  3002               	movlw	low(02h)
+   432  07F7  00F2               	movwf	(main@m)
+   433  07F8  3000               	movlw	high(02h)
+   434  07F9  00F3               	movwf	((main@m))+1
+   435  07FA  2FC1               	goto	l1073
+   436                           	line	98
+   437                           	
+   438  07FB                     l1074:	
+   439  07FB  2FC1               	goto	l1073
+   440                           	line	99
+   441                           	
+   442  07FC                     l1075:	
+   443                           	line	83
+   444  07FC  2FC1               	goto	l1073
+   445                           	
+   446  07FD                     l1076:	
+   447                           	line	100
+   448                           	
+   449  07FD                     l1077:	
+   450                           	global	start
+   451  07FD  120A  118A  2800   	ljmp	start
+   452                           	opt stack 0
+   453                           GLOBAL	__end_of_main
+   454  0800                     	__end_of_main:
+   455 ;; =============== function _main ends ============
+   456                           
+   457                           	signat	_main,88
+   458                           	global	_led8
+   459                           psect	text145,local,class=CODE,delta=2
+   460                           global __ptext145
+   461  0794                     __ptext145:
+   462                           
+   463 ;; *************** function _led8 *****************
+   464 ;; Defined at:
+   465 ;;		line 66 in file "E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+   466 ;; Parameters:    Size  Location     Type
+   467 ;;		None
+   468 ;; Auto vars:     Size  Location     Type
+   469 ;;  count           2    0[COMMON] int 
+   470 ;; Return value:  Size  Location     Type
+   471 ;;		None               void
+   472 ;; Registers used:
+   473 ;;		wreg, status,2, btemp+1
+   474 ;; Tracked objects:
+   475 ;;		On entry : 0/0
+   476 ;;		On exit  : 0/0
+   477 ;;		Unchanged: 0/0
+   478 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   479 ;;      Params:         0       0       0       0       0
+   480 ;;      Locals:         2       0       0       0       0
+   481 ;;      Temps:          0       0       0       0       0
+   482 ;;      Totals:         2       0       0       0       0
+   483 ;;Total ram usage:        2 bytes
+   484 ;; Hardware stack levels used:    1
+   485 ;; This function calls:
+   486 ;;		Nothing
+   487 ;; This function is called by:
+   488 ;;		_main
+   489 ;; This function uses a non-reentrant model
+   490 ;;
+   491                           psect	text145
+   492                           	file	"E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+   493                           	line	66
+   494                           	global	__size_of_led8
+   495  001D                     	__size_of_led8	equ	__end_of_led8-_led8
+   496                           	
+   497  0794                     _led8:	
+   498                           	opt	stack 7
+   499                           ; Regs used in _led8: [wreg+status,2+btemp+1]
+   500                           	line	67
+   501                           	
+   502  0794                     l1488:	
+   503                           ;oddevenled.c: 67: int count=0;
+   504  0794  01F0               	clrf	(led8@count)
+   505  0795  01F1               	clrf	(led8@count+1)
+   506                           	line	68
+   507                           ;oddevenled.c: 68: while(count<31500)
+   508  0796  2FA2               	goto	l1492
+   509                           	
+   510  0797                     l1068:	
+   511                           	line	70
+   512                           	
+   513  0797                     l1490:	
+   514                           ;oddevenled.c: 69: {
+   515                           ;oddevenled.c: 70: count++;
+   516  0797  3001               	movlw	low(01h)
+   517  0798  07F0               	addwf	(led8@count),f
+   518  0799  1803               	skipnc
+   519  079A  0AF1               	incf	(led8@count+1),f
+   520  079B  3000               	movlw	high(01h)
+   521  079C  07F1               	addwf	(led8@count+1),f
+   522                           	line	71
+   523                           ;oddevenled.c: 71: PORTB=0X0F;
+   524  079D  300F               	movlw	(0Fh)
+   525  079E  1283               	bcf	status, 5	;RP0=0, select bank0
+   526  079F  1303               	bcf	status, 6	;RP1=0, select bank0
+   527  07A0  0086               	movwf	(6)	;volatile
+   528  07A1  2FA2               	goto	l1492
+   529                           	line	72
+   530                           	
+   531  07A2                     l1067:	
+   532                           	line	68
+   533                           	
+   534  07A2                     l1492:	
+   535  07A2  0871               	movf	(led8@count+1),w
+   536  07A3  3A80               	xorlw	80h
+   537  07A4  00FF               	movwf	btemp+1
+   538  07A5  30FB               	movlw	(high(07B0Ch))^80h
+   539  07A6  027F               	subwf	btemp+1,w
+   540  07A7  1D03               	skipz
+   541  07A8  2FAB               	goto	u85
+   542  07A9  300C               	movlw	low(07B0Ch)
+   543  07AA  0270               	subwf	(led8@count),w
+   544  07AB                     u85:
+   545                           
+   546  07AB  1C03               	skipc
+   547  07AC  2FAE               	goto	u81
+   548  07AD  2FAF               	goto	u80
+   549  07AE                     u81:
+   550  07AE  2F97               	goto	l1490
+   551  07AF                     u80:
+   552  07AF  2FB0               	goto	l1070
+   553                           	
+   554  07B0                     l1069:	
+   555                           	line	73
+   556                           	
+   557  07B0                     l1070:	
+   558  07B0  0008               	return
+   559                           	opt stack 0
+   560                           GLOBAL	__end_of_led8
+   561  07B1                     	__end_of_led8:
+   562 ;; =============== function _led8 ends ============
+   563                           
+   564                           	signat	_led8,88
+   565                           	global	_led7
+   566                           psect	text146,local,class=CODE,delta=2
+   567                           global __ptext146
+   568  0777                     __ptext146:
+   569                           
+   570 ;; *************** function _led7 *****************
+   571 ;; Defined at:
+   572 ;;		line 57 in file "E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+   573 ;; Parameters:    Size  Location     Type
+   574 ;;		None
+   575 ;; Auto vars:     Size  Location     Type
+   576 ;;  count           2    0[COMMON] int 
+   577 ;; Return value:  Size  Location     Type
+   578 ;;		None               void
+   579 ;; Registers used:
+   580 ;;		wreg, status,2, btemp+1
+   581 ;; Tracked objects:
+   582 ;;		On entry : 0/0
+   583 ;;		On exit  : 0/0
+   584 ;;		Unchanged: 0/0
+   585 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   586 ;;      Params:         0       0       0       0       0
+   587 ;;      Locals:         2       0       0       0       0
+   588 ;;      Temps:          0       0       0       0       0
+   589 ;;      Totals:         2       0       0       0       0
+   590 ;;Total ram usage:        2 bytes
+   591 ;; Hardware stack levels used:    1
+   592 ;; This function calls:
+   593 ;;		Nothing
+   594 ;; This function is called by:
+   595 ;;		_main
+   596 ;; This function uses a non-reentrant model
+   597 ;;
+   598                           psect	text146
+   599                           	file	"E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+   600                           	line	57
+   601                           	global	__size_of_led7
+   602  001D                     	__size_of_led7	equ	__end_of_led7-_led7
+   603                           	
+   604  0777                     _led7:	
+   605                           	opt	stack 7
+   606                           ; Regs used in _led7: [wreg+status,2+btemp+1]
+   607                           	line	58
+   608                           	
+   609  0777                     l1482:	
+   610                           ;oddevenled.c: 58: int count=0;
+   611  0777  01F0               	clrf	(led7@count)
+   612  0778  01F1               	clrf	(led7@count+1)
+   613                           	line	59
+   614                           ;oddevenled.c: 59: while(count<31500)
+   615  0779  2F85               	goto	l1486
+   616                           	
+   617  077A                     l1062:	
+   618                           	line	61
+   619                           	
+   620  077A                     l1484:	
+   621                           ;oddevenled.c: 60: {
+   622                           ;oddevenled.c: 61: count++;
+   623  077A  3001               	movlw	low(01h)
+   624  077B  07F0               	addwf	(led7@count),f
+   625  077C  1803               	skipnc
+   626  077D  0AF1               	incf	(led7@count+1),f
+   627  077E  3000               	movlw	high(01h)
+   628  077F  07F1               	addwf	(led7@count+1),f
+   629                           	line	62
+   630                           ;oddevenled.c: 62: PORTB=0X07;
+   631  0780  3007               	movlw	(07h)
+   632  0781  1283               	bcf	status, 5	;RP0=0, select bank0
+   633  0782  1303               	bcf	status, 6	;RP1=0, select bank0
+   634  0783  0086               	movwf	(6)	;volatile
+   635  0784  2F85               	goto	l1486
+   636                           	line	63
+   637                           	
+   638  0785                     l1061:	
+   639                           	line	59
+   640                           	
+   641  0785                     l1486:	
+   642  0785  0871               	movf	(led7@count+1),w
+   643  0786  3A80               	xorlw	80h
+   644  0787  00FF               	movwf	btemp+1
+   645  0788  30FB               	movlw	(high(07B0Ch))^80h
+   646  0789  027F               	subwf	btemp+1,w
+   647  078A  1D03               	skipz
+   648  078B  2F8E               	goto	u75
+   649  078C  300C               	movlw	low(07B0Ch)
+   650  078D  0270               	subwf	(led7@count),w
+   651  078E                     u75:
+   652                           
+   653  078E  1C03               	skipc
+   654  078F  2F91               	goto	u71
+   655  0790  2F92               	goto	u70
+   656  0791                     u71:
+   657  0791  2F7A               	goto	l1484
+   658  0792                     u70:
+   659  0792  2F93               	goto	l1064
+   660                           	
+   661  0793                     l1063:	
+   662                           	line	64
+   663                           	
+   664  0793                     l1064:	
+   665  0793  0008               	return
+   666                           	opt stack 0
+   667                           GLOBAL	__end_of_led7
+   668  0794                     	__end_of_led7:
+   669 ;; =============== function _led7 ends ============
+   670                           
+   671                           	signat	_led7,88
+   672                           	global	_led6
+   673                           psect	text147,local,class=CODE,delta=2
+   674                           global __ptext147
+   675  075A                     __ptext147:
+   676                           
+   677 ;; *************** function _led6 *****************
+   678 ;; Defined at:
+   679 ;;		line 48 in file "E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+   680 ;; Parameters:    Size  Location     Type
+   681 ;;		None
+   682 ;; Auto vars:     Size  Location     Type
+   683 ;;  count           2    0[COMMON] int 
+   684 ;; Return value:  Size  Location     Type
+   685 ;;		None               void
+   686 ;; Registers used:
+   687 ;;		wreg, status,2, btemp+1
+   688 ;; Tracked objects:
+   689 ;;		On entry : 0/0
+   690 ;;		On exit  : 0/0
+   691 ;;		Unchanged: 0/0
+   692 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   693 ;;      Params:         0       0       0       0       0
+   694 ;;      Locals:         2       0       0       0       0
+   695 ;;      Temps:          0       0       0       0       0
+   696 ;;      Totals:         2       0       0       0       0
+   697 ;;Total ram usage:        2 bytes
+   698 ;; Hardware stack levels used:    1
+   699 ;; This function calls:
+   700 ;;		Nothing
+   701 ;; This function is called by:
+   702 ;;		_main
+   703 ;; This function uses a non-reentrant model
+   704 ;;
+   705                           psect	text147
+   706                           	file	"E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+   707                           	line	48
+   708                           	global	__size_of_led6
+   709  001D                     	__size_of_led6	equ	__end_of_led6-_led6
+   710                           	
+   711  075A                     _led6:	
+   712                           	opt	stack 7
+   713                           ; Regs used in _led6: [wreg+status,2+btemp+1]
+   714                           	line	49
+   715                           	
+   716  075A                     l1476:	
+   717                           ;oddevenled.c: 49: int count=0;
+   718  075A  01F0               	clrf	(led6@count)
+   719  075B  01F1               	clrf	(led6@count+1)
+   720                           	line	50
+   721                           ;oddevenled.c: 50: while(count<31500)
+   722  075C  2F68               	goto	l1480
+   723                           	
+   724  075D                     l1056:	
+   725                           	line	52
+   726                           	
+   727  075D                     l1478:	
+   728                           ;oddevenled.c: 51: {
+   729                           ;oddevenled.c: 52: count++;
+   730  075D  3001               	movlw	low(01h)
+   731  075E  07F0               	addwf	(led6@count),f
+   732  075F  1803               	skipnc
+   733  0760  0AF1               	incf	(led6@count+1),f
+   734  0761  3000               	movlw	high(01h)
+   735  0762  07F1               	addwf	(led6@count+1),f
+   736                           	line	53
+   737                           ;oddevenled.c: 53: PORTB=0X03;
+   738  0763  3003               	movlw	(03h)
+   739  0764  1283               	bcf	status, 5	;RP0=0, select bank0
+   740  0765  1303               	bcf	status, 6	;RP1=0, select bank0
+   741  0766  0086               	movwf	(6)	;volatile
+   742  0767  2F68               	goto	l1480
+   743                           	line	54
+   744                           	
+   745  0768                     l1055:	
+   746                           	line	50
+   747                           	
+   748  0768                     l1480:	
+   749  0768  0871               	movf	(led6@count+1),w
+   750  0769  3A80               	xorlw	80h
+   751  076A  00FF               	movwf	btemp+1
+   752  076B  30FB               	movlw	(high(07B0Ch))^80h
+   753  076C  027F               	subwf	btemp+1,w
+   754  076D  1D03               	skipz
+   755  076E  2F71               	goto	u65
+   756  076F  300C               	movlw	low(07B0Ch)
+   757  0770  0270               	subwf	(led6@count),w
+   758  0771                     u65:
+   759                           
+   760  0771  1C03               	skipc
+   761  0772  2F74               	goto	u61
+   762  0773  2F75               	goto	u60
+   763  0774                     u61:
+   764  0774  2F5D               	goto	l1478
+   765  0775                     u60:
+   766  0775  2F76               	goto	l1058
+   767                           	
+   768  0776                     l1057:	
+   769                           	line	55
+   770                           	
+   771  0776                     l1058:	
+   772  0776  0008               	return
+   773                           	opt stack 0
+   774                           GLOBAL	__end_of_led6
+   775  0777                     	__end_of_led6:
+   776 ;; =============== function _led6 ends ============
+   777                           
+   778                           	signat	_led6,88
+   779                           	global	_led5
+   780                           psect	text148,local,class=CODE,delta=2
+   781                           global __ptext148
+   782  073D                     __ptext148:
+   783                           
+   784 ;; *************** function _led5 *****************
+   785 ;; Defined at:
+   786 ;;		line 39 in file "E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+   787 ;; Parameters:    Size  Location     Type
+   788 ;;		None
+   789 ;; Auto vars:     Size  Location     Type
+   790 ;;  count           2    0[COMMON] int 
+   791 ;; Return value:  Size  Location     Type
+   792 ;;		None               void
+   793 ;; Registers used:
+   794 ;;		wreg, status,2, btemp+1
+   795 ;; Tracked objects:
+   796 ;;		On entry : 0/0
+   797 ;;		On exit  : 0/0
+   798 ;;		Unchanged: 0/0
+   799 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   800 ;;      Params:         0       0       0       0       0
+   801 ;;      Locals:         2       0       0       0       0
+   802 ;;      Temps:          0       0       0       0       0
+   803 ;;      Totals:         2       0       0       0       0
+   804 ;;Total ram usage:        2 bytes
+   805 ;; Hardware stack levels used:    1
+   806 ;; This function calls:
+   807 ;;		Nothing
+   808 ;; This function is called by:
+   809 ;;		_main
+   810 ;; This function uses a non-reentrant model
+   811 ;;
+   812                           psect	text148
+   813                           	file	"E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+   814                           	line	39
+   815                           	global	__size_of_led5
+   816  001D                     	__size_of_led5	equ	__end_of_led5-_led5
+   817                           	
+   818  073D                     _led5:	
+   819                           	opt	stack 7
+   820                           ; Regs used in _led5: [wreg+status,2+btemp+1]
+   821                           	line	40
+   822                           	
+   823  073D                     l1470:	
+   824                           ;oddevenled.c: 40: int count=0;
+   825  073D  01F0               	clrf	(led5@count)
+   826  073E  01F1               	clrf	(led5@count+1)
+   827                           	line	41
+   828                           ;oddevenled.c: 41: while(count<31500)
+   829  073F  2F4B               	goto	l1474
+   830                           	
+   831  0740                     l1050:	
+   832                           	line	43
+   833                           	
+   834  0740                     l1472:	
+   835                           ;oddevenled.c: 42: {
+   836                           ;oddevenled.c: 43: count++;
+   837  0740  3001               	movlw	low(01h)
+   838  0741  07F0               	addwf	(led5@count),f
+   839  0742  1803               	skipnc
+   840  0743  0AF1               	incf	(led5@count+1),f
+   841  0744  3000               	movlw	high(01h)
+   842  0745  07F1               	addwf	(led5@count+1),f
+   843                           	line	44
+   844                           ;oddevenled.c: 44: PORTB=0X01;
+   845  0746  3001               	movlw	(01h)
+   846  0747  1283               	bcf	status, 5	;RP0=0, select bank0
+   847  0748  1303               	bcf	status, 6	;RP1=0, select bank0
+   848  0749  0086               	movwf	(6)	;volatile
+   849  074A  2F4B               	goto	l1474
+   850                           	line	45
+   851                           	
+   852  074B                     l1049:	
+   853                           	line	41
+   854                           	
+   855  074B                     l1474:	
+   856  074B  0871               	movf	(led5@count+1),w
+   857  074C  3A80               	xorlw	80h
+   858  074D  00FF               	movwf	btemp+1
+   859  074E  30FB               	movlw	(high(07B0Ch))^80h
+   860  074F  027F               	subwf	btemp+1,w
+   861  0750  1D03               	skipz
+   862  0751  2F54               	goto	u55
+   863  0752  300C               	movlw	low(07B0Ch)
+   864  0753  0270               	subwf	(led5@count),w
+   865  0754                     u55:
+   866                           
+   867  0754  1C03               	skipc
+   868  0755  2F57               	goto	u51
+   869  0756  2F58               	goto	u50
+   870  0757                     u51:
+   871  0757  2F40               	goto	l1472
+   872  0758                     u50:
+   873  0758  2F59               	goto	l1052
+   874                           	
+   875  0759                     l1051:	
+   876                           	line	46
+   877                           	
+   878  0759                     l1052:	
+   879  0759  0008               	return
+   880                           	opt stack 0
+   881                           GLOBAL	__end_of_led5
+   882  075A                     	__end_of_led5:
+   883 ;; =============== function _led5 ends ============
+   884                           
+   885                           	signat	_led5,88
+   886                           	global	_led4
+   887                           psect	text149,local,class=CODE,delta=2
+   888                           global __ptext149
+   889  0720                     __ptext149:
+   890                           
+   891 ;; *************** function _led4 *****************
+   892 ;; Defined at:
+   893 ;;		line 30 in file "E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+   894 ;; Parameters:    Size  Location     Type
+   895 ;;		None
+   896 ;; Auto vars:     Size  Location     Type
+   897 ;;  count           2    0[COMMON] int 
+   898 ;; Return value:  Size  Location     Type
+   899 ;;		None               void
+   900 ;; Registers used:
+   901 ;;		wreg, status,2, btemp+1
+   902 ;; Tracked objects:
+   903 ;;		On entry : 0/0
+   904 ;;		On exit  : 0/0
+   905 ;;		Unchanged: 0/0
+   906 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   907 ;;      Params:         0       0       0       0       0
+   908 ;;      Locals:         2       0       0       0       0
+   909 ;;      Temps:          0       0       0       0       0
+   910 ;;      Totals:         2       0       0       0       0
+   911 ;;Total ram usage:        2 bytes
+   912 ;; Hardware stack levels used:    1
+   913 ;; This function calls:
+   914 ;;		Nothing
+   915 ;; This function is called by:
+   916 ;;		_main
+   917 ;; This function uses a non-reentrant model
+   918 ;;
+   919                           psect	text149
+   920                           	file	"E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+   921                           	line	30
+   922                           	global	__size_of_led4
+   923  001D                     	__size_of_led4	equ	__end_of_led4-_led4
+   924                           	
+   925  0720                     _led4:	
+   926                           	opt	stack 7
+   927                           ; Regs used in _led4: [wreg+status,2+btemp+1]
+   928                           	line	31
+   929                           	
+   930  0720                     l1464:	
+   931                           ;oddevenled.c: 31: int count=0;
+   932  0720  01F0               	clrf	(led4@count)
+   933  0721  01F1               	clrf	(led4@count+1)
+   934                           	line	32
+   935                           ;oddevenled.c: 32: while(count<31500)
+   936  0722  2F2E               	goto	l1468
+   937                           	
+   938  0723                     l1044:	
+   939                           	line	34
+   940                           	
+   941  0723                     l1466:	
+   942                           ;oddevenled.c: 33: {
+   943                           ;oddevenled.c: 34: count++;
+   944  0723  3001               	movlw	low(01h)
+   945  0724  07F0               	addwf	(led4@count),f
+   946  0725  1803               	skipnc
+   947  0726  0AF1               	incf	(led4@count+1),f
+   948  0727  3000               	movlw	high(01h)
+   949  0728  07F1               	addwf	(led4@count+1),f
+   950                           	line	35
+   951                           ;oddevenled.c: 35: PORTA=0X0F;
+   952  0729  300F               	movlw	(0Fh)
+   953  072A  1283               	bcf	status, 5	;RP0=0, select bank0
+   954  072B  1303               	bcf	status, 6	;RP1=0, select bank0
+   955  072C  0085               	movwf	(5)	;volatile
+   956  072D  2F2E               	goto	l1468
+   957                           	line	36
+   958                           	
+   959  072E                     l1043:	
+   960                           	line	32
+   961                           	
+   962  072E                     l1468:	
+   963  072E  0871               	movf	(led4@count+1),w
+   964  072F  3A80               	xorlw	80h
+   965  0730  00FF               	movwf	btemp+1
+   966  0731  30FB               	movlw	(high(07B0Ch))^80h
+   967  0732  027F               	subwf	btemp+1,w
+   968  0733  1D03               	skipz
+   969  0734  2F37               	goto	u45
+   970  0735  300C               	movlw	low(07B0Ch)
+   971  0736  0270               	subwf	(led4@count),w
+   972  0737                     u45:
+   973                           
+   974  0737  1C03               	skipc
+   975  0738  2F3A               	goto	u41
+   976  0739  2F3B               	goto	u40
+   977  073A                     u41:
+   978  073A  2F23               	goto	l1466
+   979  073B                     u40:
+   980  073B  2F3C               	goto	l1046
+   981                           	
+   982  073C                     l1045:	
+   983                           	line	37
+   984                           	
+   985  073C                     l1046:	
+   986  073C  0008               	return
+   987                           	opt stack 0
+   988                           GLOBAL	__end_of_led4
+   989  073D                     	__end_of_led4:
+   990 ;; =============== function _led4 ends ============
+   991                           
+   992                           	signat	_led4,88
+   993                           	global	_led3
+   994                           psect	text150,local,class=CODE,delta=2
+   995                           global __ptext150
+   996  0703                     __ptext150:
+   997                           
+   998 ;; *************** function _led3 *****************
+   999 ;; Defined at:
+  1000 ;;		line 21 in file "E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+  1001 ;; Parameters:    Size  Location     Type
+  1002 ;;		None
+  1003 ;; Auto vars:     Size  Location     Type
+  1004 ;;  count           2    0[COMMON] int 
+  1005 ;; Return value:  Size  Location     Type
+  1006 ;;		None               void
+  1007 ;; Registers used:
+  1008 ;;		wreg, status,2, btemp+1
+  1009 ;; Tracked objects:
+  1010 ;;		On entry : 0/0
+  1011 ;;		On exit  : 0/0
+  1012 ;;		Unchanged: 0/0
+  1013 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1014 ;;      Params:         0       0       0       0       0
+  1015 ;;      Locals:         2       0       0       0       0
+  1016 ;;      Temps:          0       0       0       0       0
+  1017 ;;      Totals:         2       0       0       0       0
+  1018 ;;Total ram usage:        2 bytes
+  1019 ;; Hardware stack levels used:    1
+  1020 ;; This function calls:
+  1021 ;;		Nothing
+  1022 ;; This function is called by:
+  1023 ;;		_main
+  1024 ;; This function uses a non-reentrant model
+  1025 ;;
+  1026                           psect	text150
+  1027                           	file	"E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+  1028                           	line	21
+  1029                           	global	__size_of_led3
+  1030  001D                     	__size_of_led3	equ	__end_of_led3-_led3
+  1031                           	
+  1032  0703                     _led3:	
+  1033                           	opt	stack 7
+  1034                           ; Regs used in _led3: [wreg+status,2+btemp+1]
+  1035                           	line	22
+  1036                           	
+  1037  0703                     l1458:	
+  1038                           ;oddevenled.c: 22: int count=0;
+  1039  0703  01F0               	clrf	(led3@count)
+  1040  0704  01F1               	clrf	(led3@count+1)
+  1041                           	line	23
+  1042                           ;oddevenled.c: 23: while(count<31500)
+  1043  0705  2F11               	goto	l1462
+  1044                           	
+  1045  0706                     l1038:	
+  1046                           	line	25
+  1047                           	
+  1048  0706                     l1460:	
+  1049                           ;oddevenled.c: 24: {
+  1050                           ;oddevenled.c: 25: count++;
+  1051  0706  3001               	movlw	low(01h)
+  1052  0707  07F0               	addwf	(led3@count),f
+  1053  0708  1803               	skipnc
+  1054  0709  0AF1               	incf	(led3@count+1),f
+  1055  070A  3000               	movlw	high(01h)
+  1056  070B  07F1               	addwf	(led3@count+1),f
+  1057                           	line	26
+  1058                           ;oddevenled.c: 26: PORTA=0X07;
+  1059  070C  3007               	movlw	(07h)
+  1060  070D  1283               	bcf	status, 5	;RP0=0, select bank0
+  1061  070E  1303               	bcf	status, 6	;RP1=0, select bank0
+  1062  070F  0085               	movwf	(5)	;volatile
+  1063  0710  2F11               	goto	l1462
+  1064                           	line	27
+  1065                           	
+  1066  0711                     l1037:	
+  1067                           	line	23
+  1068                           	
+  1069  0711                     l1462:	
+  1070  0711  0871               	movf	(led3@count+1),w
+  1071  0712  3A80               	xorlw	80h
+  1072  0713  00FF               	movwf	btemp+1
+  1073  0714  30FB               	movlw	(high(07B0Ch))^80h
+  1074  0715  027F               	subwf	btemp+1,w
+  1075  0716  1D03               	skipz
+  1076  0717  2F1A               	goto	u35
+  1077  0718  300C               	movlw	low(07B0Ch)
+  1078  0719  0270               	subwf	(led3@count),w
+  1079  071A                     u35:
+  1080                           
+  1081  071A  1C03               	skipc
+  1082  071B  2F1D               	goto	u31
+  1083  071C  2F1E               	goto	u30
+  1084  071D                     u31:
+  1085  071D  2F06               	goto	l1460
+  1086  071E                     u30:
+  1087  071E  2F1F               	goto	l1040
+  1088                           	
+  1089  071F                     l1039:	
+  1090                           	line	28
+  1091                           	
+  1092  071F                     l1040:	
+  1093  071F  0008               	return
+  1094                           	opt stack 0
+  1095                           GLOBAL	__end_of_led3
+  1096  0720                     	__end_of_led3:
+  1097 ;; =============== function _led3 ends ============
+  1098                           
+  1099                           	signat	_led3,88
+  1100                           	global	_led2
+  1101                           psect	text151,local,class=CODE,delta=2
+  1102                           global __ptext151
+  1103  06E6                     __ptext151:
+  1104                           
+  1105 ;; *************** function _led2 *****************
+  1106 ;; Defined at:
+  1107 ;;		line 12 in file "E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+  1108 ;; Parameters:    Size  Location     Type
+  1109 ;;		None
+  1110 ;; Auto vars:     Size  Location     Type
+  1111 ;;  count           2    0[COMMON] int 
+  1112 ;; Return value:  Size  Location     Type
+  1113 ;;		None               void
+  1114 ;; Registers used:
+  1115 ;;		wreg, status,2, btemp+1
+  1116 ;; Tracked objects:
+  1117 ;;		On entry : 0/0
+  1118 ;;		On exit  : 0/0
+  1119 ;;		Unchanged: 0/0
+  1120 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1121 ;;      Params:         0       0       0       0       0
+  1122 ;;      Locals:         2       0       0       0       0
+  1123 ;;      Temps:          0       0       0       0       0
+  1124 ;;      Totals:         2       0       0       0       0
+  1125 ;;Total ram usage:        2 bytes
+  1126 ;; Hardware stack levels used:    1
+  1127 ;; This function calls:
+  1128 ;;		Nothing
+  1129 ;; This function is called by:
+  1130 ;;		_main
+  1131 ;; This function uses a non-reentrant model
+  1132 ;;
+  1133                           psect	text151
+  1134                           	file	"E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+  1135                           	line	12
+  1136                           	global	__size_of_led2
+  1137  001D                     	__size_of_led2	equ	__end_of_led2-_led2
+  1138                           	
+  1139  06E6                     _led2:	
+  1140                           	opt	stack 7
+  1141                           ; Regs used in _led2: [wreg+status,2+btemp+1]
+  1142                           	line	13
+  1143                           	
+  1144  06E6                     l1452:	
+  1145                           ;oddevenled.c: 13: int count =0;
+  1146  06E6  01F0               	clrf	(led2@count)
+  1147  06E7  01F1               	clrf	(led2@count+1)
+  1148                           	line	14
+  1149                           ;oddevenled.c: 14: while(count<31500)
+  1150  06E8  2EF4               	goto	l1456
+  1151                           	
+  1152  06E9                     l1032:	
+  1153                           	line	16
+  1154                           	
+  1155  06E9                     l1454:	
+  1156                           ;oddevenled.c: 15: {
+  1157                           ;oddevenled.c: 16: count++;
+  1158  06E9  3001               	movlw	low(01h)
+  1159  06EA  07F0               	addwf	(led2@count),f
+  1160  06EB  1803               	skipnc
+  1161  06EC  0AF1               	incf	(led2@count+1),f
+  1162  06ED  3000               	movlw	high(01h)
+  1163  06EE  07F1               	addwf	(led2@count+1),f
+  1164                           	line	17
+  1165                           ;oddevenled.c: 17: PORTA=0X03;
+  1166  06EF  3003               	movlw	(03h)
+  1167  06F0  1283               	bcf	status, 5	;RP0=0, select bank0
+  1168  06F1  1303               	bcf	status, 6	;RP1=0, select bank0
+  1169  06F2  0085               	movwf	(5)	;volatile
+  1170  06F3  2EF4               	goto	l1456
+  1171                           	line	18
+  1172                           	
+  1173  06F4                     l1031:	
+  1174                           	line	14
+  1175                           	
+  1176  06F4                     l1456:	
+  1177  06F4  0871               	movf	(led2@count+1),w
+  1178  06F5  3A80               	xorlw	80h
+  1179  06F6  00FF               	movwf	btemp+1
+  1180  06F7  30FB               	movlw	(high(07B0Ch))^80h
+  1181  06F8  027F               	subwf	btemp+1,w
+  1182  06F9  1D03               	skipz
+  1183  06FA  2EFD               	goto	u25
+  1184  06FB  300C               	movlw	low(07B0Ch)
+  1185  06FC  0270               	subwf	(led2@count),w
+  1186  06FD                     u25:
+  1187                           
+  1188  06FD  1C03               	skipc
+  1189  06FE  2F00               	goto	u21
+  1190  06FF  2F01               	goto	u20
+  1191  0700                     u21:
+  1192  0700  2EE9               	goto	l1454
+  1193  0701                     u20:
+  1194  0701  2F02               	goto	l1034
+  1195                           	
+  1196  0702                     l1033:	
+  1197                           	line	19
+  1198                           	
+  1199  0702                     l1034:	
+  1200  0702  0008               	return
+  1201                           	opt stack 0
+  1202                           GLOBAL	__end_of_led2
+  1203  0703                     	__end_of_led2:
+  1204 ;; =============== function _led2 ends ============
+  1205                           
+  1206                           	signat	_led2,88
+  1207                           	global	_led1
+  1208                           psect	text152,local,class=CODE,delta=2
+  1209                           global __ptext152
+  1210  06C9                     __ptext152:
+  1211                           
+  1212 ;; *************** function _led1 *****************
+  1213 ;; Defined at:
+  1214 ;;		line 3 in file "E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+  1215 ;; Parameters:    Size  Location     Type
+  1216 ;;		None
+  1217 ;; Auto vars:     Size  Location     Type
+  1218 ;;  count           2    0[COMMON] int 
+  1219 ;; Return value:  Size  Location     Type
+  1220 ;;		None               void
+  1221 ;; Registers used:
+  1222 ;;		wreg, status,2, btemp+1
+  1223 ;; Tracked objects:
+  1224 ;;		On entry : 0/0
+  1225 ;;		On exit  : 0/0
+  1226 ;;		Unchanged: 0/0
+  1227 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1228 ;;      Params:         0       0       0       0       0
+  1229 ;;      Locals:         2       0       0       0       0
+  1230 ;;      Temps:          0       0       0       0       0
+  1231 ;;      Totals:         2       0       0       0       0
+  1232 ;;Total ram usage:        2 bytes
+  1233 ;; Hardware stack levels used:    1
+  1234 ;; This function calls:
+  1235 ;;		Nothing
+  1236 ;; This function is called by:
+  1237 ;;		_main
+  1238 ;; This function uses a non-reentrant model
+  1239 ;;
+  1240                           psect	text152
+  1241                           	file	"E:\KTU\Softwares\mplab\Oddevenled\oddevenled.c"
+  1242                           	line	3
+  1243                           	global	__size_of_led1
+  1244  001D                     	__size_of_led1	equ	__end_of_led1-_led1
+  1245                           	
+  1246  06C9                     _led1:	
+  1247                           	opt	stack 7
+  1248                           ; Regs used in _led1: [wreg+status,2+btemp+1]
+  1249                           	line	4
+  1250                           	
+  1251  06C9                     l1446:	
+  1252                           ;oddevenled.c: 4: int count=0;
+  1253  06C9  01F0               	clrf	(led1@count)
+  1254  06CA  01F1               	clrf	(led1@count+1)
+  1255                           	line	5
+  1256                           ;oddevenled.c: 5: while(count<31500)
+  1257  06CB  2ED7               	goto	l1450
+  1258                           	
+  1259  06CC                     l1026:	
+  1260                           	line	7
+  1261                           	
+  1262  06CC                     l1448:	
+  1263                           ;oddevenled.c: 6: {
+  1264                           ;oddevenled.c: 7: count++;
+  1265  06CC  3001               	movlw	low(01h)
+  1266  06CD  07F0               	addwf	(led1@count),f
+  1267  06CE  1803               	skipnc
+  1268  06CF  0AF1               	incf	(led1@count+1),f
+  1269  06D0  3000               	movlw	high(01h)
+  1270  06D1  07F1               	addwf	(led1@count+1),f
+  1271                           	line	8
+  1272                           ;oddevenled.c: 8: PORTA=0X01;
+  1273  06D2  3001               	movlw	(01h)
+  1274  06D3  1283               	bcf	status, 5	;RP0=0, select bank0
+  1275  06D4  1303               	bcf	status, 6	;RP1=0, select bank0
+  1276  06D5  0085               	movwf	(5)	;volatile
+  1277  06D6  2ED7               	goto	l1450
+  1278                           	line	9
+  1279                           	
+  1280  06D7                     l1025:	
+  1281                           	line	5
+  1282                           	
+  1283  06D7                     l1450:	
+  1284  06D7  0871               	movf	(led1@count+1),w
+  1285  06D8  3A80               	xorlw	80h
+  1286  06D9  00FF               	movwf	btemp+1
+  1287  06DA  30FB               	movlw	(high(07B0Ch))^80h
+  1288  06DB  027F               	subwf	btemp+1,w
+  1289  06DC  1D03               	skipz
+  1290  06DD  2EE0               	goto	u15
+  1291  06DE  300C               	movlw	low(07B0Ch)
+  1292  06DF  0270               	subwf	(led1@count),w
+  1293  06E0                     u15:
+  1294                           
+  1295  06E0  1C03               	skipc
+  1296  06E1  2EE3               	goto	u11
+  1297  06E2  2EE4               	goto	u10
+  1298  06E3                     u11:
+  1299  06E3  2ECC               	goto	l1448
+  1300  06E4                     u10:
+  1301  06E4  2EE5               	goto	l1028
+  1302                           	
+  1303  06E5                     l1027:	
+  1304                           	line	10
+  1305                           	
+  1306  06E5                     l1028:	
+  1307  06E5  0008               	return
+  1308                           	opt stack 0
+  1309                           GLOBAL	__end_of_led1
+  1310  06E6                     	__end_of_led1:
+  1311 ;; =============== function _led1 ends ============
+  1312                           
+  1313                           	signat	_led1,88
+  1314                           psect	text153,local,class=CODE,delta=2
+  1315                           global __ptext153
+  1316  0000                     __ptext153:
+  1317                           	global	btemp
+  1318  007E                     	btemp set 07Eh
+  1319                           
+  1320                           	DABS	1,126,2	;btemp
+  1321                           	global	wtemp0
+  1322  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Wed Apr 07 12:10:14 2021
+
+                  u10 06E4                    u11 06E3                    u20 0701                    u21 0700  
+                  u30 071E                    u15 06E0                    u31 071D                    u40 073B  
+                  u25 06FD                    u41 073A                    u50 0758                    u35 071A  
+                  u51 0757                    u60 0775                    u45 0737                    u61 0774  
+                  u70 0792                    u55 0754                    u71 0791                    u80 07AF  
+                  u65 0771                    u81 07AE                    u75 078E                    u85 07AB  
+                l1031 06F4                  l1032 06E9                  l1040 071F                  l1025 06D7  
+                l1033 0702                  l1026 06CC                  l1034 0702                  l1050 0740  
+                l1027 06E5                  l1043 072E                  l1051 0759                  l1028 06E5  
+                l1044 0723                  l1052 0759                  l1037 0711                  l1045 073C  
+                l1061 0785                  l1038 0706                  l1046 073C                  l1062 077A  
+                l1070 07B0                  l1039 071F                  l1055 0768                  l1063 0793  
+                l1056 075D                  l1064 0793                  l1049 074B                  l1057 0776  
+                l1073 07C1                  l1058 0776                  l1074 07FB                  l1067 07A2  
+                l1075 07FC                  l1068 0797                  l1076 07FD                  l1069 07B0  
+                l1077 07FD                  l1450 06D7                  l1452 06E6                  l1460 0706  
+                l2260 07B1                  l1446 06C9                  l1454 06E9                  l1462 0711  
+                l1470 073D                  l2270 07BD                  l2262 07B5                  l1448 06CC  
+                l1456 06F4                  l1464 0720                  l1472 0740                  l1480 0768  
+                l2280 07E4                  l2272 07C0                  l2264 07B8                  l1458 0703  
+                l1466 0723                  l1474 074B                  l1482 0777                  l1490 0797  
+                l2282 07E9                  l2274 07C8                  l2266 07B9                  l1468 072E  
+                l1476 075A                  l1484 077A                  l1492 07A2                  l2284 07EE  
+                l2276 07DC                  l2268 07BC                  l1478 075D                  l1486 0785  
+                l2286 07F3                  l2278 07DF                  l1488 0794                  l2288 07F6  
+                u2220 07C8                  u2221 07C7                  _led1 06C9                  _led2 06E6  
+                _led3 0703                  _led4 0720                  _led5 073D                  _led6 075A  
+                _led7 0777                  _led8 0794                  _main 07B1                  btemp 007E  
+                start 0000                 ?_led1 0070                 ?_led2 0070                 ?_led3 0070  
+               ?_led4 0070                 ?_led5 0070                 ?_led6 0070                 ?_led7 0070  
+               ?_led8 0070                 ?_main 0070                 _ANSEL 0188                 _PORTA 0005  
+               _PORTB 0006                 _TRISA 0085                 _TRISB 0086                 main@m 0072  
+               status 0003                 wtemp0 007E          __end_of_led1 06E6          __end_of_led2 0703  
+        __end_of_led3 0720          __end_of_led4 073D          __end_of_led5 075A          __end_of_led6 0777  
+        __end_of_led7 0794          __end_of_led8 07B1          __end_of_main 0800                ??_led1 0070  
+              ??_led2 0070                ??_led3 0070                ??_led4 0070                ??_led5 0070  
+              ??_led6 0070                ??_led7 0070                ??_led8 0070                ??_main 0072  
+              _ANSELH 0189        __pcstackCOMMON 0070            __pmaintext 07B1  end_of_initialization 06C5  
+ start_initialization 06C5             __ptext150 0703             __ptext151 06E6             __ptext152 06C9  
+           __ptext144 0000             __ptext153 0000             __ptext145 0794             __ptext146 0777  
+           __ptext147 075A             __ptext148 073D             __ptext149 0720             led1@count 0070  
+           led2@count 0070             led3@count 0070             led4@count 0070             led5@count 0070  
+           led6@count 0070             led7@count 0070             led8@count 0070         __size_of_led1 001D  
+       __size_of_led2 001D         __size_of_led3 001D         __size_of_led4 001D         __size_of_led5 001D  
+       __size_of_led6 001D         __size_of_led7 001D         __size_of_led8 001D         __size_of_main 004F  

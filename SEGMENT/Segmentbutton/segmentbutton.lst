@@ -1,0 +1,1165 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Tue Apr 27 12:47:07 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNROOT	_main
+    43                           	global	_PORTA
+    44                           psect	maintext,global,class=CODE,delta=2
+    45                           global __pmaintext
+    46  0674                     __pmaintext:
+    47  0005                     _PORTA	set	5
+    48                           	global	_PORTB
+    49  0006                     _PORTB	set	6
+    50                           	global	_PORTC
+    51  0007                     _PORTC	set	7
+    52                           	global	_RA0
+    53  0028                     _RA0	set	40
+    54                           	global	_RA1
+    55  0029                     _RA1	set	41
+    56                           	global	_RA2
+    57  002A                     _RA2	set	42
+    58                           	global	_RA3
+    59  002B                     _RA3	set	43
+    60                           	global	_RA4
+    61  002C                     _RA4	set	44
+    62                           	global	_RA5
+    63  002D                     _RA5	set	45
+    64                           	global	_RA6
+    65  002E                     _RA6	set	46
+    66                           	global	_RA7
+    67  002F                     _RA7	set	47
+    68                           	global	_RC0
+    69  0038                     _RC0	set	56
+    70                           	global	_RC1
+    71  0039                     _RC1	set	57
+    72                           	global	_TRISA
+    73  0085                     _TRISA	set	133
+    74                           	global	_TRISB
+    75  0086                     _TRISB	set	134
+    76                           	global	_TRISC
+    77  0087                     _TRISC	set	135
+    78                           	global	_ANSEL
+    79  0188                     _ANSEL	set	392
+    80                           	global	_ANSELH
+    81  0189                     _ANSELH	set	393
+    82                           	file	"segmentbutton.as"
+    83                           	line	#
+    84                           psect cinit,class=CODE,delta=2
+    85                           global start_initialization
+    86  0670                     start_initialization:
+    87                           
+    88                           psect cinit,class=CODE,delta=2
+    89                           global end_of_initialization
+    90                           
+    91                           ;End of C runtime variable initialization code
+    92                           
+    93  0670                     end_of_initialization:
+    94  0670  0183               clrf status
+    95  0671  120A  118A  2E74   ljmp _main	;jump to C main() function
+    96                           psect	cstackCOMMON,class=COMMON,space=1
+    97                           global __pcstackCOMMON
+    98  0070                     __pcstackCOMMON:
+    99                           	global	?_main
+   100  0070                     ?_main:	; 0 bytes @ 0x0
+   101                           	global	??_main
+   102  0070                     ??_main:	; 0 bytes @ 0x0
+   103                           	global	main@count
+   104  0070                     main@count:	; 2 bytes @ 0x0
+   105  0070                     	ds	2
+   106 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+   107 ;;Auto spaces:   Size  Autos    Used
+   108 ;; COMMON          14      2       2
+   109 ;; BANK0           80      0       0
+   110 ;; BANK1           80      0       0
+   111 ;; BANK3           96      0       0
+   112 ;; BANK2           96      0       0
+   113                           
+   114 ;;
+   115 ;; Pointer list with targets:
+   116                           
+   117                           
+   118                           
+   119 ;;
+   120 ;; Critical Paths under _main in COMMON
+   121 ;;
+   122 ;;   None.
+   123 ;;
+   124 ;; Critical Paths under _main in BANK0
+   125 ;;
+   126 ;;   None.
+   127 ;;
+   128 ;; Critical Paths under _main in BANK1
+   129 ;;
+   130 ;;   None.
+   131 ;;
+   132 ;; Critical Paths under _main in BANK3
+   133 ;;
+   134 ;;   None.
+   135 ;;
+   136 ;; Critical Paths under _main in BANK2
+   137 ;;
+   138 ;;   None.
+   139                           
+   140 ;;
+   141 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   142 ;;
+   143                           
+   144 ;;
+   145 ;;Call Graph Tables:
+   146 ;;
+   147 ;; ---------------------------------------------------------------------------------
+   148 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   149 ;; ---------------------------------------------------------------------------------
+   150 ;; (0) _main                                                 2     2      0     150
+   151 ;;                                              0 COMMON     2     2      0
+   152 ;; ---------------------------------------------------------------------------------
+   153 ;; Estimated maximum stack depth 0
+   154 ;; ---------------------------------------------------------------------------------
+   155                           
+   156 ;; Call Graph Graphs:
+   157                           
+   158 ;; _main (ROOT)
+   159 ;;
+   160                           
+   161 ;; Address spaces:
+   162                           
+   163 ;;Name               Size   Autos  Total    Cost      Usage
+   164 ;;BITCOMMON            E      0       0       0        0.0%
+   165 ;;EEDATA             100      0       0       0        0.0%
+   166 ;;NULL                 0      0       0       0        0.0%
+   167 ;;CODE                 0      0       0       0        0.0%
+   168 ;;COMMON               E      2       2       1       14.3%
+   169 ;;BITSFR0              0      0       0       1        0.0%
+   170 ;;SFR0                 0      0       0       1        0.0%
+   171 ;;BITSFR1              0      0       0       2        0.0%
+   172 ;;SFR1                 0      0       0       2        0.0%
+   173 ;;STACK                0      0       0       2        0.0%
+   174 ;;ABS                  0      0       0       3        0.0%
+   175 ;;BITBANK0            50      0       0       4        0.0%
+   176 ;;BITSFR3              0      0       0       4        0.0%
+   177 ;;SFR3                 0      0       0       4        0.0%
+   178 ;;BANK0               50      0       0       5        0.0%
+   179 ;;BITSFR2              0      0       0       5        0.0%
+   180 ;;SFR2                 0      0       0       5        0.0%
+   181 ;;BITBANK1            50      0       0       6        0.0%
+   182 ;;BANK1               50      0       0       7        0.0%
+   183 ;;BITBANK3            60      0       0       8        0.0%
+   184 ;;BANK3               60      0       0       9        0.0%
+   185 ;;BITBANK2            60      0       0      10        0.0%
+   186 ;;BANK2               60      0       0      11        0.0%
+   187 ;;DATA                 0      0       0      12        0.0%
+   188                           
+   189                           	global	_main
+   190                           psect	maintext
+   191                           
+   192 ;; *************** function _main *****************
+   193 ;; Defined at:
+   194 ;;		line 3 in file "E:\KTU\Softwares\mplab\Segmentbutton\segmentbutton.c"
+   195 ;; Parameters:    Size  Location     Type
+   196 ;;		None
+   197 ;; Auto vars:     Size  Location     Type
+   198 ;;  count           2    0[COMMON] int 
+   199 ;; Return value:  Size  Location     Type
+   200 ;;		None               void
+   201 ;; Registers used:
+   202 ;;		wreg, status,2, btemp+1
+   203 ;; Tracked objects:
+   204 ;;		On entry : 17F/0
+   205 ;;		On exit  : 0/0
+   206 ;;		Unchanged: 0/0
+   207 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   208 ;;      Params:         0       0       0       0       0
+   209 ;;      Locals:         2       0       0       0       0
+   210 ;;      Temps:          0       0       0       0       0
+   211 ;;      Totals:         2       0       0       0       0
+   212 ;;Total ram usage:        2 bytes
+   213 ;; This function calls:
+   214 ;;		Nothing
+   215 ;; This function is called by:
+   216 ;;		Startup code after reset
+   217 ;; This function uses a non-reentrant model
+   218 ;;
+   219                           psect	maintext
+   220                           	file	"E:\KTU\Softwares\mplab\Segmentbutton\segmentbutton.c"
+   221                           	line	3
+   222                           	global	__size_of_main
+   223  018C                     	__size_of_main	equ	__end_of_main-_main
+   224                           	
+   225  0674                     _main:	
+   226                           	opt	stack 8
+   227                           ; Regs used in _main: [wreg+status,2+btemp+1]
+   228                           	line	4
+   229                           	
+   230  0674                     l1437:	
+   231                           ;segmentbutton.c: 4: PORTA=0X00;
+   232  0674  1283               	bcf	status, 5	;RP0=0, select bank0
+   233  0675  1303               	bcf	status, 6	;RP1=0, select bank0
+   234  0676  0185               	clrf	(5)	;volatile
+   235                           	line	5
+   236                           ;segmentbutton.c: 5: PORTB=0X00;
+   237  0677  0186               	clrf	(6)	;volatile
+   238                           	line	6
+   239                           ;segmentbutton.c: 6: PORTC=0X00;
+   240  0678  0187               	clrf	(7)	;volatile
+   241                           	line	7
+   242                           	
+   243  0679                     l1439:	
+   244                           ;segmentbutton.c: 7: TRISA=0XFF;
+   245  0679  30FF               	movlw	(0FFh)
+   246  067A  1683               	bsf	status, 5	;RP0=1, select bank1
+   247  067B  1303               	bcf	status, 6	;RP1=0, select bank1
+   248  067C  0085               	movwf	(133)^080h	;volatile
+   249                           	line	8
+   250                           	
+   251  067D                     l1441:	
+   252                           ;segmentbutton.c: 8: TRISB=0X00;
+   253  067D  0186               	clrf	(134)^080h	;volatile
+   254                           	line	9
+   255                           ;segmentbutton.c: 9: TRISC=0X03;
+   256  067E  3003               	movlw	(03h)
+   257  067F  0087               	movwf	(135)^080h	;volatile
+   258                           	line	10
+   259                           	
+   260  0680                     l1443:	
+   261                           ;segmentbutton.c: 10: ANSEL=0X00;
+   262  0680  1683               	bsf	status, 5	;RP0=1, select bank3
+   263  0681  1703               	bsf	status, 6	;RP1=1, select bank3
+   264  0682  0188               	clrf	(392)^0180h	;volatile
+   265                           	line	11
+   266                           	
+   267  0683                     l1445:	
+   268                           ;segmentbutton.c: 11: ANSELH=0X00;
+   269  0683  0189               	clrf	(393)^0180h	;volatile
+   270                           	line	12
+   271                           	
+   272  0684                     l1447:	
+   273                           ;segmentbutton.c: 12: int count=0;
+   274  0684  01F0               	clrf	(main@count)
+   275  0685  01F1               	clrf	(main@count+1)
+   276  0686  2E87               	goto	l1449
+   277                           	line	13
+   278                           ;segmentbutton.c: 13: while(1)
+   279                           	
+   280  0687                     l1025:	
+   281                           	line	15
+   282                           	
+   283  0687                     l1449:	
+   284                           ;segmentbutton.c: 14: {
+   285                           ;segmentbutton.c: 15: if(RA0==1)
+   286  0687  1283               	bcf	status, 5	;RP0=0, select bank0
+   287  0688  1303               	bcf	status, 6	;RP1=0, select bank0
+   288  0689  1C05               	btfss	(40/8),(40)&7
+   289  068A  2E8C               	goto	u11
+   290  068B  2E8D               	goto	u10
+   291  068C                     u11:
+   292  068C  2EAE               	goto	l1459
+   293  068D                     u10:
+   294  068D  2E9A               	goto	l1455
+   295                           	line	17
+   296                           	
+   297  068E                     l1451:	
+   298                           ;segmentbutton.c: 16: {
+   299                           ;segmentbutton.c: 17: while(count<30000)
+   300  068E  2E9A               	goto	l1455
+   301                           	
+   302  068F                     l1028:	
+   303                           	line	19
+   304                           	
+   305  068F                     l1453:	
+   306                           ;segmentbutton.c: 18: {
+   307                           ;segmentbutton.c: 19: PORTB=0XBF;
+   308  068F  30BF               	movlw	(0BFh)
+   309  0690  1283               	bcf	status, 5	;RP0=0, select bank0
+   310  0691  1303               	bcf	status, 6	;RP1=0, select bank0
+   311  0692  0086               	movwf	(6)	;volatile
+   312                           	line	20
+   313                           ;segmentbutton.c: 20: count++;
+   314  0693  3001               	movlw	low(01h)
+   315  0694  07F0               	addwf	(main@count),f
+   316  0695  1803               	skipnc
+   317  0696  0AF1               	incf	(main@count+1),f
+   318  0697  3000               	movlw	high(01h)
+   319  0698  07F1               	addwf	(main@count+1),f
+   320  0699  2E9A               	goto	l1455
+   321                           	line	21
+   322                           	
+   323  069A                     l1027:	
+   324                           	line	17
+   325                           	
+   326  069A                     l1455:	
+   327  069A  0871               	movf	(main@count+1),w
+   328  069B  3A80               	xorlw	80h
+   329  069C  00FF               	movwf	btemp+1
+   330  069D  30F5               	movlw	(high(07530h))^80h
+   331  069E  027F               	subwf	btemp+1,w
+   332  069F  1D03               	skipz
+   333  06A0  2EA3               	goto	u25
+   334  06A1  3030               	movlw	low(07530h)
+   335  06A2  0270               	subwf	(main@count),w
+   336  06A3                     u25:
+   337                           
+   338  06A3  1C03               	skipc
+   339  06A4  2EA6               	goto	u21
+   340  06A5  2EA7               	goto	u20
+   341  06A6                     u21:
+   342  06A6  2E8F               	goto	l1453
+   343  06A7                     u20:
+   344  06A7  2EA8               	goto	l1457
+   345                           	
+   346  06A8                     l1029:	
+   347                           	line	22
+   348                           	
+   349  06A8                     l1457:	
+   350                           ;segmentbutton.c: 21: }
+   351                           ;segmentbutton.c: 22: count=0;
+   352  06A8  01F0               	clrf	(main@count)
+   353  06A9  01F1               	clrf	(main@count+1)
+   354                           	line	23
+   355                           ;segmentbutton.c: 23: PORTB=0X00;
+   356  06AA  1283               	bcf	status, 5	;RP0=0, select bank0
+   357  06AB  1303               	bcf	status, 6	;RP1=0, select bank0
+   358  06AC  0186               	clrf	(6)	;volatile
+   359  06AD  2EAE               	goto	l1459
+   360                           	line	24
+   361                           	
+   362  06AE                     l1026:	
+   363                           	line	25
+   364                           	
+   365  06AE                     l1459:	
+   366                           ;segmentbutton.c: 24: }
+   367                           ;segmentbutton.c: 25: if(RA1==1)
+   368  06AE  1C85               	btfss	(41/8),(41)&7
+   369  06AF  2EB1               	goto	u31
+   370  06B0  2EB2               	goto	u30
+   371  06B1                     u31:
+   372  06B1  2ED3               	goto	l1469
+   373  06B2                     u30:
+   374  06B2  2EBF               	goto	l1465
+   375                           	line	27
+   376                           	
+   377  06B3                     l1461:	
+   378                           ;segmentbutton.c: 26: {
+   379                           ;segmentbutton.c: 27: while(count<30000)
+   380  06B3  2EBF               	goto	l1465
+   381                           	
+   382  06B4                     l1032:	
+   383                           	line	29
+   384                           	
+   385  06B4                     l1463:	
+   386                           ;segmentbutton.c: 28: {
+   387                           ;segmentbutton.c: 29: PORTB=0X06;
+   388  06B4  3006               	movlw	(06h)
+   389  06B5  1283               	bcf	status, 5	;RP0=0, select bank0
+   390  06B6  1303               	bcf	status, 6	;RP1=0, select bank0
+   391  06B7  0086               	movwf	(6)	;volatile
+   392                           	line	30
+   393                           ;segmentbutton.c: 30: count++;
+   394  06B8  3001               	movlw	low(01h)
+   395  06B9  07F0               	addwf	(main@count),f
+   396  06BA  1803               	skipnc
+   397  06BB  0AF1               	incf	(main@count+1),f
+   398  06BC  3000               	movlw	high(01h)
+   399  06BD  07F1               	addwf	(main@count+1),f
+   400  06BE  2EBF               	goto	l1465
+   401                           	line	31
+   402                           	
+   403  06BF                     l1031:	
+   404                           	line	27
+   405                           	
+   406  06BF                     l1465:	
+   407  06BF  0871               	movf	(main@count+1),w
+   408  06C0  3A80               	xorlw	80h
+   409  06C1  00FF               	movwf	btemp+1
+   410  06C2  30F5               	movlw	(high(07530h))^80h
+   411  06C3  027F               	subwf	btemp+1,w
+   412  06C4  1D03               	skipz
+   413  06C5  2EC8               	goto	u45
+   414  06C6  3030               	movlw	low(07530h)
+   415  06C7  0270               	subwf	(main@count),w
+   416  06C8                     u45:
+   417                           
+   418  06C8  1C03               	skipc
+   419  06C9  2ECB               	goto	u41
+   420  06CA  2ECC               	goto	u40
+   421  06CB                     u41:
+   422  06CB  2EB4               	goto	l1463
+   423  06CC                     u40:
+   424  06CC  2ECD               	goto	l1467
+   425                           	
+   426  06CD                     l1033:	
+   427                           	line	32
+   428                           	
+   429  06CD                     l1467:	
+   430                           ;segmentbutton.c: 31: }
+   431                           ;segmentbutton.c: 32: count=0;
+   432  06CD  01F0               	clrf	(main@count)
+   433  06CE  01F1               	clrf	(main@count+1)
+   434                           	line	33
+   435                           ;segmentbutton.c: 33: PORTB=0X00;
+   436  06CF  1283               	bcf	status, 5	;RP0=0, select bank0
+   437  06D0  1303               	bcf	status, 6	;RP1=0, select bank0
+   438  06D1  0186               	clrf	(6)	;volatile
+   439  06D2  2ED3               	goto	l1469
+   440                           	line	34
+   441                           	
+   442  06D3                     l1030:	
+   443                           	line	35
+   444                           	
+   445  06D3                     l1469:	
+   446                           ;segmentbutton.c: 34: }
+   447                           ;segmentbutton.c: 35: if(RA2==1)
+   448  06D3  1D05               	btfss	(42/8),(42)&7
+   449  06D4  2ED6               	goto	u51
+   450  06D5  2ED7               	goto	u50
+   451  06D6                     u51:
+   452  06D6  2EF8               	goto	l1479
+   453  06D7                     u50:
+   454  06D7  2EE4               	goto	l1475
+   455                           	line	37
+   456                           	
+   457  06D8                     l1471:	
+   458                           ;segmentbutton.c: 36: {
+   459                           ;segmentbutton.c: 37: while(count<30000)
+   460  06D8  2EE4               	goto	l1475
+   461                           	
+   462  06D9                     l1036:	
+   463                           	line	39
+   464                           	
+   465  06D9                     l1473:	
+   466                           ;segmentbutton.c: 38: {
+   467                           ;segmentbutton.c: 39: PORTB=0X5B;
+   468  06D9  305B               	movlw	(05Bh)
+   469  06DA  1283               	bcf	status, 5	;RP0=0, select bank0
+   470  06DB  1303               	bcf	status, 6	;RP1=0, select bank0
+   471  06DC  0086               	movwf	(6)	;volatile
+   472                           	line	40
+   473                           ;segmentbutton.c: 40: count++;
+   474  06DD  3001               	movlw	low(01h)
+   475  06DE  07F0               	addwf	(main@count),f
+   476  06DF  1803               	skipnc
+   477  06E0  0AF1               	incf	(main@count+1),f
+   478  06E1  3000               	movlw	high(01h)
+   479  06E2  07F1               	addwf	(main@count+1),f
+   480  06E3  2EE4               	goto	l1475
+   481                           	line	41
+   482                           	
+   483  06E4                     l1035:	
+   484                           	line	37
+   485                           	
+   486  06E4                     l1475:	
+   487  06E4  0871               	movf	(main@count+1),w
+   488  06E5  3A80               	xorlw	80h
+   489  06E6  00FF               	movwf	btemp+1
+   490  06E7  30F5               	movlw	(high(07530h))^80h
+   491  06E8  027F               	subwf	btemp+1,w
+   492  06E9  1D03               	skipz
+   493  06EA  2EED               	goto	u65
+   494  06EB  3030               	movlw	low(07530h)
+   495  06EC  0270               	subwf	(main@count),w
+   496  06ED                     u65:
+   497                           
+   498  06ED  1C03               	skipc
+   499  06EE  2EF0               	goto	u61
+   500  06EF  2EF1               	goto	u60
+   501  06F0                     u61:
+   502  06F0  2ED9               	goto	l1473
+   503  06F1                     u60:
+   504  06F1  2EF2               	goto	l1477
+   505                           	
+   506  06F2                     l1037:	
+   507                           	line	42
+   508                           	
+   509  06F2                     l1477:	
+   510                           ;segmentbutton.c: 41: }
+   511                           ;segmentbutton.c: 42: count=0;
+   512  06F2  01F0               	clrf	(main@count)
+   513  06F3  01F1               	clrf	(main@count+1)
+   514                           	line	43
+   515                           ;segmentbutton.c: 43: PORTB=0X00;
+   516  06F4  1283               	bcf	status, 5	;RP0=0, select bank0
+   517  06F5  1303               	bcf	status, 6	;RP1=0, select bank0
+   518  06F6  0186               	clrf	(6)	;volatile
+   519  06F7  2EF8               	goto	l1479
+   520                           	line	44
+   521                           	
+   522  06F8                     l1034:	
+   523                           	line	45
+   524                           	
+   525  06F8                     l1479:	
+   526                           ;segmentbutton.c: 44: }
+   527                           ;segmentbutton.c: 45: if(RA3==1)
+   528  06F8  1D85               	btfss	(43/8),(43)&7
+   529  06F9  2EFB               	goto	u71
+   530  06FA  2EFC               	goto	u70
+   531  06FB                     u71:
+   532  06FB  2F1D               	goto	l1489
+   533  06FC                     u70:
+   534  06FC  2F09               	goto	l1485
+   535                           	line	47
+   536                           	
+   537  06FD                     l1481:	
+   538                           ;segmentbutton.c: 46: {
+   539                           ;segmentbutton.c: 47: while(count<30000)
+   540  06FD  2F09               	goto	l1485
+   541                           	
+   542  06FE                     l1040:	
+   543                           	line	49
+   544                           	
+   545  06FE                     l1483:	
+   546                           ;segmentbutton.c: 48: {
+   547                           ;segmentbutton.c: 49: PORTB=0X4F;
+   548  06FE  304F               	movlw	(04Fh)
+   549  06FF  1283               	bcf	status, 5	;RP0=0, select bank0
+   550  0700  1303               	bcf	status, 6	;RP1=0, select bank0
+   551  0701  0086               	movwf	(6)	;volatile
+   552                           	line	50
+   553                           ;segmentbutton.c: 50: count++;
+   554  0702  3001               	movlw	low(01h)
+   555  0703  07F0               	addwf	(main@count),f
+   556  0704  1803               	skipnc
+   557  0705  0AF1               	incf	(main@count+1),f
+   558  0706  3000               	movlw	high(01h)
+   559  0707  07F1               	addwf	(main@count+1),f
+   560  0708  2F09               	goto	l1485
+   561                           	line	51
+   562                           	
+   563  0709                     l1039:	
+   564                           	line	47
+   565                           	
+   566  0709                     l1485:	
+   567  0709  0871               	movf	(main@count+1),w
+   568  070A  3A80               	xorlw	80h
+   569  070B  00FF               	movwf	btemp+1
+   570  070C  30F5               	movlw	(high(07530h))^80h
+   571  070D  027F               	subwf	btemp+1,w
+   572  070E  1D03               	skipz
+   573  070F  2F12               	goto	u85
+   574  0710  3030               	movlw	low(07530h)
+   575  0711  0270               	subwf	(main@count),w
+   576  0712                     u85:
+   577                           
+   578  0712  1C03               	skipc
+   579  0713  2F15               	goto	u81
+   580  0714  2F16               	goto	u80
+   581  0715                     u81:
+   582  0715  2EFE               	goto	l1483
+   583  0716                     u80:
+   584  0716  2F17               	goto	l1487
+   585                           	
+   586  0717                     l1041:	
+   587                           	line	52
+   588                           	
+   589  0717                     l1487:	
+   590                           ;segmentbutton.c: 51: }
+   591                           ;segmentbutton.c: 52: count=0;
+   592  0717  01F0               	clrf	(main@count)
+   593  0718  01F1               	clrf	(main@count+1)
+   594                           	line	53
+   595                           ;segmentbutton.c: 53: PORTB=0X00;
+   596  0719  1283               	bcf	status, 5	;RP0=0, select bank0
+   597  071A  1303               	bcf	status, 6	;RP1=0, select bank0
+   598  071B  0186               	clrf	(6)	;volatile
+   599  071C  2F1D               	goto	l1489
+   600                           	line	54
+   601                           	
+   602  071D                     l1038:	
+   603                           	line	55
+   604                           	
+   605  071D                     l1489:	
+   606                           ;segmentbutton.c: 54: }
+   607                           ;segmentbutton.c: 55: if(RA4==1)
+   608  071D  1E05               	btfss	(44/8),(44)&7
+   609  071E  2F20               	goto	u91
+   610  071F  2F21               	goto	u90
+   611  0720                     u91:
+   612  0720  2F42               	goto	l1499
+   613  0721                     u90:
+   614  0721  2F2E               	goto	l1495
+   615                           	line	57
+   616                           	
+   617  0722                     l1491:	
+   618                           ;segmentbutton.c: 56: {
+   619                           ;segmentbutton.c: 57: while(count<30000)
+   620  0722  2F2E               	goto	l1495
+   621                           	
+   622  0723                     l1044:	
+   623                           	line	59
+   624                           	
+   625  0723                     l1493:	
+   626                           ;segmentbutton.c: 58: {
+   627                           ;segmentbutton.c: 59: PORTB=0X66;
+   628  0723  3066               	movlw	(066h)
+   629  0724  1283               	bcf	status, 5	;RP0=0, select bank0
+   630  0725  1303               	bcf	status, 6	;RP1=0, select bank0
+   631  0726  0086               	movwf	(6)	;volatile
+   632                           	line	60
+   633                           ;segmentbutton.c: 60: count++;
+   634  0727  3001               	movlw	low(01h)
+   635  0728  07F0               	addwf	(main@count),f
+   636  0729  1803               	skipnc
+   637  072A  0AF1               	incf	(main@count+1),f
+   638  072B  3000               	movlw	high(01h)
+   639  072C  07F1               	addwf	(main@count+1),f
+   640  072D  2F2E               	goto	l1495
+   641                           	line	61
+   642                           	
+   643  072E                     l1043:	
+   644                           	line	57
+   645                           	
+   646  072E                     l1495:	
+   647  072E  0871               	movf	(main@count+1),w
+   648  072F  3A80               	xorlw	80h
+   649  0730  00FF               	movwf	btemp+1
+   650  0731  30F5               	movlw	(high(07530h))^80h
+   651  0732  027F               	subwf	btemp+1,w
+   652  0733  1D03               	skipz
+   653  0734  2F37               	goto	u105
+   654  0735  3030               	movlw	low(07530h)
+   655  0736  0270               	subwf	(main@count),w
+   656  0737                     u105:
+   657                           
+   658  0737  1C03               	skipc
+   659  0738  2F3A               	goto	u101
+   660  0739  2F3B               	goto	u100
+   661  073A                     u101:
+   662  073A  2F23               	goto	l1493
+   663  073B                     u100:
+   664  073B  2F3C               	goto	l1497
+   665                           	
+   666  073C                     l1045:	
+   667                           	line	62
+   668                           	
+   669  073C                     l1497:	
+   670                           ;segmentbutton.c: 61: }
+   671                           ;segmentbutton.c: 62: count=0;
+   672  073C  01F0               	clrf	(main@count)
+   673  073D  01F1               	clrf	(main@count+1)
+   674                           	line	63
+   675                           ;segmentbutton.c: 63: PORTB=0X00;
+   676  073E  1283               	bcf	status, 5	;RP0=0, select bank0
+   677  073F  1303               	bcf	status, 6	;RP1=0, select bank0
+   678  0740  0186               	clrf	(6)	;volatile
+   679  0741  2F42               	goto	l1499
+   680                           	line	64
+   681                           	
+   682  0742                     l1042:	
+   683                           	line	65
+   684                           	
+   685  0742                     l1499:	
+   686                           ;segmentbutton.c: 64: }
+   687                           ;segmentbutton.c: 65: if(RA5==1)
+   688  0742  1E85               	btfss	(45/8),(45)&7
+   689  0743  2F45               	goto	u111
+   690  0744  2F46               	goto	u110
+   691  0745                     u111:
+   692  0745  2F67               	goto	l1509
+   693  0746                     u110:
+   694  0746  2F53               	goto	l1505
+   695                           	line	67
+   696                           	
+   697  0747                     l1501:	
+   698                           ;segmentbutton.c: 66: {
+   699                           ;segmentbutton.c: 67: while(count<30000)
+   700  0747  2F53               	goto	l1505
+   701                           	
+   702  0748                     l1048:	
+   703                           	line	69
+   704                           	
+   705  0748                     l1503:	
+   706                           ;segmentbutton.c: 68: {
+   707                           ;segmentbutton.c: 69: PORTB=0X6D;
+   708  0748  306D               	movlw	(06Dh)
+   709  0749  1283               	bcf	status, 5	;RP0=0, select bank0
+   710  074A  1303               	bcf	status, 6	;RP1=0, select bank0
+   711  074B  0086               	movwf	(6)	;volatile
+   712                           	line	70
+   713                           ;segmentbutton.c: 70: count++;
+   714  074C  3001               	movlw	low(01h)
+   715  074D  07F0               	addwf	(main@count),f
+   716  074E  1803               	skipnc
+   717  074F  0AF1               	incf	(main@count+1),f
+   718  0750  3000               	movlw	high(01h)
+   719  0751  07F1               	addwf	(main@count+1),f
+   720  0752  2F53               	goto	l1505
+   721                           	line	71
+   722                           	
+   723  0753                     l1047:	
+   724                           	line	67
+   725                           	
+   726  0753                     l1505:	
+   727  0753  0871               	movf	(main@count+1),w
+   728  0754  3A80               	xorlw	80h
+   729  0755  00FF               	movwf	btemp+1
+   730  0756  30F5               	movlw	(high(07530h))^80h
+   731  0757  027F               	subwf	btemp+1,w
+   732  0758  1D03               	skipz
+   733  0759  2F5C               	goto	u125
+   734  075A  3030               	movlw	low(07530h)
+   735  075B  0270               	subwf	(main@count),w
+   736  075C                     u125:
+   737                           
+   738  075C  1C03               	skipc
+   739  075D  2F5F               	goto	u121
+   740  075E  2F60               	goto	u120
+   741  075F                     u121:
+   742  075F  2F48               	goto	l1503
+   743  0760                     u120:
+   744  0760  2F61               	goto	l1507
+   745                           	
+   746  0761                     l1049:	
+   747                           	line	72
+   748                           	
+   749  0761                     l1507:	
+   750                           ;segmentbutton.c: 71: }
+   751                           ;segmentbutton.c: 72: count=0;
+   752  0761  01F0               	clrf	(main@count)
+   753  0762  01F1               	clrf	(main@count+1)
+   754                           	line	73
+   755                           ;segmentbutton.c: 73: PORTB=0X00;
+   756  0763  1283               	bcf	status, 5	;RP0=0, select bank0
+   757  0764  1303               	bcf	status, 6	;RP1=0, select bank0
+   758  0765  0186               	clrf	(6)	;volatile
+   759  0766  2F67               	goto	l1509
+   760                           	line	74
+   761                           	
+   762  0767                     l1046:	
+   763                           	line	75
+   764                           	
+   765  0767                     l1509:	
+   766                           ;segmentbutton.c: 74: }
+   767                           ;segmentbutton.c: 75: if(RA6==1)
+   768  0767  1F05               	btfss	(46/8),(46)&7
+   769  0768  2F6A               	goto	u131
+   770  0769  2F6B               	goto	u130
+   771  076A                     u131:
+   772  076A  2F8C               	goto	l1519
+   773  076B                     u130:
+   774  076B  2F78               	goto	l1515
+   775                           	line	77
+   776                           	
+   777  076C                     l1511:	
+   778                           ;segmentbutton.c: 76: {
+   779                           ;segmentbutton.c: 77: while(count<30000)
+   780  076C  2F78               	goto	l1515
+   781                           	
+   782  076D                     l1052:	
+   783                           	line	79
+   784                           	
+   785  076D                     l1513:	
+   786                           ;segmentbutton.c: 78: {
+   787                           ;segmentbutton.c: 79: PORTB=0X7C;
+   788  076D  307C               	movlw	(07Ch)
+   789  076E  1283               	bcf	status, 5	;RP0=0, select bank0
+   790  076F  1303               	bcf	status, 6	;RP1=0, select bank0
+   791  0770  0086               	movwf	(6)	;volatile
+   792                           	line	80
+   793                           ;segmentbutton.c: 80: count++;
+   794  0771  3001               	movlw	low(01h)
+   795  0772  07F0               	addwf	(main@count),f
+   796  0773  1803               	skipnc
+   797  0774  0AF1               	incf	(main@count+1),f
+   798  0775  3000               	movlw	high(01h)
+   799  0776  07F1               	addwf	(main@count+1),f
+   800  0777  2F78               	goto	l1515
+   801                           	line	81
+   802                           	
+   803  0778                     l1051:	
+   804                           	line	77
+   805                           	
+   806  0778                     l1515:	
+   807  0778  0871               	movf	(main@count+1),w
+   808  0779  3A80               	xorlw	80h
+   809  077A  00FF               	movwf	btemp+1
+   810  077B  30F5               	movlw	(high(07530h))^80h
+   811  077C  027F               	subwf	btemp+1,w
+   812  077D  1D03               	skipz
+   813  077E  2F81               	goto	u145
+   814  077F  3030               	movlw	low(07530h)
+   815  0780  0270               	subwf	(main@count),w
+   816  0781                     u145:
+   817                           
+   818  0781  1C03               	skipc
+   819  0782  2F84               	goto	u141
+   820  0783  2F85               	goto	u140
+   821  0784                     u141:
+   822  0784  2F6D               	goto	l1513
+   823  0785                     u140:
+   824  0785  2F86               	goto	l1517
+   825                           	
+   826  0786                     l1053:	
+   827                           	line	82
+   828                           	
+   829  0786                     l1517:	
+   830                           ;segmentbutton.c: 81: }
+   831                           ;segmentbutton.c: 82: count=0;
+   832  0786  01F0               	clrf	(main@count)
+   833  0787  01F1               	clrf	(main@count+1)
+   834                           	line	83
+   835                           ;segmentbutton.c: 83: PORTB=0X00;
+   836  0788  1283               	bcf	status, 5	;RP0=0, select bank0
+   837  0789  1303               	bcf	status, 6	;RP1=0, select bank0
+   838  078A  0186               	clrf	(6)	;volatile
+   839  078B  2F8C               	goto	l1519
+   840                           	line	84
+   841                           	
+   842  078C                     l1050:	
+   843                           	line	85
+   844                           	
+   845  078C                     l1519:	
+   846                           ;segmentbutton.c: 84: }
+   847                           ;segmentbutton.c: 85: if(RA7==1)
+   848  078C  1F85               	btfss	(47/8),(47)&7
+   849  078D  2F8F               	goto	u151
+   850  078E  2F90               	goto	u150
+   851  078F                     u151:
+   852  078F  2FB1               	goto	l1529
+   853  0790                     u150:
+   854  0790  2F9D               	goto	l1525
+   855                           	line	87
+   856                           	
+   857  0791                     l1521:	
+   858                           ;segmentbutton.c: 86: {
+   859                           ;segmentbutton.c: 87: while(count<30000)
+   860  0791  2F9D               	goto	l1525
+   861                           	
+   862  0792                     l1056:	
+   863                           	line	89
+   864                           	
+   865  0792                     l1523:	
+   866                           ;segmentbutton.c: 88: {
+   867                           ;segmentbutton.c: 89: PORTB=0X07;
+   868  0792  3007               	movlw	(07h)
+   869  0793  1283               	bcf	status, 5	;RP0=0, select bank0
+   870  0794  1303               	bcf	status, 6	;RP1=0, select bank0
+   871  0795  0086               	movwf	(6)	;volatile
+   872                           	line	90
+   873                           ;segmentbutton.c: 90: count++;
+   874  0796  3001               	movlw	low(01h)
+   875  0797  07F0               	addwf	(main@count),f
+   876  0798  1803               	skipnc
+   877  0799  0AF1               	incf	(main@count+1),f
+   878  079A  3000               	movlw	high(01h)
+   879  079B  07F1               	addwf	(main@count+1),f
+   880  079C  2F9D               	goto	l1525
+   881                           	line	91
+   882                           	
+   883  079D                     l1055:	
+   884                           	line	87
+   885                           	
+   886  079D                     l1525:	
+   887  079D  0871               	movf	(main@count+1),w
+   888  079E  3A80               	xorlw	80h
+   889  079F  00FF               	movwf	btemp+1
+   890  07A0  30F5               	movlw	(high(07530h))^80h
+   891  07A1  027F               	subwf	btemp+1,w
+   892  07A2  1D03               	skipz
+   893  07A3  2FA6               	goto	u165
+   894  07A4  3030               	movlw	low(07530h)
+   895  07A5  0270               	subwf	(main@count),w
+   896  07A6                     u165:
+   897                           
+   898  07A6  1C03               	skipc
+   899  07A7  2FA9               	goto	u161
+   900  07A8  2FAA               	goto	u160
+   901  07A9                     u161:
+   902  07A9  2F92               	goto	l1523
+   903  07AA                     u160:
+   904  07AA  2FAB               	goto	l1527
+   905                           	
+   906  07AB                     l1057:	
+   907                           	line	92
+   908                           	
+   909  07AB                     l1527:	
+   910                           ;segmentbutton.c: 91: }
+   911                           ;segmentbutton.c: 92: count=0;
+   912  07AB  01F0               	clrf	(main@count)
+   913  07AC  01F1               	clrf	(main@count+1)
+   914                           	line	93
+   915                           ;segmentbutton.c: 93: PORTB=0X00;
+   916  07AD  1283               	bcf	status, 5	;RP0=0, select bank0
+   917  07AE  1303               	bcf	status, 6	;RP1=0, select bank0
+   918  07AF  0186               	clrf	(6)	;volatile
+   919  07B0  2FB1               	goto	l1529
+   920                           	line	94
+   921                           	
+   922  07B1                     l1054:	
+   923                           	line	95
+   924                           	
+   925  07B1                     l1529:	
+   926                           ;segmentbutton.c: 94: }
+   927                           ;segmentbutton.c: 95: if(RC0==1)
+   928  07B1  1C07               	btfss	(56/8),(56)&7
+   929  07B2  2FB4               	goto	u171
+   930  07B3  2FB5               	goto	u170
+   931  07B4                     u171:
+   932  07B4  2FD6               	goto	l1539
+   933  07B5                     u170:
+   934  07B5  2FC2               	goto	l1535
+   935                           	line	97
+   936                           	
+   937  07B6                     l1531:	
+   938                           ;segmentbutton.c: 96: {
+   939                           ;segmentbutton.c: 97: while(count<30000)
+   940  07B6  2FC2               	goto	l1535
+   941                           	
+   942  07B7                     l1060:	
+   943                           	line	99
+   944                           	
+   945  07B7                     l1533:	
+   946                           ;segmentbutton.c: 98: {
+   947                           ;segmentbutton.c: 99: PORTB=0XFF;
+   948  07B7  30FF               	movlw	(0FFh)
+   949  07B8  1283               	bcf	status, 5	;RP0=0, select bank0
+   950  07B9  1303               	bcf	status, 6	;RP1=0, select bank0
+   951  07BA  0086               	movwf	(6)	;volatile
+   952                           	line	100
+   953                           ;segmentbutton.c: 100: count++;
+   954  07BB  3001               	movlw	low(01h)
+   955  07BC  07F0               	addwf	(main@count),f
+   956  07BD  1803               	skipnc
+   957  07BE  0AF1               	incf	(main@count+1),f
+   958  07BF  3000               	movlw	high(01h)
+   959  07C0  07F1               	addwf	(main@count+1),f
+   960  07C1  2FC2               	goto	l1535
+   961                           	line	101
+   962                           	
+   963  07C2                     l1059:	
+   964                           	line	97
+   965                           	
+   966  07C2                     l1535:	
+   967  07C2  0871               	movf	(main@count+1),w
+   968  07C3  3A80               	xorlw	80h
+   969  07C4  00FF               	movwf	btemp+1
+   970  07C5  30F5               	movlw	(high(07530h))^80h
+   971  07C6  027F               	subwf	btemp+1,w
+   972  07C7  1D03               	skipz
+   973  07C8  2FCB               	goto	u185
+   974  07C9  3030               	movlw	low(07530h)
+   975  07CA  0270               	subwf	(main@count),w
+   976  07CB                     u185:
+   977                           
+   978  07CB  1C03               	skipc
+   979  07CC  2FCE               	goto	u181
+   980  07CD  2FCF               	goto	u180
+   981  07CE                     u181:
+   982  07CE  2FB7               	goto	l1533
+   983  07CF                     u180:
+   984  07CF  2FD0               	goto	l1537
+   985                           	
+   986  07D0                     l1061:	
+   987                           	line	102
+   988                           	
+   989  07D0                     l1537:	
+   990                           ;segmentbutton.c: 101: }
+   991                           ;segmentbutton.c: 102: count=0;
+   992  07D0  01F0               	clrf	(main@count)
+   993  07D1  01F1               	clrf	(main@count+1)
+   994                           	line	103
+   995                           ;segmentbutton.c: 103: PORTB=0X00;
+   996  07D2  1283               	bcf	status, 5	;RP0=0, select bank0
+   997  07D3  1303               	bcf	status, 6	;RP1=0, select bank0
+   998  07D4  0186               	clrf	(6)	;volatile
+   999  07D5  2FD6               	goto	l1539
+  1000                           	line	104
+  1001                           	
+  1002  07D6                     l1058:	
+  1003                           	line	105
+  1004                           	
+  1005  07D6                     l1539:	
+  1006                           ;segmentbutton.c: 104: }
+  1007                           ;segmentbutton.c: 105: if(RC1==1)
+  1008  07D6  1C87               	btfss	(57/8),(57)&7
+  1009  07D7  2FD9               	goto	u191
+  1010  07D8  2FDA               	goto	u190
+  1011  07D9                     u191:
+  1012  07D9  2E87               	goto	l1449
+  1013  07DA                     u190:
+  1014  07DA  2FE7               	goto	l1545
+  1015                           	line	107
+  1016                           	
+  1017  07DB                     l1541:	
+  1018                           ;segmentbutton.c: 106: {
+  1019                           ;segmentbutton.c: 107: while(count<30000)
+  1020  07DB  2FE7               	goto	l1545
+  1021                           	
+  1022  07DC                     l1064:	
+  1023                           	line	109
+  1024                           	
+  1025  07DC                     l1543:	
+  1026                           ;segmentbutton.c: 108: {
+  1027                           ;segmentbutton.c: 109: PORTB=0XE7;
+  1028  07DC  30E7               	movlw	(0E7h)
+  1029  07DD  1283               	bcf	status, 5	;RP0=0, select bank0
+  1030  07DE  1303               	bcf	status, 6	;RP1=0, select bank0
+  1031  07DF  0086               	movwf	(6)	;volatile
+  1032                           	line	110
+  1033                           ;segmentbutton.c: 110: count++;
+  1034  07E0  3001               	movlw	low(01h)
+  1035  07E1  07F0               	addwf	(main@count),f
+  1036  07E2  1803               	skipnc
+  1037  07E3  0AF1               	incf	(main@count+1),f
+  1038  07E4  3000               	movlw	high(01h)
+  1039  07E5  07F1               	addwf	(main@count+1),f
+  1040  07E6  2FE7               	goto	l1545
+  1041                           	line	111
+  1042                           	
+  1043  07E7                     l1063:	
+  1044                           	line	107
+  1045                           	
+  1046  07E7                     l1545:	
+  1047  07E7  0871               	movf	(main@count+1),w
+  1048  07E8  3A80               	xorlw	80h
+  1049  07E9  00FF               	movwf	btemp+1
+  1050  07EA  30F5               	movlw	(high(07530h))^80h
+  1051  07EB  027F               	subwf	btemp+1,w
+  1052  07EC  1D03               	skipz
+  1053  07ED  2FF0               	goto	u205
+  1054  07EE  3030               	movlw	low(07530h)
+  1055  07EF  0270               	subwf	(main@count),w
+  1056  07F0                     u205:
+  1057                           
+  1058  07F0  1C03               	skipc
+  1059  07F1  2FF3               	goto	u201
+  1060  07F2  2FF4               	goto	u200
+  1061  07F3                     u201:
+  1062  07F3  2FDC               	goto	l1543
+  1063  07F4                     u200:
+  1064  07F4  2FF5               	goto	l1547
+  1065                           	
+  1066  07F5                     l1065:	
+  1067                           	line	112
+  1068                           	
+  1069  07F5                     l1547:	
+  1070                           ;segmentbutton.c: 111: }
+  1071                           ;segmentbutton.c: 112: count=0;
+  1072  07F5  01F0               	clrf	(main@count)
+  1073  07F6  01F1               	clrf	(main@count+1)
+  1074                           	line	113
+  1075                           ;segmentbutton.c: 113: PORTB=0X00;
+  1076  07F7  1283               	bcf	status, 5	;RP0=0, select bank0
+  1077  07F8  1303               	bcf	status, 6	;RP1=0, select bank0
+  1078  07F9  0186               	clrf	(6)	;volatile
+  1079  07FA  2E87               	goto	l1449
+  1080                           	line	114
+  1081                           	
+  1082  07FB                     l1062:	
+  1083  07FB  2E87               	goto	l1449
+  1084                           	line	115
+  1085                           	
+  1086  07FC                     l1066:	
+  1087                           	line	13
+  1088  07FC  2E87               	goto	l1449
+  1089                           	
+  1090  07FD                     l1067:	
+  1091                           	line	116
+  1092                           	
+  1093  07FD                     l1068:	
+  1094                           	global	start
+  1095  07FD  120A  118A  2800   	ljmp	start
+  1096                           	opt stack 0
+  1097                           GLOBAL	__end_of_main
+  1098  0800                     	__end_of_main:
+  1099 ;; =============== function _main ends ============
+  1100                           
+  1101                           	signat	_main,88
+  1102                           psect	maintext
+  1103                           	global	btemp
+  1104  007E                     	btemp set 07Eh
+  1105                           
+  1106                           	DABS	1,126,2	;btemp
+  1107                           	global	wtemp0
+  1108  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Tue Apr 27 12:47:07 2021
+
+                  u10 068D                    u11 068C                    u20 06A7                    u21 06A6  
+                  u30 06B2                    u31 06B1                    u40 06CC                    u41 06CB  
+                  u25 06A3                    u50 06D7                    u51 06D6                    u60 06F1  
+                  u61 06F0                    u45 06C8                    u70 06FC                    u71 06FB  
+                  u80 0716                    u81 0715                    u65 06ED                    u90 0721  
+                  u91 0720                    u85 0712                   _RA0 0028                   _RA1 0029  
+                 _RA2 002A                   _RA3 002B                   _RC0 0038                   _RA4 002C  
+                 _RC1 0039                   _RA5 002D                   _RA6 002E                   _RA7 002F  
+                 u100 073B                   u101 073A                   u110 0746                   u111 0745  
+                 u200 07F4                   u120 0760                   u201 07F3                   u121 075F  
+                 u105 0737                   u130 076B                   u131 076A                   u140 0785  
+                 u205 07F0                   u141 0784                   u125 075C                   u150 0790  
+                 u151 078F                   u160 07AA                   u161 07A9                   u145 0781  
+                 u170 07B5                   u171 07B4                   u180 07CF                   u181 07CE  
+                 u165 07A6                   u190 07DA                   u191 07D9                   u185 07CB  
+                l1030 06D3                  l1031 06BF                  l1040 06FE                  l1032 06B4  
+                l1041 0717                  l1033 06CD                  l1025 0687                  l1050 078C  
+                l1042 0742                  l1034 06F8                  l1026 06AE                  l1051 0778  
+                l1043 072E                  l1035 06E4                  l1027 069A                  l1060 07B7  
+                l1052 076D                  l1044 0723                  l1036 06D9                  l1028 068F  
+                l1061 07D0                  l1053 0786                  l1045 073C                  l1037 06F2  
+                l1029 06A8                  l1062 07FB                  l1054 07B1                  l1046 0767  
+                l1038 071D                  l1063 07E7                  l1055 079D                  l1047 0753  
+                l1039 0709                  l1064 07DC                  l1056 0792                  l1048 0748  
+                l1065 07F5                  l1057 07AB                  l1049 0761                  l1066 07FC  
+                l1058 07D6                  l1067 07FD                  l1059 07C2                  l1068 07FD  
+                l1501 0747                  l1511 076C                  l1503 0748                  l1521 0791  
+                l1513 076D                  l1505 0753                  l1441 067D                  l1531 07B6  
+                l1523 0792                  l1515 0778                  l1507 0761                  l1451 068E  
+                l1443 0680                  l1541 07DB                  l1533 07B7                  l1525 079D  
+                l1517 0786                  l1509 0767                  l1461 06B3                  l1453 068F  
+                l1445 0683                  l1437 0674                  l1543 07DC                  l1535 07C2  
+                l1527 07AB                  l1519 078C                  l1471 06D8                  l1463 06B4  
+                l1455 069A                  l1447 0684                  l1439 0679                  l1545 07E7  
+                l1537 07D0                  l1529 07B1                  l1481 06FD                  l1473 06D9  
+                l1465 06BF                  l1457 06A8                  l1449 0687                  l1547 07F5  
+                l1539 07D6                  l1491 0722                  l1483 06FE                  l1475 06E4  
+                l1467 06CD                  l1459 06AE                  l1493 0723                  l1485 0709  
+                l1477 06F2                  l1469 06D3                  l1495 072E                  l1487 0717  
+                l1479 06F8                  l1497 073C                  l1489 071D                  l1499 0742  
+                _main 0674                  btemp 007E                  start 0000                 ?_main 0070  
+               _ANSEL 0188                 _PORTA 0005                 _PORTB 0006                 _PORTC 0007  
+               _TRISA 0085                 _TRISB 0086                 _TRISC 0087                 status 0003  
+               wtemp0 007E          __end_of_main 0800                ??_main 0070                _ANSELH 0189  
+      __pcstackCOMMON 0070            __pmaintext 0674  end_of_initialization 0670   start_initialization 0670  
+           main@count 0070         __size_of_main 018C  

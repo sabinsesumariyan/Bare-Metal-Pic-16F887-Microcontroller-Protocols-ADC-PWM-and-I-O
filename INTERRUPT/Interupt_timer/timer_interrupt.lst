@@ -1,0 +1,1406 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Sat Aug 07 17:16:18 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_delay
+    43                           	FNROOT	_main
+    44                           	FNCALL	_exe,_timer0
+    45                           	FNCALL	intlevel1,_exe
+    46                           	global	intlevel1
+    47                           	FNROOT	intlevel1
+    48                           	global	main@F1607
+    49                           psect	idataBANK0,class=CODE,space=0,delta=2
+    50                           global __pidataBANK0
+    51  01F5                     __pidataBANK0:
+    52                           	file	"E:\KTU\Softwares\MP lab\INTERRUPT\Interupt_timer\timer_interrupt.c"
+    53                           	line	76
+    54                           
+    55                           ;initializer for main@F1607
+    56  01F5  34BF               	retlw	0BFh
+    57  01F6  3406               	retlw	06h
+    58  01F7  345B               	retlw	05Bh
+    59  01F8  344F               	retlw	04Fh
+    60  01F9  3466               	retlw	066h
+    61  01FA  346D               	retlw	06Dh
+    62  01FB  347C               	retlw	07Ch
+    63  01FC  3407               	retlw	07h
+    64  01FD  34FF               	retlw	0FFh
+    65  01FE  34E7               	retlw	0E7h
+    66                           	global	_count
+    67                           	global	_res
+    68                           	global	_INTCON
+    69  000B                     _INTCON	set	11
+    70                           	global	_PORTA
+    71  0005                     _PORTA	set	5
+    72                           	global	_PORTB
+    73  0006                     _PORTB	set	6
+    74                           	global	_PORTC
+    75  0007                     _PORTC	set	7
+    76                           	global	_PORTD
+    77  0008                     _PORTD	set	8
+    78                           	global	_INTF
+    79  0059                     _INTF	set	89
+    80                           	global	_RC0
+    81  0038                     _RC0	set	56
+    82                           	global	_T0IF
+    83  005A                     _T0IF	set	90
+    84                           	global	_OPTION_REG
+    85  0081                     _OPTION_REG	set	129
+    86                           	global	_TRISA
+    87  0085                     _TRISA	set	133
+    88                           	global	_TRISB
+    89  0086                     _TRISB	set	134
+    90                           	global	_TRISC
+    91  0087                     _TRISC	set	135
+    92                           	global	_TRISD
+    93  0088                     _TRISD	set	136
+    94                           	global	_ANSEL
+    95  0188                     _ANSEL	set	392
+    96                           	global	_ANSELH
+    97  0189                     _ANSELH	set	393
+    98                           	file	"timer_interrupt.as"
+    99                           	line	#
+   100                           psect cinit,class=CODE,delta=2
+   101                           global start_initialization
+   102  01AD                     start_initialization:
+   103                           
+   104                           psect	bssCOMMON,class=COMMON,space=1
+   105                           global __pbssCOMMON
+   106  0076                     __pbssCOMMON:
+   107  0076                     _count:
+   108  0076                            ds      2
+   109                           
+   110  0078                     _res:
+   111  0078                            ds      2
+   112                           
+   113                           psect	dataBANK0,class=BANK0,space=1
+   114                           global __pdataBANK0
+   115  0032                     __pdataBANK0:
+   116                           	file	"E:\KTU\Softwares\MP lab\INTERRUPT\Interupt_timer\timer_interrupt.c"
+   117  0032                     main@F1607:
+   118  0032                            ds      10
+   119                           
+   120                           ; Clear objects allocated to COMMON
+   121                           psect cinit,class=CODE,delta=2
+   122  01AD  01F6               	clrf	((__pbssCOMMON)+0)&07Fh
+   123  01AE  01F7               	clrf	((__pbssCOMMON)+1)&07Fh
+   124  01AF  01F8               	clrf	((__pbssCOMMON)+2)&07Fh
+   125  01B0  01F9               	clrf	((__pbssCOMMON)+3)&07Fh
+   126                           global btemp
+   127                           psect inittext,class=CODE,delta=2
+   128                           global init_fetch,btemp
+   129                           ;	Called with low address in FSR and high address in W
+   130  01D7                     init_fetch:
+   131  01D7  087E               	movf btemp,w
+   132  01D8  008A               	movwf pclath
+   133  01D9  087F               	movf btemp+1,w
+   134  01DA  0082               	movwf pc
+   135                           global init_ram
+   136                           ;Called with:
+   137                           ;	high address of idata address in btemp 
+   138                           ;	low address of idata address in btemp+1 
+   139                           ;	low address of data in FSR
+   140                           ;	high address + 1 of data in btemp-1
+   141  01DB                     init_ram:
+   142  01DB  21D7  120A  118A   	fcall init_fetch
+   143  01DE  0080               	movwf indf,f
+   144  01DF  0A84               	incf fsr,f
+   145  01E0  0804               	movf fsr,w
+   146  01E1  067D               	xorwf btemp-1,w
+   147  01E2  1903               	btfsc status,2
+   148  01E3  3400               	retlw 0
+   149  01E4  0AFF               	incf btemp+1,f
+   150  01E5  1903               	btfsc status,2
+   151  01E6  0AFE               	incf btemp,f
+   152  01E7  29DB               	goto init_ram
+   153                           ; Initialize objects allocated to BANK0
+   154                           psect cinit,class=CODE,delta=2
+   155                           global init_ram, __pidataBANK0
+   156  01B1  1383               	bcf	status, 7	;select IRP bank0
+   157  01B2  303C               	movlw low(__pdataBANK0+10)
+   158  01B3  00FD               	movwf btemp-1,f
+   159  01B4  3001               	movlw high(__pidataBANK0)
+   160  01B5  00FE               	movwf btemp,f
+   161  01B6  30F5               	movlw low(__pidataBANK0)
+   162  01B7  00FF               	movwf btemp+1,f
+   163  01B8  3032               	movlw low(__pdataBANK0)
+   164  01B9  0084               	movwf fsr,f
+   165  01BA  120A  118A  21DB   	fcall init_ram
+              120A  118A         
+   166                           psect cinit,class=CODE,delta=2
+   167                           global end_of_initialization
+   168                           
+   169                           ;End of C runtime variable initialization code
+   170                           
+   171  01BF                     end_of_initialization:
+   172  01BF  0183               clrf status
+   173  01C0  120A  118A  2955   ljmp _main	;jump to C main() function
+   174                           psect	cstackCOMMON,class=COMMON,space=1
+   175                           global __pcstackCOMMON
+   176  0070                     __pcstackCOMMON:
+   177                           	global	?_timer0
+   178  0070                     ?_timer0:	; 0 bytes @ 0x0
+   179                           	global	??_timer0
+   180  0070                     ??_timer0:	; 0 bytes @ 0x0
+   181                           	global	?_exe
+   182  0070                     ?_exe:	; 0 bytes @ 0x0
+   183                           	global	??_exe
+   184  0070                     ??_exe:	; 0 bytes @ 0x0
+   185                           	global	?_main
+   186  0070                     ?_main:	; 0 bytes @ 0x0
+   187  0070                     	ds	4
+   188                           	global	?_delay
+   189  0074                     ?_delay:	; 0 bytes @ 0x4
+   190                           	global	delay@val
+   191  0074                     delay@val:	; 2 bytes @ 0x4
+   192  0074                     	ds	2
+   193                           	global	??_delay
+   194  0076                     ??_delay:	; 0 bytes @ 0x6
+   195                           psect	cstackBANK0,class=BANK0,space=1
+   196                           global __pcstackBANK0
+   197  0020                     __pcstackBANK0:
+   198                           	global	??_main
+   199  0020                     ??_main:	; 0 bytes @ 0x0
+   200  0020                     	ds	4
+   201                           	global	main@arr
+   202  0024                     main@arr:	; 10 bytes @ 0x4
+   203  0024                     	ds	10
+   204                           	global	main@count
+   205  002E                     main@count:	; 4 bytes @ 0xE
+   206  002E                     	ds	4
+   207 ;;Data sizes: Strings 0, constant 0, data 10, bss 4, persistent 0 stack 0
+   208 ;;Auto spaces:   Size  Autos    Used
+   209 ;; COMMON          14      6      10
+   210 ;; BANK0           80     18      28
+   211 ;; BANK1           80      0       0
+   212 ;; BANK3           96      0       0
+   213 ;; BANK2           96      0       0
+   214                           
+   215 ;;
+   216 ;; Pointer list with targets:
+   217                           
+   218                           
+   219                           
+   220 ;;
+   221 ;; Critical Paths under _main in COMMON
+   222 ;;
+   223 ;;   _main->_delay
+   224 ;;
+   225 ;; Critical Paths under _exe in COMMON
+   226 ;;
+   227 ;;   None.
+   228 ;;
+   229 ;; Critical Paths under _main in BANK0
+   230 ;;
+   231 ;;   None.
+   232 ;;
+   233 ;; Critical Paths under _exe in BANK0
+   234 ;;
+   235 ;;   None.
+   236 ;;
+   237 ;; Critical Paths under _main in BANK1
+   238 ;;
+   239 ;;   None.
+   240 ;;
+   241 ;; Critical Paths under _exe in BANK1
+   242 ;;
+   243 ;;   None.
+   244 ;;
+   245 ;; Critical Paths under _main in BANK3
+   246 ;;
+   247 ;;   None.
+   248 ;;
+   249 ;; Critical Paths under _exe in BANK3
+   250 ;;
+   251 ;;   None.
+   252 ;;
+   253 ;; Critical Paths under _main in BANK2
+   254 ;;
+   255 ;;   None.
+   256 ;;
+   257 ;; Critical Paths under _exe in BANK2
+   258 ;;
+   259 ;;   None.
+   260                           
+   261 ;;
+   262 ;;Main: autosize = 0, tempsize = 4, incstack = 0, save=0
+   263 ;;
+   264                           
+   265 ;;
+   266 ;;Call Graph Tables:
+   267 ;;
+   268 ;; ---------------------------------------------------------------------------------
+   269 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   270 ;; ---------------------------------------------------------------------------------
+   271 ;; (0) _main                                                20    20      0      28
+   272 ;;                                              0 BANK0     18    18      0
+   273 ;;                              _delay
+   274 ;; ---------------------------------------------------------------------------------
+   275 ;; (1) _delay                                                2     0      2      22
+   276 ;;                                              4 COMMON     2     0      2
+   277 ;; ---------------------------------------------------------------------------------
+   278 ;; Estimated maximum stack depth 1
+   279 ;; ---------------------------------------------------------------------------------
+   280 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   281 ;; ---------------------------------------------------------------------------------
+   282 ;; (2) _exe                                                  4     4      0       0
+   283 ;;                                              0 COMMON     4     4      0
+   284 ;;                             _timer0
+   285 ;; ---------------------------------------------------------------------------------
+   286 ;; (3) _timer0                                               0     0      0       0
+   287 ;; ---------------------------------------------------------------------------------
+   288 ;; Estimated maximum stack depth 3
+   289 ;; ---------------------------------------------------------------------------------
+   290                           
+   291 ;; Call Graph Graphs:
+   292                           
+   293 ;; _main (ROOT)
+   294 ;;   _delay
+   295 ;;
+   296 ;; _exe (ROOT)
+   297 ;;   _timer0
+   298 ;;
+   299                           
+   300 ;; Address spaces:
+   301                           
+   302 ;;Name               Size   Autos  Total    Cost      Usage
+   303 ;;BANK3               60      0       0       9        0.0%
+   304 ;;BITBANK3            60      0       0       8        0.0%
+   305 ;;SFR3                 0      0       0       4        0.0%
+   306 ;;BITSFR3              0      0       0       4        0.0%
+   307 ;;BANK2               60      0       0      11        0.0%
+   308 ;;BITBANK2            60      0       0      10        0.0%
+   309 ;;SFR2                 0      0       0       5        0.0%
+   310 ;;BITSFR2              0      0       0       5        0.0%
+   311 ;;SFR1                 0      0       0       2        0.0%
+   312 ;;BITSFR1              0      0       0       2        0.0%
+   313 ;;BANK1               50      0       0       7        0.0%
+   314 ;;BITBANK1            50      0       0       6        0.0%
+   315 ;;CODE                 0      0       0       0        0.0%
+   316 ;;DATA                 0      0      2B      12        0.0%
+   317 ;;ABS                  0      0      26       3        0.0%
+   318 ;;NULL                 0      0       0       0        0.0%
+   319 ;;STACK                0      0       5       2        0.0%
+   320 ;;BANK0               50     12      1C       5       35.0%
+   321 ;;BITBANK0            50      0       0       4        0.0%
+   322 ;;SFR0                 0      0       0       1        0.0%
+   323 ;;BITSFR0              0      0       0       1        0.0%
+   324 ;;COMMON               E      6       A       1       71.4%
+   325 ;;BITCOMMON            E      0       0       0        0.0%
+   326 ;;EEDATA             100      0       0       0        0.0%
+   327                           
+   328                           	global	_main
+   329                           psect	maintext,global,class=CODE,delta=2
+   330                           global __pmaintext
+   331  0155                     __pmaintext:
+   332                           
+   333 ;; *************** function _main *****************
+   334 ;; Defined at:
+   335 ;;		line 62 in file "E:\KTU\Softwares\MP lab\INTERRUPT\Interupt_timer\timer_interrupt.c"
+   336 ;; Parameters:    Size  Location     Type
+   337 ;;		None
+   338 ;; Auto vars:     Size  Location     Type
+   339 ;;  arr            10    4[BANK0 ] unsigned char [10]
+   340 ;;  count           4   14[BANK0 ] long 
+   341 ;;  i               2    0        int 
+   342 ;; Return value:  Size  Location     Type
+   343 ;;		None               void
+   344 ;; Registers used:
+   345 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   346 ;; Tracked objects:
+   347 ;;		On entry : 17F/0
+   348 ;;		On exit  : 0/0
+   349 ;;		Unchanged: 0/0
+   350 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   351 ;;      Params:         0       0       0       0       0
+   352 ;;      Locals:         0      14       0       0       0
+   353 ;;      Temps:          0       4       0       0       0
+   354 ;;      Totals:         0      18       0       0       0
+   355 ;;Total ram usage:       18 bytes
+   356 ;; Hardware stack levels required when called:    3
+   357 ;; This function calls:
+   358 ;;		_delay
+   359 ;; This function is called by:
+   360 ;;		Startup code after reset
+   361 ;; This function uses a non-reentrant model
+   362 ;;
+   363                           psect	maintext
+   364                           	file	"E:\KTU\Softwares\MP lab\INTERRUPT\Interupt_timer\timer_interrupt.c"
+   365                           	line	62
+   366                           	global	__size_of_main
+   367  0058                     	__size_of_main	equ	__end_of_main-_main
+   368                           	
+   369  0155                     _main:	
+   370                           	opt	stack 5
+   371                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   372                           	line	63
+   373                           	
+   374  0155                     l2318:	
+   375                           ;timer_interrupt.c: 63: PORTA=0X00;
+   376  0155  1283               	bcf	status, 5	;RP0=0, select bank0
+   377  0156  1303               	bcf	status, 6	;RP1=0, select bank0
+   378  0157  0185               	clrf	(5)	;volatile
+   379                           	line	64
+   380                           ;timer_interrupt.c: 64: PORTB=0X00;
+   381  0158  0186               	clrf	(6)	;volatile
+   382                           	line	65
+   383                           ;timer_interrupt.c: 65: PORTC=0X00;
+   384  0159  0187               	clrf	(7)	;volatile
+   385                           	line	66
+   386                           ;timer_interrupt.c: 66: TRISC=0X00;
+   387  015A  1683               	bsf	status, 5	;RP0=1, select bank1
+   388  015B  1303               	bcf	status, 6	;RP1=0, select bank1
+   389  015C  0187               	clrf	(135)^080h	;volatile
+   390                           	line	67
+   391                           ;timer_interrupt.c: 67: PORTD=0X00;
+   392  015D  1283               	bcf	status, 5	;RP0=0, select bank0
+   393  015E  1303               	bcf	status, 6	;RP1=0, select bank0
+   394  015F  0188               	clrf	(8)	;volatile
+   395                           	line	68
+   396                           ;timer_interrupt.c: 68: TRISD=0X00;
+   397  0160  1683               	bsf	status, 5	;RP0=1, select bank1
+   398  0161  1303               	bcf	status, 6	;RP1=0, select bank1
+   399  0162  0188               	clrf	(136)^080h	;volatile
+   400                           	line	69
+   401                           ;timer_interrupt.c: 69: TRISA=0X00;
+   402  0163  0185               	clrf	(133)^080h	;volatile
+   403                           	line	70
+   404                           	
+   405  0164                     l2320:	
+   406                           ;timer_interrupt.c: 70: TRISB=0X01;
+   407  0164  3001               	movlw	(01h)
+   408  0165  0086               	movwf	(134)^080h	;volatile
+   409                           	line	71
+   410                           	
+   411  0166                     l2322:	
+   412                           ;timer_interrupt.c: 71: ANSEL=0X00;
+   413  0166  1683               	bsf	status, 5	;RP0=1, select bank3
+   414  0167  1703               	bsf	status, 6	;RP1=1, select bank3
+   415  0168  0188               	clrf	(392)^0180h	;volatile
+   416                           	line	72
+   417                           	
+   418  0169                     l2324:	
+   419                           ;timer_interrupt.c: 72: ANSELH=0X00;
+   420  0169  0189               	clrf	(393)^0180h	;volatile
+   421                           	line	73
+   422                           	
+   423  016A                     l2326:	
+   424                           ;timer_interrupt.c: 73: INTCON=0xA0;
+   425  016A  30A0               	movlw	(0A0h)
+   426  016B  008B               	movwf	(11)	;volatile
+   427                           	line	74
+   428                           	
+   429  016C                     l2328:	
+   430                           ;timer_interrupt.c: 74: OPTION_REG=0X07;
+   431  016C  3007               	movlw	(07h)
+   432  016D  1683               	bsf	status, 5	;RP0=1, select bank1
+   433  016E  1303               	bcf	status, 6	;RP1=0, select bank1
+   434  016F  0081               	movwf	(129)^080h	;volatile
+   435                           	line	76
+   436                           	
+   437  0170                     l2330:	
+   438                           ;timer_interrupt.c: 76: char arr[10]={0XBF,0X06,0X5B,0X4F,0X66,0X6D,0X7C,0X07,0XFF,0XE7}
+                                 ;
+   439  0170  3024               	movlw	(main@arr)&0ffh
+   440  0171  0084               	movwf	fsr0
+   441  0172  3032               	movlw	low(main@F1607)
+   442  0173  1283               	bcf	status, 5	;RP0=0, select bank0
+   443  0174  1303               	bcf	status, 6	;RP1=0, select bank0
+   444  0175  00A0               	movwf	(??_main+0)+0
+   445  0176  0804               	movf	fsr0,w
+   446  0177  00A1               	movwf	((??_main+0)+0+1)
+   447  0178  300A               	movlw	10
+   448  0179  00A2               	movwf	((??_main+0)+0+2)
+   449  017A                     u2390:
+   450  017A  0820               	movf	(??_main+0)+0,w
+   451  017B  0084               	movwf	fsr0
+   452  017C  1383               	bcf	status, 7	;select IRP bank0
+   453                           	
+   454  017D  0800               	movf	indf,w
+   455  017E  00A3               	movwf	((??_main+0)+0+3)
+   456  017F  0AA0               	incf	(??_main+0)+0,f
+   457  0180  0821               	movf	((??_main+0)+0+1),w
+   458  0181  0084               	movwf	fsr0
+   459                           	
+   460  0182  0823               	movf	((??_main+0)+0+3),w
+   461  0183  0080               	movwf	indf
+   462  0184  0AA1               	incf	((??_main+0)+0+1),f
+   463  0185  0BA2               	decfsz	((??_main+0)+0+2),f
+   464  0186  297A               	goto	u2390
+   465                           	line	77
+   466                           	
+   467  0187                     l2332:	
+   468                           ;timer_interrupt.c: 77: long count=0;
+   469  0187  3000               	movlw	0
+   470  0188  00B1               	movwf	(main@count+3)
+   471  0189  3000               	movlw	0
+   472  018A  00B0               	movwf	(main@count+2)
+   473  018B  3000               	movlw	0
+   474  018C  00AF               	movwf	(main@count+1)
+   475  018D  3000               	movlw	0
+   476  018E  00AE               	movwf	(main@count)
+   477                           
+   478  018F  2990               	goto	l2334
+   479                           	line	79
+   480                           ;timer_interrupt.c: 78: int i;
+   481                           ;timer_interrupt.c: 79: while(1)
+   482                           	
+   483  0190                     l1054:	
+   484                           	line	81
+   485                           	
+   486  0190                     l2334:	
+   487                           ;timer_interrupt.c: 80: {
+   488                           ;timer_interrupt.c: 81: RC0=1;
+   489  0190  1283               	bcf	status, 5	;RP0=0, select bank0
+   490  0191  1303               	bcf	status, 6	;RP1=0, select bank0
+   491  0192  1407               	bsf	(56/8),(56)&7
+   492                           	line	82
+   493                           	
+   494  0193                     l2336:	
+   495                           ;timer_interrupt.c: 82: delay(35000);
+   496  0193  30B8               	movlw	low(088B8h)
+   497  0194  00F4               	movwf	(?_delay)
+   498  0195  3088               	movlw	high(088B8h)
+   499  0196  00F5               	movwf	((?_delay))+1
+   500  0197  120A  118A  21C3   	fcall	_delay
+              120A  118A         
+   501                           	line	83
+   502                           	
+   503  019C                     l2338:	
+   504                           ;timer_interrupt.c: 83: RC0=0;
+   505  019C  1283               	bcf	status, 5	;RP0=0, select bank0
+   506  019D  1303               	bcf	status, 6	;RP1=0, select bank0
+   507  019E  1007               	bcf	(56/8),(56)&7
+   508                           	line	84
+   509                           	
+   510  019F                     l2340:	
+   511                           ;timer_interrupt.c: 84: delay(35000);
+   512  019F  30B8               	movlw	low(088B8h)
+   513  01A0  00F4               	movwf	(?_delay)
+   514  01A1  3088               	movlw	high(088B8h)
+   515  01A2  00F5               	movwf	((?_delay))+1
+   516  01A3  120A  118A  21C3   	fcall	_delay
+              120A  118A         
+   517  01A8  2990               	goto	l2334
+   518                           	line	85
+   519                           	
+   520  01A9                     l1055:	
+   521                           	line	79
+   522  01A9  2990               	goto	l2334
+   523                           	
+   524  01AA                     l1056:	
+   525                           	line	86
+   526                           	
+   527  01AA                     l1057:	
+   528                           	global	start
+   529  01AA  120A  118A  2812   	ljmp	start
+   530                           	opt stack 0
+   531                           GLOBAL	__end_of_main
+   532  01AD                     	__end_of_main:
+   533 ;; =============== function _main ends ============
+   534                           
+   535                           	signat	_main,88
+   536                           	global	_delay
+   537                           psect	text138,local,class=CODE,delta=2
+   538                           global __ptext138
+   539  01C3                     __ptext138:
+   540                           
+   541 ;; *************** function _delay *****************
+   542 ;; Defined at:
+   543 ;;		line 13 in file "E:\KTU\Softwares\MP lab\INTERRUPT\Interupt_timer\timer_interrupt.c"
+   544 ;; Parameters:    Size  Location     Type
+   545 ;;  val             2    4[COMMON] unsigned int 
+   546 ;; Auto vars:     Size  Location     Type
+   547 ;;		None
+   548 ;; Return value:  Size  Location     Type
+   549 ;;		None               void
+   550 ;; Registers used:
+   551 ;;		wreg
+   552 ;; Tracked objects:
+   553 ;;		On entry : 0/0
+   554 ;;		On exit  : 0/0
+   555 ;;		Unchanged: 0/0
+   556 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   557 ;;      Params:         2       0       0       0       0
+   558 ;;      Locals:         0       0       0       0       0
+   559 ;;      Temps:          0       0       0       0       0
+   560 ;;      Totals:         2       0       0       0       0
+   561 ;;Total ram usage:        2 bytes
+   562 ;; Hardware stack levels used:    1
+   563 ;; Hardware stack levels required when called:    2
+   564 ;; This function calls:
+   565 ;;		Nothing
+   566 ;; This function is called by:
+   567 ;;		_main
+   568 ;; This function uses a non-reentrant model
+   569 ;;
+   570                           psect	text138
+   571                           	file	"E:\KTU\Softwares\MP lab\INTERRUPT\Interupt_timer\timer_interrupt.c"
+   572                           	line	13
+   573                           	global	__size_of_delay
+   574  0014                     	__size_of_delay	equ	__end_of_delay-_delay
+   575                           	
+   576  01C3                     _delay:	
+   577                           	opt	stack 5
+   578                           ; Regs used in _delay: [wreg]
+   579                           	line	14
+   580                           	
+   581  01C3                     l2290:	
+   582                           ;timer_interrupt.c: 14: while(val--);
+   583  01C3  29C5               	goto	l2292
+   584                           	
+   585  01C4                     l1034:	
+   586  01C4  29C5               	goto	l2292
+   587                           	
+   588  01C5                     l1033:	
+   589                           	
+   590  01C5                     l2292:	
+   591  01C5  3001               	movlw	low(01h)
+   592  01C6  02F4               	subwf	(delay@val),f
+   593  01C7  3000               	movlw	high(01h)
+   594  01C8  1C03               	skipc
+   595  01C9  03F5               	decf	(delay@val+1),f
+   596  01CA  02F5               	subwf	(delay@val+1),f
+   597  01CB  30FF               	movlw	high(0FFFFh)
+   598  01CC  0675               	xorwf	((delay@val+1)),w
+   599  01CD  1D03               	skipz
+   600  01CE  29D1               	goto	u2375
+   601  01CF  30FF               	movlw	low(0FFFFh)
+   602  01D0  0674               	xorwf	((delay@val)),w
+   603  01D1                     u2375:
+   604                           
+   605  01D1  1D03               	skipz
+   606  01D2  29D4               	goto	u2371
+   607  01D3  29D5               	goto	u2370
+   608  01D4                     u2371:
+   609  01D4  29C5               	goto	l2292
+   610  01D5                     u2370:
+   611  01D5  29D6               	goto	l1036
+   612                           	
+   613  01D6                     l1035:	
+   614                           	line	15
+   615                           	
+   616  01D6                     l1036:	
+   617  01D6  0008               	return
+   618                           	opt stack 0
+   619                           GLOBAL	__end_of_delay
+   620  01D7                     	__end_of_delay:
+   621 ;; =============== function _delay ends ============
+   622                           
+   623                           	signat	_delay,4216
+   624                           	global	_exe
+   625                           psect	text139,local,class=CODE,delta=2
+   626                           global __ptext139
+   627  0015                     __ptext139:
+   628                           
+   629 ;; *************** function _exe *****************
+   630 ;; Defined at:
+   631 ;;		line 17 in file "E:\KTU\Softwares\MP lab\INTERRUPT\Interupt_timer\timer_interrupt.c"
+   632 ;; Parameters:    Size  Location     Type
+   633 ;;		None
+   634 ;; Auto vars:     Size  Location     Type
+   635 ;;		None
+   636 ;; Return value:  Size  Location     Type
+   637 ;;		None               void
+   638 ;; Registers used:
+   639 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   640 ;; Tracked objects:
+   641 ;;		On entry : 0/0
+   642 ;;		On exit  : 0/0
+   643 ;;		Unchanged: 0/0
+   644 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   645 ;;      Params:         0       0       0       0       0
+   646 ;;      Locals:         0       0       0       0       0
+   647 ;;      Temps:          4       0       0       0       0
+   648 ;;      Totals:         4       0       0       0       0
+   649 ;;Total ram usage:        4 bytes
+   650 ;; Hardware stack levels used:    1
+   651 ;; Hardware stack levels required when called:    1
+   652 ;; This function calls:
+   653 ;;		_timer0
+   654 ;; This function is called by:
+   655 ;;		Interrupt level 1
+   656 ;; This function uses a non-reentrant model
+   657 ;;
+   658                           psect	text139
+   659                           	file	"E:\KTU\Softwares\MP lab\INTERRUPT\Interupt_timer\timer_interrupt.c"
+   660                           	line	17
+   661                           	global	__size_of_exe
+   662  0140                     	__size_of_exe	equ	__end_of_exe-_exe
+   663                           	
+   664  0015                     _exe:	
+   665                           	opt	stack 5
+   666                           ; Regs used in _exe: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   667                           psect	intentry,class=CODE,delta=2
+   668                           global __pintentry
+   669  0004                     __pintentry:
+   670                           global interrupt_function
+   671  0004                     interrupt_function:
+   672                           	global saved_w
+   673  007E                     	saved_w	set	btemp+0
+   674  0004  00FE               	movwf	saved_w
+   675  0005  0E03               	swapf	status,w
+   676  0006  00F0               	movwf	(??_exe+0)
+   677  0007  0804               	movf	fsr0,w
+   678  0008  00F1               	movwf	(??_exe+1)
+   679  0009  080A               	movf	pclath,w
+   680  000A  00F2               	movwf	(??_exe+2)
+   681  000B  1283               	bcf	status, 5	;RP0=0, select bank0
+   682  000C  1303               	bcf	status, 6	;RP1=0, select bank0
+   683  000D  087F               	movf	btemp+1,w
+   684  000E  00F3               	movwf	(??_exe+3)
+   685  000F  120A  118A  2815   	ljmp	_exe
+   686                           psect	text139
+   687                           	line	18
+   688                           	
+   689  0015                     i1l1436:	
+   690                           ;timer_interrupt.c: 18: timer0();
+   691  0015  120A  118A  21E8   	fcall	_timer0
+              120A  118A         
+   692                           	line	19
+   693                           	
+   694  001A                     i1l1438:	
+   695                           ;timer_interrupt.c: 19: if(count>=0 && count<=15)
+   696  001A  1BF7               	btfsc	(_count+1),7
+   697  001B  281D               	goto	u3_21
+   698  001C  281E               	goto	u3_20
+   699  001D                     u3_21:
+   700  001D  2830               	goto	i1l1444
+   701  001E                     u3_20:
+   702                           	
+   703  001E                     i1l1440:	
+   704  001E  0877               	movf	(_count+1),w
+   705  001F  3A80               	xorlw	80h
+   706  0020  00FF               	movwf	btemp+1
+   707  0021  3080               	movlw	(high(010h))^80h
+   708  0022  027F               	subwf	btemp+1,w
+   709  0023  1D03               	skipz
+   710  0024  2827               	goto	u4_25
+   711  0025  3010               	movlw	low(010h)
+   712  0026  0276               	subwf	(_count),w
+   713  0027                     u4_25:
+   714                           
+   715  0027  1803               	skipnc
+   716  0028  282A               	goto	u4_21
+   717  0029  282B               	goto	u4_20
+   718  002A                     u4_21:
+   719  002A  2830               	goto	i1l1444
+   720  002B                     u4_20:
+   721                           	line	21
+   722                           	
+   723  002B                     i1l1442:	
+   724                           ;timer_interrupt.c: 20: {
+   725                           ;timer_interrupt.c: 21: PORTA=0X06;
+   726  002B  3006               	movlw	(06h)
+   727  002C  1283               	bcf	status, 5	;RP0=0, select bank0
+   728  002D  1303               	bcf	status, 6	;RP1=0, select bank0
+   729  002E  0085               	movwf	(5)	;volatile
+   730  002F  2830               	goto	i1l1444
+   731                           	line	22
+   732                           	
+   733  0030                     i1l1039:	
+   734                           	line	23
+   735                           	
+   736  0030                     i1l1444:	
+   737                           ;timer_interrupt.c: 22: }
+   738                           ;timer_interrupt.c: 23: if(count>=15 && count<=30)
+   739  0030  0877               	movf	(_count+1),w
+   740  0031  3A80               	xorlw	80h
+   741  0032  00FF               	movwf	btemp+1
+   742  0033  3080               	movlw	(high(0Fh))^80h
+   743  0034  027F               	subwf	btemp+1,w
+   744  0035  1D03               	skipz
+   745  0036  2839               	goto	u5_25
+   746  0037  300F               	movlw	low(0Fh)
+   747  0038  0276               	subwf	(_count),w
+   748  0039                     u5_25:
+   749                           
+   750  0039  1C03               	skipc
+   751  003A  283C               	goto	u5_21
+   752  003B  283D               	goto	u5_20
+   753  003C                     u5_21:
+   754  003C  284F               	goto	i1l1450
+   755  003D                     u5_20:
+   756                           	
+   757  003D                     i1l1446:	
+   758  003D  0877               	movf	(_count+1),w
+   759  003E  3A80               	xorlw	80h
+   760  003F  00FF               	movwf	btemp+1
+   761  0040  3080               	movlw	(high(01Fh))^80h
+   762  0041  027F               	subwf	btemp+1,w
+   763  0042  1D03               	skipz
+   764  0043  2846               	goto	u6_25
+   765  0044  301F               	movlw	low(01Fh)
+   766  0045  0276               	subwf	(_count),w
+   767  0046                     u6_25:
+   768                           
+   769  0046  1803               	skipnc
+   770  0047  2849               	goto	u6_21
+   771  0048  284A               	goto	u6_20
+   772  0049                     u6_21:
+   773  0049  284F               	goto	i1l1450
+   774  004A                     u6_20:
+   775                           	line	25
+   776                           	
+   777  004A                     i1l1448:	
+   778                           ;timer_interrupt.c: 24: {
+   779                           ;timer_interrupt.c: 25: PORTA=0X5B;
+   780  004A  305B               	movlw	(05Bh)
+   781  004B  1283               	bcf	status, 5	;RP0=0, select bank0
+   782  004C  1303               	bcf	status, 6	;RP1=0, select bank0
+   783  004D  0085               	movwf	(5)	;volatile
+   784  004E  284F               	goto	i1l1450
+   785                           	line	26
+   786                           	
+   787  004F                     i1l1040:	
+   788                           	line	27
+   789                           	
+   790  004F                     i1l1450:	
+   791                           ;timer_interrupt.c: 26: }
+   792                           ;timer_interrupt.c: 27: if(count>=30 && count<=45)
+   793  004F  0877               	movf	(_count+1),w
+   794  0050  3A80               	xorlw	80h
+   795  0051  00FF               	movwf	btemp+1
+   796  0052  3080               	movlw	(high(01Eh))^80h
+   797  0053  027F               	subwf	btemp+1,w
+   798  0054  1D03               	skipz
+   799  0055  2858               	goto	u7_25
+   800  0056  301E               	movlw	low(01Eh)
+   801  0057  0276               	subwf	(_count),w
+   802  0058                     u7_25:
+   803                           
+   804  0058  1C03               	skipc
+   805  0059  285B               	goto	u7_21
+   806  005A  285C               	goto	u7_20
+   807  005B                     u7_21:
+   808  005B  286E               	goto	i1l1456
+   809  005C                     u7_20:
+   810                           	
+   811  005C                     i1l1452:	
+   812  005C  0877               	movf	(_count+1),w
+   813  005D  3A80               	xorlw	80h
+   814  005E  00FF               	movwf	btemp+1
+   815  005F  3080               	movlw	(high(02Eh))^80h
+   816  0060  027F               	subwf	btemp+1,w
+   817  0061  1D03               	skipz
+   818  0062  2865               	goto	u8_25
+   819  0063  302E               	movlw	low(02Eh)
+   820  0064  0276               	subwf	(_count),w
+   821  0065                     u8_25:
+   822                           
+   823  0065  1803               	skipnc
+   824  0066  2868               	goto	u8_21
+   825  0067  2869               	goto	u8_20
+   826  0068                     u8_21:
+   827  0068  286E               	goto	i1l1456
+   828  0069                     u8_20:
+   829                           	line	29
+   830                           	
+   831  0069                     i1l1454:	
+   832                           ;timer_interrupt.c: 28: {
+   833                           ;timer_interrupt.c: 29: PORTA=0X4F;
+   834  0069  304F               	movlw	(04Fh)
+   835  006A  1283               	bcf	status, 5	;RP0=0, select bank0
+   836  006B  1303               	bcf	status, 6	;RP1=0, select bank0
+   837  006C  0085               	movwf	(5)	;volatile
+   838  006D  286E               	goto	i1l1456
+   839                           	line	30
+   840                           	
+   841  006E                     i1l1041:	
+   842                           	line	31
+   843                           	
+   844  006E                     i1l1456:	
+   845                           ;timer_interrupt.c: 30: }
+   846                           ;timer_interrupt.c: 31: if(count>=45 && count<=60)
+   847  006E  0877               	movf	(_count+1),w
+   848  006F  3A80               	xorlw	80h
+   849  0070  00FF               	movwf	btemp+1
+   850  0071  3080               	movlw	(high(02Dh))^80h
+   851  0072  027F               	subwf	btemp+1,w
+   852  0073  1D03               	skipz
+   853  0074  2877               	goto	u9_25
+   854  0075  302D               	movlw	low(02Dh)
+   855  0076  0276               	subwf	(_count),w
+   856  0077                     u9_25:
+   857                           
+   858  0077  1C03               	skipc
+   859  0078  287A               	goto	u9_21
+   860  0079  287B               	goto	u9_20
+   861  007A                     u9_21:
+   862  007A  288D               	goto	i1l1462
+   863  007B                     u9_20:
+   864                           	
+   865  007B                     i1l1458:	
+   866  007B  0877               	movf	(_count+1),w
+   867  007C  3A80               	xorlw	80h
+   868  007D  00FF               	movwf	btemp+1
+   869  007E  3080               	movlw	(high(03Dh))^80h
+   870  007F  027F               	subwf	btemp+1,w
+   871  0080  1D03               	skipz
+   872  0081  2884               	goto	u10_25
+   873  0082  303D               	movlw	low(03Dh)
+   874  0083  0276               	subwf	(_count),w
+   875  0084                     u10_25:
+   876                           
+   877  0084  1803               	skipnc
+   878  0085  2887               	goto	u10_21
+   879  0086  2888               	goto	u10_20
+   880  0087                     u10_21:
+   881  0087  288D               	goto	i1l1462
+   882  0088                     u10_20:
+   883                           	line	33
+   884                           	
+   885  0088                     i1l1460:	
+   886                           ;timer_interrupt.c: 32: {
+   887                           ;timer_interrupt.c: 33: PORTA=0X66;
+   888  0088  3066               	movlw	(066h)
+   889  0089  1283               	bcf	status, 5	;RP0=0, select bank0
+   890  008A  1303               	bcf	status, 6	;RP1=0, select bank0
+   891  008B  0085               	movwf	(5)	;volatile
+   892  008C  288D               	goto	i1l1462
+   893                           	line	34
+   894                           	
+   895  008D                     i1l1042:	
+   896                           	line	35
+   897                           	
+   898  008D                     i1l1462:	
+   899                           ;timer_interrupt.c: 34: }
+   900                           ;timer_interrupt.c: 35: if(count>=60 && count<=75)
+   901  008D  0877               	movf	(_count+1),w
+   902  008E  3A80               	xorlw	80h
+   903  008F  00FF               	movwf	btemp+1
+   904  0090  3080               	movlw	(high(03Ch))^80h
+   905  0091  027F               	subwf	btemp+1,w
+   906  0092  1D03               	skipz
+   907  0093  2896               	goto	u11_25
+   908  0094  303C               	movlw	low(03Ch)
+   909  0095  0276               	subwf	(_count),w
+   910  0096                     u11_25:
+   911                           
+   912  0096  1C03               	skipc
+   913  0097  2899               	goto	u11_21
+   914  0098  289A               	goto	u11_20
+   915  0099                     u11_21:
+   916  0099  28AC               	goto	i1l1468
+   917  009A                     u11_20:
+   918                           	
+   919  009A                     i1l1464:	
+   920  009A  0877               	movf	(_count+1),w
+   921  009B  3A80               	xorlw	80h
+   922  009C  00FF               	movwf	btemp+1
+   923  009D  3080               	movlw	(high(04Ch))^80h
+   924  009E  027F               	subwf	btemp+1,w
+   925  009F  1D03               	skipz
+   926  00A0  28A3               	goto	u12_25
+   927  00A1  304C               	movlw	low(04Ch)
+   928  00A2  0276               	subwf	(_count),w
+   929  00A3                     u12_25:
+   930                           
+   931  00A3  1803               	skipnc
+   932  00A4  28A6               	goto	u12_21
+   933  00A5  28A7               	goto	u12_20
+   934  00A6                     u12_21:
+   935  00A6  28AC               	goto	i1l1468
+   936  00A7                     u12_20:
+   937                           	line	37
+   938                           	
+   939  00A7                     i1l1466:	
+   940                           ;timer_interrupt.c: 36: {
+   941                           ;timer_interrupt.c: 37: PORTA=0X6D;
+   942  00A7  306D               	movlw	(06Dh)
+   943  00A8  1283               	bcf	status, 5	;RP0=0, select bank0
+   944  00A9  1303               	bcf	status, 6	;RP1=0, select bank0
+   945  00AA  0085               	movwf	(5)	;volatile
+   946  00AB  28AC               	goto	i1l1468
+   947                           	line	38
+   948                           	
+   949  00AC                     i1l1043:	
+   950                           	line	39
+   951                           	
+   952  00AC                     i1l1468:	
+   953                           ;timer_interrupt.c: 38: }
+   954                           ;timer_interrupt.c: 39: if(count>=75 && count<=90)
+   955  00AC  0877               	movf	(_count+1),w
+   956  00AD  3A80               	xorlw	80h
+   957  00AE  00FF               	movwf	btemp+1
+   958  00AF  3080               	movlw	(high(04Bh))^80h
+   959  00B0  027F               	subwf	btemp+1,w
+   960  00B1  1D03               	skipz
+   961  00B2  28B5               	goto	u13_25
+   962  00B3  304B               	movlw	low(04Bh)
+   963  00B4  0276               	subwf	(_count),w
+   964  00B5                     u13_25:
+   965                           
+   966  00B5  1C03               	skipc
+   967  00B6  28B8               	goto	u13_21
+   968  00B7  28B9               	goto	u13_20
+   969  00B8                     u13_21:
+   970  00B8  28CB               	goto	i1l1474
+   971  00B9                     u13_20:
+   972                           	
+   973  00B9                     i1l1470:	
+   974  00B9  0877               	movf	(_count+1),w
+   975  00BA  3A80               	xorlw	80h
+   976  00BB  00FF               	movwf	btemp+1
+   977  00BC  3080               	movlw	(high(05Bh))^80h
+   978  00BD  027F               	subwf	btemp+1,w
+   979  00BE  1D03               	skipz
+   980  00BF  28C2               	goto	u14_25
+   981  00C0  305B               	movlw	low(05Bh)
+   982  00C1  0276               	subwf	(_count),w
+   983  00C2                     u14_25:
+   984                           
+   985  00C2  1803               	skipnc
+   986  00C3  28C5               	goto	u14_21
+   987  00C4  28C6               	goto	u14_20
+   988  00C5                     u14_21:
+   989  00C5  28CB               	goto	i1l1474
+   990  00C6                     u14_20:
+   991                           	line	41
+   992                           	
+   993  00C6                     i1l1472:	
+   994                           ;timer_interrupt.c: 40: {
+   995                           ;timer_interrupt.c: 41: PORTA=0X7c;
+   996  00C6  307C               	movlw	(07Ch)
+   997  00C7  1283               	bcf	status, 5	;RP0=0, select bank0
+   998  00C8  1303               	bcf	status, 6	;RP1=0, select bank0
+   999  00C9  0085               	movwf	(5)	;volatile
+  1000  00CA  28CB               	goto	i1l1474
+  1001                           	line	42
+  1002                           	
+  1003  00CB                     i1l1044:	
+  1004                           	line	43
+  1005                           	
+  1006  00CB                     i1l1474:	
+  1007                           ;timer_interrupt.c: 42: }
+  1008                           ;timer_interrupt.c: 43: if(count>=90 && count<=105)
+  1009  00CB  0877               	movf	(_count+1),w
+  1010  00CC  3A80               	xorlw	80h
+  1011  00CD  00FF               	movwf	btemp+1
+  1012  00CE  3080               	movlw	(high(05Ah))^80h
+  1013  00CF  027F               	subwf	btemp+1,w
+  1014  00D0  1D03               	skipz
+  1015  00D1  28D4               	goto	u15_25
+  1016  00D2  305A               	movlw	low(05Ah)
+  1017  00D3  0276               	subwf	(_count),w
+  1018  00D4                     u15_25:
+  1019                           
+  1020  00D4  1C03               	skipc
+  1021  00D5  28D7               	goto	u15_21
+  1022  00D6  28D8               	goto	u15_20
+  1023  00D7                     u15_21:
+  1024  00D7  28EA               	goto	i1l1480
+  1025  00D8                     u15_20:
+  1026                           	
+  1027  00D8                     i1l1476:	
+  1028  00D8  0877               	movf	(_count+1),w
+  1029  00D9  3A80               	xorlw	80h
+  1030  00DA  00FF               	movwf	btemp+1
+  1031  00DB  3080               	movlw	(high(06Ah))^80h
+  1032  00DC  027F               	subwf	btemp+1,w
+  1033  00DD  1D03               	skipz
+  1034  00DE  28E1               	goto	u16_25
+  1035  00DF  306A               	movlw	low(06Ah)
+  1036  00E0  0276               	subwf	(_count),w
+  1037  00E1                     u16_25:
+  1038                           
+  1039  00E1  1803               	skipnc
+  1040  00E2  28E4               	goto	u16_21
+  1041  00E3  28E5               	goto	u16_20
+  1042  00E4                     u16_21:
+  1043  00E4  28EA               	goto	i1l1480
+  1044  00E5                     u16_20:
+  1045                           	line	45
+  1046                           	
+  1047  00E5                     i1l1478:	
+  1048                           ;timer_interrupt.c: 44: {
+  1049                           ;timer_interrupt.c: 45: PORTA=0X07;
+  1050  00E5  3007               	movlw	(07h)
+  1051  00E6  1283               	bcf	status, 5	;RP0=0, select bank0
+  1052  00E7  1303               	bcf	status, 6	;RP1=0, select bank0
+  1053  00E8  0085               	movwf	(5)	;volatile
+  1054  00E9  28EA               	goto	i1l1480
+  1055                           	line	46
+  1056                           	
+  1057  00EA                     i1l1045:	
+  1058                           	line	47
+  1059                           	
+  1060  00EA                     i1l1480:	
+  1061                           ;timer_interrupt.c: 46: }
+  1062                           ;timer_interrupt.c: 47: if(count>=105 && count<=130)
+  1063  00EA  0877               	movf	(_count+1),w
+  1064  00EB  3A80               	xorlw	80h
+  1065  00EC  00FF               	movwf	btemp+1
+  1066  00ED  3080               	movlw	(high(069h))^80h
+  1067  00EE  027F               	subwf	btemp+1,w
+  1068  00EF  1D03               	skipz
+  1069  00F0  28F3               	goto	u17_25
+  1070  00F1  3069               	movlw	low(069h)
+  1071  00F2  0276               	subwf	(_count),w
+  1072  00F3                     u17_25:
+  1073                           
+  1074  00F3  1C03               	skipc
+  1075  00F4  28F6               	goto	u17_21
+  1076  00F5  28F7               	goto	u17_20
+  1077  00F6                     u17_21:
+  1078  00F6  2909               	goto	i1l1486
+  1079  00F7                     u17_20:
+  1080                           	
+  1081  00F7                     i1l1482:	
+  1082  00F7  0877               	movf	(_count+1),w
+  1083  00F8  3A80               	xorlw	80h
+  1084  00F9  00FF               	movwf	btemp+1
+  1085  00FA  3080               	movlw	(high(083h))^80h
+  1086  00FB  027F               	subwf	btemp+1,w
+  1087  00FC  1D03               	skipz
+  1088  00FD  2900               	goto	u18_25
+  1089  00FE  3083               	movlw	low(083h)
+  1090  00FF  0276               	subwf	(_count),w
+  1091  0100                     u18_25:
+  1092                           
+  1093  0100  1803               	skipnc
+  1094  0101  2903               	goto	u18_21
+  1095  0102  2904               	goto	u18_20
+  1096  0103                     u18_21:
+  1097  0103  2909               	goto	i1l1486
+  1098  0104                     u18_20:
+  1099                           	line	49
+  1100                           	
+  1101  0104                     i1l1484:	
+  1102                           ;timer_interrupt.c: 48: {
+  1103                           ;timer_interrupt.c: 49: PORTA=0XFF;
+  1104  0104  30FF               	movlw	(0FFh)
+  1105  0105  1283               	bcf	status, 5	;RP0=0, select bank0
+  1106  0106  1303               	bcf	status, 6	;RP1=0, select bank0
+  1107  0107  0085               	movwf	(5)	;volatile
+  1108  0108  2909               	goto	i1l1486
+  1109                           	line	50
+  1110                           	
+  1111  0109                     i1l1046:	
+  1112                           	line	51
+  1113                           	
+  1114  0109                     i1l1486:	
+  1115                           ;timer_interrupt.c: 50: }
+  1116                           ;timer_interrupt.c: 51: if(count>=130 && count<=145)
+  1117  0109  0877               	movf	(_count+1),w
+  1118  010A  3A80               	xorlw	80h
+  1119  010B  00FF               	movwf	btemp+1
+  1120  010C  3080               	movlw	(high(082h))^80h
+  1121  010D  027F               	subwf	btemp+1,w
+  1122  010E  1D03               	skipz
+  1123  010F  2912               	goto	u19_25
+  1124  0110  3082               	movlw	low(082h)
+  1125  0111  0276               	subwf	(_count),w
+  1126  0112                     u19_25:
+  1127                           
+  1128  0112  1C03               	skipc
+  1129  0113  2915               	goto	u19_21
+  1130  0114  2916               	goto	u19_20
+  1131  0115                     u19_21:
+  1132  0115  2928               	goto	i1l1492
+  1133  0116                     u19_20:
+  1134                           	
+  1135  0116                     i1l1488:	
+  1136  0116  0877               	movf	(_count+1),w
+  1137  0117  3A80               	xorlw	80h
+  1138  0118  00FF               	movwf	btemp+1
+  1139  0119  3080               	movlw	(high(092h))^80h
+  1140  011A  027F               	subwf	btemp+1,w
+  1141  011B  1D03               	skipz
+  1142  011C  291F               	goto	u20_25
+  1143  011D  3092               	movlw	low(092h)
+  1144  011E  0276               	subwf	(_count),w
+  1145  011F                     u20_25:
+  1146                           
+  1147  011F  1803               	skipnc
+  1148  0120  2922               	goto	u20_21
+  1149  0121  2923               	goto	u20_20
+  1150  0122                     u20_21:
+  1151  0122  2928               	goto	i1l1492
+  1152  0123                     u20_20:
+  1153                           	line	53
+  1154                           	
+  1155  0123                     i1l1490:	
+  1156                           ;timer_interrupt.c: 52: {
+  1157                           ;timer_interrupt.c: 53: PORTA=0XE7;
+  1158  0123  30E7               	movlw	(0E7h)
+  1159  0124  1283               	bcf	status, 5	;RP0=0, select bank0
+  1160  0125  1303               	bcf	status, 6	;RP1=0, select bank0
+  1161  0126  0085               	movwf	(5)	;volatile
+  1162  0127  2928               	goto	i1l1492
+  1163                           	line	54
+  1164                           	
+  1165  0128                     i1l1047:	
+  1166                           	line	55
+  1167                           	
+  1168  0128                     i1l1492:	
+  1169                           ;timer_interrupt.c: 54: }
+  1170                           ;timer_interrupt.c: 55: if(count>=145 && count<=160)
+  1171  0128  0877               	movf	(_count+1),w
+  1172  0129  3A80               	xorlw	80h
+  1173  012A  00FF               	movwf	btemp+1
+  1174  012B  3080               	movlw	(high(091h))^80h
+  1175  012C  027F               	subwf	btemp+1,w
+  1176  012D  1D03               	skipz
+  1177  012E  2931               	goto	u21_25
+  1178  012F  3091               	movlw	low(091h)
+  1179  0130  0276               	subwf	(_count),w
+  1180  0131                     u21_25:
+  1181                           
+  1182  0131  1C03               	skipc
+  1183  0132  2934               	goto	u21_21
+  1184  0133  2935               	goto	u21_20
+  1185  0134                     u21_21:
+  1186  0134  2947               	goto	i1l1498
+  1187  0135                     u21_20:
+  1188                           	
+  1189  0135                     i1l1494:	
+  1190  0135  0877               	movf	(_count+1),w
+  1191  0136  3A80               	xorlw	80h
+  1192  0137  00FF               	movwf	btemp+1
+  1193  0138  3080               	movlw	(high(0A1h))^80h
+  1194  0139  027F               	subwf	btemp+1,w
+  1195  013A  1D03               	skipz
+  1196  013B  293E               	goto	u22_25
+  1197  013C  30A1               	movlw	low(0A1h)
+  1198  013D  0276               	subwf	(_count),w
+  1199  013E                     u22_25:
+  1200                           
+  1201  013E  1803               	skipnc
+  1202  013F  2941               	goto	u22_21
+  1203  0140  2942               	goto	u22_20
+  1204  0141                     u22_21:
+  1205  0141  2947               	goto	i1l1498
+  1206  0142                     u22_20:
+  1207                           	line	57
+  1208                           	
+  1209  0142                     i1l1496:	
+  1210                           ;timer_interrupt.c: 56: {
+  1211                           ;timer_interrupt.c: 57: PORTA=0XBF;
+  1212  0142  30BF               	movlw	(0BFh)
+  1213  0143  1283               	bcf	status, 5	;RP0=0, select bank0
+  1214  0144  1303               	bcf	status, 6	;RP1=0, select bank0
+  1215  0145  0085               	movwf	(5)	;volatile
+  1216  0146  2947               	goto	i1l1498
+  1217                           	line	58
+  1218                           	
+  1219  0147                     i1l1048:	
+  1220                           	line	59
+  1221                           	
+  1222  0147                     i1l1498:	
+  1223                           ;timer_interrupt.c: 58: }
+  1224                           ;timer_interrupt.c: 59: INTF=0;
+  1225  0147  108B               	bcf	(89/8),(89)&7
+  1226                           	line	60
+  1227                           	
+  1228  0148                     i1l1049:	
+  1229  0148  0873               	movf	(??_exe+3),w
+  1230  0149  1283               	bcf	status, 5	;RP0=0, select bank0
+  1231  014A  1303               	bcf	status, 6	;RP1=0, select bank0
+  1232  014B  00FF               	movwf	btemp+1
+  1233  014C  0872               	movf	(??_exe+2),w
+  1234  014D  008A               	movwf	pclath
+  1235  014E  0871               	movf	(??_exe+1),w
+  1236  014F  0084               	movwf	fsr0
+  1237  0150  0E70               	swapf	(??_exe+0)^0FFFFFF80h,w
+  1238  0151  0083               	movwf	status
+  1239  0152  0EFE               	swapf	saved_w,f
+  1240  0153  0E7E               	swapf	saved_w,w
+  1241  0154  0009               	retfie
+  1242                           	opt stack 0
+  1243                           GLOBAL	__end_of_exe
+  1244  0155                     	__end_of_exe:
+  1245 ;; =============== function _exe ends ============
+  1246                           
+  1247                           	signat	_exe,88
+  1248                           	global	_timer0
+  1249                           psect	text140,local,class=CODE,delta=2
+  1250                           global __ptext140
+  1251  01E8                     __ptext140:
+  1252                           
+  1253 ;; *************** function _timer0 *****************
+  1254 ;; Defined at:
+  1255 ;;		line 5 in file "E:\KTU\Softwares\MP lab\INTERRUPT\Interupt_timer\timer_interrupt.c"
+  1256 ;; Parameters:    Size  Location     Type
+  1257 ;;		None
+  1258 ;; Auto vars:     Size  Location     Type
+  1259 ;;		None
+  1260 ;; Return value:  Size  Location     Type
+  1261 ;;		None               void
+  1262 ;; Registers used:
+  1263 ;;		wreg
+  1264 ;; Tracked objects:
+  1265 ;;		On entry : 0/0
+  1266 ;;		On exit  : 0/0
+  1267 ;;		Unchanged: 0/0
+  1268 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1269 ;;      Params:         0       0       0       0       0
+  1270 ;;      Locals:         0       0       0       0       0
+  1271 ;;      Temps:          0       0       0       0       0
+  1272 ;;      Totals:         0       0       0       0       0
+  1273 ;;Total ram usage:        0 bytes
+  1274 ;; Hardware stack levels used:    1
+  1275 ;; This function calls:
+  1276 ;;		Nothing
+  1277 ;; This function is called by:
+  1278 ;;		_exe
+  1279 ;; This function uses a non-reentrant model
+  1280 ;;
+  1281                           psect	text140
+  1282                           	file	"E:\KTU\Softwares\MP lab\INTERRUPT\Interupt_timer\timer_interrupt.c"
+  1283                           	line	5
+  1284                           	global	__size_of_timer0
+  1285  000D                     	__size_of_timer0	equ	__end_of_timer0-_timer0
+  1286                           	
+  1287  01E8                     _timer0:	
+  1288                           	opt	stack 5
+  1289                           ; Regs used in _timer0: [wreg]
+  1290                           	line	6
+  1291                           	
+  1292  01E8                     i1l1426:	
+  1293                           ;timer_interrupt.c: 6: if(T0IF==1)
+  1294  01E8  1D0B               	btfss	(90/8),(90)&7
+  1295  01E9  29EB               	goto	u1_21
+  1296  01EA  29EC               	goto	u1_20
+  1297  01EB                     u1_21:
+  1298  01EB  29F3               	goto	i1l1430
+  1299  01EC                     u1_20:
+  1300                           	line	8
+  1301                           	
+  1302  01EC                     i1l1428:	
+  1303                           ;timer_interrupt.c: 7: {
+  1304                           ;timer_interrupt.c: 8: count++;
+  1305  01EC  3001               	movlw	low(01h)
+  1306  01ED  07F6               	addwf	(_count),f
+  1307  01EE  1803               	skipnc
+  1308  01EF  0AF7               	incf	(_count+1),f
+  1309  01F0  3000               	movlw	high(01h)
+  1310  01F1  07F7               	addwf	(_count+1),f
+  1311  01F2  29F3               	goto	i1l1430
+  1312                           	line	9
+  1313                           	
+  1314  01F3                     i1l1029:	
+  1315                           	line	10
+  1316                           	
+  1317  01F3                     i1l1430:	
+  1318                           ;timer_interrupt.c: 9: }
+  1319                           ;timer_interrupt.c: 10: T0IF=0;
+  1320  01F3  110B               	bcf	(90/8),(90)&7
+  1321                           	line	11
+  1322                           	
+  1323  01F4                     i1l1030:	
+  1324  01F4  0008               	return
+  1325                           	opt stack 0
+  1326                           GLOBAL	__end_of_timer0
+  1327  01F5                     	__end_of_timer0:
+  1328 ;; =============== function _timer0 ends ============
+  1329                           
+  1330                           	signat	_timer0,88
+  1331                           psect	text141,local,class=CODE,delta=2
+  1332                           global __ptext141
+  1333  0000                     __ptext141:
+  1334                           	global	btemp
+  1335  007E                     	btemp set 07Eh
+  1336                           
+  1337                           	DABS	1,126,2	;btemp
+  1338                           	global	wtemp0
+  1339  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Sat Aug 07 17:16:18 2021
+
+                   pc 0002                    fsr 0004                   _RC0 0038                   _exe 0015  
+                 _res 0078                   fsr0 0004                   indf 0000                  l1033 01C5  
+                l1034 01C4                  l1035 01D6                  l1036 01D6                  l1054 0190  
+                l1055 01A9                  l1056 01AA                  l1057 01AA                  l2320 0164  
+                l2330 0170                  l2322 0166                  l2340 019F                  l2332 0187  
+                l2324 0169                  l2334 0190                  l2326 016A                  l2318 0155  
+                l2336 0193                  l2328 016C                  l2290 01C3                  l2338 019C  
+                l2292 01C5                  ?_exe 0070                  _T0IF 005A                  u2370 01D5  
+                u2371 01D4                  u2390 017A                  u2375 01D1                  _INTF 0059  
+                u1_20 01EC                  u1_21 01EB                  u3_20 001E                  u3_21 001D  
+                u4_20 002B                  u4_21 002A                  u4_25 0027                  u5_20 003D  
+                u5_21 003C                  u5_25 0039                  u6_20 004A                  u6_21 0049  
+                u6_25 0046                  u7_20 005C                  u7_21 005B                  u7_25 0058  
+                u8_20 0069                  u8_21 0068                  u8_25 0065                  u9_20 007B  
+                u9_21 007A                  u9_25 0077                  _main 0155                  btemp 007E  
+                start 0012                 ??_exe 0070                 ?_main 0070                 _ANSEL 0188  
+               u10_20 0088                 u10_21 0087                 u10_25 0084                 u11_20 009A  
+               u11_21 0099                 u11_25 0096                 u20_20 0123                 u12_20 00A7  
+               u20_21 0122                 u12_21 00A6                 u20_25 011F                 u12_25 00A3  
+               u21_20 0135                 u13_20 00B9                 u21_21 0134                 u13_21 00B8  
+               u21_25 0131                 u13_25 00B5                 u22_20 0142                 u14_20 00C6  
+               u22_21 0141                 u14_21 00C5                 u22_25 013E                 u14_25 00C2  
+               u15_20 00D8                 u15_21 00D7                 u15_25 00D4                 u16_20 00E5  
+               u16_21 00E4                 u16_25 00E1                 u17_20 00F7                 u17_21 00F6  
+               u17_25 00F3                 u18_20 0104                 u18_21 0103                 u18_25 0100  
+               u19_20 0116                 u19_21 0115                 _PORTA 0005                 _PORTB 0006  
+               _PORTC 0007                 _PORTD 0008                 u19_25 0112                 _TRISA 0085  
+               _TRISB 0086                 _TRISC 0087                 _TRISD 0088                 _delay 01C3  
+               _count 0076                 pclath 000A                 status 0003                 wtemp0 007E  
+        __end_of_main 01AD                ??_main 0020                ?_delay 0074                _ANSELH 0189  
+              i1l1030 01F4                i1l1040 004F                i1l1041 006E                i1l1042 008D  
+              i1l1043 00AC                i1l1044 00CB                i1l1029 01F3                i1l1045 00EA  
+              i1l1046 0109                i1l1047 0128                i1l1039 0030                i1l1048 0147  
+              i1l1049 0148                i1l1430 01F3                i1l1440 001E                i1l1426 01E8  
+              i1l1450 004F                i1l1442 002B                i1l1428 01EC                i1l1460 0088  
+              i1l1452 005C                i1l1444 0030                i1l1436 0015                i1l1470 00B9  
+              i1l1462 008D                i1l1454 0069                i1l1446 003D                i1l1438 001A  
+              i1l1480 00EA                i1l1472 00C6                i1l1464 009A                i1l1456 006E  
+              i1l1448 004A                i1l1490 0123                i1l1482 00F7                i1l1474 00CB  
+              i1l1466 00A7                i1l1458 007B                i1l1492 0128                i1l1484 0104  
+              i1l1476 00D8                i1l1468 00AC                i1l1494 0135                i1l1486 0109  
+              i1l1478 00E5                i1l1496 0142                i1l1488 0116                i1l1498 0147  
+              _INTCON 000B                _timer0 01E8                saved_w 007E        __pcstackCOMMON 0070  
+        __pidataBANK0 01F5         __end_of_delay 01D7               ??_delay 0076            __pmaintext 0155  
+          __pintentry 0004               ?_timer0 0070       __size_of_timer0 000D          __size_of_exe 0140  
+             main@arr 0024  end_of_initialization 01BF               init_ram 01DB        __end_of_timer0 01F5  
+ start_initialization 01AD           __end_of_exe 0155           __pdataBANK0 0032              ??_timer0 0070  
+         __pbssCOMMON 0076         __pcstackBANK0 0020             __ptext140 01E8             __ptext141 0000  
+           __ptext138 01C3             __ptext139 0015        __size_of_delay 0014     interrupt_function 0004  
+           main@F1607 0032             main@count 002E             init_fetch 01D7         __size_of_main 0058  
+            delay@val 0074              intlevel1 0000            _OPTION_REG 0081  

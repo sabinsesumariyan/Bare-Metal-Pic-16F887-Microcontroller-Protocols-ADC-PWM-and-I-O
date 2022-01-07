@@ -1,0 +1,83 @@
+#include<pic.h>
+void main()
+{
+PORTA=0X00;
+PORTB=0X00;
+TRISA=0X07;
+TRISB=0X00;
+ANSEL=0X00;
+ANSELH=0X00;
+char arr[3];
+int i;
+int j=0;
+int x=1;
+int count=0;
+while(1)
+{
+if(x==1)
+{
+if(RA0==1)
+{
+arr[i]='a';
+while(RA0==1);
+i++;
+}
+if(RA1==1)
+{
+arr[i]='b';
+while(RA1==1);
+i++;
+}
+if(RA2==1 )
+{
+arr[i]='c';
+while(RA2==1);
+i++;
+}
+}
+if(RA3==1)
+{
+x=2;
+}
+if(x==2)
+{
+for(i=0;i<3;i++)
+{
+count=0;
+if(arr[i]=='a')
+{
+while(count<30000)
+{
+RB0=1;
+count++;
+while(i==2);
+}
+RB0=0;
+count=0;
+}
+if(arr[i]=='b')
+{
+while(count<30000)
+{
+RB1=1;
+count++;
+while(i==2);
+}
+RB1=0;
+count=0;
+}
+if(arr[i]=='c')
+{
+while(count<30000)
+{
+RB2=1;
+count++;
+while(i==2);
+}
+RB2=0;
+count=0;
+}
+}
+}
+}
+}

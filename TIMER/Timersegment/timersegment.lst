@@ -1,0 +1,960 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Wed Jun 02 22:58:55 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_timer0
+    43                           	FNROOT	_main
+    44                           	global	_count
+    45                           	global	_PORTA
+    46                           psect	maintext,global,class=CODE,delta=2
+    47                           global __pmaintext
+    48  06B4                     __pmaintext:
+    49  0005                     _PORTA	set	5
+    50                           	global	_PORTB
+    51  0006                     _PORTB	set	6
+    52                           	global	_T0IF
+    53  005A                     _T0IF	set	90
+    54                           	global	_OPTION_REG
+    55  0081                     _OPTION_REG	set	129
+    56                           	global	_TRISA
+    57  0085                     _TRISA	set	133
+    58                           	global	_TRISB
+    59  0086                     _TRISB	set	134
+    60                           	global	_ANSEL
+    61  0188                     _ANSEL	set	392
+    62                           	global	_ANSELH
+    63  0189                     _ANSELH	set	393
+    64                           	file	"timersegment.as"
+    65                           	line	#
+    66                           psect cinit,class=CODE,delta=2
+    67                           global start_initialization
+    68  06A1                     start_initialization:
+    69                           
+    70                           psect	bssCOMMON,class=COMMON,space=1
+    71                           global __pbssCOMMON
+    72  0070                     __pbssCOMMON:
+    73  0070                     _count:
+    74  0070                            ds      2
+    75                           
+    76                           ; Clear objects allocated to COMMON
+    77                           psect cinit,class=CODE,delta=2
+    78  06A1  01F0               	clrf	((__pbssCOMMON)+0)&07Fh
+    79  06A2  01F1               	clrf	((__pbssCOMMON)+1)&07Fh
+    80                           psect cinit,class=CODE,delta=2
+    81                           global end_of_initialization
+    82                           
+    83                           ;End of C runtime variable initialization code
+    84                           
+    85  06A3                     end_of_initialization:
+    86  06A3  0183               clrf status
+    87  06A4  120A  118A  2EB4   ljmp _main	;jump to C main() function
+    88                           psect	cstackCOMMON,class=COMMON,space=1
+    89                           global __pcstackCOMMON
+    90  0000                     __pcstackCOMMON:
+    91                           	global	?_timer0
+    92  0000                     ?_timer0:	; 0 bytes @ 0x0
+    93                           	global	??_timer0
+    94  0000                     ??_timer0:	; 0 bytes @ 0x0
+    95                           	global	?_main
+    96  0000                     ?_main:	; 0 bytes @ 0x0
+    97                           	global	??_main
+    98  0000                     ??_main:	; 0 bytes @ 0x0
+    99 ;;Data sizes: Strings 0, constant 0, data 0, bss 2, persistent 0 stack 0
+   100 ;;Auto spaces:   Size  Autos    Used
+   101 ;; COMMON          14      0       2
+   102 ;; BANK0           80      0       0
+   103 ;; BANK1           80      0       0
+   104 ;; BANK3           96      0       0
+   105 ;; BANK2           96      0       0
+   106                           
+   107 ;;
+   108 ;; Pointer list with targets:
+   109                           
+   110                           
+   111                           
+   112 ;;
+   113 ;; Critical Paths under _main in COMMON
+   114 ;;
+   115 ;;   None.
+   116 ;;
+   117 ;; Critical Paths under _main in BANK0
+   118 ;;
+   119 ;;   None.
+   120 ;;
+   121 ;; Critical Paths under _main in BANK1
+   122 ;;
+   123 ;;   None.
+   124 ;;
+   125 ;; Critical Paths under _main in BANK3
+   126 ;;
+   127 ;;   None.
+   128 ;;
+   129 ;; Critical Paths under _main in BANK2
+   130 ;;
+   131 ;;   None.
+   132                           
+   133 ;;
+   134 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   135 ;;
+   136                           
+   137 ;;
+   138 ;;Call Graph Tables:
+   139 ;;
+   140 ;; ---------------------------------------------------------------------------------
+   141 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   142 ;; ---------------------------------------------------------------------------------
+   143 ;; (0) _main                                                 0     0      0       0
+   144 ;;                             _timer0
+   145 ;; ---------------------------------------------------------------------------------
+   146 ;; (1) _timer0                                               0     0      0       0
+   147 ;; ---------------------------------------------------------------------------------
+   148 ;; Estimated maximum stack depth 1
+   149 ;; ---------------------------------------------------------------------------------
+   150                           
+   151 ;; Call Graph Graphs:
+   152                           
+   153 ;; _main (ROOT)
+   154 ;;   _timer0
+   155 ;;
+   156                           
+   157 ;; Address spaces:
+   158                           
+   159 ;;Name               Size   Autos  Total    Cost      Usage
+   160 ;;BITCOMMON            E      0       0       0        0.0%
+   161 ;;EEDATA             100      0       0       0        0.0%
+   162 ;;NULL                 0      0       0       0        0.0%
+   163 ;;CODE                 0      0       0       0        0.0%
+   164 ;;COMMON               E      0       2       1       14.3%
+   165 ;;BITSFR0              0      0       0       1        0.0%
+   166 ;;SFR0                 0      0       0       1        0.0%
+   167 ;;BITSFR1              0      0       0       2        0.0%
+   168 ;;SFR1                 0      0       0       2        0.0%
+   169 ;;STACK                0      0       1       2        0.0%
+   170 ;;ABS                  0      0       2       3        0.0%
+   171 ;;BITBANK0            50      0       0       4        0.0%
+   172 ;;BITSFR3              0      0       0       4        0.0%
+   173 ;;SFR3                 0      0       0       4        0.0%
+   174 ;;BANK0               50      0       0       5        0.0%
+   175 ;;BITSFR2              0      0       0       5        0.0%
+   176 ;;SFR2                 0      0       0       5        0.0%
+   177 ;;BITBANK1            50      0       0       6        0.0%
+   178 ;;BANK1               50      0       0       7        0.0%
+   179 ;;BITBANK3            60      0       0       8        0.0%
+   180 ;;BANK3               60      0       0       9        0.0%
+   181 ;;BITBANK2            60      0       0      10        0.0%
+   182 ;;BANK2               60      0       0      11        0.0%
+   183 ;;DATA                 0      0       3      12        0.0%
+   184                           
+   185                           	global	_main
+   186                           psect	maintext
+   187                           
+   188 ;; *************** function _main *****************
+   189 ;; Defined at:
+   190 ;;		line 12 in file "E:\KTU\Softwares\MP lab\Timersegment\timersegment.c"
+   191 ;; Parameters:    Size  Location     Type
+   192 ;;		None
+   193 ;; Auto vars:     Size  Location     Type
+   194 ;;		None
+   195 ;; Return value:  Size  Location     Type
+   196 ;;		None               void
+   197 ;; Registers used:
+   198 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   199 ;; Tracked objects:
+   200 ;;		On entry : 17F/0
+   201 ;;		On exit  : 0/0
+   202 ;;		Unchanged: 0/0
+   203 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   204 ;;      Params:         0       0       0       0       0
+   205 ;;      Locals:         0       0       0       0       0
+   206 ;;      Temps:          0       0       0       0       0
+   207 ;;      Totals:         0       0       0       0       0
+   208 ;;Total ram usage:        0 bytes
+   209 ;; Hardware stack levels required when called:    1
+   210 ;; This function calls:
+   211 ;;		_timer0
+   212 ;; This function is called by:
+   213 ;;		Startup code after reset
+   214 ;; This function uses a non-reentrant model
+   215 ;;
+   216                           psect	maintext
+   217                           	file	"E:\KTU\Softwares\MP lab\Timersegment\timersegment.c"
+   218                           	line	12
+   219                           	global	__size_of_main
+   220  014C                     	__size_of_main	equ	__end_of_main-_main
+   221                           	
+   222  06B4                     _main:	
+   223                           	opt	stack 7
+   224                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   225                           	line	13
+   226                           	
+   227  06B4                     l2185:	
+   228                           ;timersegment.c: 13: PORTA=0X00;
+   229  06B4  1283               	bcf	status, 5	;RP0=0, select bank0
+   230  06B5  1303               	bcf	status, 6	;RP1=0, select bank0
+   231  06B6  0185               	clrf	(5)	;volatile
+   232                           	line	14
+   233                           ;timersegment.c: 14: TRISA=0X00;
+   234  06B7  1683               	bsf	status, 5	;RP0=1, select bank1
+   235  06B8  1303               	bcf	status, 6	;RP1=0, select bank1
+   236  06B9  0185               	clrf	(133)^080h	;volatile
+   237                           	line	15
+   238                           ;timersegment.c: 15: PORTB=0X00;
+   239  06BA  1283               	bcf	status, 5	;RP0=0, select bank0
+   240  06BB  1303               	bcf	status, 6	;RP1=0, select bank0
+   241  06BC  0186               	clrf	(6)	;volatile
+   242                           	line	16
+   243                           ;timersegment.c: 16: TRISB=0X00;
+   244  06BD  1683               	bsf	status, 5	;RP0=1, select bank1
+   245  06BE  1303               	bcf	status, 6	;RP1=0, select bank1
+   246  06BF  0186               	clrf	(134)^080h	;volatile
+   247                           	line	17
+   248                           ;timersegment.c: 17: ANSEL=0X00;
+   249  06C0  1683               	bsf	status, 5	;RP0=1, select bank3
+   250  06C1  1703               	bsf	status, 6	;RP1=1, select bank3
+   251  06C2  0188               	clrf	(392)^0180h	;volatile
+   252                           	line	18
+   253                           ;timersegment.c: 18: ANSELH=0X00;
+   254  06C3  0189               	clrf	(393)^0180h	;volatile
+   255                           	line	19
+   256                           	
+   257  06C4                     l2187:	
+   258                           ;timersegment.c: 19: OPTION_REG=0X07;
+   259  06C4  3007               	movlw	(07h)
+   260  06C5  1683               	bsf	status, 5	;RP0=1, select bank1
+   261  06C6  1303               	bcf	status, 6	;RP1=0, select bank1
+   262  06C7  0081               	movwf	(129)^080h	;volatile
+   263  06C8  2EC9               	goto	l2189
+   264                           	line	20
+   265                           ;timersegment.c: 20: while(1)
+   266                           	
+   267  06C9                     l1031:	
+   268                           	line	22
+   269                           	
+   270  06C9                     l2189:	
+   271                           ;timersegment.c: 21: {
+   272                           ;timersegment.c: 22: timer0();
+   273  06C9  120A  118A  26A7   	fcall	_timer0
+              120A  118A         
+   274                           	line	23
+   275                           	
+   276  06CE                     l2191:	
+   277                           ;timersegment.c: 23: if(count>=0 && count<=15)
+   278  06CE  1BF1               	btfsc	(_count+1),7
+   279  06CF  2ED1               	goto	u2151
+   280  06D0  2ED2               	goto	u2150
+   281  06D1                     u2151:
+   282  06D1  2EE4               	goto	l2197
+   283  06D2                     u2150:
+   284                           	
+   285  06D2                     l2193:	
+   286  06D2  0871               	movf	(_count+1),w
+   287  06D3  3A80               	xorlw	80h
+   288  06D4  00FF               	movwf	btemp+1
+   289  06D5  3080               	movlw	(high(010h))^80h
+   290  06D6  027F               	subwf	btemp+1,w
+   291  06D7  1D03               	skipz
+   292  06D8  2EDB               	goto	u2165
+   293  06D9  3010               	movlw	low(010h)
+   294  06DA  0270               	subwf	(_count),w
+   295  06DB                     u2165:
+   296                           
+   297  06DB  1803               	skipnc
+   298  06DC  2EDE               	goto	u2161
+   299  06DD  2EDF               	goto	u2160
+   300  06DE                     u2161:
+   301  06DE  2EE4               	goto	l2197
+   302  06DF                     u2160:
+   303                           	line	25
+   304                           	
+   305  06DF                     l2195:	
+   306                           ;timersegment.c: 24: {
+   307                           ;timersegment.c: 25: PORTB=0X06;
+   308  06DF  3006               	movlw	(06h)
+   309  06E0  1283               	bcf	status, 5	;RP0=0, select bank0
+   310  06E1  1303               	bcf	status, 6	;RP1=0, select bank0
+   311  06E2  0086               	movwf	(6)	;volatile
+   312  06E3  2EE4               	goto	l2197
+   313                           	line	26
+   314                           	
+   315  06E4                     l1032:	
+   316                           	line	27
+   317                           	
+   318  06E4                     l2197:	
+   319                           ;timersegment.c: 26: }
+   320                           ;timersegment.c: 27: if(count>=15 && count<=30)
+   321  06E4  0871               	movf	(_count+1),w
+   322  06E5  3A80               	xorlw	80h
+   323  06E6  00FF               	movwf	btemp+1
+   324  06E7  3080               	movlw	(high(0Fh))^80h
+   325  06E8  027F               	subwf	btemp+1,w
+   326  06E9  1D03               	skipz
+   327  06EA  2EED               	goto	u2175
+   328  06EB  300F               	movlw	low(0Fh)
+   329  06EC  0270               	subwf	(_count),w
+   330  06ED                     u2175:
+   331                           
+   332  06ED  1C03               	skipc
+   333  06EE  2EF0               	goto	u2171
+   334  06EF  2EF1               	goto	u2170
+   335  06F0                     u2171:
+   336  06F0  2F03               	goto	l2203
+   337  06F1                     u2170:
+   338                           	
+   339  06F1                     l2199:	
+   340  06F1  0871               	movf	(_count+1),w
+   341  06F2  3A80               	xorlw	80h
+   342  06F3  00FF               	movwf	btemp+1
+   343  06F4  3080               	movlw	(high(01Fh))^80h
+   344  06F5  027F               	subwf	btemp+1,w
+   345  06F6  1D03               	skipz
+   346  06F7  2EFA               	goto	u2185
+   347  06F8  301F               	movlw	low(01Fh)
+   348  06F9  0270               	subwf	(_count),w
+   349  06FA                     u2185:
+   350                           
+   351  06FA  1803               	skipnc
+   352  06FB  2EFD               	goto	u2181
+   353  06FC  2EFE               	goto	u2180
+   354  06FD                     u2181:
+   355  06FD  2F03               	goto	l2203
+   356  06FE                     u2180:
+   357                           	line	29
+   358                           	
+   359  06FE                     l2201:	
+   360                           ;timersegment.c: 28: {
+   361                           ;timersegment.c: 29: PORTB=0X5B;
+   362  06FE  305B               	movlw	(05Bh)
+   363  06FF  1283               	bcf	status, 5	;RP0=0, select bank0
+   364  0700  1303               	bcf	status, 6	;RP1=0, select bank0
+   365  0701  0086               	movwf	(6)	;volatile
+   366  0702  2F03               	goto	l2203
+   367                           	line	30
+   368                           	
+   369  0703                     l1033:	
+   370                           	line	31
+   371                           	
+   372  0703                     l2203:	
+   373                           ;timersegment.c: 30: }
+   374                           ;timersegment.c: 31: if(count>=30 && count<=45)
+   375  0703  0871               	movf	(_count+1),w
+   376  0704  3A80               	xorlw	80h
+   377  0705  00FF               	movwf	btemp+1
+   378  0706  3080               	movlw	(high(01Eh))^80h
+   379  0707  027F               	subwf	btemp+1,w
+   380  0708  1D03               	skipz
+   381  0709  2F0C               	goto	u2195
+   382  070A  301E               	movlw	low(01Eh)
+   383  070B  0270               	subwf	(_count),w
+   384  070C                     u2195:
+   385                           
+   386  070C  1C03               	skipc
+   387  070D  2F0F               	goto	u2191
+   388  070E  2F10               	goto	u2190
+   389  070F                     u2191:
+   390  070F  2F22               	goto	l2209
+   391  0710                     u2190:
+   392                           	
+   393  0710                     l2205:	
+   394  0710  0871               	movf	(_count+1),w
+   395  0711  3A80               	xorlw	80h
+   396  0712  00FF               	movwf	btemp+1
+   397  0713  3080               	movlw	(high(02Eh))^80h
+   398  0714  027F               	subwf	btemp+1,w
+   399  0715  1D03               	skipz
+   400  0716  2F19               	goto	u2205
+   401  0717  302E               	movlw	low(02Eh)
+   402  0718  0270               	subwf	(_count),w
+   403  0719                     u2205:
+   404                           
+   405  0719  1803               	skipnc
+   406  071A  2F1C               	goto	u2201
+   407  071B  2F1D               	goto	u2200
+   408  071C                     u2201:
+   409  071C  2F22               	goto	l2209
+   410  071D                     u2200:
+   411                           	line	33
+   412                           	
+   413  071D                     l2207:	
+   414                           ;timersegment.c: 32: {
+   415                           ;timersegment.c: 33: PORTB=0X4F;
+   416  071D  304F               	movlw	(04Fh)
+   417  071E  1283               	bcf	status, 5	;RP0=0, select bank0
+   418  071F  1303               	bcf	status, 6	;RP1=0, select bank0
+   419  0720  0086               	movwf	(6)	;volatile
+   420  0721  2F22               	goto	l2209
+   421                           	line	34
+   422                           	
+   423  0722                     l1034:	
+   424                           	line	35
+   425                           	
+   426  0722                     l2209:	
+   427                           ;timersegment.c: 34: }
+   428                           ;timersegment.c: 35: if(count>=45 && count<=60)
+   429  0722  0871               	movf	(_count+1),w
+   430  0723  3A80               	xorlw	80h
+   431  0724  00FF               	movwf	btemp+1
+   432  0725  3080               	movlw	(high(02Dh))^80h
+   433  0726  027F               	subwf	btemp+1,w
+   434  0727  1D03               	skipz
+   435  0728  2F2B               	goto	u2215
+   436  0729  302D               	movlw	low(02Dh)
+   437  072A  0270               	subwf	(_count),w
+   438  072B                     u2215:
+   439                           
+   440  072B  1C03               	skipc
+   441  072C  2F2E               	goto	u2211
+   442  072D  2F2F               	goto	u2210
+   443  072E                     u2211:
+   444  072E  2F41               	goto	l2215
+   445  072F                     u2210:
+   446                           	
+   447  072F                     l2211:	
+   448  072F  0871               	movf	(_count+1),w
+   449  0730  3A80               	xorlw	80h
+   450  0731  00FF               	movwf	btemp+1
+   451  0732  3080               	movlw	(high(03Dh))^80h
+   452  0733  027F               	subwf	btemp+1,w
+   453  0734  1D03               	skipz
+   454  0735  2F38               	goto	u2225
+   455  0736  303D               	movlw	low(03Dh)
+   456  0737  0270               	subwf	(_count),w
+   457  0738                     u2225:
+   458                           
+   459  0738  1803               	skipnc
+   460  0739  2F3B               	goto	u2221
+   461  073A  2F3C               	goto	u2220
+   462  073B                     u2221:
+   463  073B  2F41               	goto	l2215
+   464  073C                     u2220:
+   465                           	line	37
+   466                           	
+   467  073C                     l2213:	
+   468                           ;timersegment.c: 36: {
+   469                           ;timersegment.c: 37: PORTB=0X66;
+   470  073C  3066               	movlw	(066h)
+   471  073D  1283               	bcf	status, 5	;RP0=0, select bank0
+   472  073E  1303               	bcf	status, 6	;RP1=0, select bank0
+   473  073F  0086               	movwf	(6)	;volatile
+   474  0740  2F41               	goto	l2215
+   475                           	line	38
+   476                           	
+   477  0741                     l1035:	
+   478                           	line	39
+   479                           	
+   480  0741                     l2215:	
+   481                           ;timersegment.c: 38: }
+   482                           ;timersegment.c: 39: if(count>=60 && count<=75)
+   483  0741  0871               	movf	(_count+1),w
+   484  0742  3A80               	xorlw	80h
+   485  0743  00FF               	movwf	btemp+1
+   486  0744  3080               	movlw	(high(03Ch))^80h
+   487  0745  027F               	subwf	btemp+1,w
+   488  0746  1D03               	skipz
+   489  0747  2F4A               	goto	u2235
+   490  0748  303C               	movlw	low(03Ch)
+   491  0749  0270               	subwf	(_count),w
+   492  074A                     u2235:
+   493                           
+   494  074A  1C03               	skipc
+   495  074B  2F4D               	goto	u2231
+   496  074C  2F4E               	goto	u2230
+   497  074D                     u2231:
+   498  074D  2F60               	goto	l2221
+   499  074E                     u2230:
+   500                           	
+   501  074E                     l2217:	
+   502  074E  0871               	movf	(_count+1),w
+   503  074F  3A80               	xorlw	80h
+   504  0750  00FF               	movwf	btemp+1
+   505  0751  3080               	movlw	(high(04Ch))^80h
+   506  0752  027F               	subwf	btemp+1,w
+   507  0753  1D03               	skipz
+   508  0754  2F57               	goto	u2245
+   509  0755  304C               	movlw	low(04Ch)
+   510  0756  0270               	subwf	(_count),w
+   511  0757                     u2245:
+   512                           
+   513  0757  1803               	skipnc
+   514  0758  2F5A               	goto	u2241
+   515  0759  2F5B               	goto	u2240
+   516  075A                     u2241:
+   517  075A  2F60               	goto	l2221
+   518  075B                     u2240:
+   519                           	line	41
+   520                           	
+   521  075B                     l2219:	
+   522                           ;timersegment.c: 40: {
+   523                           ;timersegment.c: 41: PORTB=0X6D;
+   524  075B  306D               	movlw	(06Dh)
+   525  075C  1283               	bcf	status, 5	;RP0=0, select bank0
+   526  075D  1303               	bcf	status, 6	;RP1=0, select bank0
+   527  075E  0086               	movwf	(6)	;volatile
+   528  075F  2F60               	goto	l2221
+   529                           	line	42
+   530                           	
+   531  0760                     l1036:	
+   532                           	line	43
+   533                           	
+   534  0760                     l2221:	
+   535                           ;timersegment.c: 42: }
+   536                           ;timersegment.c: 43: if(count>=75 && count<=90)
+   537  0760  0871               	movf	(_count+1),w
+   538  0761  3A80               	xorlw	80h
+   539  0762  00FF               	movwf	btemp+1
+   540  0763  3080               	movlw	(high(04Bh))^80h
+   541  0764  027F               	subwf	btemp+1,w
+   542  0765  1D03               	skipz
+   543  0766  2F69               	goto	u2255
+   544  0767  304B               	movlw	low(04Bh)
+   545  0768  0270               	subwf	(_count),w
+   546  0769                     u2255:
+   547                           
+   548  0769  1C03               	skipc
+   549  076A  2F6C               	goto	u2251
+   550  076B  2F6D               	goto	u2250
+   551  076C                     u2251:
+   552  076C  2F7F               	goto	l2227
+   553  076D                     u2250:
+   554                           	
+   555  076D                     l2223:	
+   556  076D  0871               	movf	(_count+1),w
+   557  076E  3A80               	xorlw	80h
+   558  076F  00FF               	movwf	btemp+1
+   559  0770  3080               	movlw	(high(05Bh))^80h
+   560  0771  027F               	subwf	btemp+1,w
+   561  0772  1D03               	skipz
+   562  0773  2F76               	goto	u2265
+   563  0774  305B               	movlw	low(05Bh)
+   564  0775  0270               	subwf	(_count),w
+   565  0776                     u2265:
+   566                           
+   567  0776  1803               	skipnc
+   568  0777  2F79               	goto	u2261
+   569  0778  2F7A               	goto	u2260
+   570  0779                     u2261:
+   571  0779  2F7F               	goto	l2227
+   572  077A                     u2260:
+   573                           	line	45
+   574                           	
+   575  077A                     l2225:	
+   576                           ;timersegment.c: 44: {
+   577                           ;timersegment.c: 45: PORTB=0X7c;
+   578  077A  307C               	movlw	(07Ch)
+   579  077B  1283               	bcf	status, 5	;RP0=0, select bank0
+   580  077C  1303               	bcf	status, 6	;RP1=0, select bank0
+   581  077D  0086               	movwf	(6)	;volatile
+   582  077E  2F7F               	goto	l2227
+   583                           	line	46
+   584                           	
+   585  077F                     l1037:	
+   586                           	line	47
+   587                           	
+   588  077F                     l2227:	
+   589                           ;timersegment.c: 46: }
+   590                           ;timersegment.c: 47: if(count>=90 && count<=105)
+   591  077F  0871               	movf	(_count+1),w
+   592  0780  3A80               	xorlw	80h
+   593  0781  00FF               	movwf	btemp+1
+   594  0782  3080               	movlw	(high(05Ah))^80h
+   595  0783  027F               	subwf	btemp+1,w
+   596  0784  1D03               	skipz
+   597  0785  2F88               	goto	u2275
+   598  0786  305A               	movlw	low(05Ah)
+   599  0787  0270               	subwf	(_count),w
+   600  0788                     u2275:
+   601                           
+   602  0788  1C03               	skipc
+   603  0789  2F8B               	goto	u2271
+   604  078A  2F8C               	goto	u2270
+   605  078B                     u2271:
+   606  078B  2F9E               	goto	l2233
+   607  078C                     u2270:
+   608                           	
+   609  078C                     l2229:	
+   610  078C  0871               	movf	(_count+1),w
+   611  078D  3A80               	xorlw	80h
+   612  078E  00FF               	movwf	btemp+1
+   613  078F  3080               	movlw	(high(06Ah))^80h
+   614  0790  027F               	subwf	btemp+1,w
+   615  0791  1D03               	skipz
+   616  0792  2F95               	goto	u2285
+   617  0793  306A               	movlw	low(06Ah)
+   618  0794  0270               	subwf	(_count),w
+   619  0795                     u2285:
+   620                           
+   621  0795  1803               	skipnc
+   622  0796  2F98               	goto	u2281
+   623  0797  2F99               	goto	u2280
+   624  0798                     u2281:
+   625  0798  2F9E               	goto	l2233
+   626  0799                     u2280:
+   627                           	line	49
+   628                           	
+   629  0799                     l2231:	
+   630                           ;timersegment.c: 48: {
+   631                           ;timersegment.c: 49: PORTB=0X07;
+   632  0799  3007               	movlw	(07h)
+   633  079A  1283               	bcf	status, 5	;RP0=0, select bank0
+   634  079B  1303               	bcf	status, 6	;RP1=0, select bank0
+   635  079C  0086               	movwf	(6)	;volatile
+   636  079D  2F9E               	goto	l2233
+   637                           	line	50
+   638                           	
+   639  079E                     l1038:	
+   640                           	line	51
+   641                           	
+   642  079E                     l2233:	
+   643                           ;timersegment.c: 50: }
+   644                           ;timersegment.c: 51: if(count>=105 && count<=130)
+   645  079E  0871               	movf	(_count+1),w
+   646  079F  3A80               	xorlw	80h
+   647  07A0  00FF               	movwf	btemp+1
+   648  07A1  3080               	movlw	(high(069h))^80h
+   649  07A2  027F               	subwf	btemp+1,w
+   650  07A3  1D03               	skipz
+   651  07A4  2FA7               	goto	u2295
+   652  07A5  3069               	movlw	low(069h)
+   653  07A6  0270               	subwf	(_count),w
+   654  07A7                     u2295:
+   655                           
+   656  07A7  1C03               	skipc
+   657  07A8  2FAA               	goto	u2291
+   658  07A9  2FAB               	goto	u2290
+   659  07AA                     u2291:
+   660  07AA  2FBD               	goto	l2239
+   661  07AB                     u2290:
+   662                           	
+   663  07AB                     l2235:	
+   664  07AB  0871               	movf	(_count+1),w
+   665  07AC  3A80               	xorlw	80h
+   666  07AD  00FF               	movwf	btemp+1
+   667  07AE  3080               	movlw	(high(083h))^80h
+   668  07AF  027F               	subwf	btemp+1,w
+   669  07B0  1D03               	skipz
+   670  07B1  2FB4               	goto	u2305
+   671  07B2  3083               	movlw	low(083h)
+   672  07B3  0270               	subwf	(_count),w
+   673  07B4                     u2305:
+   674                           
+   675  07B4  1803               	skipnc
+   676  07B5  2FB7               	goto	u2301
+   677  07B6  2FB8               	goto	u2300
+   678  07B7                     u2301:
+   679  07B7  2FBD               	goto	l2239
+   680  07B8                     u2300:
+   681                           	line	53
+   682                           	
+   683  07B8                     l2237:	
+   684                           ;timersegment.c: 52: {
+   685                           ;timersegment.c: 53: PORTB=0XFF;
+   686  07B8  30FF               	movlw	(0FFh)
+   687  07B9  1283               	bcf	status, 5	;RP0=0, select bank0
+   688  07BA  1303               	bcf	status, 6	;RP1=0, select bank0
+   689  07BB  0086               	movwf	(6)	;volatile
+   690  07BC  2FBD               	goto	l2239
+   691                           	line	54
+   692                           	
+   693  07BD                     l1039:	
+   694                           	line	55
+   695                           	
+   696  07BD                     l2239:	
+   697                           ;timersegment.c: 54: }
+   698                           ;timersegment.c: 55: if(count>=130 && count<=145)
+   699  07BD  0871               	movf	(_count+1),w
+   700  07BE  3A80               	xorlw	80h
+   701  07BF  00FF               	movwf	btemp+1
+   702  07C0  3080               	movlw	(high(082h))^80h
+   703  07C1  027F               	subwf	btemp+1,w
+   704  07C2  1D03               	skipz
+   705  07C3  2FC6               	goto	u2315
+   706  07C4  3082               	movlw	low(082h)
+   707  07C5  0270               	subwf	(_count),w
+   708  07C6                     u2315:
+   709                           
+   710  07C6  1C03               	skipc
+   711  07C7  2FC9               	goto	u2311
+   712  07C8  2FCA               	goto	u2310
+   713  07C9                     u2311:
+   714  07C9  2FDC               	goto	l2245
+   715  07CA                     u2310:
+   716                           	
+   717  07CA                     l2241:	
+   718  07CA  0871               	movf	(_count+1),w
+   719  07CB  3A80               	xorlw	80h
+   720  07CC  00FF               	movwf	btemp+1
+   721  07CD  3080               	movlw	(high(092h))^80h
+   722  07CE  027F               	subwf	btemp+1,w
+   723  07CF  1D03               	skipz
+   724  07D0  2FD3               	goto	u2325
+   725  07D1  3092               	movlw	low(092h)
+   726  07D2  0270               	subwf	(_count),w
+   727  07D3                     u2325:
+   728                           
+   729  07D3  1803               	skipnc
+   730  07D4  2FD6               	goto	u2321
+   731  07D5  2FD7               	goto	u2320
+   732  07D6                     u2321:
+   733  07D6  2FDC               	goto	l2245
+   734  07D7                     u2320:
+   735                           	line	57
+   736                           	
+   737  07D7                     l2243:	
+   738                           ;timersegment.c: 56: {
+   739                           ;timersegment.c: 57: PORTB=0XE7;
+   740  07D7  30E7               	movlw	(0E7h)
+   741  07D8  1283               	bcf	status, 5	;RP0=0, select bank0
+   742  07D9  1303               	bcf	status, 6	;RP1=0, select bank0
+   743  07DA  0086               	movwf	(6)	;volatile
+   744  07DB  2FDC               	goto	l2245
+   745                           	line	58
+   746                           	
+   747  07DC                     l1040:	
+   748                           	line	59
+   749                           	
+   750  07DC                     l2245:	
+   751                           ;timersegment.c: 58: }
+   752                           ;timersegment.c: 59: if(count>=145 && count<=160)
+   753  07DC  0871               	movf	(_count+1),w
+   754  07DD  3A80               	xorlw	80h
+   755  07DE  00FF               	movwf	btemp+1
+   756  07DF  3080               	movlw	(high(091h))^80h
+   757  07E0  027F               	subwf	btemp+1,w
+   758  07E1  1D03               	skipz
+   759  07E2  2FE5               	goto	u2335
+   760  07E3  3091               	movlw	low(091h)
+   761  07E4  0270               	subwf	(_count),w
+   762  07E5                     u2335:
+   763                           
+   764  07E5  1C03               	skipc
+   765  07E6  2FE8               	goto	u2331
+   766  07E7  2FE9               	goto	u2330
+   767  07E8                     u2331:
+   768  07E8  2EC9               	goto	l2189
+   769  07E9                     u2330:
+   770                           	
+   771  07E9                     l2247:	
+   772  07E9  0871               	movf	(_count+1),w
+   773  07EA  3A80               	xorlw	80h
+   774  07EB  00FF               	movwf	btemp+1
+   775  07EC  3080               	movlw	(high(0A1h))^80h
+   776  07ED  027F               	subwf	btemp+1,w
+   777  07EE  1D03               	skipz
+   778  07EF  2FF2               	goto	u2345
+   779  07F0  30A1               	movlw	low(0A1h)
+   780  07F1  0270               	subwf	(_count),w
+   781  07F2                     u2345:
+   782                           
+   783  07F2  1803               	skipnc
+   784  07F3  2FF5               	goto	u2341
+   785  07F4  2FF6               	goto	u2340
+   786  07F5                     u2341:
+   787  07F5  2EC9               	goto	l2189
+   788  07F6                     u2340:
+   789                           	line	61
+   790                           	
+   791  07F6                     l2249:	
+   792                           ;timersegment.c: 60: {
+   793                           ;timersegment.c: 61: PORTB=0XBF;
+   794  07F6  30BF               	movlw	(0BFh)
+   795  07F7  1283               	bcf	status, 5	;RP0=0, select bank0
+   796  07F8  1303               	bcf	status, 6	;RP1=0, select bank0
+   797  07F9  0086               	movwf	(6)	;volatile
+   798  07FA  2EC9               	goto	l2189
+   799                           	line	62
+   800                           	
+   801  07FB                     l1041:	
+   802  07FB  2EC9               	goto	l2189
+   803                           	line	63
+   804                           	
+   805  07FC                     l1042:	
+   806                           	line	20
+   807  07FC  2EC9               	goto	l2189
+   808                           	
+   809  07FD                     l1043:	
+   810                           	line	64
+   811                           	
+   812  07FD                     l1044:	
+   813                           	global	start
+   814  07FD  120A  118A  2800   	ljmp	start
+   815                           	opt stack 0
+   816                           GLOBAL	__end_of_main
+   817  0800                     	__end_of_main:
+   818 ;; =============== function _main ends ============
+   819                           
+   820                           	signat	_main,88
+   821                           	global	_timer0
+   822                           psect	text55,local,class=CODE,delta=2
+   823                           global __ptext55
+   824  06A7                     __ptext55:
+   825                           
+   826 ;; *************** function _timer0 *****************
+   827 ;; Defined at:
+   828 ;;		line 4 in file "E:\KTU\Softwares\MP lab\Timersegment\timersegment.c"
+   829 ;; Parameters:    Size  Location     Type
+   830 ;;		None
+   831 ;; Auto vars:     Size  Location     Type
+   832 ;;		None
+   833 ;; Return value:  Size  Location     Type
+   834 ;;		None               void
+   835 ;; Registers used:
+   836 ;;		wreg
+   837 ;; Tracked objects:
+   838 ;;		On entry : 0/0
+   839 ;;		On exit  : 0/0
+   840 ;;		Unchanged: 0/0
+   841 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   842 ;;      Params:         0       0       0       0       0
+   843 ;;      Locals:         0       0       0       0       0
+   844 ;;      Temps:          0       0       0       0       0
+   845 ;;      Totals:         0       0       0       0       0
+   846 ;;Total ram usage:        0 bytes
+   847 ;; Hardware stack levels used:    1
+   848 ;; This function calls:
+   849 ;;		Nothing
+   850 ;; This function is called by:
+   851 ;;		_main
+   852 ;; This function uses a non-reentrant model
+   853 ;;
+   854                           psect	text55
+   855                           	file	"E:\KTU\Softwares\MP lab\Timersegment\timersegment.c"
+   856                           	line	4
+   857                           	global	__size_of_timer0
+   858  000D                     	__size_of_timer0	equ	__end_of_timer0-_timer0
+   859                           	
+   860  06A7                     _timer0:	
+   861                           	opt	stack 7
+   862                           ; Regs used in _timer0: [wreg]
+   863                           	line	5
+   864                           	
+   865  06A7                     l1413:	
+   866                           ;timersegment.c: 5: if(T0IF==1)
+   867  06A7  1D0B               	btfss	(90/8),(90)&7
+   868  06A8  2EAA               	goto	u11
+   869  06A9  2EAB               	goto	u10
+   870  06AA                     u11:
+   871  06AA  2EB2               	goto	l1417
+   872  06AB                     u10:
+   873                           	line	7
+   874                           	
+   875  06AB                     l1415:	
+   876                           ;timersegment.c: 6: {
+   877                           ;timersegment.c: 7: count++;
+   878  06AB  3001               	movlw	low(01h)
+   879  06AC  07F0               	addwf	(_count),f
+   880  06AD  1803               	skipnc
+   881  06AE  0AF1               	incf	(_count+1),f
+   882  06AF  3000               	movlw	high(01h)
+   883  06B0  07F1               	addwf	(_count+1),f
+   884  06B1  2EB2               	goto	l1417
+   885                           	line	8
+   886                           	
+   887  06B2                     l1027:	
+   888                           	line	9
+   889                           	
+   890  06B2                     l1417:	
+   891                           ;timersegment.c: 8: }
+   892                           ;timersegment.c: 9: T0IF=0;
+   893  06B2  110B               	bcf	(90/8),(90)&7
+   894                           	line	10
+   895                           	
+   896  06B3                     l1028:	
+   897  06B3  0008               	return
+   898                           	opt stack 0
+   899                           GLOBAL	__end_of_timer0
+   900  06B4                     	__end_of_timer0:
+   901 ;; =============== function _timer0 ends ============
+   902                           
+   903                           	signat	_timer0,88
+   904                           psect	text56,local,class=CODE,delta=2
+   905                           global __ptext56
+   906  0000                     __ptext56:
+   907                           	global	btemp
+   908  007E                     	btemp set 07Eh
+   909                           
+   910                           	DABS	1,126,2	;btemp
+   911                           	global	wtemp0
+   912  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Wed Jun 02 22:58:55 2021
+
+                  u10 06AB                    u11 06AA                  l1031 06C9                  l1040 07DC  
+                l1032 06E4                  l1041 07FB                  l1033 0703                  l1042 07FC  
+                l1034 0722                  l1027 06B2                  l1043 07FD                  l1035 0741  
+                l1028 06B3                  l1044 07FD                  l1036 0760                  l1037 077F  
+                l1038 079E                  l1039 07BD                  l2201 06FE                  l2211 072F  
+                l2203 0703                  l1413 06A7                  l2221 0760                  l2213 073C  
+                l2205 0710                  l1415 06AB                  l2231 0799                  l2223 076D  
+                l2215 0741                  l2207 071D                  l1417 06B2                  l2241 07CA  
+                l2233 079E                  l2225 077A                  l2217 074E                  l2209 0722  
+                l2243 07D7                  l2235 07AB                  l2227 077F                  l2219 075B  
+                l2245 07DC                  l2237 07B8                  l2229 078C                  l2247 07E9  
+                l2239 07BD                  l2191 06CE                  l2249 07F6                  l2193 06D2  
+                l2185 06B4                  l2195 06DF                  l2187 06C4                  l2197 06E4  
+                l2189 06C9                  l2199 06F1                  _T0IF 005A                  u2200 071D  
+                u2201 071C                  u2210 072F                  u2211 072E                  u2300 07B8  
+                u2220 073C                  u2301 07B7                  u2221 073B                  u2205 0719  
+                u2310 07CA                  u2230 074E                  u2150 06D2                  u2311 07C9  
+                u2231 074D                  u2215 072B                  u2151 06D1                  u2320 07D7  
+                u2240 075B                  u2160 06DF                  u2321 07D6                  u2305 07B4  
+                u2241 075A                  u2225 0738                  u2161 06DE                  u2330 07E9  
+                u2250 076D                  u2170 06F1                  u2331 07E8                  u2315 07C6  
+                u2251 076C                  u2235 074A                  u2171 06F0                  u2340 07F6  
+                u2260 077A                  u2180 06FE                  u2341 07F5                  u2325 07D3  
+                u2261 0779                  u2245 0757                  u2181 06FD                  u2165 06DB  
+                u2270 078C                  u2190 0710                  u2335 07E5                  u2271 078B  
+                u2255 0769                  u2191 070F                  u2175 06ED                  u2280 0799  
+                u2345 07F2                  u2281 0798                  u2265 0776                  u2185 06FA  
+                u2290 07AB                  u2291 07AA                  u2275 0788                  u2195 070C  
+                u2285 0795                  u2295 07A7                  _main 06B4                  btemp 007E  
+                start 0000                 ?_main 0000                 _ANSEL 0188                 _PORTA 0005  
+               _PORTB 0006                 _TRISA 0085                 _TRISB 0086                 _count 0070  
+               status 0003                 wtemp0 007E          __end_of_main 0800                ??_main 0000  
+              _ANSELH 0189                _timer0 06A7        __pcstackCOMMON 0000            __pmaintext 06B4  
+             ?_timer0 0000       __size_of_timer0 000D  end_of_initialization 06A3        __end_of_timer0 06B4  
+ start_initialization 06A1              ??_timer0 0000           __pbssCOMMON 0070              __ptext55 06A7  
+            __ptext56 0000         __size_of_main 014C            _OPTION_REG 0081  

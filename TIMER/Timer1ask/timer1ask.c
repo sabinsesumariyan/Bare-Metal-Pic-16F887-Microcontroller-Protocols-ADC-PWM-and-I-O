@@ -1,0 +1,421 @@
+#include<pic.h>
+#define RS RA0
+#define RW RA1  
+#define EN RA2
+int count=0;
+void timer1()
+{
+	if(TMR1IF==1)
+	{
+		count++;
+	}
+	TMR1IF=0;
+}
+void delay(int del)
+{
+	while(del--);
+}
+void pulse()
+{
+	EN=1;
+	delay(100);
+	EN=0;
+	delay(100);
+}
+void on()
+{
+	RS=0;
+	RW=0;
+	PORTB=0X0E;
+	pulse();
+}
+void type()
+{
+	RS=0;
+	RW=0;
+	PORTB=0X38;
+	pulse();
+}
+void address(char data)
+{
+	RS=0;
+	RW=0;
+	PORTB=data;
+	pulse();
+}
+void display(char data)
+{
+	RS=1;
+	RW=0;
+	PORTB=data;
+	pulse();
+}
+void clear()
+{
+	RS=0;
+	RW=0;
+	PORTB=0X01;
+	pulse();
+}
+void main()
+{
+	PORTA=0X00;
+	TRISA=0X00;
+	PORTB=0X00;
+	TRISB=0X00;
+	PORTC=0X00;
+	TRISC=0X00;
+	PORTD=0X00;
+	TRISD=0X07;
+	ANSEL=0X00;
+	ANSELH=0X00;
+	T1CON=0X31;
+	char first[40]="1st led duration";
+	char second[20]="2nd led duration";
+	char third[20]="3rd led duration";
+	char pattern[20]="Blink pattern";
+	char process[10]="Processing";
+	int control=1;
+	int i,j=0;
+	char arr1,arr2,arr3;
+	int val1,val2,val3;
+	char patt[3];
+	int patval[3];
+	int k=0;
+	on();
+	type();
+	while(1)
+	{
+		if(control==1)
+		{
+			for(i=0;i<15;i++)
+			{
+				address(0X80+i);
+				display(first[i]);
+			}
+			control=2;
+		}
+		if(control==2)
+		{
+			address(0XC0+0);
+			display(arr1);
+			RD3=1;RD4=0;RD5=0;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr1='1';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr1='2';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr1='3';
+			}	
+			RD3=0;RD4=1;RD5=0;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr1='4';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr1='5';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr1='6';
+			}	
+			RD3=0;RD4=0;RD5=1;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr1='7';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr1='8';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr1='9';
+			}
+			RD3=0;RD4=0;RD5=0;RD6=1;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				control=3;
+				clear();
+			}
+			val1= arr1-'0';
+		}
+		if(control==3)
+		{
+			clear();
+			for(i=0;i<15;i++)
+			{
+				address(0X80+i);
+				display(second[i]);
+			}
+			control=4;
+		}
+		if(control==4)
+		{
+			//clear();
+			address(0XC0+0);
+			display(arr2);
+			RD3=1;RD4=0;RD5=0;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr2='1';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr2='2';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr2='3';
+			}	
+			RD3=0;RD4=1;RD5=0;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr2='4';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr2='5';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr2='6';
+			}	
+			RD3=0;RD4=0;RD5=1;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr2='7';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr2='8';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr2='9';
+			}
+			RD3=0;RD4=0;RD5=0;RD6=1;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				control=5;
+			}
+			val2= arr2-'0';
+		}
+		if(control==5)
+		{
+			clear();
+			for(i=0;i<15;i++)
+			{
+				address(0X80+i);
+				display(third[i]);
+			}
+			control=6;
+		}
+		if(control==6)
+		{
+			address(0XC0+0);
+			display(arr3);
+			RD3=1;RD4=0;RD5=0;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr3='1';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr3='2';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr3='3';
+			}	
+			RD3=0;RD4=1;RD5=0;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr3='4';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr3='5';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr3='6';
+			}	
+			RD3=0;RD4=0;RD5=1;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				arr3='7';
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				arr3='8';
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				arr3='9';
+			}
+			RD3=0;RD4=0;RD5=0;RD6=1;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				control=7;
+			}
+			val3= arr3-'0';
+		}
+		if(control==7)
+		{
+			clear();
+			for(i=0;i<15;i++)
+			{
+				address(0X80+i);
+				display(pattern[i]);
+			}
+			control=8;
+		}
+		if(control==8)
+		{
+			RD3=1;RD4=0;RD5=0;RD6=0;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				patt[k]='1';
+				patval[k]=patt[k]-'0';
+				address(0XC0+k);
+				display(patt[k]);
+				k++;
+			}
+			if(RD1==1)
+			{
+				while(RD1==1);
+				patt[k]='2';
+				patval[k]=patt[k]-'0';
+				address(0XC0+k);
+				display(patt[k]);
+				k++;
+			}
+			if(RD2==1)
+			{
+				while(RD2==1);
+				patt[k]='3';
+				patval[k]=patt[k]-'0';
+				address(0XC0+k);
+				display(patt[k]);
+				k++;
+			}
+			RD3=0;RD4=0;RD5=0;RD6=1;
+			if(RD0==1)
+			{
+				while(RD0==1);
+				control=9;
+			}
+		}	
+		if(control==9)
+		{
+			clear();
+			for(i=0;i<10;i++)
+			{
+				address(0XC0+i);
+				display(process[i]);
+			}
+			control=10;
+		}	
+		if(control==10)
+		{
+			for(i=0;i<3;)
+			{	
+				//timer1();	
+				if(patval[i]==1)
+				{
+					timer1();
+					if(count>=0 && count<=val1*2)
+					{
+						RC0=1;
+					}
+					if(count>val1*2)
+					{
+						RC0=0;
+						count=0;
+						i++;
+					}
+					//i++;
+				}
+				if(patval[i]==2)
+				{
+					timer1();
+					if(count>=0 && count<=val2*2)
+					{
+						RC1=1;
+					}
+					if(count>val2*2)
+					{
+						RC1=0;
+						count=0;
+						i++;
+					}
+				//	i++;
+				}
+				if(patval[i]==3)
+				{
+					timer1();
+					if(count>=0 && count<=val3*2)
+					{
+						RC2=1;
+					}
+					if(count>val3*2)
+					{
+						RC2=0;
+						count=0;
+						i++;
+					}
+				//	i++;
+				}
+			}
+			control=11;
+		}
+		if(control==11)
+		{
+			control=1;
+			clear();
+			count=0;
+			arr1='\0';
+			arr2='\0';
+			arr3='\0';
+			k=0;		
+		}
+	}
+}

@@ -1,0 +1,2190 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Wed Apr 28 13:21:52 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_sabin
+    43                           	FNROOT	_main
+    44                           	global	_count
+    45                           	global	_PORTA
+    46                           psect	text60,local,class=CODE,delta=2
+    47                           global __ptext60
+    48  0000                     __ptext60:
+    49  0005                     _PORTA	set	5
+    50                           	global	_PORTB
+    51  0006                     _PORTB	set	6
+    52                           	global	_PORTC
+    53  0007                     _PORTC	set	7
+    54                           	global	_PORTD
+    55  0008                     _PORTD	set	8
+    56                           	global	_RA0
+    57  0028                     _RA0	set	40
+    58                           	global	_RA1
+    59  0029                     _RA1	set	41
+    60                           	global	_RD0
+    61  0040                     _RD0	set	64
+    62                           	global	_TRISA
+    63  0085                     _TRISA	set	133
+    64                           	global	_TRISB
+    65  0086                     _TRISB	set	134
+    66                           	global	_TRISC
+    67  0087                     _TRISC	set	135
+    68                           	global	_TRISD
+    69  0088                     _TRISD	set	136
+    70                           	global	_ANSEL
+    71  0188                     _ANSEL	set	392
+    72                           	global	_ANSELH
+    73  0189                     _ANSELH	set	393
+    74                           	file	"viewprocess.as"
+    75                           	line	#
+    76                           psect cinit,class=CODE,delta=2
+    77                           global start_initialization
+    78  04CD                     start_initialization:
+    79                           
+    80                           psect	bssCOMMON,class=COMMON,space=1
+    81                           global __pbssCOMMON
+    82  0077                     __pbssCOMMON:
+    83  0077                     _count:
+    84  0077                            ds      2
+    85                           
+    86                           ; Clear objects allocated to COMMON
+    87                           psect cinit,class=CODE,delta=2
+    88  04CD  01F7               	clrf	((__pbssCOMMON)+0)&07Fh
+    89  04CE  01F8               	clrf	((__pbssCOMMON)+1)&07Fh
+    90                           psect cinit,class=CODE,delta=2
+    91                           global end_of_initialization
+    92                           
+    93                           ;End of C runtime variable initialization code
+    94                           
+    95  04CF                     end_of_initialization:
+    96  04CF  0183               clrf status
+    97  04D0  120A  118A  2CD3   ljmp _main	;jump to C main() function
+    98                           psect	cstackCOMMON,class=COMMON,space=1
+    99                           global __pcstackCOMMON
+   100  0070                     __pcstackCOMMON:
+   101                           	global	?_sabin
+   102  0070                     ?_sabin:	; 0 bytes @ 0x0
+   103                           	global	?_main
+   104  0070                     ?_main:	; 0 bytes @ 0x0
+   105                           	global	sabin@x
+   106  0070                     sabin@x:	; 2 bytes @ 0x0
+   107  0070                     	ds	2
+   108                           	global	??_sabin
+   109  0072                     ??_sabin:	; 0 bytes @ 0x2
+   110                           	global	??_main
+   111  0072                     ??_main:	; 0 bytes @ 0x2
+   112  0072                     	ds	1
+   113                           	global	main@i
+   114  0073                     main@i:	; 2 bytes @ 0x3
+   115  0073                     	ds	2
+   116                           	global	main@x
+   117  0075                     main@x:	; 2 bytes @ 0x5
+   118  0075                     	ds	2
+   119 ;;Data sizes: Strings 0, constant 0, data 0, bss 2, persistent 0 stack 0
+   120 ;;Auto spaces:   Size  Autos    Used
+   121 ;; COMMON          14      7       9
+   122 ;; BANK0           80      0       0
+   123 ;; BANK1           80      0       0
+   124 ;; BANK3           96      0       0
+   125 ;; BANK2           96      0       0
+   126                           
+   127 ;;
+   128 ;; Pointer list with targets:
+   129                           
+   130                           
+   131                           
+   132 ;;
+   133 ;; Critical Paths under _main in COMMON
+   134 ;;
+   135 ;;   _main->_sabin
+   136 ;;
+   137 ;; Critical Paths under _main in BANK0
+   138 ;;
+   139 ;;   None.
+   140 ;;
+   141 ;; Critical Paths under _main in BANK1
+   142 ;;
+   143 ;;   None.
+   144 ;;
+   145 ;; Critical Paths under _main in BANK3
+   146 ;;
+   147 ;;   None.
+   148 ;;
+   149 ;; Critical Paths under _main in BANK2
+   150 ;;
+   151 ;;   None.
+   152                           
+   153 ;;
+   154 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   155 ;;
+   156                           
+   157 ;;
+   158 ;;Call Graph Tables:
+   159 ;;
+   160 ;; ---------------------------------------------------------------------------------
+   161 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   162 ;; ---------------------------------------------------------------------------------
+   163 ;; (0) _main                                                 5     5      0     345
+   164 ;;                                              2 COMMON     5     5      0
+   165 ;;                              _sabin
+   166 ;; ---------------------------------------------------------------------------------
+   167 ;; (1) _sabin                                                2     0      2     150
+   168 ;;                                              0 COMMON     2     0      2
+   169 ;; ---------------------------------------------------------------------------------
+   170 ;; Estimated maximum stack depth 1
+   171 ;; ---------------------------------------------------------------------------------
+   172                           
+   173 ;; Call Graph Graphs:
+   174                           
+   175 ;; _main (ROOT)
+   176 ;;   _sabin
+   177 ;;
+   178                           
+   179 ;; Address spaces:
+   180                           
+   181 ;;Name               Size   Autos  Total    Cost      Usage
+   182 ;;BITCOMMON            E      0       0       0        0.0%
+   183 ;;EEDATA             100      0       0       0        0.0%
+   184 ;;NULL                 0      0       0       0        0.0%
+   185 ;;CODE                 0      0       0       0        0.0%
+   186 ;;COMMON               E      7       9       1       64.3%
+   187 ;;BITSFR0              0      0       0       1        0.0%
+   188 ;;SFR0                 0      0       0       1        0.0%
+   189 ;;BITSFR1              0      0       0       2        0.0%
+   190 ;;SFR1                 0      0       0       2        0.0%
+   191 ;;STACK                0      0       1       2        0.0%
+   192 ;;ABS                  0      0       9       3        0.0%
+   193 ;;BITBANK0            50      0       0       4        0.0%
+   194 ;;BITSFR3              0      0       0       4        0.0%
+   195 ;;SFR3                 0      0       0       4        0.0%
+   196 ;;BANK0               50      0       0       5        0.0%
+   197 ;;BITSFR2              0      0       0       5        0.0%
+   198 ;;SFR2                 0      0       0       5        0.0%
+   199 ;;BITBANK1            50      0       0       6        0.0%
+   200 ;;BANK1               50      0       0       7        0.0%
+   201 ;;BITBANK3            60      0       0       8        0.0%
+   202 ;;BANK3               60      0       0       9        0.0%
+   203 ;;BITBANK2            60      0       0      10        0.0%
+   204 ;;BANK2               60      0       0      11        0.0%
+   205 ;;DATA                 0      0       A      12        0.0%
+   206                           
+   207                           	global	_main
+   208                           psect	maintext,global,class=CODE,delta=2
+   209                           global __pmaintext
+   210  04D3                     __pmaintext:
+   211                           
+   212 ;; *************** function _main *****************
+   213 ;; Defined at:
+   214 ;;		line 157 in file "E:\KTU\Softwares\mplab\Viewprocess\viewprocess.c"
+   215 ;; Parameters:    Size  Location     Type
+   216 ;;		None
+   217 ;; Auto vars:     Size  Location     Type
+   218 ;;  x               2    5[COMMON] int 
+   219 ;;  i               2    3[COMMON] int 
+   220 ;; Return value:  Size  Location     Type
+   221 ;;		None               void
+   222 ;; Registers used:
+   223 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   224 ;; Tracked objects:
+   225 ;;		On entry : 17F/0
+   226 ;;		On exit  : 0/0
+   227 ;;		Unchanged: 0/0
+   228 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   229 ;;      Params:         0       0       0       0       0
+   230 ;;      Locals:         4       0       0       0       0
+   231 ;;      Temps:          1       0       0       0       0
+   232 ;;      Totals:         5       0       0       0       0
+   233 ;;Total ram usage:        5 bytes
+   234 ;; Hardware stack levels required when called:    1
+   235 ;; This function calls:
+   236 ;;		_sabin
+   237 ;; This function is called by:
+   238 ;;		Startup code after reset
+   239 ;; This function uses a non-reentrant model
+   240 ;;
+   241                           psect	maintext
+   242                           	file	"E:\KTU\Softwares\mplab\Viewprocess\viewprocess.c"
+   243                           	line	157
+   244                           	global	__size_of_main
+   245  00C0                     	__size_of_main	equ	__end_of_main-_main
+   246                           	
+   247  04D3                     _main:	
+   248                           	opt	stack 7
+   249                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   250                           	line	158
+   251                           	
+   252  04D3                     l2436:	
+   253                           ;viewprocess.c: 158: PORTA=0X00;
+   254  04D3  1283               	bcf	status, 5	;RP0=0, select bank0
+   255  04D4  1303               	bcf	status, 6	;RP1=0, select bank0
+   256  04D5  0185               	clrf	(5)	;volatile
+   257                           	line	159
+   258                           	
+   259  04D6                     l2438:	
+   260                           ;viewprocess.c: 159: TRISA=0X02;
+   261  04D6  3002               	movlw	(02h)
+   262  04D7  1683               	bsf	status, 5	;RP0=1, select bank1
+   263  04D8  1303               	bcf	status, 6	;RP1=0, select bank1
+   264  04D9  0085               	movwf	(133)^080h	;volatile
+   265                           	line	160
+   266                           	
+   267  04DA                     l2440:	
+   268                           ;viewprocess.c: 160: PORTB=0X00;
+   269  04DA  1283               	bcf	status, 5	;RP0=0, select bank0
+   270  04DB  1303               	bcf	status, 6	;RP1=0, select bank0
+   271  04DC  0186               	clrf	(6)	;volatile
+   272                           	line	161
+   273                           	
+   274  04DD                     l2442:	
+   275                           ;viewprocess.c: 161: TRISB=0X00;
+   276  04DD  1683               	bsf	status, 5	;RP0=1, select bank1
+   277  04DE  1303               	bcf	status, 6	;RP1=0, select bank1
+   278  04DF  0186               	clrf	(134)^080h	;volatile
+   279                           	line	162
+   280                           	
+   281  04E0                     l2444:	
+   282                           ;viewprocess.c: 162: PORTC=0X00;
+   283  04E0  1283               	bcf	status, 5	;RP0=0, select bank0
+   284  04E1  1303               	bcf	status, 6	;RP1=0, select bank0
+   285  04E2  0187               	clrf	(7)	;volatile
+   286                           	line	163
+   287                           	
+   288  04E3                     l2446:	
+   289                           ;viewprocess.c: 163: TRISC=0X00;
+   290  04E3  1683               	bsf	status, 5	;RP0=1, select bank1
+   291  04E4  1303               	bcf	status, 6	;RP1=0, select bank1
+   292  04E5  0187               	clrf	(135)^080h	;volatile
+   293                           	line	164
+   294                           	
+   295  04E6                     l2448:	
+   296                           ;viewprocess.c: 164: PORTD=0X00;
+   297  04E6  1283               	bcf	status, 5	;RP0=0, select bank0
+   298  04E7  1303               	bcf	status, 6	;RP1=0, select bank0
+   299  04E8  0188               	clrf	(8)	;volatile
+   300                           	line	165
+   301                           	
+   302  04E9                     l2450:	
+   303                           ;viewprocess.c: 165: TRISD=0X00;
+   304  04E9  1683               	bsf	status, 5	;RP0=1, select bank1
+   305  04EA  1303               	bcf	status, 6	;RP1=0, select bank1
+   306  04EB  0188               	clrf	(136)^080h	;volatile
+   307                           	line	166
+   308                           	
+   309  04EC                     l2452:	
+   310                           ;viewprocess.c: 166: ANSEL=0X00;
+   311  04EC  1683               	bsf	status, 5	;RP0=1, select bank3
+   312  04ED  1703               	bsf	status, 6	;RP1=1, select bank3
+   313  04EE  0188               	clrf	(392)^0180h	;volatile
+   314                           	line	167
+   315                           	
+   316  04EF                     l2454:	
+   317                           ;viewprocess.c: 167: ANSELH=0X00;
+   318  04EF  0189               	clrf	(393)^0180h	;volatile
+   319                           	line	168
+   320                           	
+   321  04F0                     l2456:	
+   322                           ;viewprocess.c: 168: int x=0;
+   323  04F0  01F5               	clrf	(main@x)
+   324  04F1  01F6               	clrf	(main@x+1)
+   325  04F2  2CF3               	goto	l2458
+   326                           	line	170
+   327                           ;viewprocess.c: 169: int i;
+   328                           ;viewprocess.c: 170: while(1)
+   329                           	
+   330  04F3                     l1100:	
+   331                           	line	172
+   332                           	
+   333  04F3                     l2458:	
+   334                           ;viewprocess.c: 171: {
+   335                           ;viewprocess.c: 172: if(RA0==1)
+   336  04F3  1283               	bcf	status, 5	;RP0=0, select bank0
+   337  04F4  1303               	bcf	status, 6	;RP1=0, select bank0
+   338  04F5  1C05               	btfss	(40/8),(40)&7
+   339  04F6  2CF8               	goto	u2441
+   340  04F7  2CF9               	goto	u2440
+   341  04F8                     u2441:
+   342  04F8  2D06               	goto	l1101
+   343  04F9                     u2440:
+   344  04F9  2CFB               	goto	l1102
+   345                           	line	174
+   346                           	
+   347  04FA                     l2460:	
+   348                           ;viewprocess.c: 173: {
+   349                           ;viewprocess.c: 174: while(RA0==1);
+   350  04FA  2CFB               	goto	l1102
+   351                           	
+   352  04FB                     l1103:	
+   353                           	
+   354  04FB                     l1102:	
+   355  04FB  1805               	btfsc	(40/8),(40)&7
+   356  04FC  2CFE               	goto	u2451
+   357  04FD  2CFF               	goto	u2450
+   358  04FE                     u2451:
+   359  04FE  2CFB               	goto	l1102
+   360  04FF                     u2450:
+   361  04FF  2D00               	goto	l2462
+   362                           	
+   363  0500                     l1104:	
+   364                           	line	175
+   365                           	
+   366  0500                     l2462:	
+   367                           ;viewprocess.c: 175: x++;
+   368  0500  3001               	movlw	low(01h)
+   369  0501  07F5               	addwf	(main@x),f
+   370  0502  1803               	skipnc
+   371  0503  0AF6               	incf	(main@x+1),f
+   372  0504  3000               	movlw	high(01h)
+   373  0505  07F6               	addwf	(main@x+1),f
+   374                           	line	176
+   375                           	
+   376  0506                     l1101:	
+   377                           	line	177
+   378                           ;viewprocess.c: 176: }
+   379                           ;viewprocess.c: 177: if(x==1)
+   380  0506  3001               	movlw	01h
+   381  0507  0675               	xorwf	(main@x),w
+   382  0508  0476               	iorwf	(main@x+1),w
+   383  0509  1D03               	skipz
+   384  050A  2D0C               	goto	u2461
+   385  050B  2D0D               	goto	u2460
+   386  050C                     u2461:
+   387  050C  2D0F               	goto	l1105
+   388  050D                     u2460:
+   389                           	line	179
+   390                           	
+   391  050D                     l2464:	
+   392                           ;viewprocess.c: 178: {
+   393                           ;viewprocess.c: 179: PORTB=0XBF;
+   394  050D  30BF               	movlw	(0BFh)
+   395  050E  0086               	movwf	(6)	;volatile
+   396                           	line	180
+   397                           	
+   398  050F                     l1105:	
+   399                           	line	181
+   400                           ;viewprocess.c: 180: }
+   401                           ;viewprocess.c: 181: if(x==2)
+   402  050F  3002               	movlw	02h
+   403  0510  0675               	xorwf	(main@x),w
+   404  0511  0476               	iorwf	(main@x+1),w
+   405  0512  1D03               	skipz
+   406  0513  2D15               	goto	u2471
+   407  0514  2D16               	goto	u2470
+   408  0515                     u2471:
+   409  0515  2D18               	goto	l1106
+   410  0516                     u2470:
+   411                           	line	183
+   412                           	
+   413  0516                     l2466:	
+   414                           ;viewprocess.c: 182: {
+   415                           ;viewprocess.c: 183: PORTB=0X06;
+   416  0516  3006               	movlw	(06h)
+   417  0517  0086               	movwf	(6)	;volatile
+   418                           	line	184
+   419                           	
+   420  0518                     l1106:	
+   421                           	line	185
+   422                           ;viewprocess.c: 184: }
+   423                           ;viewprocess.c: 185: if(x==3)
+   424  0518  3003               	movlw	03h
+   425  0519  0675               	xorwf	(main@x),w
+   426  051A  0476               	iorwf	(main@x+1),w
+   427  051B  1D03               	skipz
+   428  051C  2D1E               	goto	u2481
+   429  051D  2D1F               	goto	u2480
+   430  051E                     u2481:
+   431  051E  2D21               	goto	l1107
+   432  051F                     u2480:
+   433                           	line	187
+   434                           	
+   435  051F                     l2468:	
+   436                           ;viewprocess.c: 186: {
+   437                           ;viewprocess.c: 187: PORTB=0X5B;
+   438  051F  305B               	movlw	(05Bh)
+   439  0520  0086               	movwf	(6)	;volatile
+   440                           	line	188
+   441                           	
+   442  0521                     l1107:	
+   443                           	line	189
+   444                           ;viewprocess.c: 188: }
+   445                           ;viewprocess.c: 189: if(x==4)
+   446  0521  3004               	movlw	04h
+   447  0522  0675               	xorwf	(main@x),w
+   448  0523  0476               	iorwf	(main@x+1),w
+   449  0524  1D03               	skipz
+   450  0525  2D27               	goto	u2491
+   451  0526  2D28               	goto	u2490
+   452  0527                     u2491:
+   453  0527  2D2A               	goto	l1108
+   454  0528                     u2490:
+   455                           	line	191
+   456                           	
+   457  0528                     l2470:	
+   458                           ;viewprocess.c: 190: {
+   459                           ;viewprocess.c: 191: PORTB=0X4F;
+   460  0528  304F               	movlw	(04Fh)
+   461  0529  0086               	movwf	(6)	;volatile
+   462                           	line	192
+   463                           	
+   464  052A                     l1108:	
+   465                           	line	193
+   466                           ;viewprocess.c: 192: }
+   467                           ;viewprocess.c: 193: if(x==5)
+   468  052A  3005               	movlw	05h
+   469  052B  0675               	xorwf	(main@x),w
+   470  052C  0476               	iorwf	(main@x+1),w
+   471  052D  1D03               	skipz
+   472  052E  2D30               	goto	u2501
+   473  052F  2D31               	goto	u2500
+   474  0530                     u2501:
+   475  0530  2D33               	goto	l1109
+   476  0531                     u2500:
+   477                           	line	195
+   478                           	
+   479  0531                     l2472:	
+   480                           ;viewprocess.c: 194: {
+   481                           ;viewprocess.c: 195: PORTB=0X66;
+   482  0531  3066               	movlw	(066h)
+   483  0532  0086               	movwf	(6)	;volatile
+   484                           	line	196
+   485                           	
+   486  0533                     l1109:	
+   487                           	line	197
+   488                           ;viewprocess.c: 196: }
+   489                           ;viewprocess.c: 197: if(x==6)
+   490  0533  3006               	movlw	06h
+   491  0534  0675               	xorwf	(main@x),w
+   492  0535  0476               	iorwf	(main@x+1),w
+   493  0536  1D03               	skipz
+   494  0537  2D39               	goto	u2511
+   495  0538  2D3A               	goto	u2510
+   496  0539                     u2511:
+   497  0539  2D3C               	goto	l1110
+   498  053A                     u2510:
+   499                           	line	199
+   500                           	
+   501  053A                     l2474:	
+   502                           ;viewprocess.c: 198: {
+   503                           ;viewprocess.c: 199: PORTB=0X6D;
+   504  053A  306D               	movlw	(06Dh)
+   505  053B  0086               	movwf	(6)	;volatile
+   506                           	line	200
+   507                           	
+   508  053C                     l1110:	
+   509                           	line	201
+   510                           ;viewprocess.c: 200: }
+   511                           ;viewprocess.c: 201: if(x==7)
+   512  053C  3007               	movlw	07h
+   513  053D  0675               	xorwf	(main@x),w
+   514  053E  0476               	iorwf	(main@x+1),w
+   515  053F  1D03               	skipz
+   516  0540  2D42               	goto	u2521
+   517  0541  2D43               	goto	u2520
+   518  0542                     u2521:
+   519  0542  2D45               	goto	l1111
+   520  0543                     u2520:
+   521                           	line	203
+   522                           	
+   523  0543                     l2476:	
+   524                           ;viewprocess.c: 202: {
+   525                           ;viewprocess.c: 203: PORTB=0X7C;
+   526  0543  307C               	movlw	(07Ch)
+   527  0544  0086               	movwf	(6)	;volatile
+   528                           	line	204
+   529                           	
+   530  0545                     l1111:	
+   531                           	line	205
+   532                           ;viewprocess.c: 204: }
+   533                           ;viewprocess.c: 205: if(x==8)
+   534  0545  3008               	movlw	08h
+   535  0546  0675               	xorwf	(main@x),w
+   536  0547  0476               	iorwf	(main@x+1),w
+   537  0548  1D03               	skipz
+   538  0549  2D4B               	goto	u2531
+   539  054A  2D4C               	goto	u2530
+   540  054B                     u2531:
+   541  054B  2D4E               	goto	l1112
+   542  054C                     u2530:
+   543                           	line	207
+   544                           	
+   545  054C                     l2478:	
+   546                           ;viewprocess.c: 206: {
+   547                           ;viewprocess.c: 207: PORTB=0X07;
+   548  054C  3007               	movlw	(07h)
+   549  054D  0086               	movwf	(6)	;volatile
+   550                           	line	208
+   551                           	
+   552  054E                     l1112:	
+   553                           	line	209
+   554                           ;viewprocess.c: 208: }
+   555                           ;viewprocess.c: 209: if(x==9)
+   556  054E  3009               	movlw	09h
+   557  054F  0675               	xorwf	(main@x),w
+   558  0550  0476               	iorwf	(main@x+1),w
+   559  0551  1D03               	skipz
+   560  0552  2D54               	goto	u2541
+   561  0553  2D55               	goto	u2540
+   562  0554                     u2541:
+   563  0554  2D57               	goto	l1113
+   564  0555                     u2540:
+   565                           	line	211
+   566                           	
+   567  0555                     l2480:	
+   568                           ;viewprocess.c: 210: {
+   569                           ;viewprocess.c: 211: PORTB=0XFF;
+   570  0555  30FF               	movlw	(0FFh)
+   571  0556  0086               	movwf	(6)	;volatile
+   572                           	line	212
+   573                           	
+   574  0557                     l1113:	
+   575                           	line	213
+   576                           ;viewprocess.c: 212: }
+   577                           ;viewprocess.c: 213: if(x==10)
+   578  0557  300A               	movlw	0Ah
+   579  0558  0675               	xorwf	(main@x),w
+   580  0559  0476               	iorwf	(main@x+1),w
+   581  055A  1D03               	skipz
+   582  055B  2D5D               	goto	u2551
+   583  055C  2D5E               	goto	u2550
+   584  055D                     u2551:
+   585  055D  2D63               	goto	l2486
+   586  055E                     u2550:
+   587                           	line	215
+   588                           	
+   589  055E                     l2482:	
+   590                           ;viewprocess.c: 214: {
+   591                           ;viewprocess.c: 215: PORTB=0XE7;
+   592  055E  30E7               	movlw	(0E7h)
+   593  055F  0086               	movwf	(6)	;volatile
+   594                           	line	216
+   595                           	
+   596  0560                     l2484:	
+   597                           ;viewprocess.c: 216: x=0;
+   598  0560  01F5               	clrf	(main@x)
+   599  0561  01F6               	clrf	(main@x+1)
+   600  0562  2D63               	goto	l2486
+   601                           	line	217
+   602                           	
+   603  0563                     l1114:	
+   604                           	line	218
+   605                           	
+   606  0563                     l2486:	
+   607                           ;viewprocess.c: 217: }
+   608                           ;viewprocess.c: 218: if(RA1==1)
+   609  0563  1C85               	btfss	(41/8),(41)&7
+   610  0564  2D66               	goto	u2561
+   611  0565  2D67               	goto	u2560
+   612  0566                     u2561:
+   613  0566  2CF3               	goto	l2458
+   614  0567                     u2560:
+   615                           	line	220
+   616                           	
+   617  0567                     l2488:	
+   618                           ;viewprocess.c: 219: {
+   619                           ;viewprocess.c: 220: for(i=1;i<=x;i++)
+   620  0567  3001               	movlw	low(01h)
+   621  0568  00F3               	movwf	(main@i)
+   622  0569  3000               	movlw	high(01h)
+   623  056A  00F4               	movwf	((main@i))+1
+   624  056B  2D7E               	goto	l2494
+   625                           	line	221
+   626                           	
+   627  056C                     l1117:	
+   628                           	line	222
+   629                           	
+   630  056C                     l2490:	
+   631                           ;viewprocess.c: 221: {
+   632                           ;viewprocess.c: 222: sabin(i);
+   633  056C  0874               	movf	(main@i+1),w
+   634  056D  01F1               	clrf	(?_sabin+1)
+   635  056E  07F1               	addwf	(?_sabin+1)
+   636  056F  0873               	movf	(main@i),w
+   637  0570  01F0               	clrf	(?_sabin)
+   638  0571  07F0               	addwf	(?_sabin)
+   639                           
+   640  0572  120A  118A  2593   	fcall	_sabin
+              120A  118A         
+   641                           	line	220
+   642                           	
+   643  0577                     l2492:	
+   644  0577  3001               	movlw	low(01h)
+   645  0578  07F3               	addwf	(main@i),f
+   646  0579  1803               	skipnc
+   647  057A  0AF4               	incf	(main@i+1),f
+   648  057B  3000               	movlw	high(01h)
+   649  057C  07F4               	addwf	(main@i+1),f
+   650  057D  2D7E               	goto	l2494
+   651                           	
+   652  057E                     l1116:	
+   653                           	
+   654  057E                     l2494:	
+   655  057E  0876               	movf	(main@x+1),w
+   656  057F  3A80               	xorlw	80h
+   657  0580  00F2               	movwf	(??_main+0)+0
+   658  0581  0874               	movf	(main@i+1),w
+   659  0582  3A80               	xorlw	80h
+   660  0583  0272               	subwf	(??_main+0)+0,w
+   661  0584  1D03               	skipz
+   662  0585  2D88               	goto	u2575
+   663  0586  0873               	movf	(main@i),w
+   664  0587  0275               	subwf	(main@x),w
+   665  0588                     u2575:
+   666                           
+   667  0588  1803               	skipnc
+   668  0589  2D8B               	goto	u2571
+   669  058A  2D8C               	goto	u2570
+   670  058B                     u2571:
+   671  058B  2D6C               	goto	l2490
+   672  058C                     u2570:
+   673  058C  2CF3               	goto	l2458
+   674                           	
+   675  058D                     l1118:	
+   676  058D  2CF3               	goto	l2458
+   677                           	line	224
+   678                           	
+   679  058E                     l1115:	
+   680  058E  2CF3               	goto	l2458
+   681                           	line	225
+   682                           	
+   683  058F                     l1119:	
+   684                           	line	170
+   685  058F  2CF3               	goto	l2458
+   686                           	
+   687  0590                     l1120:	
+   688                           	line	226
+   689                           	
+   690  0590                     l1121:	
+   691                           	global	start
+   692  0590  120A  118A  2800   	ljmp	start
+   693                           	opt stack 0
+   694                           GLOBAL	__end_of_main
+   695  0593                     	__end_of_main:
+   696 ;; =============== function _main ends ============
+   697                           
+   698                           	signat	_main,88
+   699                           	global	_sabin
+   700                           psect	text61,local,class=CODE,delta=2
+   701                           global __ptext61
+   702  0593                     __ptext61:
+   703                           
+   704 ;; *************** function _sabin *****************
+   705 ;; Defined at:
+   706 ;;		line 4 in file "E:\KTU\Softwares\mplab\Viewprocess\viewprocess.c"
+   707 ;; Parameters:    Size  Location     Type
+   708 ;;  x               2    0[COMMON] int 
+   709 ;; Auto vars:     Size  Location     Type
+   710 ;;		None
+   711 ;; Return value:  Size  Location     Type
+   712 ;;		None               void
+   713 ;; Registers used:
+   714 ;;		wreg, status,2, btemp+1
+   715 ;; Tracked objects:
+   716 ;;		On entry : 0/0
+   717 ;;		On exit  : 0/0
+   718 ;;		Unchanged: 0/0
+   719 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   720 ;;      Params:         2       0       0       0       0
+   721 ;;      Locals:         0       0       0       0       0
+   722 ;;      Temps:          0       0       0       0       0
+   723 ;;      Totals:         2       0       0       0       0
+   724 ;;Total ram usage:        2 bytes
+   725 ;; Hardware stack levels used:    1
+   726 ;; This function calls:
+   727 ;;		Nothing
+   728 ;; This function is called by:
+   729 ;;		_main
+   730 ;; This function uses a non-reentrant model
+   731 ;;
+   732                           psect	text61
+   733                           	file	"E:\KTU\Softwares\mplab\Viewprocess\viewprocess.c"
+   734                           	line	4
+   735                           	global	__size_of_sabin
+   736  026D                     	__size_of_sabin	equ	__end_of_sabin-_sabin
+   737                           	
+   738  0593                     _sabin:	
+   739                           	opt	stack 7
+   740                           ; Regs used in _sabin: [wreg+status,2+btemp+1]
+   741                           	line	5
+   742                           	
+   743  0593                     l1490:	
+   744                           ;viewprocess.c: 5: if(x==1)
+   745  0593  3001               	movlw	01h
+   746  0594  0670               	xorwf	(sabin@x),w
+   747  0595  0471               	iorwf	(sabin@x+1),w
+   748  0596  1D03               	skipz
+   749  0597  2D99               	goto	u11
+   750  0598  2D9A               	goto	u10
+   751  0599                     u11:
+   752  0599  2DD1               	goto	l1508
+   753  059A                     u10:
+   754  059A  2DA8               	goto	l1498
+   755                           	line	7
+   756                           	
+   757  059B                     l1492:	
+   758                           ;viewprocess.c: 6: {
+   759                           ;viewprocess.c: 7: while(count<30000)
+   760  059B  2DA8               	goto	l1498
+   761                           	
+   762  059C                     l1029:	
+   763                           	line	9
+   764                           	
+   765  059C                     l1494:	
+   766                           ;viewprocess.c: 8: {
+   767                           ;viewprocess.c: 9: PORTC=0XBF;
+   768  059C  30BF               	movlw	(0BFh)
+   769  059D  1283               	bcf	status, 5	;RP0=0, select bank0
+   770  059E  1303               	bcf	status, 6	;RP1=0, select bank0
+   771  059F  0087               	movwf	(7)	;volatile
+   772                           	line	10
+   773                           	
+   774  05A0                     l1496:	
+   775                           ;viewprocess.c: 10: RD0=1;
+   776  05A0  1408               	bsf	(64/8),(64)&7
+   777                           	line	11
+   778                           ;viewprocess.c: 11: count++;
+   779  05A1  3001               	movlw	low(01h)
+   780  05A2  07F7               	addwf	(_count),f
+   781  05A3  1803               	skipnc
+   782  05A4  0AF8               	incf	(_count+1),f
+   783  05A5  3000               	movlw	high(01h)
+   784  05A6  07F8               	addwf	(_count+1),f
+   785  05A7  2DA8               	goto	l1498
+   786                           	line	12
+   787                           	
+   788  05A8                     l1028:	
+   789                           	line	7
+   790                           	
+   791  05A8                     l1498:	
+   792  05A8  0878               	movf	(_count+1),w
+   793  05A9  3A80               	xorlw	80h
+   794  05AA  00FF               	movwf	btemp+1
+   795  05AB  30F5               	movlw	(high(07530h))^80h
+   796  05AC  027F               	subwf	btemp+1,w
+   797  05AD  1D03               	skipz
+   798  05AE  2DB1               	goto	u25
+   799  05AF  3030               	movlw	low(07530h)
+   800  05B0  0277               	subwf	(_count),w
+   801  05B1                     u25:
+   802                           
+   803  05B1  1C03               	skipc
+   804  05B2  2DB4               	goto	u21
+   805  05B3  2DB5               	goto	u20
+   806  05B4                     u21:
+   807  05B4  2D9C               	goto	l1494
+   808  05B5                     u20:
+   809  05B5  2DC2               	goto	l1506
+   810                           	
+   811  05B6                     l1030:	
+   812                           	line	13
+   813                           ;viewprocess.c: 12: }
+   814                           ;viewprocess.c: 13: while(count>0)
+   815  05B6  2DC2               	goto	l1506
+   816                           	
+   817  05B7                     l1032:	
+   818                           	line	15
+   819                           	
+   820  05B7                     l1500:	
+   821                           ;viewprocess.c: 14: {
+   822                           ;viewprocess.c: 15: count--;
+   823  05B7  30FF               	movlw	low(-1)
+   824  05B8  07F7               	addwf	(_count),f
+   825  05B9  1803               	skipnc
+   826  05BA  0AF8               	incf	(_count+1),f
+   827  05BB  30FF               	movlw	high(-1)
+   828  05BC  07F8               	addwf	(_count+1),f
+   829                           	line	16
+   830                           	
+   831  05BD                     l1502:	
+   832                           ;viewprocess.c: 16: RD0=0;
+   833  05BD  1283               	bcf	status, 5	;RP0=0, select bank0
+   834  05BE  1303               	bcf	status, 6	;RP1=0, select bank0
+   835  05BF  1008               	bcf	(64/8),(64)&7
+   836                           	line	17
+   837                           	
+   838  05C0                     l1504:	
+   839                           ;viewprocess.c: 17: PORTC=0X00;
+   840  05C0  0187               	clrf	(7)	;volatile
+   841  05C1  2DC2               	goto	l1506
+   842                           	line	18
+   843                           	
+   844  05C2                     l1031:	
+   845                           	line	13
+   846                           	
+   847  05C2                     l1506:	
+   848  05C2  0878               	movf	(_count+1),w
+   849  05C3  3A80               	xorlw	80h
+   850  05C4  00FF               	movwf	btemp+1
+   851  05C5  3080               	movlw	(high(01h))^80h
+   852  05C6  027F               	subwf	btemp+1,w
+   853  05C7  1D03               	skipz
+   854  05C8  2DCB               	goto	u35
+   855  05C9  3001               	movlw	low(01h)
+   856  05CA  0277               	subwf	(_count),w
+   857  05CB                     u35:
+   858                           
+   859  05CB  1803               	skipnc
+   860  05CC  2DCE               	goto	u31
+   861  05CD  2DCF               	goto	u30
+   862  05CE                     u31:
+   863  05CE  2DB7               	goto	l1500
+   864  05CF                     u30:
+   865  05CF  2DD1               	goto	l1508
+   866                           	
+   867  05D0                     l1033:	
+   868  05D0  2DD1               	goto	l1508
+   869                           	line	19
+   870                           	
+   871  05D1                     l1027:	
+   872                           	line	20
+   873                           	
+   874  05D1                     l1508:	
+   875                           ;viewprocess.c: 18: }
+   876                           ;viewprocess.c: 19: }
+   877                           ;viewprocess.c: 20: if(x==2)
+   878  05D1  3002               	movlw	02h
+   879  05D2  0670               	xorwf	(sabin@x),w
+   880  05D3  0471               	iorwf	(sabin@x+1),w
+   881  05D4  1D03               	skipz
+   882  05D5  2DD7               	goto	u41
+   883  05D6  2DD8               	goto	u40
+   884  05D7                     u41:
+   885  05D7  2E0F               	goto	l1526
+   886  05D8                     u40:
+   887  05D8  2DE6               	goto	l1516
+   888                           	line	22
+   889                           	
+   890  05D9                     l1510:	
+   891                           ;viewprocess.c: 21: {
+   892                           ;viewprocess.c: 22: while(count<30000)
+   893  05D9  2DE6               	goto	l1516
+   894                           	
+   895  05DA                     l1036:	
+   896                           	line	24
+   897                           	
+   898  05DA                     l1512:	
+   899                           ;viewprocess.c: 23: {
+   900                           ;viewprocess.c: 24: PORTC=0X06;
+   901  05DA  3006               	movlw	(06h)
+   902  05DB  1283               	bcf	status, 5	;RP0=0, select bank0
+   903  05DC  1303               	bcf	status, 6	;RP1=0, select bank0
+   904  05DD  0087               	movwf	(7)	;volatile
+   905                           	line	25
+   906                           	
+   907  05DE                     l1514:	
+   908                           ;viewprocess.c: 25: RD0=1;
+   909  05DE  1408               	bsf	(64/8),(64)&7
+   910                           	line	26
+   911                           ;viewprocess.c: 26: count++;
+   912  05DF  3001               	movlw	low(01h)
+   913  05E0  07F7               	addwf	(_count),f
+   914  05E1  1803               	skipnc
+   915  05E2  0AF8               	incf	(_count+1),f
+   916  05E3  3000               	movlw	high(01h)
+   917  05E4  07F8               	addwf	(_count+1),f
+   918  05E5  2DE6               	goto	l1516
+   919                           	line	27
+   920                           	
+   921  05E6                     l1035:	
+   922                           	line	22
+   923                           	
+   924  05E6                     l1516:	
+   925  05E6  0878               	movf	(_count+1),w
+   926  05E7  3A80               	xorlw	80h
+   927  05E8  00FF               	movwf	btemp+1
+   928  05E9  30F5               	movlw	(high(07530h))^80h
+   929  05EA  027F               	subwf	btemp+1,w
+   930  05EB  1D03               	skipz
+   931  05EC  2DEF               	goto	u55
+   932  05ED  3030               	movlw	low(07530h)
+   933  05EE  0277               	subwf	(_count),w
+   934  05EF                     u55:
+   935                           
+   936  05EF  1C03               	skipc
+   937  05F0  2DF2               	goto	u51
+   938  05F1  2DF3               	goto	u50
+   939  05F2                     u51:
+   940  05F2  2DDA               	goto	l1512
+   941  05F3                     u50:
+   942  05F3  2E00               	goto	l1524
+   943                           	
+   944  05F4                     l1037:	
+   945                           	line	28
+   946                           ;viewprocess.c: 27: }
+   947                           ;viewprocess.c: 28: while(count>0)
+   948  05F4  2E00               	goto	l1524
+   949                           	
+   950  05F5                     l1039:	
+   951                           	line	30
+   952                           	
+   953  05F5                     l1518:	
+   954                           ;viewprocess.c: 29: {
+   955                           ;viewprocess.c: 30: count--;
+   956  05F5  30FF               	movlw	low(-1)
+   957  05F6  07F7               	addwf	(_count),f
+   958  05F7  1803               	skipnc
+   959  05F8  0AF8               	incf	(_count+1),f
+   960  05F9  30FF               	movlw	high(-1)
+   961  05FA  07F8               	addwf	(_count+1),f
+   962                           	line	31
+   963                           	
+   964  05FB                     l1520:	
+   965                           ;viewprocess.c: 31: RD0=0;
+   966  05FB  1283               	bcf	status, 5	;RP0=0, select bank0
+   967  05FC  1303               	bcf	status, 6	;RP1=0, select bank0
+   968  05FD  1008               	bcf	(64/8),(64)&7
+   969                           	line	32
+   970                           	
+   971  05FE                     l1522:	
+   972                           ;viewprocess.c: 32: PORTC=0X00;
+   973  05FE  0187               	clrf	(7)	;volatile
+   974  05FF  2E00               	goto	l1524
+   975                           	line	33
+   976                           	
+   977  0600                     l1038:	
+   978                           	line	28
+   979                           	
+   980  0600                     l1524:	
+   981  0600  0878               	movf	(_count+1),w
+   982  0601  3A80               	xorlw	80h
+   983  0602  00FF               	movwf	btemp+1
+   984  0603  3080               	movlw	(high(01h))^80h
+   985  0604  027F               	subwf	btemp+1,w
+   986  0605  1D03               	skipz
+   987  0606  2E09               	goto	u65
+   988  0607  3001               	movlw	low(01h)
+   989  0608  0277               	subwf	(_count),w
+   990  0609                     u65:
+   991                           
+   992  0609  1803               	skipnc
+   993  060A  2E0C               	goto	u61
+   994  060B  2E0D               	goto	u60
+   995  060C                     u61:
+   996  060C  2DF5               	goto	l1518
+   997  060D                     u60:
+   998  060D  2E0F               	goto	l1526
+   999                           	
+  1000  060E                     l1040:	
+  1001  060E  2E0F               	goto	l1526
+  1002                           	line	34
+  1003                           	
+  1004  060F                     l1034:	
+  1005                           	line	35
+  1006                           	
+  1007  060F                     l1526:	
+  1008                           ;viewprocess.c: 33: }
+  1009                           ;viewprocess.c: 34: }
+  1010                           ;viewprocess.c: 35: if(x==3)
+  1011  060F  3003               	movlw	03h
+  1012  0610  0670               	xorwf	(sabin@x),w
+  1013  0611  0471               	iorwf	(sabin@x+1),w
+  1014  0612  1D03               	skipz
+  1015  0613  2E15               	goto	u71
+  1016  0614  2E16               	goto	u70
+  1017  0615                     u71:
+  1018  0615  2E4D               	goto	l1544
+  1019  0616                     u70:
+  1020  0616  2E24               	goto	l1534
+  1021                           	line	37
+  1022                           	
+  1023  0617                     l1528:	
+  1024                           ;viewprocess.c: 36: {
+  1025                           ;viewprocess.c: 37: while(count<30000)
+  1026  0617  2E24               	goto	l1534
+  1027                           	
+  1028  0618                     l1043:	
+  1029                           	line	39
+  1030                           	
+  1031  0618                     l1530:	
+  1032                           ;viewprocess.c: 38: {
+  1033                           ;viewprocess.c: 39: PORTC=0X5B;
+  1034  0618  305B               	movlw	(05Bh)
+  1035  0619  1283               	bcf	status, 5	;RP0=0, select bank0
+  1036  061A  1303               	bcf	status, 6	;RP1=0, select bank0
+  1037  061B  0087               	movwf	(7)	;volatile
+  1038                           	line	40
+  1039                           ;viewprocess.c: 40: count++;
+  1040  061C  3001               	movlw	low(01h)
+  1041  061D  07F7               	addwf	(_count),f
+  1042  061E  1803               	skipnc
+  1043  061F  0AF8               	incf	(_count+1),f
+  1044  0620  3000               	movlw	high(01h)
+  1045  0621  07F8               	addwf	(_count+1),f
+  1046                           	line	41
+  1047                           	
+  1048  0622                     l1532:	
+  1049                           ;viewprocess.c: 41: RD0=1;
+  1050  0622  1408               	bsf	(64/8),(64)&7
+  1051  0623  2E24               	goto	l1534
+  1052                           	line	42
+  1053                           	
+  1054  0624                     l1042:	
+  1055                           	line	37
+  1056                           	
+  1057  0624                     l1534:	
+  1058  0624  0878               	movf	(_count+1),w
+  1059  0625  3A80               	xorlw	80h
+  1060  0626  00FF               	movwf	btemp+1
+  1061  0627  30F5               	movlw	(high(07530h))^80h
+  1062  0628  027F               	subwf	btemp+1,w
+  1063  0629  1D03               	skipz
+  1064  062A  2E2D               	goto	u85
+  1065  062B  3030               	movlw	low(07530h)
+  1066  062C  0277               	subwf	(_count),w
+  1067  062D                     u85:
+  1068                           
+  1069  062D  1C03               	skipc
+  1070  062E  2E30               	goto	u81
+  1071  062F  2E31               	goto	u80
+  1072  0630                     u81:
+  1073  0630  2E18               	goto	l1530
+  1074  0631                     u80:
+  1075  0631  2E3E               	goto	l1542
+  1076                           	
+  1077  0632                     l1044:	
+  1078                           	line	43
+  1079                           ;viewprocess.c: 42: }
+  1080                           ;viewprocess.c: 43: while(count>0)
+  1081  0632  2E3E               	goto	l1542
+  1082                           	
+  1083  0633                     l1046:	
+  1084                           	line	45
+  1085                           	
+  1086  0633                     l1536:	
+  1087                           ;viewprocess.c: 44: {
+  1088                           ;viewprocess.c: 45: count--;
+  1089  0633  30FF               	movlw	low(-1)
+  1090  0634  07F7               	addwf	(_count),f
+  1091  0635  1803               	skipnc
+  1092  0636  0AF8               	incf	(_count+1),f
+  1093  0637  30FF               	movlw	high(-1)
+  1094  0638  07F8               	addwf	(_count+1),f
+  1095                           	line	46
+  1096                           	
+  1097  0639                     l1538:	
+  1098                           ;viewprocess.c: 46: RD0=0;
+  1099  0639  1283               	bcf	status, 5	;RP0=0, select bank0
+  1100  063A  1303               	bcf	status, 6	;RP1=0, select bank0
+  1101  063B  1008               	bcf	(64/8),(64)&7
+  1102                           	line	47
+  1103                           	
+  1104  063C                     l1540:	
+  1105                           ;viewprocess.c: 47: PORTC=0X00;
+  1106  063C  0187               	clrf	(7)	;volatile
+  1107  063D  2E3E               	goto	l1542
+  1108                           	line	48
+  1109                           	
+  1110  063E                     l1045:	
+  1111                           	line	43
+  1112                           	
+  1113  063E                     l1542:	
+  1114  063E  0878               	movf	(_count+1),w
+  1115  063F  3A80               	xorlw	80h
+  1116  0640  00FF               	movwf	btemp+1
+  1117  0641  3080               	movlw	(high(01h))^80h
+  1118  0642  027F               	subwf	btemp+1,w
+  1119  0643  1D03               	skipz
+  1120  0644  2E47               	goto	u95
+  1121  0645  3001               	movlw	low(01h)
+  1122  0646  0277               	subwf	(_count),w
+  1123  0647                     u95:
+  1124                           
+  1125  0647  1803               	skipnc
+  1126  0648  2E4A               	goto	u91
+  1127  0649  2E4B               	goto	u90
+  1128  064A                     u91:
+  1129  064A  2E33               	goto	l1536
+  1130  064B                     u90:
+  1131  064B  2E4D               	goto	l1544
+  1132                           	
+  1133  064C                     l1047:	
+  1134  064C  2E4D               	goto	l1544
+  1135                           	line	49
+  1136                           	
+  1137  064D                     l1041:	
+  1138                           	line	50
+  1139                           	
+  1140  064D                     l1544:	
+  1141                           ;viewprocess.c: 48: }
+  1142                           ;viewprocess.c: 49: }
+  1143                           ;viewprocess.c: 50: if(x==4)
+  1144  064D  3004               	movlw	04h
+  1145  064E  0670               	xorwf	(sabin@x),w
+  1146  064F  0471               	iorwf	(sabin@x+1),w
+  1147  0650  1D03               	skipz
+  1148  0651  2E53               	goto	u101
+  1149  0652  2E54               	goto	u100
+  1150  0653                     u101:
+  1151  0653  2E8B               	goto	l1562
+  1152  0654                     u100:
+  1153  0654  2E62               	goto	l1552
+  1154                           	line	52
+  1155                           	
+  1156  0655                     l1546:	
+  1157                           ;viewprocess.c: 51: {
+  1158                           ;viewprocess.c: 52: while(count<30000)
+  1159  0655  2E62               	goto	l1552
+  1160                           	
+  1161  0656                     l1050:	
+  1162                           	line	54
+  1163                           	
+  1164  0656                     l1548:	
+  1165                           ;viewprocess.c: 53: {
+  1166                           ;viewprocess.c: 54: PORTC=0X4F;
+  1167  0656  304F               	movlw	(04Fh)
+  1168  0657  1283               	bcf	status, 5	;RP0=0, select bank0
+  1169  0658  1303               	bcf	status, 6	;RP1=0, select bank0
+  1170  0659  0087               	movwf	(7)	;volatile
+  1171                           	line	55
+  1172                           ;viewprocess.c: 55: count++;
+  1173  065A  3001               	movlw	low(01h)
+  1174  065B  07F7               	addwf	(_count),f
+  1175  065C  1803               	skipnc
+  1176  065D  0AF8               	incf	(_count+1),f
+  1177  065E  3000               	movlw	high(01h)
+  1178  065F  07F8               	addwf	(_count+1),f
+  1179                           	line	56
+  1180                           	
+  1181  0660                     l1550:	
+  1182                           ;viewprocess.c: 56: RD0=1;
+  1183  0660  1408               	bsf	(64/8),(64)&7
+  1184  0661  2E62               	goto	l1552
+  1185                           	line	57
+  1186                           	
+  1187  0662                     l1049:	
+  1188                           	line	52
+  1189                           	
+  1190  0662                     l1552:	
+  1191  0662  0878               	movf	(_count+1),w
+  1192  0663  3A80               	xorlw	80h
+  1193  0664  00FF               	movwf	btemp+1
+  1194  0665  30F5               	movlw	(high(07530h))^80h
+  1195  0666  027F               	subwf	btemp+1,w
+  1196  0667  1D03               	skipz
+  1197  0668  2E6B               	goto	u115
+  1198  0669  3030               	movlw	low(07530h)
+  1199  066A  0277               	subwf	(_count),w
+  1200  066B                     u115:
+  1201                           
+  1202  066B  1C03               	skipc
+  1203  066C  2E6E               	goto	u111
+  1204  066D  2E6F               	goto	u110
+  1205  066E                     u111:
+  1206  066E  2E56               	goto	l1548
+  1207  066F                     u110:
+  1208  066F  2E7C               	goto	l1560
+  1209                           	
+  1210  0670                     l1051:	
+  1211                           	line	58
+  1212                           ;viewprocess.c: 57: }
+  1213                           ;viewprocess.c: 58: while(count>0)
+  1214  0670  2E7C               	goto	l1560
+  1215                           	
+  1216  0671                     l1053:	
+  1217                           	line	60
+  1218                           	
+  1219  0671                     l1554:	
+  1220                           ;viewprocess.c: 59: {
+  1221                           ;viewprocess.c: 60: count--;
+  1222  0671  30FF               	movlw	low(-1)
+  1223  0672  07F7               	addwf	(_count),f
+  1224  0673  1803               	skipnc
+  1225  0674  0AF8               	incf	(_count+1),f
+  1226  0675  30FF               	movlw	high(-1)
+  1227  0676  07F8               	addwf	(_count+1),f
+  1228                           	line	61
+  1229                           	
+  1230  0677                     l1556:	
+  1231                           ;viewprocess.c: 61: RD0=0;
+  1232  0677  1283               	bcf	status, 5	;RP0=0, select bank0
+  1233  0678  1303               	bcf	status, 6	;RP1=0, select bank0
+  1234  0679  1008               	bcf	(64/8),(64)&7
+  1235                           	line	62
+  1236                           	
+  1237  067A                     l1558:	
+  1238                           ;viewprocess.c: 62: PORTC=0X00;
+  1239  067A  0187               	clrf	(7)	;volatile
+  1240  067B  2E7C               	goto	l1560
+  1241                           	line	63
+  1242                           	
+  1243  067C                     l1052:	
+  1244                           	line	58
+  1245                           	
+  1246  067C                     l1560:	
+  1247  067C  0878               	movf	(_count+1),w
+  1248  067D  3A80               	xorlw	80h
+  1249  067E  00FF               	movwf	btemp+1
+  1250  067F  3080               	movlw	(high(01h))^80h
+  1251  0680  027F               	subwf	btemp+1,w
+  1252  0681  1D03               	skipz
+  1253  0682  2E85               	goto	u125
+  1254  0683  3001               	movlw	low(01h)
+  1255  0684  0277               	subwf	(_count),w
+  1256  0685                     u125:
+  1257                           
+  1258  0685  1803               	skipnc
+  1259  0686  2E88               	goto	u121
+  1260  0687  2E89               	goto	u120
+  1261  0688                     u121:
+  1262  0688  2E71               	goto	l1554
+  1263  0689                     u120:
+  1264  0689  2E8B               	goto	l1562
+  1265                           	
+  1266  068A                     l1054:	
+  1267  068A  2E8B               	goto	l1562
+  1268                           	line	64
+  1269                           	
+  1270  068B                     l1048:	
+  1271                           	line	65
+  1272                           	
+  1273  068B                     l1562:	
+  1274                           ;viewprocess.c: 63: }
+  1275                           ;viewprocess.c: 64: }
+  1276                           ;viewprocess.c: 65: if(x==5)
+  1277  068B  3005               	movlw	05h
+  1278  068C  0670               	xorwf	(sabin@x),w
+  1279  068D  0471               	iorwf	(sabin@x+1),w
+  1280  068E  1D03               	skipz
+  1281  068F  2E91               	goto	u131
+  1282  0690  2E92               	goto	u130
+  1283  0691                     u131:
+  1284  0691  2EC9               	goto	l1580
+  1285  0692                     u130:
+  1286  0692  2EA0               	goto	l1570
+  1287                           	line	67
+  1288                           	
+  1289  0693                     l1564:	
+  1290                           ;viewprocess.c: 66: {
+  1291                           ;viewprocess.c: 67: while(count<30000)
+  1292  0693  2EA0               	goto	l1570
+  1293                           	
+  1294  0694                     l1057:	
+  1295                           	line	69
+  1296                           	
+  1297  0694                     l1566:	
+  1298                           ;viewprocess.c: 68: {
+  1299                           ;viewprocess.c: 69: PORTC=0X66;
+  1300  0694  3066               	movlw	(066h)
+  1301  0695  1283               	bcf	status, 5	;RP0=0, select bank0
+  1302  0696  1303               	bcf	status, 6	;RP1=0, select bank0
+  1303  0697  0087               	movwf	(7)	;volatile
+  1304                           	line	70
+  1305                           	
+  1306  0698                     l1568:	
+  1307                           ;viewprocess.c: 70: RD0=1;
+  1308  0698  1408               	bsf	(64/8),(64)&7
+  1309                           	line	71
+  1310                           ;viewprocess.c: 71: count++;
+  1311  0699  3001               	movlw	low(01h)
+  1312  069A  07F7               	addwf	(_count),f
+  1313  069B  1803               	skipnc
+  1314  069C  0AF8               	incf	(_count+1),f
+  1315  069D  3000               	movlw	high(01h)
+  1316  069E  07F8               	addwf	(_count+1),f
+  1317  069F  2EA0               	goto	l1570
+  1318                           	line	72
+  1319                           	
+  1320  06A0                     l1056:	
+  1321                           	line	67
+  1322                           	
+  1323  06A0                     l1570:	
+  1324  06A0  0878               	movf	(_count+1),w
+  1325  06A1  3A80               	xorlw	80h
+  1326  06A2  00FF               	movwf	btemp+1
+  1327  06A3  30F5               	movlw	(high(07530h))^80h
+  1328  06A4  027F               	subwf	btemp+1,w
+  1329  06A5  1D03               	skipz
+  1330  06A6  2EA9               	goto	u145
+  1331  06A7  3030               	movlw	low(07530h)
+  1332  06A8  0277               	subwf	(_count),w
+  1333  06A9                     u145:
+  1334                           
+  1335  06A9  1C03               	skipc
+  1336  06AA  2EAC               	goto	u141
+  1337  06AB  2EAD               	goto	u140
+  1338  06AC                     u141:
+  1339  06AC  2E94               	goto	l1566
+  1340  06AD                     u140:
+  1341  06AD  2EBA               	goto	l1578
+  1342                           	
+  1343  06AE                     l1058:	
+  1344                           	line	73
+  1345                           ;viewprocess.c: 72: }
+  1346                           ;viewprocess.c: 73: while(count>0)
+  1347  06AE  2EBA               	goto	l1578
+  1348                           	
+  1349  06AF                     l1060:	
+  1350                           	line	75
+  1351                           	
+  1352  06AF                     l1572:	
+  1353                           ;viewprocess.c: 74: {
+  1354                           ;viewprocess.c: 75: count--;
+  1355  06AF  30FF               	movlw	low(-1)
+  1356  06B0  07F7               	addwf	(_count),f
+  1357  06B1  1803               	skipnc
+  1358  06B2  0AF8               	incf	(_count+1),f
+  1359  06B3  30FF               	movlw	high(-1)
+  1360  06B4  07F8               	addwf	(_count+1),f
+  1361                           	line	76
+  1362                           	
+  1363  06B5                     l1574:	
+  1364                           ;viewprocess.c: 76: RD0=0;
+  1365  06B5  1283               	bcf	status, 5	;RP0=0, select bank0
+  1366  06B6  1303               	bcf	status, 6	;RP1=0, select bank0
+  1367  06B7  1008               	bcf	(64/8),(64)&7
+  1368                           	line	77
+  1369                           	
+  1370  06B8                     l1576:	
+  1371                           ;viewprocess.c: 77: PORTC=0X00;
+  1372  06B8  0187               	clrf	(7)	;volatile
+  1373  06B9  2EBA               	goto	l1578
+  1374                           	line	78
+  1375                           	
+  1376  06BA                     l1059:	
+  1377                           	line	73
+  1378                           	
+  1379  06BA                     l1578:	
+  1380  06BA  0878               	movf	(_count+1),w
+  1381  06BB  3A80               	xorlw	80h
+  1382  06BC  00FF               	movwf	btemp+1
+  1383  06BD  3080               	movlw	(high(01h))^80h
+  1384  06BE  027F               	subwf	btemp+1,w
+  1385  06BF  1D03               	skipz
+  1386  06C0  2EC3               	goto	u155
+  1387  06C1  3001               	movlw	low(01h)
+  1388  06C2  0277               	subwf	(_count),w
+  1389  06C3                     u155:
+  1390                           
+  1391  06C3  1803               	skipnc
+  1392  06C4  2EC6               	goto	u151
+  1393  06C5  2EC7               	goto	u150
+  1394  06C6                     u151:
+  1395  06C6  2EAF               	goto	l1572
+  1396  06C7                     u150:
+  1397  06C7  2EC9               	goto	l1580
+  1398                           	
+  1399  06C8                     l1061:	
+  1400  06C8  2EC9               	goto	l1580
+  1401                           	line	79
+  1402                           	
+  1403  06C9                     l1055:	
+  1404                           	line	80
+  1405                           	
+  1406  06C9                     l1580:	
+  1407                           ;viewprocess.c: 78: }
+  1408                           ;viewprocess.c: 79: }
+  1409                           ;viewprocess.c: 80: if(x==6)
+  1410  06C9  3006               	movlw	06h
+  1411  06CA  0670               	xorwf	(sabin@x),w
+  1412  06CB  0471               	iorwf	(sabin@x+1),w
+  1413  06CC  1D03               	skipz
+  1414  06CD  2ECF               	goto	u161
+  1415  06CE  2ED0               	goto	u160
+  1416  06CF                     u161:
+  1417  06CF  2F07               	goto	l1598
+  1418  06D0                     u160:
+  1419  06D0  2EDE               	goto	l1588
+  1420                           	line	82
+  1421                           	
+  1422  06D1                     l1582:	
+  1423                           ;viewprocess.c: 81: {
+  1424                           ;viewprocess.c: 82: while(count<30000)
+  1425  06D1  2EDE               	goto	l1588
+  1426                           	
+  1427  06D2                     l1064:	
+  1428                           	line	84
+  1429                           	
+  1430  06D2                     l1584:	
+  1431                           ;viewprocess.c: 83: {
+  1432                           ;viewprocess.c: 84: PORTC=0X6D;
+  1433  06D2  306D               	movlw	(06Dh)
+  1434  06D3  1283               	bcf	status, 5	;RP0=0, select bank0
+  1435  06D4  1303               	bcf	status, 6	;RP1=0, select bank0
+  1436  06D5  0087               	movwf	(7)	;volatile
+  1437                           	line	85
+  1438                           	
+  1439  06D6                     l1586:	
+  1440                           ;viewprocess.c: 85: RD0=1;
+  1441  06D6  1408               	bsf	(64/8),(64)&7
+  1442                           	line	86
+  1443                           ;viewprocess.c: 86: count++;
+  1444  06D7  3001               	movlw	low(01h)
+  1445  06D8  07F7               	addwf	(_count),f
+  1446  06D9  1803               	skipnc
+  1447  06DA  0AF8               	incf	(_count+1),f
+  1448  06DB  3000               	movlw	high(01h)
+  1449  06DC  07F8               	addwf	(_count+1),f
+  1450  06DD  2EDE               	goto	l1588
+  1451                           	line	87
+  1452                           	
+  1453  06DE                     l1063:	
+  1454                           	line	82
+  1455                           	
+  1456  06DE                     l1588:	
+  1457  06DE  0878               	movf	(_count+1),w
+  1458  06DF  3A80               	xorlw	80h
+  1459  06E0  00FF               	movwf	btemp+1
+  1460  06E1  30F5               	movlw	(high(07530h))^80h
+  1461  06E2  027F               	subwf	btemp+1,w
+  1462  06E3  1D03               	skipz
+  1463  06E4  2EE7               	goto	u175
+  1464  06E5  3030               	movlw	low(07530h)
+  1465  06E6  0277               	subwf	(_count),w
+  1466  06E7                     u175:
+  1467                           
+  1468  06E7  1C03               	skipc
+  1469  06E8  2EEA               	goto	u171
+  1470  06E9  2EEB               	goto	u170
+  1471  06EA                     u171:
+  1472  06EA  2ED2               	goto	l1584
+  1473  06EB                     u170:
+  1474  06EB  2EF8               	goto	l1596
+  1475                           	
+  1476  06EC                     l1065:	
+  1477                           	line	88
+  1478                           ;viewprocess.c: 87: }
+  1479                           ;viewprocess.c: 88: while(count>0)
+  1480  06EC  2EF8               	goto	l1596
+  1481                           	
+  1482  06ED                     l1067:	
+  1483                           	line	90
+  1484                           	
+  1485  06ED                     l1590:	
+  1486                           ;viewprocess.c: 89: {
+  1487                           ;viewprocess.c: 90: count--;
+  1488  06ED  30FF               	movlw	low(-1)
+  1489  06EE  07F7               	addwf	(_count),f
+  1490  06EF  1803               	skipnc
+  1491  06F0  0AF8               	incf	(_count+1),f
+  1492  06F1  30FF               	movlw	high(-1)
+  1493  06F2  07F8               	addwf	(_count+1),f
+  1494                           	line	91
+  1495                           	
+  1496  06F3                     l1592:	
+  1497                           ;viewprocess.c: 91: RD0=0;
+  1498  06F3  1283               	bcf	status, 5	;RP0=0, select bank0
+  1499  06F4  1303               	bcf	status, 6	;RP1=0, select bank0
+  1500  06F5  1008               	bcf	(64/8),(64)&7
+  1501                           	line	92
+  1502                           	
+  1503  06F6                     l1594:	
+  1504                           ;viewprocess.c: 92: PORTC=0X00;
+  1505  06F6  0187               	clrf	(7)	;volatile
+  1506  06F7  2EF8               	goto	l1596
+  1507                           	line	93
+  1508                           	
+  1509  06F8                     l1066:	
+  1510                           	line	88
+  1511                           	
+  1512  06F8                     l1596:	
+  1513  06F8  0878               	movf	(_count+1),w
+  1514  06F9  3A80               	xorlw	80h
+  1515  06FA  00FF               	movwf	btemp+1
+  1516  06FB  3080               	movlw	(high(01h))^80h
+  1517  06FC  027F               	subwf	btemp+1,w
+  1518  06FD  1D03               	skipz
+  1519  06FE  2F01               	goto	u185
+  1520  06FF  3001               	movlw	low(01h)
+  1521  0700  0277               	subwf	(_count),w
+  1522  0701                     u185:
+  1523                           
+  1524  0701  1803               	skipnc
+  1525  0702  2F04               	goto	u181
+  1526  0703  2F05               	goto	u180
+  1527  0704                     u181:
+  1528  0704  2EED               	goto	l1590
+  1529  0705                     u180:
+  1530  0705  2F07               	goto	l1598
+  1531                           	
+  1532  0706                     l1068:	
+  1533  0706  2F07               	goto	l1598
+  1534                           	line	94
+  1535                           	
+  1536  0707                     l1062:	
+  1537                           	line	95
+  1538                           	
+  1539  0707                     l1598:	
+  1540                           ;viewprocess.c: 93: }
+  1541                           ;viewprocess.c: 94: }
+  1542                           ;viewprocess.c: 95: if(x==7)
+  1543  0707  3007               	movlw	07h
+  1544  0708  0670               	xorwf	(sabin@x),w
+  1545  0709  0471               	iorwf	(sabin@x+1),w
+  1546  070A  1D03               	skipz
+  1547  070B  2F0D               	goto	u191
+  1548  070C  2F0E               	goto	u190
+  1549  070D                     u191:
+  1550  070D  2F45               	goto	l1616
+  1551  070E                     u190:
+  1552  070E  2F1C               	goto	l1606
+  1553                           	line	97
+  1554                           	
+  1555  070F                     l1600:	
+  1556                           ;viewprocess.c: 96: {
+  1557                           ;viewprocess.c: 97: while(count<30000)
+  1558  070F  2F1C               	goto	l1606
+  1559                           	
+  1560  0710                     l1071:	
+  1561                           	line	99
+  1562                           	
+  1563  0710                     l1602:	
+  1564                           ;viewprocess.c: 98: {
+  1565                           ;viewprocess.c: 99: PORTC=0X7C;
+  1566  0710  307C               	movlw	(07Ch)
+  1567  0711  1283               	bcf	status, 5	;RP0=0, select bank0
+  1568  0712  1303               	bcf	status, 6	;RP1=0, select bank0
+  1569  0713  0087               	movwf	(7)	;volatile
+  1570                           	line	100
+  1571                           	
+  1572  0714                     l1604:	
+  1573                           ;viewprocess.c: 100: RD0=1;
+  1574  0714  1408               	bsf	(64/8),(64)&7
+  1575                           	line	101
+  1576                           ;viewprocess.c: 101: count++;
+  1577  0715  3001               	movlw	low(01h)
+  1578  0716  07F7               	addwf	(_count),f
+  1579  0717  1803               	skipnc
+  1580  0718  0AF8               	incf	(_count+1),f
+  1581  0719  3000               	movlw	high(01h)
+  1582  071A  07F8               	addwf	(_count+1),f
+  1583  071B  2F1C               	goto	l1606
+  1584                           	line	102
+  1585                           	
+  1586  071C                     l1070:	
+  1587                           	line	97
+  1588                           	
+  1589  071C                     l1606:	
+  1590  071C  0878               	movf	(_count+1),w
+  1591  071D  3A80               	xorlw	80h
+  1592  071E  00FF               	movwf	btemp+1
+  1593  071F  30F5               	movlw	(high(07530h))^80h
+  1594  0720  027F               	subwf	btemp+1,w
+  1595  0721  1D03               	skipz
+  1596  0722  2F25               	goto	u205
+  1597  0723  3030               	movlw	low(07530h)
+  1598  0724  0277               	subwf	(_count),w
+  1599  0725                     u205:
+  1600                           
+  1601  0725  1C03               	skipc
+  1602  0726  2F28               	goto	u201
+  1603  0727  2F29               	goto	u200
+  1604  0728                     u201:
+  1605  0728  2F10               	goto	l1602
+  1606  0729                     u200:
+  1607  0729  2F36               	goto	l1614
+  1608                           	
+  1609  072A                     l1072:	
+  1610                           	line	103
+  1611                           ;viewprocess.c: 102: }
+  1612                           ;viewprocess.c: 103: while(count>0)
+  1613  072A  2F36               	goto	l1614
+  1614                           	
+  1615  072B                     l1074:	
+  1616                           	line	105
+  1617                           	
+  1618  072B                     l1608:	
+  1619                           ;viewprocess.c: 104: {
+  1620                           ;viewprocess.c: 105: count--;
+  1621  072B  30FF               	movlw	low(-1)
+  1622  072C  07F7               	addwf	(_count),f
+  1623  072D  1803               	skipnc
+  1624  072E  0AF8               	incf	(_count+1),f
+  1625  072F  30FF               	movlw	high(-1)
+  1626  0730  07F8               	addwf	(_count+1),f
+  1627                           	line	106
+  1628                           	
+  1629  0731                     l1610:	
+  1630                           ;viewprocess.c: 106: RD0=0;
+  1631  0731  1283               	bcf	status, 5	;RP0=0, select bank0
+  1632  0732  1303               	bcf	status, 6	;RP1=0, select bank0
+  1633  0733  1008               	bcf	(64/8),(64)&7
+  1634                           	line	107
+  1635                           	
+  1636  0734                     l1612:	
+  1637                           ;viewprocess.c: 107: PORTC=0X00;
+  1638  0734  0187               	clrf	(7)	;volatile
+  1639  0735  2F36               	goto	l1614
+  1640                           	line	108
+  1641                           	
+  1642  0736                     l1073:	
+  1643                           	line	103
+  1644                           	
+  1645  0736                     l1614:	
+  1646  0736  0878               	movf	(_count+1),w
+  1647  0737  3A80               	xorlw	80h
+  1648  0738  00FF               	movwf	btemp+1
+  1649  0739  3080               	movlw	(high(01h))^80h
+  1650  073A  027F               	subwf	btemp+1,w
+  1651  073B  1D03               	skipz
+  1652  073C  2F3F               	goto	u215
+  1653  073D  3001               	movlw	low(01h)
+  1654  073E  0277               	subwf	(_count),w
+  1655  073F                     u215:
+  1656                           
+  1657  073F  1803               	skipnc
+  1658  0740  2F42               	goto	u211
+  1659  0741  2F43               	goto	u210
+  1660  0742                     u211:
+  1661  0742  2F2B               	goto	l1608
+  1662  0743                     u210:
+  1663  0743  2F45               	goto	l1616
+  1664                           	
+  1665  0744                     l1075:	
+  1666  0744  2F45               	goto	l1616
+  1667                           	line	109
+  1668                           	
+  1669  0745                     l1069:	
+  1670                           	line	110
+  1671                           	
+  1672  0745                     l1616:	
+  1673                           ;viewprocess.c: 108: }
+  1674                           ;viewprocess.c: 109: }
+  1675                           ;viewprocess.c: 110: if(x==8)
+  1676  0745  3008               	movlw	08h
+  1677  0746  0670               	xorwf	(sabin@x),w
+  1678  0747  0471               	iorwf	(sabin@x+1),w
+  1679  0748  1D03               	skipz
+  1680  0749  2F4B               	goto	u221
+  1681  074A  2F4C               	goto	u220
+  1682  074B                     u221:
+  1683  074B  2F83               	goto	l1634
+  1684  074C                     u220:
+  1685  074C  2F5A               	goto	l1624
+  1686                           	line	112
+  1687                           	
+  1688  074D                     l1618:	
+  1689                           ;viewprocess.c: 111: {
+  1690                           ;viewprocess.c: 112: while(count<30000)
+  1691  074D  2F5A               	goto	l1624
+  1692                           	
+  1693  074E                     l1078:	
+  1694                           	line	114
+  1695                           	
+  1696  074E                     l1620:	
+  1697                           ;viewprocess.c: 113: {
+  1698                           ;viewprocess.c: 114: PORTC=0X07;
+  1699  074E  3007               	movlw	(07h)
+  1700  074F  1283               	bcf	status, 5	;RP0=0, select bank0
+  1701  0750  1303               	bcf	status, 6	;RP1=0, select bank0
+  1702  0751  0087               	movwf	(7)	;volatile
+  1703                           	line	115
+  1704                           	
+  1705  0752                     l1622:	
+  1706                           ;viewprocess.c: 115: RD0=1;
+  1707  0752  1408               	bsf	(64/8),(64)&7
+  1708                           	line	116
+  1709                           ;viewprocess.c: 116: count++;
+  1710  0753  3001               	movlw	low(01h)
+  1711  0754  07F7               	addwf	(_count),f
+  1712  0755  1803               	skipnc
+  1713  0756  0AF8               	incf	(_count+1),f
+  1714  0757  3000               	movlw	high(01h)
+  1715  0758  07F8               	addwf	(_count+1),f
+  1716  0759  2F5A               	goto	l1624
+  1717                           	line	117
+  1718                           	
+  1719  075A                     l1077:	
+  1720                           	line	112
+  1721                           	
+  1722  075A                     l1624:	
+  1723  075A  0878               	movf	(_count+1),w
+  1724  075B  3A80               	xorlw	80h
+  1725  075C  00FF               	movwf	btemp+1
+  1726  075D  30F5               	movlw	(high(07530h))^80h
+  1727  075E  027F               	subwf	btemp+1,w
+  1728  075F  1D03               	skipz
+  1729  0760  2F63               	goto	u235
+  1730  0761  3030               	movlw	low(07530h)
+  1731  0762  0277               	subwf	(_count),w
+  1732  0763                     u235:
+  1733                           
+  1734  0763  1C03               	skipc
+  1735  0764  2F66               	goto	u231
+  1736  0765  2F67               	goto	u230
+  1737  0766                     u231:
+  1738  0766  2F4E               	goto	l1620
+  1739  0767                     u230:
+  1740  0767  2F74               	goto	l1632
+  1741                           	
+  1742  0768                     l1079:	
+  1743                           	line	118
+  1744                           ;viewprocess.c: 117: }
+  1745                           ;viewprocess.c: 118: while(count>0)
+  1746  0768  2F74               	goto	l1632
+  1747                           	
+  1748  0769                     l1081:	
+  1749                           	line	120
+  1750                           	
+  1751  0769                     l1626:	
+  1752                           ;viewprocess.c: 119: {
+  1753                           ;viewprocess.c: 120: count--;
+  1754  0769  30FF               	movlw	low(-1)
+  1755  076A  07F7               	addwf	(_count),f
+  1756  076B  1803               	skipnc
+  1757  076C  0AF8               	incf	(_count+1),f
+  1758  076D  30FF               	movlw	high(-1)
+  1759  076E  07F8               	addwf	(_count+1),f
+  1760                           	line	121
+  1761                           	
+  1762  076F                     l1628:	
+  1763                           ;viewprocess.c: 121: RD0=0;
+  1764  076F  1283               	bcf	status, 5	;RP0=0, select bank0
+  1765  0770  1303               	bcf	status, 6	;RP1=0, select bank0
+  1766  0771  1008               	bcf	(64/8),(64)&7
+  1767                           	line	122
+  1768                           	
+  1769  0772                     l1630:	
+  1770                           ;viewprocess.c: 122: PORTC=0X00;
+  1771  0772  0187               	clrf	(7)	;volatile
+  1772  0773  2F74               	goto	l1632
+  1773                           	line	123
+  1774                           	
+  1775  0774                     l1080:	
+  1776                           	line	118
+  1777                           	
+  1778  0774                     l1632:	
+  1779  0774  0878               	movf	(_count+1),w
+  1780  0775  3A80               	xorlw	80h
+  1781  0776  00FF               	movwf	btemp+1
+  1782  0777  3080               	movlw	(high(01h))^80h
+  1783  0778  027F               	subwf	btemp+1,w
+  1784  0779  1D03               	skipz
+  1785  077A  2F7D               	goto	u245
+  1786  077B  3001               	movlw	low(01h)
+  1787  077C  0277               	subwf	(_count),w
+  1788  077D                     u245:
+  1789                           
+  1790  077D  1803               	skipnc
+  1791  077E  2F80               	goto	u241
+  1792  077F  2F81               	goto	u240
+  1793  0780                     u241:
+  1794  0780  2F69               	goto	l1626
+  1795  0781                     u240:
+  1796  0781  2F83               	goto	l1634
+  1797                           	
+  1798  0782                     l1082:	
+  1799  0782  2F83               	goto	l1634
+  1800                           	line	124
+  1801                           	
+  1802  0783                     l1076:	
+  1803                           	line	125
+  1804                           	
+  1805  0783                     l1634:	
+  1806                           ;viewprocess.c: 123: }
+  1807                           ;viewprocess.c: 124: }
+  1808                           ;viewprocess.c: 125: if(x==9)
+  1809  0783  3009               	movlw	09h
+  1810  0784  0670               	xorwf	(sabin@x),w
+  1811  0785  0471               	iorwf	(sabin@x+1),w
+  1812  0786  1D03               	skipz
+  1813  0787  2F89               	goto	u251
+  1814  0788  2F8A               	goto	u250
+  1815  0789                     u251:
+  1816  0789  2FC1               	goto	l1652
+  1817  078A                     u250:
+  1818  078A  2F98               	goto	l1642
+  1819                           	line	127
+  1820                           	
+  1821  078B                     l1636:	
+  1822                           ;viewprocess.c: 126: {
+  1823                           ;viewprocess.c: 127: while(count<30000)
+  1824  078B  2F98               	goto	l1642
+  1825                           	
+  1826  078C                     l1085:	
+  1827                           	line	129
+  1828                           	
+  1829  078C                     l1638:	
+  1830                           ;viewprocess.c: 128: {
+  1831                           ;viewprocess.c: 129: PORTC=0XFF;
+  1832  078C  30FF               	movlw	(0FFh)
+  1833  078D  1283               	bcf	status, 5	;RP0=0, select bank0
+  1834  078E  1303               	bcf	status, 6	;RP1=0, select bank0
+  1835  078F  0087               	movwf	(7)	;volatile
+  1836                           	line	130
+  1837                           	
+  1838  0790                     l1640:	
+  1839                           ;viewprocess.c: 130: RD0=1;
+  1840  0790  1408               	bsf	(64/8),(64)&7
+  1841                           	line	131
+  1842                           ;viewprocess.c: 131: count++;
+  1843  0791  3001               	movlw	low(01h)
+  1844  0792  07F7               	addwf	(_count),f
+  1845  0793  1803               	skipnc
+  1846  0794  0AF8               	incf	(_count+1),f
+  1847  0795  3000               	movlw	high(01h)
+  1848  0796  07F8               	addwf	(_count+1),f
+  1849  0797  2F98               	goto	l1642
+  1850                           	line	132
+  1851                           	
+  1852  0798                     l1084:	
+  1853                           	line	127
+  1854                           	
+  1855  0798                     l1642:	
+  1856  0798  0878               	movf	(_count+1),w
+  1857  0799  3A80               	xorlw	80h
+  1858  079A  00FF               	movwf	btemp+1
+  1859  079B  30F5               	movlw	(high(07530h))^80h
+  1860  079C  027F               	subwf	btemp+1,w
+  1861  079D  1D03               	skipz
+  1862  079E  2FA1               	goto	u265
+  1863  079F  3030               	movlw	low(07530h)
+  1864  07A0  0277               	subwf	(_count),w
+  1865  07A1                     u265:
+  1866                           
+  1867  07A1  1C03               	skipc
+  1868  07A2  2FA4               	goto	u261
+  1869  07A3  2FA5               	goto	u260
+  1870  07A4                     u261:
+  1871  07A4  2F8C               	goto	l1638
+  1872  07A5                     u260:
+  1873  07A5  2FB2               	goto	l1650
+  1874                           	
+  1875  07A6                     l1086:	
+  1876                           	line	133
+  1877                           ;viewprocess.c: 132: }
+  1878                           ;viewprocess.c: 133: while(count>0)
+  1879  07A6  2FB2               	goto	l1650
+  1880                           	
+  1881  07A7                     l1088:	
+  1882                           	line	135
+  1883                           	
+  1884  07A7                     l1644:	
+  1885                           ;viewprocess.c: 134: {
+  1886                           ;viewprocess.c: 135: count--;
+  1887  07A7  30FF               	movlw	low(-1)
+  1888  07A8  07F7               	addwf	(_count),f
+  1889  07A9  1803               	skipnc
+  1890  07AA  0AF8               	incf	(_count+1),f
+  1891  07AB  30FF               	movlw	high(-1)
+  1892  07AC  07F8               	addwf	(_count+1),f
+  1893                           	line	136
+  1894                           	
+  1895  07AD                     l1646:	
+  1896                           ;viewprocess.c: 136: RD0=0;
+  1897  07AD  1283               	bcf	status, 5	;RP0=0, select bank0
+  1898  07AE  1303               	bcf	status, 6	;RP1=0, select bank0
+  1899  07AF  1008               	bcf	(64/8),(64)&7
+  1900                           	line	137
+  1901                           	
+  1902  07B0                     l1648:	
+  1903                           ;viewprocess.c: 137: PORTC=0X00;
+  1904  07B0  0187               	clrf	(7)	;volatile
+  1905  07B1  2FB2               	goto	l1650
+  1906                           	line	138
+  1907                           	
+  1908  07B2                     l1087:	
+  1909                           	line	133
+  1910                           	
+  1911  07B2                     l1650:	
+  1912  07B2  0878               	movf	(_count+1),w
+  1913  07B3  3A80               	xorlw	80h
+  1914  07B4  00FF               	movwf	btemp+1
+  1915  07B5  3080               	movlw	(high(01h))^80h
+  1916  07B6  027F               	subwf	btemp+1,w
+  1917  07B7  1D03               	skipz
+  1918  07B8  2FBB               	goto	u275
+  1919  07B9  3001               	movlw	low(01h)
+  1920  07BA  0277               	subwf	(_count),w
+  1921  07BB                     u275:
+  1922                           
+  1923  07BB  1803               	skipnc
+  1924  07BC  2FBE               	goto	u271
+  1925  07BD  2FBF               	goto	u270
+  1926  07BE                     u271:
+  1927  07BE  2FA7               	goto	l1644
+  1928  07BF                     u270:
+  1929  07BF  2FC1               	goto	l1652
+  1930                           	
+  1931  07C0                     l1089:	
+  1932  07C0  2FC1               	goto	l1652
+  1933                           	line	139
+  1934                           	
+  1935  07C1                     l1083:	
+  1936                           	line	140
+  1937                           	
+  1938  07C1                     l1652:	
+  1939                           ;viewprocess.c: 138: }
+  1940                           ;viewprocess.c: 139: }
+  1941                           ;viewprocess.c: 140: if(x==10)
+  1942  07C1  300A               	movlw	0Ah
+  1943  07C2  0670               	xorwf	(sabin@x),w
+  1944  07C3  0471               	iorwf	(sabin@x+1),w
+  1945  07C4  1D03               	skipz
+  1946  07C5  2FC7               	goto	u281
+  1947  07C6  2FC8               	goto	u280
+  1948  07C7                     u281:
+  1949  07C7  2FFF               	goto	l1097
+  1950  07C8                     u280:
+  1951  07C8  2FD6               	goto	l1660
+  1952                           	line	142
+  1953                           	
+  1954  07C9                     l1654:	
+  1955                           ;viewprocess.c: 141: {
+  1956                           ;viewprocess.c: 142: while(count<30000)
+  1957  07C9  2FD6               	goto	l1660
+  1958                           	
+  1959  07CA                     l1092:	
+  1960                           	line	144
+  1961                           	
+  1962  07CA                     l1656:	
+  1963                           ;viewprocess.c: 143: {
+  1964                           ;viewprocess.c: 144: PORTC=0XE7;
+  1965  07CA  30E7               	movlw	(0E7h)
+  1966  07CB  1283               	bcf	status, 5	;RP0=0, select bank0
+  1967  07CC  1303               	bcf	status, 6	;RP1=0, select bank0
+  1968  07CD  0087               	movwf	(7)	;volatile
+  1969                           	line	145
+  1970                           	
+  1971  07CE                     l1658:	
+  1972                           ;viewprocess.c: 145: RD0=1;
+  1973  07CE  1408               	bsf	(64/8),(64)&7
+  1974                           	line	146
+  1975                           ;viewprocess.c: 146: count++;
+  1976  07CF  3001               	movlw	low(01h)
+  1977  07D0  07F7               	addwf	(_count),f
+  1978  07D1  1803               	skipnc
+  1979  07D2  0AF8               	incf	(_count+1),f
+  1980  07D3  3000               	movlw	high(01h)
+  1981  07D4  07F8               	addwf	(_count+1),f
+  1982  07D5  2FD6               	goto	l1660
+  1983                           	line	147
+  1984                           	
+  1985  07D6                     l1091:	
+  1986                           	line	142
+  1987                           	
+  1988  07D6                     l1660:	
+  1989  07D6  0878               	movf	(_count+1),w
+  1990  07D7  3A80               	xorlw	80h
+  1991  07D8  00FF               	movwf	btemp+1
+  1992  07D9  30F5               	movlw	(high(07530h))^80h
+  1993  07DA  027F               	subwf	btemp+1,w
+  1994  07DB  1D03               	skipz
+  1995  07DC  2FDF               	goto	u295
+  1996  07DD  3030               	movlw	low(07530h)
+  1997  07DE  0277               	subwf	(_count),w
+  1998  07DF                     u295:
+  1999                           
+  2000  07DF  1C03               	skipc
+  2001  07E0  2FE2               	goto	u291
+  2002  07E1  2FE3               	goto	u290
+  2003  07E2                     u291:
+  2004  07E2  2FCA               	goto	l1656
+  2005  07E3                     u290:
+  2006  07E3  2FF0               	goto	l1668
+  2007                           	
+  2008  07E4                     l1093:	
+  2009                           	line	148
+  2010                           ;viewprocess.c: 147: }
+  2011                           ;viewprocess.c: 148: while(count>0)
+  2012  07E4  2FF0               	goto	l1668
+  2013                           	
+  2014  07E5                     l1095:	
+  2015                           	line	150
+  2016                           	
+  2017  07E5                     l1662:	
+  2018                           ;viewprocess.c: 149: {
+  2019                           ;viewprocess.c: 150: count--;
+  2020  07E5  30FF               	movlw	low(-1)
+  2021  07E6  07F7               	addwf	(_count),f
+  2022  07E7  1803               	skipnc
+  2023  07E8  0AF8               	incf	(_count+1),f
+  2024  07E9  30FF               	movlw	high(-1)
+  2025  07EA  07F8               	addwf	(_count+1),f
+  2026                           	line	151
+  2027                           	
+  2028  07EB                     l1664:	
+  2029                           ;viewprocess.c: 151: RD0=0;
+  2030  07EB  1283               	bcf	status, 5	;RP0=0, select bank0
+  2031  07EC  1303               	bcf	status, 6	;RP1=0, select bank0
+  2032  07ED  1008               	bcf	(64/8),(64)&7
+  2033                           	line	152
+  2034                           	
+  2035  07EE                     l1666:	
+  2036                           ;viewprocess.c: 152: PORTC=0X00;
+  2037  07EE  0187               	clrf	(7)	;volatile
+  2038  07EF  2FF0               	goto	l1668
+  2039                           	line	153
+  2040                           	
+  2041  07F0                     l1094:	
+  2042                           	line	148
+  2043                           	
+  2044  07F0                     l1668:	
+  2045  07F0  0878               	movf	(_count+1),w
+  2046  07F1  3A80               	xorlw	80h
+  2047  07F2  00FF               	movwf	btemp+1
+  2048  07F3  3080               	movlw	(high(01h))^80h
+  2049  07F4  027F               	subwf	btemp+1,w
+  2050  07F5  1D03               	skipz
+  2051  07F6  2FF9               	goto	u305
+  2052  07F7  3001               	movlw	low(01h)
+  2053  07F8  0277               	subwf	(_count),w
+  2054  07F9                     u305:
+  2055                           
+  2056  07F9  1803               	skipnc
+  2057  07FA  2FFC               	goto	u301
+  2058  07FB  2FFD               	goto	u300
+  2059  07FC                     u301:
+  2060  07FC  2FE5               	goto	l1662
+  2061  07FD                     u300:
+  2062  07FD  2FFF               	goto	l1097
+  2063                           	
+  2064  07FE                     l1096:	
+  2065  07FE  2FFF               	goto	l1097
+  2066                           	line	154
+  2067                           	
+  2068  07FF                     l1090:	
+  2069                           	line	155
+  2070                           	
+  2071  07FF                     l1097:	
+  2072  07FF  0008               	return
+  2073                           	opt stack 0
+  2074                           GLOBAL	__end_of_sabin
+  2075  0800                     	__end_of_sabin:
+  2076 ;; =============== function _sabin ends ============
+  2077                           
+  2078                           	signat	_sabin,4216
+  2079                           psect	text62,local,class=CODE,delta=2
+  2080                           global __ptext62
+  2081  0000                     __ptext62:
+  2082                           	global	btemp
+  2083  007E                     	btemp set 07Eh
+  2084                           
+  2085                           	DABS	1,126,2	;btemp
+  2086                           	global	wtemp0
+  2087  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Wed Apr 28 13:21:52 2021
+
+                  u10 059A                    u11 0599                    u20 05B5                    u21 05B4  
+                  u30 05CF                    u31 05CE                    u40 05D8                    u41 05D7  
+                  u25 05B1                    u50 05F3                    u51 05F2                    u35 05CB  
+                  u60 060D                    u61 060C                    u70 0616                    u71 0615  
+                  u55 05EF                    u80 0631                    u81 0630                    u65 0609  
+                  u90 064B                    u91 064A                    u85 062D                    u95 0647  
+                 _RA0 0028                   _RA1 0029                   _RD0 0040                   u100 0654  
+                 u101 0653                   u110 066F                   u111 066E                   u200 0729  
+                 u120 0689                   u201 0728                   u121 0688                   u210 0743  
+                 u130 0692                   u211 0742                   u131 0691                   u115 066B  
+                 u300 07FD                   u220 074C                   u140 06AD                   u301 07FC  
+                 u221 074B                   u205 0725                   u141 06AC                   u125 0685  
+                 u230 0767                   u150 06C7                   u231 0766                   u215 073F  
+                 u151 06C6                   u240 0781                   u160 06D0                   u305 07F9  
+                 u241 0780                   u161 06CF                   u145 06A9                   u250 078A  
+                 u170 06EB                   u251 0789                   u235 0763                   u171 06EA  
+                 u155 06C3                   u260 07A5                   u180 0705                   u261 07A4  
+                 u245 077D                   u181 0704                   u270 07BF                   u190 070E  
+                 u271 07BE                   u191 070D                   u175 06E7                   u280 07C8  
+                 u281 07C7                   u265 07A1                   u185 0701                   u290 07E3  
+                 u291 07E2                   u275 07BB                   u295 07DF                  l1100 04F3  
+                l1101 0506                  l1030 05B6                  l1110 053C                  l1102 04FB  
+                l1031 05C2                  l1111 0545                  l1103 04FB                  l1040 060E  
+                l1032 05B7                  l1120 0590                  l1112 054E                  l1104 0500  
+                l1041 064D                  l1033 05D0                  l1121 0590                  l1113 0557  
+                l1105 050F                  l1050 0656                  l1042 0624                  l1034 060F  
+                l1114 0563                  l1106 0518                  l1051 0670                  l1043 0618  
+                l1035 05E6                  l1027 05D1                  l1115 058E                  l1107 0521  
+                l1060 06AF                  l1052 067C                  l1044 0632                  l1036 05DA  
+                l1028 05A8                  l1116 057E                  l1108 052A                  l1061 06C8  
+                l1053 0671                  l1045 063E                  l1037 05F4                  l1029 059C  
+                l1117 056C                  l1109 0533                  l1070 071C                  l1062 0707  
+                l1054 068A                  l1046 0633                  l1038 0600                  l1118 058D  
+                l1071 0710                  l1063 06DE                  l1055 06C9                  l1047 064C  
+                l1039 05F5                  l1119 058F                  l1080 0774                  l1072 072A  
+                l1064 06D2                  l1056 06A0                  l1048 068B                  l1081 0769  
+                l1073 0736                  l1065 06EC                  l1057 0694                  l1049 0662  
+                l1090 07FF                  l1082 0782                  l1074 072B                  l1066 06F8  
+                l1058 06AE                  l1091 07D6                  l1083 07C1                  l1075 0744  
+                l1067 06ED                  l1059 06BA                  l1092 07CA                  l1084 0798  
+                l1076 0783                  l1068 0706                  l1500 05B7                  l1093 07E4  
+                l1085 078C                  l1077 075A                  l1069 0745                  l1094 07F0  
+                l1086 07A6                  l1078 074E                  l1510 05D9                  l1502 05BD  
+                l1095 07E5                  l1087 07B2                  l1079 0768                  l1096 07FE  
+                l1088 07A7                  l1600 070F                  l1520 05FB                  l1512 05DA  
+                l1504 05C0                  l1097 07FF                  l1089 07C0                  l1610 0731  
+                l1602 0710                  l1530 0618                  l1522 05FE                  l1514 05DE  
+                l1506 05C2                  l1620 074E                  l1612 0734                  l1604 0714  
+                l1540 063C                  l1532 0622                  l1524 0600                  l1516 05E6  
+                l1508 05D1                  l1630 0772                  l1622 0752                  l1614 0736  
+                l1606 071C                  l1550 0660                  l1542 063E                  l1534 0624  
+                l1518 05F5                  l1526 060F                  l1640 0790                  l1632 0774  
+                l1624 075A                  l1608 072B                  l1616 0745                  l1560 067C  
+                l1552 0662                  l1536 0633                  l1528 0617                  l1544 064D  
+                l2440 04DA                  l1650 07B2                  l1642 0798                  l1626 0769  
+                l1618 074D                  l1634 0783                  l1570 06A0                  l1554 0671  
+                l1546 0655                  l1562 068B                  l1538 0639                  l1490 0593  
+                l2450 04E9                  l2442 04DD                  l1660 07D6                  l1644 07A7  
+                l1636 078B                  l1652 07C1                  l1628 076F                  l1572 06AF  
+                l1564 0693                  l1580 06C9                  l1556 0677                  l1548 0656  
+                l1492 059B                  l2460 04FA                  l2452 04EC                  l2444 04E0  
+                l2436 04D3                  l1662 07E5                  l1654 07C9                  l1646 07AD  
+                l1638 078C                  l1590 06ED                  l1582 06D1                  l1574 06B5  
+                l1566 0694                  l1558 067A                  l1494 059C                  l2470 0528  
+                l2462 0500                  l2454 04EF                  l2446 04E3                  l2438 04D6  
+                l1664 07EB                  l1656 07CA                  l1648 07B0                  l1592 06F3  
+                l1584 06D2                  l1576 06B8                  l1568 0698                  l1496 05A0  
+                l2480 0555                  l2472 0531                  l2464 050D                  l2456 04F0  
+                l2448 04E6                  l1666 07EE                  l1658 07CE                  l1594 06F6  
+                l1586 06D6                  l1578 06BA                  l1498 05A8                  l2490 056C  
+                l2482 055E                  l2474 053A                  l2466 0516                  l2458 04F3  
+                l1668 07F0                  l1596 06F8                  l1588 06DE                  l2492 0577  
+                l2484 0560                  l2476 0543                  l2468 051F                  l1598 0707  
+                l2494 057E                  l2486 0563                  l2478 054C                  l2488 0567  
+                u2500 0531                  u2501 0530                  u2510 053A                  u2511 0539  
+                u2520 0543                  u2440 04F9                  u2521 0542                  u2441 04F8  
+                u2530 054C                  u2450 04FF                  u2531 054B                  u2451 04FE  
+                u2540 0555                  u2460 050D                  u2541 0554                  u2461 050C  
+                u2550 055E                  u2470 0516                  u2551 055D                  u2471 0515  
+                u2560 0567                  u2480 051F                  u2561 0566                  u2481 051E  
+                u2570 058C                  u2490 0528                  u2571 058B                  u2491 0527  
+                u2575 0588                  _main 04D3                  btemp 007E                  start 0000  
+               ?_main 0070                 _ANSEL 0188                 _PORTA 0005                 _PORTB 0006  
+               _PORTC 0007                 _PORTD 0008                 _TRISA 0085                 _TRISB 0086  
+               _TRISC 0087                 _TRISD 0088                 _count 0077                 _sabin 0593  
+               main@i 0073                 main@x 0075                 status 0003                 wtemp0 007E  
+        __end_of_main 0593                ??_main 0072                ?_sabin 0070                _ANSELH 0189  
+              sabin@x 0070        __pcstackCOMMON 0070         __end_of_sabin 0800               ??_sabin 0072  
+          __pmaintext 04D3  end_of_initialization 04CF   start_initialization 04CD           __pbssCOMMON 0077  
+      __size_of_sabin 026D              __ptext60 0000              __ptext61 0593              __ptext62 0000  
+       __size_of_main 00C0  

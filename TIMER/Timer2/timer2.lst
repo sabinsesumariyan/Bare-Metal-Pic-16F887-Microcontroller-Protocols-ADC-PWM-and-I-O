@@ -1,0 +1,520 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Mon Jun 14 12:08:20 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_timer2
+    43                           	FNROOT	_main
+    44                           	global	_count
+    45                           	global	_PORTA
+    46                           psect	text60,local,class=CODE,delta=2
+    47                           global __ptext60
+    48  0000                     __ptext60:
+    49  0005                     _PORTA	set	5
+    50                           	global	_PORTC
+    51  0007                     _PORTC	set	7
+    52                           	global	_T2CON
+    53  0012                     _T2CON	set	18
+    54                           	global	_RA0
+    55  0028                     _RA0	set	40
+    56                           	global	_TMR2IF
+    57  0061                     _TMR2IF	set	97
+    58                           	global	_TRISA
+    59  0085                     _TRISA	set	133
+    60                           	global	_TRISC
+    61  0087                     _TRISC	set	135
+    62                           	global	_ANSEL
+    63  0188                     _ANSEL	set	392
+    64                           	global	_ANSELH
+    65  0189                     _ANSELH	set	393
+    66                           	file	"timer2.as"
+    67                           	line	#
+    68                           psect cinit,class=CODE,delta=2
+    69                           global start_initialization
+    70  079C                     start_initialization:
+    71                           
+    72                           psect	bssCOMMON,class=COMMON,space=1
+    73                           global __pbssCOMMON
+    74  0070                     __pbssCOMMON:
+    75  0070                     _count:
+    76  0070                            ds      2
+    77                           
+    78                           ; Clear objects allocated to COMMON
+    79                           psect cinit,class=CODE,delta=2
+    80  079C  01F0               	clrf	((__pbssCOMMON)+0)&07Fh
+    81  079D  01F1               	clrf	((__pbssCOMMON)+1)&07Fh
+    82                           psect cinit,class=CODE,delta=2
+    83                           global end_of_initialization
+    84                           
+    85                           ;End of C runtime variable initialization code
+    86                           
+    87  079E                     end_of_initialization:
+    88  079E  0183               clrf status
+    89  079F  120A  118A  2FB1   ljmp _main	;jump to C main() function
+    90                           psect	cstackCOMMON,class=COMMON,space=1
+    91                           global __pcstackCOMMON
+    92  0000                     __pcstackCOMMON:
+    93                           	global	?_timer2
+    94  0000                     ?_timer2:	; 0 bytes @ 0x0
+    95                           	global	??_timer2
+    96  0000                     ??_timer2:	; 0 bytes @ 0x0
+    97                           	global	?_main
+    98  0000                     ?_main:	; 0 bytes @ 0x0
+    99                           	global	??_main
+   100  0000                     ??_main:	; 0 bytes @ 0x0
+   101 ;;Data sizes: Strings 0, constant 0, data 0, bss 2, persistent 0 stack 0
+   102 ;;Auto spaces:   Size  Autos    Used
+   103 ;; COMMON          14      0       2
+   104 ;; BANK0           80      0       0
+   105 ;; BANK1           80      0       0
+   106 ;; BANK3           96      0       0
+   107 ;; BANK2           96      0       0
+   108                           
+   109 ;;
+   110 ;; Pointer list with targets:
+   111                           
+   112                           
+   113                           
+   114 ;;
+   115 ;; Critical Paths under _main in COMMON
+   116 ;;
+   117 ;;   None.
+   118 ;;
+   119 ;; Critical Paths under _main in BANK0
+   120 ;;
+   121 ;;   None.
+   122 ;;
+   123 ;; Critical Paths under _main in BANK1
+   124 ;;
+   125 ;;   None.
+   126 ;;
+   127 ;; Critical Paths under _main in BANK3
+   128 ;;
+   129 ;;   None.
+   130 ;;
+   131 ;; Critical Paths under _main in BANK2
+   132 ;;
+   133 ;;   None.
+   134                           
+   135 ;;
+   136 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   137 ;;
+   138                           
+   139 ;;
+   140 ;;Call Graph Tables:
+   141 ;;
+   142 ;; ---------------------------------------------------------------------------------
+   143 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   144 ;; ---------------------------------------------------------------------------------
+   145 ;; (0) _main                                                 0     0      0       0
+   146 ;;                             _timer2
+   147 ;; ---------------------------------------------------------------------------------
+   148 ;; (1) _timer2                                               0     0      0       0
+   149 ;; ---------------------------------------------------------------------------------
+   150 ;; Estimated maximum stack depth 1
+   151 ;; ---------------------------------------------------------------------------------
+   152                           
+   153 ;; Call Graph Graphs:
+   154                           
+   155 ;; _main (ROOT)
+   156 ;;   _timer2
+   157 ;;
+   158                           
+   159 ;; Address spaces:
+   160                           
+   161 ;;Name               Size   Autos  Total    Cost      Usage
+   162 ;;BITCOMMON            E      0       0       0        0.0%
+   163 ;;EEDATA             100      0       0       0        0.0%
+   164 ;;NULL                 0      0       0       0        0.0%
+   165 ;;CODE                 0      0       0       0        0.0%
+   166 ;;COMMON               E      0       2       1       14.3%
+   167 ;;BITSFR0              0      0       0       1        0.0%
+   168 ;;SFR0                 0      0       0       1        0.0%
+   169 ;;BITSFR1              0      0       0       2        0.0%
+   170 ;;SFR1                 0      0       0       2        0.0%
+   171 ;;STACK                0      0       1       2        0.0%
+   172 ;;ABS                  0      0       2       3        0.0%
+   173 ;;BITBANK0            50      0       0       4        0.0%
+   174 ;;BITSFR3              0      0       0       4        0.0%
+   175 ;;SFR3                 0      0       0       4        0.0%
+   176 ;;BANK0               50      0       0       5        0.0%
+   177 ;;BITSFR2              0      0       0       5        0.0%
+   178 ;;SFR2                 0      0       0       5        0.0%
+   179 ;;BITBANK1            50      0       0       6        0.0%
+   180 ;;BANK1               50      0       0       7        0.0%
+   181 ;;BITBANK3            60      0       0       8        0.0%
+   182 ;;BANK3               60      0       0       9        0.0%
+   183 ;;BITBANK2            60      0       0      10        0.0%
+   184 ;;BANK2               60      0       0      11        0.0%
+   185 ;;DATA                 0      0       3      12        0.0%
+   186                           
+   187                           	global	_main
+   188                           psect	maintext,global,class=CODE,delta=2
+   189                           global __pmaintext
+   190  07B1                     __pmaintext:
+   191                           
+   192 ;; *************** function _main *****************
+   193 ;; Defined at:
+   194 ;;		line 12 in file "E:\KTU\Softwares\MP lab\TIMER\Timer2\timer2.c"
+   195 ;; Parameters:    Size  Location     Type
+   196 ;;		None
+   197 ;; Auto vars:     Size  Location     Type
+   198 ;;		None
+   199 ;; Return value:  Size  Location     Type
+   200 ;;		None               void
+   201 ;; Registers used:
+   202 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   203 ;; Tracked objects:
+   204 ;;		On entry : 17F/0
+   205 ;;		On exit  : 0/0
+   206 ;;		Unchanged: 0/0
+   207 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   208 ;;      Params:         0       0       0       0       0
+   209 ;;      Locals:         0       0       0       0       0
+   210 ;;      Temps:          0       0       0       0       0
+   211 ;;      Totals:         0       0       0       0       0
+   212 ;;Total ram usage:        0 bytes
+   213 ;; Hardware stack levels required when called:    1
+   214 ;; This function calls:
+   215 ;;		_timer2
+   216 ;; This function is called by:
+   217 ;;		Startup code after reset
+   218 ;; This function uses a non-reentrant model
+   219 ;;
+   220                           psect	maintext
+   221                           	file	"E:\KTU\Softwares\MP lab\TIMER\Timer2\timer2.c"
+   222                           	line	12
+   223                           	global	__size_of_main
+   224  004F                     	__size_of_main	equ	__end_of_main-_main
+   225                           	
+   226  07B1                     _main:	
+   227                           	opt	stack 7
+   228                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   229                           	line	13
+   230                           	
+   231  07B1                     l2178:	
+   232                           ;timer2.c: 13: TRISA=0x00;
+   233  07B1  1683               	bsf	status, 5	;RP0=1, select bank1
+   234  07B2  1303               	bcf	status, 6	;RP1=0, select bank1
+   235  07B3  0185               	clrf	(133)^080h	;volatile
+   236                           	line	14
+   237                           ;timer2.c: 14: PORTA=0x00;
+   238  07B4  1283               	bcf	status, 5	;RP0=0, select bank0
+   239  07B5  1303               	bcf	status, 6	;RP1=0, select bank0
+   240  07B6  0185               	clrf	(5)	;volatile
+   241                           	line	15
+   242                           ;timer2.c: 15: TRISC=0x00;
+   243  07B7  1683               	bsf	status, 5	;RP0=1, select bank1
+   244  07B8  1303               	bcf	status, 6	;RP1=0, select bank1
+   245  07B9  0187               	clrf	(135)^080h	;volatile
+   246                           	line	16
+   247                           ;timer2.c: 16: PORTC=0x00;
+   248  07BA  1283               	bcf	status, 5	;RP0=0, select bank0
+   249  07BB  1303               	bcf	status, 6	;RP1=0, select bank0
+   250  07BC  0187               	clrf	(7)	;volatile
+   251                           	line	17
+   252                           	
+   253  07BD                     l2180:	
+   254                           ;timer2.c: 17: T2CON=0x7F;
+   255  07BD  307F               	movlw	(07Fh)
+   256  07BE  0092               	movwf	(18)	;volatile
+   257                           	line	18
+   258                           	
+   259  07BF                     l2182:	
+   260                           ;timer2.c: 18: ANSEL=0X00;
+   261  07BF  1683               	bsf	status, 5	;RP0=1, select bank3
+   262  07C0  1703               	bsf	status, 6	;RP1=1, select bank3
+   263  07C1  0188               	clrf	(392)^0180h	;volatile
+   264                           	line	19
+   265                           	
+   266  07C2                     l2184:	
+   267                           ;timer2.c: 19: ANSELH=0X00;
+   268  07C2  0189               	clrf	(393)^0180h	;volatile
+   269  07C3  2FC4               	goto	l2186
+   270                           	line	20
+   271                           ;timer2.c: 20: while(1)
+   272                           	
+   273  07C4                     l1031:	
+   274                           	line	22
+   275                           	
+   276  07C4                     l2186:	
+   277                           ;timer2.c: 21: {
+   278                           ;timer2.c: 22: timer2();
+   279  07C4  120A  118A  27A2   	fcall	_timer2
+              120A  118A         
+   280                           	line	23
+   281                           	
+   282  07C9                     l2188:	
+   283                           ;timer2.c: 23: if(count<=15)
+   284  07C9  0871               	movf	(_count+1),w
+   285  07CA  3A80               	xorlw	80h
+   286  07CB  00FF               	movwf	btemp+1
+   287  07CC  3080               	movlw	(high(010h))^80h
+   288  07CD  027F               	subwf	btemp+1,w
+   289  07CE  1D03               	skipz
+   290  07CF  2FD2               	goto	u2155
+   291  07D0  3010               	movlw	low(010h)
+   292  07D1  0270               	subwf	(_count),w
+   293  07D2                     u2155:
+   294                           
+   295  07D2  1803               	skipnc
+   296  07D3  2FD5               	goto	u2151
+   297  07D4  2FD6               	goto	u2150
+   298  07D5                     u2151:
+   299  07D5  2FDA               	goto	l2192
+   300  07D6                     u2150:
+   301                           	line	25
+   302                           	
+   303  07D6                     l2190:	
+   304                           ;timer2.c: 24: {
+   305                           ;timer2.c: 25: RA0=1;
+   306  07D6  1283               	bcf	status, 5	;RP0=0, select bank0
+   307  07D7  1303               	bcf	status, 6	;RP1=0, select bank0
+   308  07D8  1405               	bsf	(40/8),(40)&7
+   309  07D9  2FDA               	goto	l2192
+   310                           	line	26
+   311                           	
+   312  07DA                     l1032:	
+   313                           	line	27
+   314                           	
+   315  07DA                     l2192:	
+   316                           ;timer2.c: 26: }
+   317                           ;timer2.c: 27: if(count>15)
+   318  07DA  0871               	movf	(_count+1),w
+   319  07DB  3A80               	xorlw	80h
+   320  07DC  00FF               	movwf	btemp+1
+   321  07DD  3080               	movlw	(high(010h))^80h
+   322  07DE  027F               	subwf	btemp+1,w
+   323  07DF  1D03               	skipz
+   324  07E0  2FE3               	goto	u2165
+   325  07E1  3010               	movlw	low(010h)
+   326  07E2  0270               	subwf	(_count),w
+   327  07E3                     u2165:
+   328                           
+   329  07E3  1C03               	skipc
+   330  07E4  2FE6               	goto	u2161
+   331  07E5  2FE7               	goto	u2160
+   332  07E6                     u2161:
+   333  07E6  2FEB               	goto	l2196
+   334  07E7                     u2160:
+   335                           	line	29
+   336                           	
+   337  07E7                     l2194:	
+   338                           ;timer2.c: 28: {
+   339                           ;timer2.c: 29: RA0=0;
+   340  07E7  1283               	bcf	status, 5	;RP0=0, select bank0
+   341  07E8  1303               	bcf	status, 6	;RP1=0, select bank0
+   342  07E9  1005               	bcf	(40/8),(40)&7
+   343  07EA  2FEB               	goto	l2196
+   344                           	line	30
+   345                           	
+   346  07EB                     l1033:	
+   347                           	line	31
+   348                           	
+   349  07EB                     l2196:	
+   350                           ;timer2.c: 30: }
+   351                           ;timer2.c: 31: if(count>=30)
+   352  07EB  0871               	movf	(_count+1),w
+   353  07EC  3A80               	xorlw	80h
+   354  07ED  00FF               	movwf	btemp+1
+   355  07EE  3080               	movlw	(high(01Eh))^80h
+   356  07EF  027F               	subwf	btemp+1,w
+   357  07F0  1D03               	skipz
+   358  07F1  2FF4               	goto	u2175
+   359  07F2  301E               	movlw	low(01Eh)
+   360  07F3  0270               	subwf	(_count),w
+   361  07F4                     u2175:
+   362                           
+   363  07F4  1C03               	skipc
+   364  07F5  2FF7               	goto	u2171
+   365  07F6  2FF8               	goto	u2170
+   366  07F7                     u2171:
+   367  07F7  2FC4               	goto	l2186
+   368  07F8                     u2170:
+   369                           	line	33
+   370                           	
+   371  07F8                     l2198:	
+   372                           ;timer2.c: 32: {
+   373                           ;timer2.c: 33: count=0;
+   374  07F8  01F0               	clrf	(_count)
+   375  07F9  01F1               	clrf	(_count+1)
+   376  07FA  2FC4               	goto	l2186
+   377                           	line	34
+   378                           	
+   379  07FB                     l1034:	
+   380  07FB  2FC4               	goto	l2186
+   381                           	line	35
+   382                           	
+   383  07FC                     l1035:	
+   384                           	line	20
+   385  07FC  2FC4               	goto	l2186
+   386                           	
+   387  07FD                     l1036:	
+   388                           	line	36
+   389                           	
+   390  07FD                     l1037:	
+   391                           	global	start
+   392  07FD  120A  118A  2800   	ljmp	start
+   393                           	opt stack 0
+   394                           GLOBAL	__end_of_main
+   395  0800                     	__end_of_main:
+   396 ;; =============== function _main ends ============
+   397                           
+   398                           	signat	_main,88
+   399                           	global	_timer2
+   400                           psect	text61,local,class=CODE,delta=2
+   401                           global __ptext61
+   402  07A2                     __ptext61:
+   403                           
+   404 ;; *************** function _timer2 *****************
+   405 ;; Defined at:
+   406 ;;		line 4 in file "E:\KTU\Softwares\MP lab\TIMER\Timer2\timer2.c"
+   407 ;; Parameters:    Size  Location     Type
+   408 ;;		None
+   409 ;; Auto vars:     Size  Location     Type
+   410 ;;		None
+   411 ;; Return value:  Size  Location     Type
+   412 ;;		None               void
+   413 ;; Registers used:
+   414 ;;		wreg
+   415 ;; Tracked objects:
+   416 ;;		On entry : 0/0
+   417 ;;		On exit  : 0/0
+   418 ;;		Unchanged: 0/0
+   419 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   420 ;;      Params:         0       0       0       0       0
+   421 ;;      Locals:         0       0       0       0       0
+   422 ;;      Temps:          0       0       0       0       0
+   423 ;;      Totals:         0       0       0       0       0
+   424 ;;Total ram usage:        0 bytes
+   425 ;; Hardware stack levels used:    1
+   426 ;; This function calls:
+   427 ;;		Nothing
+   428 ;; This function is called by:
+   429 ;;		_main
+   430 ;; This function uses a non-reentrant model
+   431 ;;
+   432                           psect	text61
+   433                           	file	"E:\KTU\Softwares\MP lab\TIMER\Timer2\timer2.c"
+   434                           	line	4
+   435                           	global	__size_of_timer2
+   436  000F                     	__size_of_timer2	equ	__end_of_timer2-_timer2
+   437                           	
+   438  07A2                     _timer2:	
+   439                           	opt	stack 7
+   440                           ; Regs used in _timer2: [wreg]
+   441                           	line	5
+   442                           	
+   443  07A2                     l1406:	
+   444                           ;timer2.c: 5: if(TMR2IF==1)
+   445  07A2  1283               	bcf	status, 5	;RP0=0, select bank0
+   446  07A3  1303               	bcf	status, 6	;RP1=0, select bank0
+   447  07A4  1C8C               	btfss	(97/8),(97)&7
+   448  07A5  2FA7               	goto	u11
+   449  07A6  2FA8               	goto	u10
+   450  07A7                     u11:
+   451  07A7  2FB0               	goto	l1028
+   452  07A8                     u10:
+   453                           	line	7
+   454                           	
+   455  07A8                     l1408:	
+   456                           ;timer2.c: 6: {
+   457                           ;timer2.c: 7: count++;
+   458  07A8  3001               	movlw	low(01h)
+   459  07A9  07F0               	addwf	(_count),f
+   460  07AA  1803               	skipnc
+   461  07AB  0AF1               	incf	(_count+1),f
+   462  07AC  3000               	movlw	high(01h)
+   463  07AD  07F1               	addwf	(_count+1),f
+   464                           	line	8
+   465                           	
+   466  07AE                     l1410:	
+   467                           ;timer2.c: 8: TMR2IF=0;
+   468  07AE  108C               	bcf	(97/8),(97)&7
+   469  07AF  2FB0               	goto	l1028
+   470                           	line	9
+   471                           	
+   472  07B0                     l1027:	
+   473                           	line	10
+   474                           	
+   475  07B0                     l1028:	
+   476  07B0  0008               	return
+   477                           	opt stack 0
+   478                           GLOBAL	__end_of_timer2
+   479  07B1                     	__end_of_timer2:
+   480 ;; =============== function _timer2 ends ============
+   481                           
+   482                           	signat	_timer2,88
+   483                           psect	text62,local,class=CODE,delta=2
+   484                           global __ptext62
+   485  0000                     __ptext62:
+   486                           	global	btemp
+   487  007E                     	btemp set 07Eh
+   488                           
+   489                           	DABS	1,126,2	;btemp
+   490                           	global	wtemp0
+   491  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Mon Jun 14 12:08:20 2021
+
+                  u10 07A8                    u11 07A7                   _RA0 0028                  l1031 07C4  
+                l1032 07DA                  l1033 07EB                  l1034 07FB                  l1027 07B0  
+                l1035 07FC                  l1028 07B0                  l1036 07FD                  l1037 07FD  
+                l1410 07AE                  l1406 07A2                  l1408 07A8                  l2180 07BD  
+                l2190 07D6                  l2182 07BF                  l2192 07DA                  l2184 07C2  
+                l2194 07E7                  l2186 07C4                  l2178 07B1                  l2196 07EB  
+                l2188 07C9                  l2198 07F8                  u2150 07D6                  u2151 07D5  
+                u2160 07E7                  u2161 07E6                  u2170 07F8                  u2171 07F7  
+                u2155 07D2                  u2165 07E3                  u2175 07F4                  _main 07B1  
+                btemp 007E                  start 0000                 ?_main 0000                 _ANSEL 0188  
+               _T2CON 0012                 _PORTA 0005                 _PORTC 0007                 _TRISA 0085  
+               _TRISC 0087                 _count 0070                 status 0003                 wtemp0 007E  
+        __end_of_main 0800                ??_main 0000                _ANSELH 0189                _TMR2IF 0061  
+              _timer2 07A2        __pcstackCOMMON 0000            __pmaintext 07B1               ?_timer2 0000  
+     __size_of_timer2 000F  end_of_initialization 079E        __end_of_timer2 07B1   start_initialization 079C  
+            ??_timer2 0000           __pbssCOMMON 0070              __ptext60 0000              __ptext61 07A2  
+            __ptext62 0000         __size_of_main 004F  

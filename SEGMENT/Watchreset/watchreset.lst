@@ -1,0 +1,2109 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Fri Apr 30 12:01:49 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNROOT	_main
+    43                           	global	_PORTA
+    44                           psect	maintext,global,class=CODE,delta=2
+    45                           global __pmaintext
+    46  04D0                     __pmaintext:
+    47  0005                     _PORTA	set	5
+    48                           	global	_PORTB
+    49  0006                     _PORTB	set	6
+    50                           	global	_PORTC
+    51  0007                     _PORTC	set	7
+    52                           	global	_PORTD
+    53  0008                     _PORTD	set	8
+    54                           	global	_RA7
+    55  002F                     _RA7	set	47
+    56                           	global	_RC7
+    57  003F                     _RC7	set	63
+    58                           	global	_TRISA
+    59  0085                     _TRISA	set	133
+    60                           	global	_TRISB
+    61  0086                     _TRISB	set	134
+    62                           	global	_TRISC
+    63  0087                     _TRISC	set	135
+    64                           	global	_TRISD
+    65  0088                     _TRISD	set	136
+    66                           	global	_ANSEL
+    67  0188                     _ANSEL	set	392
+    68                           	global	_ANSELH
+    69  0189                     _ANSELH	set	393
+    70                           	file	"watchreset.as"
+    71                           	line	#
+    72                           psect cinit,class=CODE,delta=2
+    73                           global start_initialization
+    74  04CC                     start_initialization:
+    75                           
+    76                           psect cinit,class=CODE,delta=2
+    77                           global end_of_initialization
+    78                           
+    79                           ;End of C runtime variable initialization code
+    80                           
+    81  04CC                     end_of_initialization:
+    82  04CC  0183               clrf status
+    83  04CD  120A  118A  2CD0   ljmp _main	;jump to C main() function
+    84                           psect	cstackCOMMON,class=COMMON,space=1
+    85                           global __pcstackCOMMON
+    86  0070                     __pcstackCOMMON:
+    87                           	global	?_main
+    88  0070                     ?_main:	; 0 bytes @ 0x0
+    89                           	global	??_main
+    90  0070                     ??_main:	; 0 bytes @ 0x0
+    91                           	global	main@temp1
+    92  0070                     main@temp1:	; 2 bytes @ 0x0
+    93  0070                     	ds	2
+    94                           	global	main@temp2
+    95  0072                     main@temp2:	; 2 bytes @ 0x2
+    96  0072                     	ds	2
+    97                           	global	main@temp3
+    98  0074                     main@temp3:	; 2 bytes @ 0x4
+    99  0074                     	ds	2
+   100                           	global	main@temp4
+   101  0076                     main@temp4:	; 2 bytes @ 0x6
+   102  0076                     	ds	2
+   103                           	global	main@x
+   104  0078                     main@x:	; 2 bytes @ 0x8
+   105  0078                     	ds	2
+   106 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+   107 ;;Auto spaces:   Size  Autos    Used
+   108 ;; COMMON          14     10      10
+   109 ;; BANK0           80      0       0
+   110 ;; BANK1           80      0       0
+   111 ;; BANK3           96      0       0
+   112 ;; BANK2           96      0       0
+   113                           
+   114 ;;
+   115 ;; Pointer list with targets:
+   116                           
+   117                           
+   118                           
+   119 ;;
+   120 ;; Critical Paths under _main in COMMON
+   121 ;;
+   122 ;;   None.
+   123 ;;
+   124 ;; Critical Paths under _main in BANK0
+   125 ;;
+   126 ;;   None.
+   127 ;;
+   128 ;; Critical Paths under _main in BANK1
+   129 ;;
+   130 ;;   None.
+   131 ;;
+   132 ;; Critical Paths under _main in BANK3
+   133 ;;
+   134 ;;   None.
+   135 ;;
+   136 ;; Critical Paths under _main in BANK2
+   137 ;;
+   138 ;;   None.
+   139                           
+   140 ;;
+   141 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   142 ;;
+   143                           
+   144 ;;
+   145 ;;Call Graph Tables:
+   146 ;;
+   147 ;; ---------------------------------------------------------------------------------
+   148 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   149 ;; ---------------------------------------------------------------------------------
+   150 ;; (0) _main                                                10    10      0    1275
+   151 ;;                                              0 COMMON    10    10      0
+   152 ;; ---------------------------------------------------------------------------------
+   153 ;; Estimated maximum stack depth 0
+   154 ;; ---------------------------------------------------------------------------------
+   155                           
+   156 ;; Call Graph Graphs:
+   157                           
+   158 ;; _main (ROOT)
+   159 ;;
+   160                           
+   161 ;; Address spaces:
+   162                           
+   163 ;;Name               Size   Autos  Total    Cost      Usage
+   164 ;;BITCOMMON            E      0       0       0        0.0%
+   165 ;;EEDATA             100      0       0       0        0.0%
+   166 ;;NULL                 0      0       0       0        0.0%
+   167 ;;CODE                 0      0       0       0        0.0%
+   168 ;;COMMON               E      A       A       1       71.4%
+   169 ;;BITSFR0              0      0       0       1        0.0%
+   170 ;;SFR0                 0      0       0       1        0.0%
+   171 ;;BITSFR1              0      0       0       2        0.0%
+   172 ;;SFR1                 0      0       0       2        0.0%
+   173 ;;STACK                0      0       0       2        0.0%
+   174 ;;ABS                  0      0       0       3        0.0%
+   175 ;;BITBANK0            50      0       0       4        0.0%
+   176 ;;BITSFR3              0      0       0       4        0.0%
+   177 ;;SFR3                 0      0       0       4        0.0%
+   178 ;;BANK0               50      0       0       5        0.0%
+   179 ;;BITSFR2              0      0       0       5        0.0%
+   180 ;;SFR2                 0      0       0       5        0.0%
+   181 ;;BITBANK1            50      0       0       6        0.0%
+   182 ;;BANK1               50      0       0       7        0.0%
+   183 ;;BITBANK3            60      0       0       8        0.0%
+   184 ;;BANK3               60      0       0       9        0.0%
+   185 ;;BITBANK2            60      0       0      10        0.0%
+   186 ;;BANK2               60      0       0      11        0.0%
+   187 ;;DATA                 0      0       0      12        0.0%
+   188                           
+   189                           	global	_main
+   190                           psect	maintext
+   191                           
+   192 ;; *************** function _main *****************
+   193 ;; Defined at:
+   194 ;;		line 3 in file "E:\KTU\Softwares\mplab\Watchreset\watchreset.c"
+   195 ;; Parameters:    Size  Location     Type
+   196 ;;		None
+   197 ;; Auto vars:     Size  Location     Type
+   198 ;;  x               2    8[COMMON] int 
+   199 ;;  temp4           2    6[COMMON] int 
+   200 ;;  temp3           2    4[COMMON] int 
+   201 ;;  temp2           2    2[COMMON] int 
+   202 ;;  temp1           2    0[COMMON] int 
+   203 ;; Return value:  Size  Location     Type
+   204 ;;		None               void
+   205 ;; Registers used:
+   206 ;;		wreg, status,2, status,0
+   207 ;; Tracked objects:
+   208 ;;		On entry : 17F/0
+   209 ;;		On exit  : 0/0
+   210 ;;		Unchanged: 0/0
+   211 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   212 ;;      Params:         0       0       0       0       0
+   213 ;;      Locals:        10       0       0       0       0
+   214 ;;      Temps:          0       0       0       0       0
+   215 ;;      Totals:        10       0       0       0       0
+   216 ;;Total ram usage:       10 bytes
+   217 ;; This function calls:
+   218 ;;		Nothing
+   219 ;; This function is called by:
+   220 ;;		Startup code after reset
+   221 ;; This function uses a non-reentrant model
+   222 ;;
+   223                           psect	maintext
+   224                           	file	"E:\KTU\Softwares\mplab\Watchreset\watchreset.c"
+   225                           	line	3
+   226                           	global	__size_of_main
+   227  0330                     	__size_of_main	equ	__end_of_main-_main
+   228                           	
+   229  04D0                     _main:	
+   230                           	opt	stack 8
+   231                           ; Regs used in _main: [wreg+status,2+status,0]
+   232                           	line	4
+   233                           	
+   234  04D0                     l1458:	
+   235                           ;watchreset.c: 4: PORTA=0X00;
+   236  04D0  1283               	bcf	status, 5	;RP0=0, select bank0
+   237  04D1  1303               	bcf	status, 6	;RP1=0, select bank0
+   238  04D2  0185               	clrf	(5)	;volatile
+   239                           	line	5
+   240                           	
+   241  04D3                     l1460:	
+   242                           ;watchreset.c: 5: TRISA=0X80;
+   243  04D3  3080               	movlw	(080h)
+   244  04D4  1683               	bsf	status, 5	;RP0=1, select bank1
+   245  04D5  1303               	bcf	status, 6	;RP1=0, select bank1
+   246  04D6  0085               	movwf	(133)^080h	;volatile
+   247                           	line	6
+   248                           	
+   249  04D7                     l1462:	
+   250                           ;watchreset.c: 6: PORTB=0X00;
+   251  04D7  1283               	bcf	status, 5	;RP0=0, select bank0
+   252  04D8  1303               	bcf	status, 6	;RP1=0, select bank0
+   253  04D9  0186               	clrf	(6)	;volatile
+   254                           	line	7
+   255                           	
+   256  04DA                     l1464:	
+   257                           ;watchreset.c: 7: TRISB=0X00;
+   258  04DA  1683               	bsf	status, 5	;RP0=1, select bank1
+   259  04DB  1303               	bcf	status, 6	;RP1=0, select bank1
+   260  04DC  0186               	clrf	(134)^080h	;volatile
+   261                           	line	8
+   262                           	
+   263  04DD                     l1466:	
+   264                           ;watchreset.c: 8: PORTC=0X00;
+   265  04DD  1283               	bcf	status, 5	;RP0=0, select bank0
+   266  04DE  1303               	bcf	status, 6	;RP1=0, select bank0
+   267  04DF  0187               	clrf	(7)	;volatile
+   268                           	line	9
+   269                           ;watchreset.c: 9: TRISC=0X80;
+   270  04E0  3080               	movlw	(080h)
+   271  04E1  1683               	bsf	status, 5	;RP0=1, select bank1
+   272  04E2  1303               	bcf	status, 6	;RP1=0, select bank1
+   273  04E3  0087               	movwf	(135)^080h	;volatile
+   274                           	line	10
+   275                           	
+   276  04E4                     l1468:	
+   277                           ;watchreset.c: 10: PORTD=0X00;
+   278  04E4  1283               	bcf	status, 5	;RP0=0, select bank0
+   279  04E5  1303               	bcf	status, 6	;RP1=0, select bank0
+   280  04E6  0188               	clrf	(8)	;volatile
+   281                           	line	11
+   282                           	
+   283  04E7                     l1470:	
+   284                           ;watchreset.c: 11: TRISD=0X00;
+   285  04E7  1683               	bsf	status, 5	;RP0=1, select bank1
+   286  04E8  1303               	bcf	status, 6	;RP1=0, select bank1
+   287  04E9  0188               	clrf	(136)^080h	;volatile
+   288                           	line	12
+   289                           	
+   290  04EA                     l1472:	
+   291                           ;watchreset.c: 12: ANSEL=0X00;
+   292  04EA  1683               	bsf	status, 5	;RP0=1, select bank3
+   293  04EB  1703               	bsf	status, 6	;RP1=1, select bank3
+   294  04EC  0188               	clrf	(392)^0180h	;volatile
+   295                           	line	13
+   296                           	
+   297  04ED                     l1474:	
+   298                           ;watchreset.c: 13: ANSELH=0X00;
+   299  04ED  0189               	clrf	(393)^0180h	;volatile
+   300                           	line	14
+   301                           	
+   302  04EE                     l1476:	
+   303                           ;watchreset.c: 14: int x=0;
+   304  04EE  01F8               	clrf	(main@x)
+   305  04EF  01F9               	clrf	(main@x+1)
+   306                           	line	15
+   307                           	
+   308  04F0                     l1478:	
+   309                           ;watchreset.c: 15: int temp1=0;
+   310  04F0  01F0               	clrf	(main@temp1)
+   311  04F1  01F1               	clrf	(main@temp1+1)
+   312                           	line	16
+   313                           	
+   314  04F2                     l1480:	
+   315                           ;watchreset.c: 16: int temp2=0;
+   316  04F2  01F2               	clrf	(main@temp2)
+   317  04F3  01F3               	clrf	(main@temp2+1)
+   318                           	line	17
+   319                           	
+   320  04F4                     l1482:	
+   321                           ;watchreset.c: 17: int temp3=0;
+   322  04F4  01F4               	clrf	(main@temp3)
+   323  04F5  01F5               	clrf	(main@temp3+1)
+   324                           	line	18
+   325                           	
+   326  04F6                     l1484:	
+   327                           ;watchreset.c: 18: int temp4=0;
+   328  04F6  01F6               	clrf	(main@temp4)
+   329  04F7  01F7               	clrf	(main@temp4+1)
+   330  04F8  2CF9               	goto	l1486
+   331                           	line	19
+   332                           ;watchreset.c: 19: while(1)
+   333                           	
+   334  04F9                     l1025:	
+   335                           	line	21
+   336                           	
+   337  04F9                     l1486:	
+   338                           ;watchreset.c: 20: {
+   339                           ;watchreset.c: 21: if(RC7==1)
+   340  04F9  1283               	bcf	status, 5	;RP0=0, select bank0
+   341  04FA  1303               	bcf	status, 6	;RP1=0, select bank0
+   342  04FB  1F87               	btfss	(63/8),(63)&7
+   343  04FC  2CFE               	goto	u11
+   344  04FD  2CFF               	goto	u10
+   345  04FE                     u11:
+   346  04FE  2D17               	goto	l1494
+   347  04FF                     u10:
+   348  04FF  2D01               	goto	l1027
+   349                           	line	23
+   350                           	
+   351  0500                     l1488:	
+   352                           ;watchreset.c: 22: {
+   353                           ;watchreset.c: 23: while(RC7==1);
+   354  0500  2D01               	goto	l1027
+   355                           	
+   356  0501                     l1028:	
+   357                           	
+   358  0501                     l1027:	
+   359  0501  1B87               	btfsc	(63/8),(63)&7
+   360  0502  2D04               	goto	u21
+   361  0503  2D05               	goto	u20
+   362  0504                     u21:
+   363  0504  2D01               	goto	l1027
+   364  0505                     u20:
+   365  0505  2D06               	goto	l1490
+   366                           	
+   367  0506                     l1029:	
+   368                           	line	24
+   369                           	
+   370  0506                     l1490:	
+   371                           ;watchreset.c: 24: x++;
+   372  0506  3001               	movlw	low(01h)
+   373  0507  07F8               	addwf	(main@x),f
+   374  0508  1803               	skipnc
+   375  0509  0AF9               	incf	(main@x+1),f
+   376  050A  3000               	movlw	high(01h)
+   377  050B  07F9               	addwf	(main@x+1),f
+   378                           	line	25
+   379                           ;watchreset.c: 25: if(x==4)
+   380  050C  3004               	movlw	04h
+   381  050D  0678               	xorwf	(main@x),w
+   382  050E  0479               	iorwf	(main@x+1),w
+   383  050F  1D03               	skipz
+   384  0510  2D12               	goto	u31
+   385  0511  2D13               	goto	u30
+   386  0512                     u31:
+   387  0512  2D17               	goto	l1494
+   388  0513                     u30:
+   389                           	line	27
+   390                           	
+   391  0513                     l1492:	
+   392                           ;watchreset.c: 26: {
+   393                           ;watchreset.c: 27: x=0;
+   394  0513  01F8               	clrf	(main@x)
+   395  0514  01F9               	clrf	(main@x+1)
+   396  0515  2D17               	goto	l1494
+   397                           	line	28
+   398                           	
+   399  0516                     l1030:	
+   400  0516  2D17               	goto	l1494
+   401                           	line	29
+   402                           	
+   403  0517                     l1026:	
+   404                           	line	30
+   405                           	
+   406  0517                     l1494:	
+   407                           ;watchreset.c: 28: }
+   408                           ;watchreset.c: 29: }
+   409                           ;watchreset.c: 30: if(RA7==1 && x==0)
+   410  0517  1F85               	btfss	(47/8),(47)&7
+   411  0518  2D1A               	goto	u41
+   412  0519  2D1B               	goto	u40
+   413  051A                     u41:
+   414  051A  2D2F               	goto	l1502
+   415  051B                     u40:
+   416                           	
+   417  051B                     l1496:	
+   418  051B  0879               	movf	((main@x+1)),w
+   419  051C  0478               	iorwf	((main@x)),w
+   420  051D  1D03               	skipz
+   421  051E  2D20               	goto	u51
+   422  051F  2D21               	goto	u50
+   423  0520                     u51:
+   424  0520  2D2F               	goto	l1502
+   425  0521                     u50:
+   426  0521  2D23               	goto	l1032
+   427                           	line	32
+   428                           	
+   429  0522                     l1498:	
+   430                           ;watchreset.c: 31: {
+   431                           ;watchreset.c: 32: while(RA7==1);
+   432  0522  2D23               	goto	l1032
+   433                           	
+   434  0523                     l1033:	
+   435                           	
+   436  0523                     l1032:	
+   437  0523  1B85               	btfsc	(47/8),(47)&7
+   438  0524  2D26               	goto	u61
+   439  0525  2D27               	goto	u60
+   440  0526                     u61:
+   441  0526  2D23               	goto	l1032
+   442  0527                     u60:
+   443  0527  2D28               	goto	l1500
+   444                           	
+   445  0528                     l1034:	
+   446                           	line	33
+   447                           	
+   448  0528                     l1500:	
+   449                           ;watchreset.c: 33: temp1++;
+   450  0528  3001               	movlw	low(01h)
+   451  0529  07F0               	addwf	(main@temp1),f
+   452  052A  1803               	skipnc
+   453  052B  0AF1               	incf	(main@temp1+1),f
+   454  052C  3000               	movlw	high(01h)
+   455  052D  07F1               	addwf	(main@temp1+1),f
+   456  052E  2D2F               	goto	l1502
+   457                           	line	34
+   458                           	
+   459  052F                     l1031:	
+   460                           	line	35
+   461                           	
+   462  052F                     l1502:	
+   463                           ;watchreset.c: 34: }
+   464                           ;watchreset.c: 35: if(RA7==1 && x==1)
+   465  052F  1F85               	btfss	(47/8),(47)&7
+   466  0530  2D32               	goto	u71
+   467  0531  2D33               	goto	u70
+   468  0532                     u71:
+   469  0532  2D48               	goto	l1510
+   470  0533                     u70:
+   471                           	
+   472  0533                     l1504:	
+   473  0533  3001               	movlw	01h
+   474  0534  0678               	xorwf	(main@x),w
+   475  0535  0479               	iorwf	(main@x+1),w
+   476  0536  1D03               	skipz
+   477  0537  2D39               	goto	u81
+   478  0538  2D3A               	goto	u80
+   479  0539                     u81:
+   480  0539  2D48               	goto	l1510
+   481  053A                     u80:
+   482  053A  2D3C               	goto	l1036
+   483                           	line	37
+   484                           	
+   485  053B                     l1506:	
+   486                           ;watchreset.c: 36: {
+   487                           ;watchreset.c: 37: while(RA7==1);
+   488  053B  2D3C               	goto	l1036
+   489                           	
+   490  053C                     l1037:	
+   491                           	
+   492  053C                     l1036:	
+   493  053C  1B85               	btfsc	(47/8),(47)&7
+   494  053D  2D3F               	goto	u91
+   495  053E  2D40               	goto	u90
+   496  053F                     u91:
+   497  053F  2D3C               	goto	l1036
+   498  0540                     u90:
+   499  0540  2D41               	goto	l1508
+   500                           	
+   501  0541                     l1038:	
+   502                           	line	38
+   503                           	
+   504  0541                     l1508:	
+   505                           ;watchreset.c: 38: temp2++;
+   506  0541  3001               	movlw	low(01h)
+   507  0542  07F2               	addwf	(main@temp2),f
+   508  0543  1803               	skipnc
+   509  0544  0AF3               	incf	(main@temp2+1),f
+   510  0545  3000               	movlw	high(01h)
+   511  0546  07F3               	addwf	(main@temp2+1),f
+   512  0547  2D48               	goto	l1510
+   513                           	line	39
+   514                           	
+   515  0548                     l1035:	
+   516                           	line	40
+   517                           	
+   518  0548                     l1510:	
+   519                           ;watchreset.c: 39: }
+   520                           ;watchreset.c: 40: if(RA7==1 && x==2)
+   521  0548  1F85               	btfss	(47/8),(47)&7
+   522  0549  2D4B               	goto	u101
+   523  054A  2D4C               	goto	u100
+   524  054B                     u101:
+   525  054B  2D61               	goto	l1518
+   526  054C                     u100:
+   527                           	
+   528  054C                     l1512:	
+   529  054C  3002               	movlw	02h
+   530  054D  0678               	xorwf	(main@x),w
+   531  054E  0479               	iorwf	(main@x+1),w
+   532  054F  1D03               	skipz
+   533  0550  2D52               	goto	u111
+   534  0551  2D53               	goto	u110
+   535  0552                     u111:
+   536  0552  2D61               	goto	l1518
+   537  0553                     u110:
+   538  0553  2D55               	goto	l1040
+   539                           	line	42
+   540                           	
+   541  0554                     l1514:	
+   542                           ;watchreset.c: 41: {
+   543                           ;watchreset.c: 42: while(RA7==1);
+   544  0554  2D55               	goto	l1040
+   545                           	
+   546  0555                     l1041:	
+   547                           	
+   548  0555                     l1040:	
+   549  0555  1B85               	btfsc	(47/8),(47)&7
+   550  0556  2D58               	goto	u121
+   551  0557  2D59               	goto	u120
+   552  0558                     u121:
+   553  0558  2D55               	goto	l1040
+   554  0559                     u120:
+   555  0559  2D5A               	goto	l1516
+   556                           	
+   557  055A                     l1042:	
+   558                           	line	43
+   559                           	
+   560  055A                     l1516:	
+   561                           ;watchreset.c: 43: temp3++;
+   562  055A  3001               	movlw	low(01h)
+   563  055B  07F4               	addwf	(main@temp3),f
+   564  055C  1803               	skipnc
+   565  055D  0AF5               	incf	(main@temp3+1),f
+   566  055E  3000               	movlw	high(01h)
+   567  055F  07F5               	addwf	(main@temp3+1),f
+   568  0560  2D61               	goto	l1518
+   569                           	line	44
+   570                           	
+   571  0561                     l1039:	
+   572                           	line	45
+   573                           	
+   574  0561                     l1518:	
+   575                           ;watchreset.c: 44: }
+   576                           ;watchreset.c: 45: if(RA7==1 && x==3)
+   577  0561  1F85               	btfss	(47/8),(47)&7
+   578  0562  2D64               	goto	u131
+   579  0563  2D65               	goto	u130
+   580  0564                     u131:
+   581  0564  2D79               	goto	l1043
+   582  0565                     u130:
+   583                           	
+   584  0565                     l1520:	
+   585  0565  3003               	movlw	03h
+   586  0566  0678               	xorwf	(main@x),w
+   587  0567  0479               	iorwf	(main@x+1),w
+   588  0568  1D03               	skipz
+   589  0569  2D6B               	goto	u141
+   590  056A  2D6C               	goto	u140
+   591  056B                     u141:
+   592  056B  2D79               	goto	l1043
+   593  056C                     u140:
+   594  056C  2D6E               	goto	l1044
+   595                           	line	47
+   596                           	
+   597  056D                     l1522:	
+   598                           ;watchreset.c: 46: {
+   599                           ;watchreset.c: 47: while(RA7==1);
+   600  056D  2D6E               	goto	l1044
+   601                           	
+   602  056E                     l1045:	
+   603                           	
+   604  056E                     l1044:	
+   605  056E  1B85               	btfsc	(47/8),(47)&7
+   606  056F  2D71               	goto	u151
+   607  0570  2D72               	goto	u150
+   608  0571                     u151:
+   609  0571  2D6E               	goto	l1044
+   610  0572                     u150:
+   611  0572  2D73               	goto	l1524
+   612                           	
+   613  0573                     l1046:	
+   614                           	line	48
+   615                           	
+   616  0573                     l1524:	
+   617                           ;watchreset.c: 48: temp4++;
+   618  0573  3001               	movlw	low(01h)
+   619  0574  07F6               	addwf	(main@temp4),f
+   620  0575  1803               	skipnc
+   621  0576  0AF7               	incf	(main@temp4+1),f
+   622  0577  3000               	movlw	high(01h)
+   623  0578  07F7               	addwf	(main@temp4+1),f
+   624                           	line	49
+   625                           	
+   626  0579                     l1043:	
+   627                           	line	53
+   628                           ;watchreset.c: 49: }
+   629                           ;watchreset.c: 53: if(temp1==1 && x==0)
+   630  0579  3001               	movlw	01h
+   631  057A  0670               	xorwf	(main@temp1),w
+   632  057B  0471               	iorwf	(main@temp1+1),w
+   633  057C  1D03               	skipz
+   634  057D  2D7F               	goto	u161
+   635  057E  2D80               	goto	u160
+   636  057F                     u161:
+   637  057F  2D88               	goto	l1047
+   638  0580                     u160:
+   639                           	
+   640  0580                     l1526:	
+   641  0580  0879               	movf	((main@x+1)),w
+   642  0581  0478               	iorwf	((main@x)),w
+   643  0582  1D03               	skipz
+   644  0583  2D85               	goto	u171
+   645  0584  2D86               	goto	u170
+   646  0585                     u171:
+   647  0585  2D88               	goto	l1047
+   648  0586                     u170:
+   649                           	line	55
+   650                           	
+   651  0586                     l1528:	
+   652                           ;watchreset.c: 54: {
+   653                           ;watchreset.c: 55: PORTC=0XBF;
+   654  0586  30BF               	movlw	(0BFh)
+   655  0587  0087               	movwf	(7)	;volatile
+   656                           	line	56
+   657                           	
+   658  0588                     l1047:	
+   659                           	line	57
+   660                           ;watchreset.c: 56: }
+   661                           ;watchreset.c: 57: if(temp1==2 && x==0)
+   662  0588  3002               	movlw	02h
+   663  0589  0670               	xorwf	(main@temp1),w
+   664  058A  0471               	iorwf	(main@temp1+1),w
+   665  058B  1D03               	skipz
+   666  058C  2D8E               	goto	u181
+   667  058D  2D8F               	goto	u180
+   668  058E                     u181:
+   669  058E  2D97               	goto	l1048
+   670  058F                     u180:
+   671                           	
+   672  058F                     l1530:	
+   673  058F  0879               	movf	((main@x+1)),w
+   674  0590  0478               	iorwf	((main@x)),w
+   675  0591  1D03               	skipz
+   676  0592  2D94               	goto	u191
+   677  0593  2D95               	goto	u190
+   678  0594                     u191:
+   679  0594  2D97               	goto	l1048
+   680  0595                     u190:
+   681                           	line	59
+   682                           	
+   683  0595                     l1532:	
+   684                           ;watchreset.c: 58: {
+   685                           ;watchreset.c: 59: PORTC=0X06;
+   686  0595  3006               	movlw	(06h)
+   687  0596  0087               	movwf	(7)	;volatile
+   688                           	line	60
+   689                           	
+   690  0597                     l1048:	
+   691                           	line	61
+   692                           ;watchreset.c: 60: }
+   693                           ;watchreset.c: 61: if(temp1==3 && x==0)
+   694  0597  3003               	movlw	03h
+   695  0598  0670               	xorwf	(main@temp1),w
+   696  0599  0471               	iorwf	(main@temp1+1),w
+   697  059A  1D03               	skipz
+   698  059B  2D9D               	goto	u201
+   699  059C  2D9E               	goto	u200
+   700  059D                     u201:
+   701  059D  2DA6               	goto	l1049
+   702  059E                     u200:
+   703                           	
+   704  059E                     l1534:	
+   705  059E  0879               	movf	((main@x+1)),w
+   706  059F  0478               	iorwf	((main@x)),w
+   707  05A0  1D03               	skipz
+   708  05A1  2DA3               	goto	u211
+   709  05A2  2DA4               	goto	u210
+   710  05A3                     u211:
+   711  05A3  2DA6               	goto	l1049
+   712  05A4                     u210:
+   713                           	line	63
+   714                           	
+   715  05A4                     l1536:	
+   716                           ;watchreset.c: 62: {
+   717                           ;watchreset.c: 63: PORTC=0X5B;
+   718  05A4  305B               	movlw	(05Bh)
+   719  05A5  0087               	movwf	(7)	;volatile
+   720                           	line	64
+   721                           	
+   722  05A6                     l1049:	
+   723                           	line	65
+   724                           ;watchreset.c: 64: }
+   725                           ;watchreset.c: 65: if(temp1==4 && x==0)
+   726  05A6  3004               	movlw	04h
+   727  05A7  0670               	xorwf	(main@temp1),w
+   728  05A8  0471               	iorwf	(main@temp1+1),w
+   729  05A9  1D03               	skipz
+   730  05AA  2DAC               	goto	u221
+   731  05AB  2DAD               	goto	u220
+   732  05AC                     u221:
+   733  05AC  2DB5               	goto	l1050
+   734  05AD                     u220:
+   735                           	
+   736  05AD                     l1538:	
+   737  05AD  0879               	movf	((main@x+1)),w
+   738  05AE  0478               	iorwf	((main@x)),w
+   739  05AF  1D03               	skipz
+   740  05B0  2DB2               	goto	u231
+   741  05B1  2DB3               	goto	u230
+   742  05B2                     u231:
+   743  05B2  2DB5               	goto	l1050
+   744  05B3                     u230:
+   745                           	line	67
+   746                           	
+   747  05B3                     l1540:	
+   748                           ;watchreset.c: 66: {
+   749                           ;watchreset.c: 67: PORTC=0X4F;
+   750  05B3  304F               	movlw	(04Fh)
+   751  05B4  0087               	movwf	(7)	;volatile
+   752                           	line	68
+   753                           	
+   754  05B5                     l1050:	
+   755                           	line	69
+   756                           ;watchreset.c: 68: }
+   757                           ;watchreset.c: 69: if(temp1==5 && x==0)
+   758  05B5  3005               	movlw	05h
+   759  05B6  0670               	xorwf	(main@temp1),w
+   760  05B7  0471               	iorwf	(main@temp1+1),w
+   761  05B8  1D03               	skipz
+   762  05B9  2DBB               	goto	u241
+   763  05BA  2DBC               	goto	u240
+   764  05BB                     u241:
+   765  05BB  2DC4               	goto	l1051
+   766  05BC                     u240:
+   767                           	
+   768  05BC                     l1542:	
+   769  05BC  0879               	movf	((main@x+1)),w
+   770  05BD  0478               	iorwf	((main@x)),w
+   771  05BE  1D03               	skipz
+   772  05BF  2DC1               	goto	u251
+   773  05C0  2DC2               	goto	u250
+   774  05C1                     u251:
+   775  05C1  2DC4               	goto	l1051
+   776  05C2                     u250:
+   777                           	line	71
+   778                           	
+   779  05C2                     l1544:	
+   780                           ;watchreset.c: 70: {
+   781                           ;watchreset.c: 71: PORTC=0X66;
+   782  05C2  3066               	movlw	(066h)
+   783  05C3  0087               	movwf	(7)	;volatile
+   784                           	line	72
+   785                           	
+   786  05C4                     l1051:	
+   787                           	line	73
+   788                           ;watchreset.c: 72: }
+   789                           ;watchreset.c: 73: if(temp1==6 && x==0)
+   790  05C4  3006               	movlw	06h
+   791  05C5  0670               	xorwf	(main@temp1),w
+   792  05C6  0471               	iorwf	(main@temp1+1),w
+   793  05C7  1D03               	skipz
+   794  05C8  2DCA               	goto	u261
+   795  05C9  2DCB               	goto	u260
+   796  05CA                     u261:
+   797  05CA  2DD3               	goto	l1052
+   798  05CB                     u260:
+   799                           	
+   800  05CB                     l1546:	
+   801  05CB  0879               	movf	((main@x+1)),w
+   802  05CC  0478               	iorwf	((main@x)),w
+   803  05CD  1D03               	skipz
+   804  05CE  2DD0               	goto	u271
+   805  05CF  2DD1               	goto	u270
+   806  05D0                     u271:
+   807  05D0  2DD3               	goto	l1052
+   808  05D1                     u270:
+   809                           	line	75
+   810                           	
+   811  05D1                     l1548:	
+   812                           ;watchreset.c: 74: {
+   813                           ;watchreset.c: 75: PORTC=0X6D;
+   814  05D1  306D               	movlw	(06Dh)
+   815  05D2  0087               	movwf	(7)	;volatile
+   816                           	line	76
+   817                           	
+   818  05D3                     l1052:	
+   819                           	line	77
+   820                           ;watchreset.c: 76: }
+   821                           ;watchreset.c: 77: if(temp1==7 && x==0)
+   822  05D3  3007               	movlw	07h
+   823  05D4  0670               	xorwf	(main@temp1),w
+   824  05D5  0471               	iorwf	(main@temp1+1),w
+   825  05D6  1D03               	skipz
+   826  05D7  2DD9               	goto	u281
+   827  05D8  2DDA               	goto	u280
+   828  05D9                     u281:
+   829  05D9  2DE2               	goto	l1053
+   830  05DA                     u280:
+   831                           	
+   832  05DA                     l1550:	
+   833  05DA  0879               	movf	((main@x+1)),w
+   834  05DB  0478               	iorwf	((main@x)),w
+   835  05DC  1D03               	skipz
+   836  05DD  2DDF               	goto	u291
+   837  05DE  2DE0               	goto	u290
+   838  05DF                     u291:
+   839  05DF  2DE2               	goto	l1053
+   840  05E0                     u290:
+   841                           	line	79
+   842                           	
+   843  05E0                     l1552:	
+   844                           ;watchreset.c: 78: {
+   845                           ;watchreset.c: 79: PORTC=0X7C;
+   846  05E0  307C               	movlw	(07Ch)
+   847  05E1  0087               	movwf	(7)	;volatile
+   848                           	line	80
+   849                           	
+   850  05E2                     l1053:	
+   851                           	line	81
+   852                           ;watchreset.c: 80: }
+   853                           ;watchreset.c: 81: if(temp1==8 && x==0)
+   854  05E2  3008               	movlw	08h
+   855  05E3  0670               	xorwf	(main@temp1),w
+   856  05E4  0471               	iorwf	(main@temp1+1),w
+   857  05E5  1D03               	skipz
+   858  05E6  2DE8               	goto	u301
+   859  05E7  2DE9               	goto	u300
+   860  05E8                     u301:
+   861  05E8  2DF1               	goto	l1054
+   862  05E9                     u300:
+   863                           	
+   864  05E9                     l1554:	
+   865  05E9  0879               	movf	((main@x+1)),w
+   866  05EA  0478               	iorwf	((main@x)),w
+   867  05EB  1D03               	skipz
+   868  05EC  2DEE               	goto	u311
+   869  05ED  2DEF               	goto	u310
+   870  05EE                     u311:
+   871  05EE  2DF1               	goto	l1054
+   872  05EF                     u310:
+   873                           	line	83
+   874                           	
+   875  05EF                     l1556:	
+   876                           ;watchreset.c: 82: {
+   877                           ;watchreset.c: 83: PORTC=0X07;
+   878  05EF  3007               	movlw	(07h)
+   879  05F0  0087               	movwf	(7)	;volatile
+   880                           	line	84
+   881                           	
+   882  05F1                     l1054:	
+   883                           	line	85
+   884                           ;watchreset.c: 84: }
+   885                           ;watchreset.c: 85: if(temp1==9 && x==0)
+   886  05F1  3009               	movlw	09h
+   887  05F2  0670               	xorwf	(main@temp1),w
+   888  05F3  0471               	iorwf	(main@temp1+1),w
+   889  05F4  1D03               	skipz
+   890  05F5  2DF7               	goto	u321
+   891  05F6  2DF8               	goto	u320
+   892  05F7                     u321:
+   893  05F7  2E00               	goto	l1055
+   894  05F8                     u320:
+   895                           	
+   896  05F8                     l1558:	
+   897  05F8  0879               	movf	((main@x+1)),w
+   898  05F9  0478               	iorwf	((main@x)),w
+   899  05FA  1D03               	skipz
+   900  05FB  2DFD               	goto	u331
+   901  05FC  2DFE               	goto	u330
+   902  05FD                     u331:
+   903  05FD  2E00               	goto	l1055
+   904  05FE                     u330:
+   905                           	line	87
+   906                           	
+   907  05FE                     l1560:	
+   908                           ;watchreset.c: 86: {
+   909                           ;watchreset.c: 87: PORTC=0XFF;
+   910  05FE  30FF               	movlw	(0FFh)
+   911  05FF  0087               	movwf	(7)	;volatile
+   912                           	line	88
+   913                           	
+   914  0600                     l1055:	
+   915                           	line	89
+   916                           ;watchreset.c: 88: }
+   917                           ;watchreset.c: 89: if(temp1==10 && x==0)
+   918  0600  300A               	movlw	0Ah
+   919  0601  0670               	xorwf	(main@temp1),w
+   920  0602  0471               	iorwf	(main@temp1+1),w
+   921  0603  1D03               	skipz
+   922  0604  2E06               	goto	u341
+   923  0605  2E07               	goto	u340
+   924  0606                     u341:
+   925  0606  2E12               	goto	l1568
+   926  0607                     u340:
+   927                           	
+   928  0607                     l1562:	
+   929  0607  0879               	movf	((main@x+1)),w
+   930  0608  0478               	iorwf	((main@x)),w
+   931  0609  1D03               	skipz
+   932  060A  2E0C               	goto	u351
+   933  060B  2E0D               	goto	u350
+   934  060C                     u351:
+   935  060C  2E12               	goto	l1568
+   936  060D                     u350:
+   937                           	line	91
+   938                           	
+   939  060D                     l1564:	
+   940                           ;watchreset.c: 90: {
+   941                           ;watchreset.c: 91: PORTC=0XE7;
+   942  060D  30E7               	movlw	(0E7h)
+   943  060E  0087               	movwf	(7)	;volatile
+   944                           	line	92
+   945                           	
+   946  060F                     l1566:	
+   947                           ;watchreset.c: 92: temp1=0;
+   948  060F  01F0               	clrf	(main@temp1)
+   949  0610  01F1               	clrf	(main@temp1+1)
+   950  0611  2E12               	goto	l1568
+   951                           	line	93
+   952                           	
+   953  0612                     l1056:	
+   954                           	line	94
+   955                           	
+   956  0612                     l1568:	
+   957                           ;watchreset.c: 93: }
+   958                           ;watchreset.c: 94: if(temp2==1 && x==1)
+   959  0612  3001               	movlw	01h
+   960  0613  0672               	xorwf	(main@temp2),w
+   961  0614  0473               	iorwf	(main@temp2+1),w
+   962  0615  1D03               	skipz
+   963  0616  2E18               	goto	u361
+   964  0617  2E19               	goto	u360
+   965  0618                     u361:
+   966  0618  2E22               	goto	l1057
+   967  0619                     u360:
+   968                           	
+   969  0619                     l1570:	
+   970  0619  3001               	movlw	01h
+   971  061A  0678               	xorwf	(main@x),w
+   972  061B  0479               	iorwf	(main@x+1),w
+   973  061C  1D03               	skipz
+   974  061D  2E1F               	goto	u371
+   975  061E  2E20               	goto	u370
+   976  061F                     u371:
+   977  061F  2E22               	goto	l1057
+   978  0620                     u370:
+   979                           	line	96
+   980                           	
+   981  0620                     l1572:	
+   982                           ;watchreset.c: 95: {
+   983                           ;watchreset.c: 96: PORTD=0XBF;
+   984  0620  30BF               	movlw	(0BFh)
+   985  0621  0088               	movwf	(8)	;volatile
+   986                           	line	97
+   987                           	
+   988  0622                     l1057:	
+   989                           	line	98
+   990                           ;watchreset.c: 97: }
+   991                           ;watchreset.c: 98: if(temp2==2 && x==1)
+   992  0622  3002               	movlw	02h
+   993  0623  0672               	xorwf	(main@temp2),w
+   994  0624  0473               	iorwf	(main@temp2+1),w
+   995  0625  1D03               	skipz
+   996  0626  2E28               	goto	u381
+   997  0627  2E29               	goto	u380
+   998  0628                     u381:
+   999  0628  2E32               	goto	l1058
+  1000  0629                     u380:
+  1001                           	
+  1002  0629                     l1574:	
+  1003  0629  3001               	movlw	01h
+  1004  062A  0678               	xorwf	(main@x),w
+  1005  062B  0479               	iorwf	(main@x+1),w
+  1006  062C  1D03               	skipz
+  1007  062D  2E2F               	goto	u391
+  1008  062E  2E30               	goto	u390
+  1009  062F                     u391:
+  1010  062F  2E32               	goto	l1058
+  1011  0630                     u390:
+  1012                           	line	100
+  1013                           	
+  1014  0630                     l1576:	
+  1015                           ;watchreset.c: 99: {
+  1016                           ;watchreset.c: 100: PORTD=0X06;
+  1017  0630  3006               	movlw	(06h)
+  1018  0631  0088               	movwf	(8)	;volatile
+  1019                           	line	101
+  1020                           	
+  1021  0632                     l1058:	
+  1022                           	line	102
+  1023                           ;watchreset.c: 101: }
+  1024                           ;watchreset.c: 102: if(temp2==3 && x==1)
+  1025  0632  3003               	movlw	03h
+  1026  0633  0672               	xorwf	(main@temp2),w
+  1027  0634  0473               	iorwf	(main@temp2+1),w
+  1028  0635  1D03               	skipz
+  1029  0636  2E38               	goto	u401
+  1030  0637  2E39               	goto	u400
+  1031  0638                     u401:
+  1032  0638  2E42               	goto	l1059
+  1033  0639                     u400:
+  1034                           	
+  1035  0639                     l1578:	
+  1036  0639  3001               	movlw	01h
+  1037  063A  0678               	xorwf	(main@x),w
+  1038  063B  0479               	iorwf	(main@x+1),w
+  1039  063C  1D03               	skipz
+  1040  063D  2E3F               	goto	u411
+  1041  063E  2E40               	goto	u410
+  1042  063F                     u411:
+  1043  063F  2E42               	goto	l1059
+  1044  0640                     u410:
+  1045                           	line	104
+  1046                           	
+  1047  0640                     l1580:	
+  1048                           ;watchreset.c: 103: {
+  1049                           ;watchreset.c: 104: PORTD=0X5B;
+  1050  0640  305B               	movlw	(05Bh)
+  1051  0641  0088               	movwf	(8)	;volatile
+  1052                           	line	105
+  1053                           	
+  1054  0642                     l1059:	
+  1055                           	line	106
+  1056                           ;watchreset.c: 105: }
+  1057                           ;watchreset.c: 106: if(temp2==4 && x==1)
+  1058  0642  3004               	movlw	04h
+  1059  0643  0672               	xorwf	(main@temp2),w
+  1060  0644  0473               	iorwf	(main@temp2+1),w
+  1061  0645  1D03               	skipz
+  1062  0646  2E48               	goto	u421
+  1063  0647  2E49               	goto	u420
+  1064  0648                     u421:
+  1065  0648  2E52               	goto	l1060
+  1066  0649                     u420:
+  1067                           	
+  1068  0649                     l1582:	
+  1069  0649  3001               	movlw	01h
+  1070  064A  0678               	xorwf	(main@x),w
+  1071  064B  0479               	iorwf	(main@x+1),w
+  1072  064C  1D03               	skipz
+  1073  064D  2E4F               	goto	u431
+  1074  064E  2E50               	goto	u430
+  1075  064F                     u431:
+  1076  064F  2E52               	goto	l1060
+  1077  0650                     u430:
+  1078                           	line	108
+  1079                           	
+  1080  0650                     l1584:	
+  1081                           ;watchreset.c: 107: {
+  1082                           ;watchreset.c: 108: PORTD=0X4F;
+  1083  0650  304F               	movlw	(04Fh)
+  1084  0651  0088               	movwf	(8)	;volatile
+  1085                           	line	109
+  1086                           	
+  1087  0652                     l1060:	
+  1088                           	line	110
+  1089                           ;watchreset.c: 109: }
+  1090                           ;watchreset.c: 110: if(temp2==5 && x==1)
+  1091  0652  3005               	movlw	05h
+  1092  0653  0672               	xorwf	(main@temp2),w
+  1093  0654  0473               	iorwf	(main@temp2+1),w
+  1094  0655  1D03               	skipz
+  1095  0656  2E58               	goto	u441
+  1096  0657  2E59               	goto	u440
+  1097  0658                     u441:
+  1098  0658  2E62               	goto	l1061
+  1099  0659                     u440:
+  1100                           	
+  1101  0659                     l1586:	
+  1102  0659  3001               	movlw	01h
+  1103  065A  0678               	xorwf	(main@x),w
+  1104  065B  0479               	iorwf	(main@x+1),w
+  1105  065C  1D03               	skipz
+  1106  065D  2E5F               	goto	u451
+  1107  065E  2E60               	goto	u450
+  1108  065F                     u451:
+  1109  065F  2E62               	goto	l1061
+  1110  0660                     u450:
+  1111                           	line	112
+  1112                           	
+  1113  0660                     l1588:	
+  1114                           ;watchreset.c: 111: {
+  1115                           ;watchreset.c: 112: PORTD=0X66;
+  1116  0660  3066               	movlw	(066h)
+  1117  0661  0088               	movwf	(8)	;volatile
+  1118                           	line	113
+  1119                           	
+  1120  0662                     l1061:	
+  1121                           	line	114
+  1122                           ;watchreset.c: 113: }
+  1123                           ;watchreset.c: 114: if(temp2==6 && x==1)
+  1124  0662  3006               	movlw	06h
+  1125  0663  0672               	xorwf	(main@temp2),w
+  1126  0664  0473               	iorwf	(main@temp2+1),w
+  1127  0665  1D03               	skipz
+  1128  0666  2E68               	goto	u461
+  1129  0667  2E69               	goto	u460
+  1130  0668                     u461:
+  1131  0668  2E72               	goto	l1062
+  1132  0669                     u460:
+  1133                           	
+  1134  0669                     l1590:	
+  1135  0669  3001               	movlw	01h
+  1136  066A  0678               	xorwf	(main@x),w
+  1137  066B  0479               	iorwf	(main@x+1),w
+  1138  066C  1D03               	skipz
+  1139  066D  2E6F               	goto	u471
+  1140  066E  2E70               	goto	u470
+  1141  066F                     u471:
+  1142  066F  2E72               	goto	l1062
+  1143  0670                     u470:
+  1144                           	line	116
+  1145                           	
+  1146  0670                     l1592:	
+  1147                           ;watchreset.c: 115: {
+  1148                           ;watchreset.c: 116: PORTD=0X6D;
+  1149  0670  306D               	movlw	(06Dh)
+  1150  0671  0088               	movwf	(8)	;volatile
+  1151                           	line	117
+  1152                           	
+  1153  0672                     l1062:	
+  1154                           	line	118
+  1155                           ;watchreset.c: 117: }
+  1156                           ;watchreset.c: 118: if(temp2==7 && x==1)
+  1157  0672  3007               	movlw	07h
+  1158  0673  0672               	xorwf	(main@temp2),w
+  1159  0674  0473               	iorwf	(main@temp2+1),w
+  1160  0675  1D03               	skipz
+  1161  0676  2E78               	goto	u481
+  1162  0677  2E79               	goto	u480
+  1163  0678                     u481:
+  1164  0678  2E82               	goto	l1063
+  1165  0679                     u480:
+  1166                           	
+  1167  0679                     l1594:	
+  1168  0679  3001               	movlw	01h
+  1169  067A  0678               	xorwf	(main@x),w
+  1170  067B  0479               	iorwf	(main@x+1),w
+  1171  067C  1D03               	skipz
+  1172  067D  2E7F               	goto	u491
+  1173  067E  2E80               	goto	u490
+  1174  067F                     u491:
+  1175  067F  2E82               	goto	l1063
+  1176  0680                     u490:
+  1177                           	line	120
+  1178                           	
+  1179  0680                     l1596:	
+  1180                           ;watchreset.c: 119: {
+  1181                           ;watchreset.c: 120: PORTD=0X7C;
+  1182  0680  307C               	movlw	(07Ch)
+  1183  0681  0088               	movwf	(8)	;volatile
+  1184                           	line	121
+  1185                           	
+  1186  0682                     l1063:	
+  1187                           	line	122
+  1188                           ;watchreset.c: 121: }
+  1189                           ;watchreset.c: 122: if(temp2==8 && x==1)
+  1190  0682  3008               	movlw	08h
+  1191  0683  0672               	xorwf	(main@temp2),w
+  1192  0684  0473               	iorwf	(main@temp2+1),w
+  1193  0685  1D03               	skipz
+  1194  0686  2E88               	goto	u501
+  1195  0687  2E89               	goto	u500
+  1196  0688                     u501:
+  1197  0688  2E92               	goto	l1064
+  1198  0689                     u500:
+  1199                           	
+  1200  0689                     l1598:	
+  1201  0689  3001               	movlw	01h
+  1202  068A  0678               	xorwf	(main@x),w
+  1203  068B  0479               	iorwf	(main@x+1),w
+  1204  068C  1D03               	skipz
+  1205  068D  2E8F               	goto	u511
+  1206  068E  2E90               	goto	u510
+  1207  068F                     u511:
+  1208  068F  2E92               	goto	l1064
+  1209  0690                     u510:
+  1210                           	line	124
+  1211                           	
+  1212  0690                     l1600:	
+  1213                           ;watchreset.c: 123: {
+  1214                           ;watchreset.c: 124: PORTD=0X07;
+  1215  0690  3007               	movlw	(07h)
+  1216  0691  0088               	movwf	(8)	;volatile
+  1217                           	line	125
+  1218                           	
+  1219  0692                     l1064:	
+  1220                           	line	126
+  1221                           ;watchreset.c: 125: }
+  1222                           ;watchreset.c: 126: if(temp2==9 && x==1)
+  1223  0692  3009               	movlw	09h
+  1224  0693  0672               	xorwf	(main@temp2),w
+  1225  0694  0473               	iorwf	(main@temp2+1),w
+  1226  0695  1D03               	skipz
+  1227  0696  2E98               	goto	u521
+  1228  0697  2E99               	goto	u520
+  1229  0698                     u521:
+  1230  0698  2EA2               	goto	l1065
+  1231  0699                     u520:
+  1232                           	
+  1233  0699                     l1602:	
+  1234  0699  3001               	movlw	01h
+  1235  069A  0678               	xorwf	(main@x),w
+  1236  069B  0479               	iorwf	(main@x+1),w
+  1237  069C  1D03               	skipz
+  1238  069D  2E9F               	goto	u531
+  1239  069E  2EA0               	goto	u530
+  1240  069F                     u531:
+  1241  069F  2EA2               	goto	l1065
+  1242  06A0                     u530:
+  1243                           	line	128
+  1244                           	
+  1245  06A0                     l1604:	
+  1246                           ;watchreset.c: 127: {
+  1247                           ;watchreset.c: 128: PORTD=0XFF;
+  1248  06A0  30FF               	movlw	(0FFh)
+  1249  06A1  0088               	movwf	(8)	;volatile
+  1250                           	line	129
+  1251                           	
+  1252  06A2                     l1065:	
+  1253                           	line	130
+  1254                           ;watchreset.c: 129: }
+  1255                           ;watchreset.c: 130: if(temp2==10 && x==1)
+  1256  06A2  300A               	movlw	0Ah
+  1257  06A3  0672               	xorwf	(main@temp2),w
+  1258  06A4  0473               	iorwf	(main@temp2+1),w
+  1259  06A5  1D03               	skipz
+  1260  06A6  2EA8               	goto	u541
+  1261  06A7  2EA9               	goto	u540
+  1262  06A8                     u541:
+  1263  06A8  2EB5               	goto	l1612
+  1264  06A9                     u540:
+  1265                           	
+  1266  06A9                     l1606:	
+  1267  06A9  3001               	movlw	01h
+  1268  06AA  0678               	xorwf	(main@x),w
+  1269  06AB  0479               	iorwf	(main@x+1),w
+  1270  06AC  1D03               	skipz
+  1271  06AD  2EAF               	goto	u551
+  1272  06AE  2EB0               	goto	u550
+  1273  06AF                     u551:
+  1274  06AF  2EB5               	goto	l1612
+  1275  06B0                     u550:
+  1276                           	line	132
+  1277                           	
+  1278  06B0                     l1608:	
+  1279                           ;watchreset.c: 131: {
+  1280                           ;watchreset.c: 132: PORTD=0XE7;
+  1281  06B0  30E7               	movlw	(0E7h)
+  1282  06B1  0088               	movwf	(8)	;volatile
+  1283                           	line	133
+  1284                           	
+  1285  06B2                     l1610:	
+  1286                           ;watchreset.c: 133: temp2=0;
+  1287  06B2  01F2               	clrf	(main@temp2)
+  1288  06B3  01F3               	clrf	(main@temp2+1)
+  1289  06B4  2EB5               	goto	l1612
+  1290                           	line	134
+  1291                           	
+  1292  06B5                     l1066:	
+  1293                           	line	135
+  1294                           	
+  1295  06B5                     l1612:	
+  1296                           ;watchreset.c: 134: }
+  1297                           ;watchreset.c: 135: if(temp3==1 && x==2)
+  1298  06B5  3001               	movlw	01h
+  1299  06B6  0674               	xorwf	(main@temp3),w
+  1300  06B7  0475               	iorwf	(main@temp3+1),w
+  1301  06B8  1D03               	skipz
+  1302  06B9  2EBB               	goto	u561
+  1303  06BA  2EBC               	goto	u560
+  1304  06BB                     u561:
+  1305  06BB  2EC5               	goto	l1067
+  1306  06BC                     u560:
+  1307                           	
+  1308  06BC                     l1614:	
+  1309  06BC  3002               	movlw	02h
+  1310  06BD  0678               	xorwf	(main@x),w
+  1311  06BE  0479               	iorwf	(main@x+1),w
+  1312  06BF  1D03               	skipz
+  1313  06C0  2EC2               	goto	u571
+  1314  06C1  2EC3               	goto	u570
+  1315  06C2                     u571:
+  1316  06C2  2EC5               	goto	l1067
+  1317  06C3                     u570:
+  1318                           	line	137
+  1319                           	
+  1320  06C3                     l1616:	
+  1321                           ;watchreset.c: 136: {
+  1322                           ;watchreset.c: 137: PORTB=0XBF;
+  1323  06C3  30BF               	movlw	(0BFh)
+  1324  06C4  0086               	movwf	(6)	;volatile
+  1325                           	line	138
+  1326                           	
+  1327  06C5                     l1067:	
+  1328                           	line	139
+  1329                           ;watchreset.c: 138: }
+  1330                           ;watchreset.c: 139: if(temp3==2 && x==2)
+  1331  06C5  3002               	movlw	02h
+  1332  06C6  0674               	xorwf	(main@temp3),w
+  1333  06C7  0475               	iorwf	(main@temp3+1),w
+  1334  06C8  1D03               	skipz
+  1335  06C9  2ECB               	goto	u581
+  1336  06CA  2ECC               	goto	u580
+  1337  06CB                     u581:
+  1338  06CB  2ED5               	goto	l1068
+  1339  06CC                     u580:
+  1340                           	
+  1341  06CC                     l1618:	
+  1342  06CC  3002               	movlw	02h
+  1343  06CD  0678               	xorwf	(main@x),w
+  1344  06CE  0479               	iorwf	(main@x+1),w
+  1345  06CF  1D03               	skipz
+  1346  06D0  2ED2               	goto	u591
+  1347  06D1  2ED3               	goto	u590
+  1348  06D2                     u591:
+  1349  06D2  2ED5               	goto	l1068
+  1350  06D3                     u590:
+  1351                           	line	141
+  1352                           	
+  1353  06D3                     l1620:	
+  1354                           ;watchreset.c: 140: {
+  1355                           ;watchreset.c: 141: PORTB=0X06;
+  1356  06D3  3006               	movlw	(06h)
+  1357  06D4  0086               	movwf	(6)	;volatile
+  1358                           	line	142
+  1359                           	
+  1360  06D5                     l1068:	
+  1361                           	line	143
+  1362                           ;watchreset.c: 142: }
+  1363                           ;watchreset.c: 143: if(temp3==3 && x==2)
+  1364  06D5  3003               	movlw	03h
+  1365  06D6  0674               	xorwf	(main@temp3),w
+  1366  06D7  0475               	iorwf	(main@temp3+1),w
+  1367  06D8  1D03               	skipz
+  1368  06D9  2EDB               	goto	u601
+  1369  06DA  2EDC               	goto	u600
+  1370  06DB                     u601:
+  1371  06DB  2EE5               	goto	l1069
+  1372  06DC                     u600:
+  1373                           	
+  1374  06DC                     l1622:	
+  1375  06DC  3002               	movlw	02h
+  1376  06DD  0678               	xorwf	(main@x),w
+  1377  06DE  0479               	iorwf	(main@x+1),w
+  1378  06DF  1D03               	skipz
+  1379  06E0  2EE2               	goto	u611
+  1380  06E1  2EE3               	goto	u610
+  1381  06E2                     u611:
+  1382  06E2  2EE5               	goto	l1069
+  1383  06E3                     u610:
+  1384                           	line	145
+  1385                           	
+  1386  06E3                     l1624:	
+  1387                           ;watchreset.c: 144: {
+  1388                           ;watchreset.c: 145: PORTB=0X5B;
+  1389  06E3  305B               	movlw	(05Bh)
+  1390  06E4  0086               	movwf	(6)	;volatile
+  1391                           	line	146
+  1392                           	
+  1393  06E5                     l1069:	
+  1394                           	line	147
+  1395                           ;watchreset.c: 146: }
+  1396                           ;watchreset.c: 147: if(temp3==4 && x==2)
+  1397  06E5  3004               	movlw	04h
+  1398  06E6  0674               	xorwf	(main@temp3),w
+  1399  06E7  0475               	iorwf	(main@temp3+1),w
+  1400  06E8  1D03               	skipz
+  1401  06E9  2EEB               	goto	u621
+  1402  06EA  2EEC               	goto	u620
+  1403  06EB                     u621:
+  1404  06EB  2EF5               	goto	l1070
+  1405  06EC                     u620:
+  1406                           	
+  1407  06EC                     l1626:	
+  1408  06EC  3002               	movlw	02h
+  1409  06ED  0678               	xorwf	(main@x),w
+  1410  06EE  0479               	iorwf	(main@x+1),w
+  1411  06EF  1D03               	skipz
+  1412  06F0  2EF2               	goto	u631
+  1413  06F1  2EF3               	goto	u630
+  1414  06F2                     u631:
+  1415  06F2  2EF5               	goto	l1070
+  1416  06F3                     u630:
+  1417                           	line	149
+  1418                           	
+  1419  06F3                     l1628:	
+  1420                           ;watchreset.c: 148: {
+  1421                           ;watchreset.c: 149: PORTB=0X4F;
+  1422  06F3  304F               	movlw	(04Fh)
+  1423  06F4  0086               	movwf	(6)	;volatile
+  1424                           	line	150
+  1425                           	
+  1426  06F5                     l1070:	
+  1427                           	line	151
+  1428                           ;watchreset.c: 150: }
+  1429                           ;watchreset.c: 151: if(temp3==5 && x==2)
+  1430  06F5  3005               	movlw	05h
+  1431  06F6  0674               	xorwf	(main@temp3),w
+  1432  06F7  0475               	iorwf	(main@temp3+1),w
+  1433  06F8  1D03               	skipz
+  1434  06F9  2EFB               	goto	u641
+  1435  06FA  2EFC               	goto	u640
+  1436  06FB                     u641:
+  1437  06FB  2F05               	goto	l1071
+  1438  06FC                     u640:
+  1439                           	
+  1440  06FC                     l1630:	
+  1441  06FC  3002               	movlw	02h
+  1442  06FD  0678               	xorwf	(main@x),w
+  1443  06FE  0479               	iorwf	(main@x+1),w
+  1444  06FF  1D03               	skipz
+  1445  0700  2F02               	goto	u651
+  1446  0701  2F03               	goto	u650
+  1447  0702                     u651:
+  1448  0702  2F05               	goto	l1071
+  1449  0703                     u650:
+  1450                           	line	153
+  1451                           	
+  1452  0703                     l1632:	
+  1453                           ;watchreset.c: 152: {
+  1454                           ;watchreset.c: 153: PORTB=0X66;
+  1455  0703  3066               	movlw	(066h)
+  1456  0704  0086               	movwf	(6)	;volatile
+  1457                           	line	154
+  1458                           	
+  1459  0705                     l1071:	
+  1460                           	line	155
+  1461                           ;watchreset.c: 154: }
+  1462                           ;watchreset.c: 155: if(temp3==6 && x==2)
+  1463  0705  3006               	movlw	06h
+  1464  0706  0674               	xorwf	(main@temp3),w
+  1465  0707  0475               	iorwf	(main@temp3+1),w
+  1466  0708  1D03               	skipz
+  1467  0709  2F0B               	goto	u661
+  1468  070A  2F0C               	goto	u660
+  1469  070B                     u661:
+  1470  070B  2F15               	goto	l1072
+  1471  070C                     u660:
+  1472                           	
+  1473  070C                     l1634:	
+  1474  070C  3002               	movlw	02h
+  1475  070D  0678               	xorwf	(main@x),w
+  1476  070E  0479               	iorwf	(main@x+1),w
+  1477  070F  1D03               	skipz
+  1478  0710  2F12               	goto	u671
+  1479  0711  2F13               	goto	u670
+  1480  0712                     u671:
+  1481  0712  2F15               	goto	l1072
+  1482  0713                     u670:
+  1483                           	line	157
+  1484                           	
+  1485  0713                     l1636:	
+  1486                           ;watchreset.c: 156: {
+  1487                           ;watchreset.c: 157: PORTB=0X6D;
+  1488  0713  306D               	movlw	(06Dh)
+  1489  0714  0086               	movwf	(6)	;volatile
+  1490                           	line	158
+  1491                           	
+  1492  0715                     l1072:	
+  1493                           	line	159
+  1494                           ;watchreset.c: 158: }
+  1495                           ;watchreset.c: 159: if(temp3==7 && x==2)
+  1496  0715  3007               	movlw	07h
+  1497  0716  0674               	xorwf	(main@temp3),w
+  1498  0717  0475               	iorwf	(main@temp3+1),w
+  1499  0718  1D03               	skipz
+  1500  0719  2F1B               	goto	u681
+  1501  071A  2F1C               	goto	u680
+  1502  071B                     u681:
+  1503  071B  2F25               	goto	l1073
+  1504  071C                     u680:
+  1505                           	
+  1506  071C                     l1638:	
+  1507  071C  3002               	movlw	02h
+  1508  071D  0678               	xorwf	(main@x),w
+  1509  071E  0479               	iorwf	(main@x+1),w
+  1510  071F  1D03               	skipz
+  1511  0720  2F22               	goto	u691
+  1512  0721  2F23               	goto	u690
+  1513  0722                     u691:
+  1514  0722  2F25               	goto	l1073
+  1515  0723                     u690:
+  1516                           	line	161
+  1517                           	
+  1518  0723                     l1640:	
+  1519                           ;watchreset.c: 160: {
+  1520                           ;watchreset.c: 161: PORTB=0X7C;
+  1521  0723  307C               	movlw	(07Ch)
+  1522  0724  0086               	movwf	(6)	;volatile
+  1523                           	line	162
+  1524                           	
+  1525  0725                     l1073:	
+  1526                           	line	163
+  1527                           ;watchreset.c: 162: }
+  1528                           ;watchreset.c: 163: if(temp3==8 && x==2)
+  1529  0725  3008               	movlw	08h
+  1530  0726  0674               	xorwf	(main@temp3),w
+  1531  0727  0475               	iorwf	(main@temp3+1),w
+  1532  0728  1D03               	skipz
+  1533  0729  2F2B               	goto	u701
+  1534  072A  2F2C               	goto	u700
+  1535  072B                     u701:
+  1536  072B  2F35               	goto	l1074
+  1537  072C                     u700:
+  1538                           	
+  1539  072C                     l1642:	
+  1540  072C  3002               	movlw	02h
+  1541  072D  0678               	xorwf	(main@x),w
+  1542  072E  0479               	iorwf	(main@x+1),w
+  1543  072F  1D03               	skipz
+  1544  0730  2F32               	goto	u711
+  1545  0731  2F33               	goto	u710
+  1546  0732                     u711:
+  1547  0732  2F35               	goto	l1074
+  1548  0733                     u710:
+  1549                           	line	165
+  1550                           	
+  1551  0733                     l1644:	
+  1552                           ;watchreset.c: 164: {
+  1553                           ;watchreset.c: 165: PORTB=0X07;
+  1554  0733  3007               	movlw	(07h)
+  1555  0734  0086               	movwf	(6)	;volatile
+  1556                           	line	166
+  1557                           	
+  1558  0735                     l1074:	
+  1559                           	line	167
+  1560                           ;watchreset.c: 166: }
+  1561                           ;watchreset.c: 167: if(temp3==9 && x==2)
+  1562  0735  3009               	movlw	09h
+  1563  0736  0674               	xorwf	(main@temp3),w
+  1564  0737  0475               	iorwf	(main@temp3+1),w
+  1565  0738  1D03               	skipz
+  1566  0739  2F3B               	goto	u721
+  1567  073A  2F3C               	goto	u720
+  1568  073B                     u721:
+  1569  073B  2F45               	goto	l1075
+  1570  073C                     u720:
+  1571                           	
+  1572  073C                     l1646:	
+  1573  073C  3002               	movlw	02h
+  1574  073D  0678               	xorwf	(main@x),w
+  1575  073E  0479               	iorwf	(main@x+1),w
+  1576  073F  1D03               	skipz
+  1577  0740  2F42               	goto	u731
+  1578  0741  2F43               	goto	u730
+  1579  0742                     u731:
+  1580  0742  2F45               	goto	l1075
+  1581  0743                     u730:
+  1582                           	line	169
+  1583                           	
+  1584  0743                     l1648:	
+  1585                           ;watchreset.c: 168: {
+  1586                           ;watchreset.c: 169: PORTB=0XFF;
+  1587  0743  30FF               	movlw	(0FFh)
+  1588  0744  0086               	movwf	(6)	;volatile
+  1589                           	line	170
+  1590                           	
+  1591  0745                     l1075:	
+  1592                           	line	171
+  1593                           ;watchreset.c: 170: }
+  1594                           ;watchreset.c: 171: if(temp3==10 && x==2)
+  1595  0745  300A               	movlw	0Ah
+  1596  0746  0674               	xorwf	(main@temp3),w
+  1597  0747  0475               	iorwf	(main@temp3+1),w
+  1598  0748  1D03               	skipz
+  1599  0749  2F4B               	goto	u741
+  1600  074A  2F4C               	goto	u740
+  1601  074B                     u741:
+  1602  074B  2F58               	goto	l1656
+  1603  074C                     u740:
+  1604                           	
+  1605  074C                     l1650:	
+  1606  074C  3002               	movlw	02h
+  1607  074D  0678               	xorwf	(main@x),w
+  1608  074E  0479               	iorwf	(main@x+1),w
+  1609  074F  1D03               	skipz
+  1610  0750  2F52               	goto	u751
+  1611  0751  2F53               	goto	u750
+  1612  0752                     u751:
+  1613  0752  2F58               	goto	l1656
+  1614  0753                     u750:
+  1615                           	line	173
+  1616                           	
+  1617  0753                     l1652:	
+  1618                           ;watchreset.c: 172: {
+  1619                           ;watchreset.c: 173: PORTB=0XE7;
+  1620  0753  30E7               	movlw	(0E7h)
+  1621  0754  0086               	movwf	(6)	;volatile
+  1622                           	line	174
+  1623                           	
+  1624  0755                     l1654:	
+  1625                           ;watchreset.c: 174: temp3=0;
+  1626  0755  01F4               	clrf	(main@temp3)
+  1627  0756  01F5               	clrf	(main@temp3+1)
+  1628  0757  2F58               	goto	l1656
+  1629                           	line	175
+  1630                           	
+  1631  0758                     l1076:	
+  1632                           	line	176
+  1633                           	
+  1634  0758                     l1656:	
+  1635                           ;watchreset.c: 175: }
+  1636                           ;watchreset.c: 176: if(temp4==1 && x==3)
+  1637  0758  3001               	movlw	01h
+  1638  0759  0676               	xorwf	(main@temp4),w
+  1639  075A  0477               	iorwf	(main@temp4+1),w
+  1640  075B  1D03               	skipz
+  1641  075C  2F5E               	goto	u761
+  1642  075D  2F5F               	goto	u760
+  1643  075E                     u761:
+  1644  075E  2F68               	goto	l1077
+  1645  075F                     u760:
+  1646                           	
+  1647  075F                     l1658:	
+  1648  075F  3003               	movlw	03h
+  1649  0760  0678               	xorwf	(main@x),w
+  1650  0761  0479               	iorwf	(main@x+1),w
+  1651  0762  1D03               	skipz
+  1652  0763  2F65               	goto	u771
+  1653  0764  2F66               	goto	u770
+  1654  0765                     u771:
+  1655  0765  2F68               	goto	l1077
+  1656  0766                     u770:
+  1657                           	line	178
+  1658                           	
+  1659  0766                     l1660:	
+  1660                           ;watchreset.c: 177: {
+  1661                           ;watchreset.c: 178: PORTA=0XBF;
+  1662  0766  30BF               	movlw	(0BFh)
+  1663  0767  0085               	movwf	(5)	;volatile
+  1664                           	line	179
+  1665                           	
+  1666  0768                     l1077:	
+  1667                           	line	180
+  1668                           ;watchreset.c: 179: }
+  1669                           ;watchreset.c: 180: if(temp4==2 && x==3)
+  1670  0768  3002               	movlw	02h
+  1671  0769  0676               	xorwf	(main@temp4),w
+  1672  076A  0477               	iorwf	(main@temp4+1),w
+  1673  076B  1D03               	skipz
+  1674  076C  2F6E               	goto	u781
+  1675  076D  2F6F               	goto	u780
+  1676  076E                     u781:
+  1677  076E  2F78               	goto	l1078
+  1678  076F                     u780:
+  1679                           	
+  1680  076F                     l1662:	
+  1681  076F  3003               	movlw	03h
+  1682  0770  0678               	xorwf	(main@x),w
+  1683  0771  0479               	iorwf	(main@x+1),w
+  1684  0772  1D03               	skipz
+  1685  0773  2F75               	goto	u791
+  1686  0774  2F76               	goto	u790
+  1687  0775                     u791:
+  1688  0775  2F78               	goto	l1078
+  1689  0776                     u790:
+  1690                           	line	182
+  1691                           	
+  1692  0776                     l1664:	
+  1693                           ;watchreset.c: 181: {
+  1694                           ;watchreset.c: 182: PORTA=0X06;
+  1695  0776  3006               	movlw	(06h)
+  1696  0777  0085               	movwf	(5)	;volatile
+  1697                           	line	183
+  1698                           	
+  1699  0778                     l1078:	
+  1700                           	line	184
+  1701                           ;watchreset.c: 183: }
+  1702                           ;watchreset.c: 184: if(temp4==3 && x==3)
+  1703  0778  3003               	movlw	03h
+  1704  0779  0676               	xorwf	(main@temp4),w
+  1705  077A  0477               	iorwf	(main@temp4+1),w
+  1706  077B  1D03               	skipz
+  1707  077C  2F7E               	goto	u801
+  1708  077D  2F7F               	goto	u800
+  1709  077E                     u801:
+  1710  077E  2F88               	goto	l1079
+  1711  077F                     u800:
+  1712                           	
+  1713  077F                     l1666:	
+  1714  077F  3003               	movlw	03h
+  1715  0780  0678               	xorwf	(main@x),w
+  1716  0781  0479               	iorwf	(main@x+1),w
+  1717  0782  1D03               	skipz
+  1718  0783  2F85               	goto	u811
+  1719  0784  2F86               	goto	u810
+  1720  0785                     u811:
+  1721  0785  2F88               	goto	l1079
+  1722  0786                     u810:
+  1723                           	line	186
+  1724                           	
+  1725  0786                     l1668:	
+  1726                           ;watchreset.c: 185: {
+  1727                           ;watchreset.c: 186: PORTA=0X5B;
+  1728  0786  305B               	movlw	(05Bh)
+  1729  0787  0085               	movwf	(5)	;volatile
+  1730                           	line	187
+  1731                           	
+  1732  0788                     l1079:	
+  1733                           	line	188
+  1734                           ;watchreset.c: 187: }
+  1735                           ;watchreset.c: 188: if(temp4==4 && x==3)
+  1736  0788  3004               	movlw	04h
+  1737  0789  0676               	xorwf	(main@temp4),w
+  1738  078A  0477               	iorwf	(main@temp4+1),w
+  1739  078B  1D03               	skipz
+  1740  078C  2F8E               	goto	u821
+  1741  078D  2F8F               	goto	u820
+  1742  078E                     u821:
+  1743  078E  2F98               	goto	l1080
+  1744  078F                     u820:
+  1745                           	
+  1746  078F                     l1670:	
+  1747  078F  3003               	movlw	03h
+  1748  0790  0678               	xorwf	(main@x),w
+  1749  0791  0479               	iorwf	(main@x+1),w
+  1750  0792  1D03               	skipz
+  1751  0793  2F95               	goto	u831
+  1752  0794  2F96               	goto	u830
+  1753  0795                     u831:
+  1754  0795  2F98               	goto	l1080
+  1755  0796                     u830:
+  1756                           	line	190
+  1757                           	
+  1758  0796                     l1672:	
+  1759                           ;watchreset.c: 189: {
+  1760                           ;watchreset.c: 190: PORTA=0X4F;
+  1761  0796  304F               	movlw	(04Fh)
+  1762  0797  0085               	movwf	(5)	;volatile
+  1763                           	line	191
+  1764                           	
+  1765  0798                     l1080:	
+  1766                           	line	192
+  1767                           ;watchreset.c: 191: }
+  1768                           ;watchreset.c: 192: if(temp4==5 && x==3)
+  1769  0798  3005               	movlw	05h
+  1770  0799  0676               	xorwf	(main@temp4),w
+  1771  079A  0477               	iorwf	(main@temp4+1),w
+  1772  079B  1D03               	skipz
+  1773  079C  2F9E               	goto	u841
+  1774  079D  2F9F               	goto	u840
+  1775  079E                     u841:
+  1776  079E  2FA8               	goto	l1081
+  1777  079F                     u840:
+  1778                           	
+  1779  079F                     l1674:	
+  1780  079F  3003               	movlw	03h
+  1781  07A0  0678               	xorwf	(main@x),w
+  1782  07A1  0479               	iorwf	(main@x+1),w
+  1783  07A2  1D03               	skipz
+  1784  07A3  2FA5               	goto	u851
+  1785  07A4  2FA6               	goto	u850
+  1786  07A5                     u851:
+  1787  07A5  2FA8               	goto	l1081
+  1788  07A6                     u850:
+  1789                           	line	194
+  1790                           	
+  1791  07A6                     l1676:	
+  1792                           ;watchreset.c: 193: {
+  1793                           ;watchreset.c: 194: PORTA=0X66;
+  1794  07A6  3066               	movlw	(066h)
+  1795  07A7  0085               	movwf	(5)	;volatile
+  1796                           	line	195
+  1797                           	
+  1798  07A8                     l1081:	
+  1799                           	line	196
+  1800                           ;watchreset.c: 195: }
+  1801                           ;watchreset.c: 196: if(temp4==6 && x==3)
+  1802  07A8  3006               	movlw	06h
+  1803  07A9  0676               	xorwf	(main@temp4),w
+  1804  07AA  0477               	iorwf	(main@temp4+1),w
+  1805  07AB  1D03               	skipz
+  1806  07AC  2FAE               	goto	u861
+  1807  07AD  2FAF               	goto	u860
+  1808  07AE                     u861:
+  1809  07AE  2FB8               	goto	l1082
+  1810  07AF                     u860:
+  1811                           	
+  1812  07AF                     l1678:	
+  1813  07AF  3003               	movlw	03h
+  1814  07B0  0678               	xorwf	(main@x),w
+  1815  07B1  0479               	iorwf	(main@x+1),w
+  1816  07B2  1D03               	skipz
+  1817  07B3  2FB5               	goto	u871
+  1818  07B4  2FB6               	goto	u870
+  1819  07B5                     u871:
+  1820  07B5  2FB8               	goto	l1082
+  1821  07B6                     u870:
+  1822                           	line	198
+  1823                           	
+  1824  07B6                     l1680:	
+  1825                           ;watchreset.c: 197: {
+  1826                           ;watchreset.c: 198: PORTA=0X6D;
+  1827  07B6  306D               	movlw	(06Dh)
+  1828  07B7  0085               	movwf	(5)	;volatile
+  1829                           	line	199
+  1830                           	
+  1831  07B8                     l1082:	
+  1832                           	line	200
+  1833                           ;watchreset.c: 199: }
+  1834                           ;watchreset.c: 200: if(temp4==7 && x==3)
+  1835  07B8  3007               	movlw	07h
+  1836  07B9  0676               	xorwf	(main@temp4),w
+  1837  07BA  0477               	iorwf	(main@temp4+1),w
+  1838  07BB  1D03               	skipz
+  1839  07BC  2FBE               	goto	u881
+  1840  07BD  2FBF               	goto	u880
+  1841  07BE                     u881:
+  1842  07BE  2FC8               	goto	l1083
+  1843  07BF                     u880:
+  1844                           	
+  1845  07BF                     l1682:	
+  1846  07BF  3003               	movlw	03h
+  1847  07C0  0678               	xorwf	(main@x),w
+  1848  07C1  0479               	iorwf	(main@x+1),w
+  1849  07C2  1D03               	skipz
+  1850  07C3  2FC5               	goto	u891
+  1851  07C4  2FC6               	goto	u890
+  1852  07C5                     u891:
+  1853  07C5  2FC8               	goto	l1083
+  1854  07C6                     u890:
+  1855                           	line	202
+  1856                           	
+  1857  07C6                     l1684:	
+  1858                           ;watchreset.c: 201: {
+  1859                           ;watchreset.c: 202: PORTA=0X7C;
+  1860  07C6  307C               	movlw	(07Ch)
+  1861  07C7  0085               	movwf	(5)	;volatile
+  1862                           	line	203
+  1863                           	
+  1864  07C8                     l1083:	
+  1865                           	line	204
+  1866                           ;watchreset.c: 203: }
+  1867                           ;watchreset.c: 204: if(temp4==8 && x==3)
+  1868  07C8  3008               	movlw	08h
+  1869  07C9  0676               	xorwf	(main@temp4),w
+  1870  07CA  0477               	iorwf	(main@temp4+1),w
+  1871  07CB  1D03               	skipz
+  1872  07CC  2FCE               	goto	u901
+  1873  07CD  2FCF               	goto	u900
+  1874  07CE                     u901:
+  1875  07CE  2FD8               	goto	l1084
+  1876  07CF                     u900:
+  1877                           	
+  1878  07CF                     l1686:	
+  1879  07CF  3003               	movlw	03h
+  1880  07D0  0678               	xorwf	(main@x),w
+  1881  07D1  0479               	iorwf	(main@x+1),w
+  1882  07D2  1D03               	skipz
+  1883  07D3  2FD5               	goto	u911
+  1884  07D4  2FD6               	goto	u910
+  1885  07D5                     u911:
+  1886  07D5  2FD8               	goto	l1084
+  1887  07D6                     u910:
+  1888                           	line	206
+  1889                           	
+  1890  07D6                     l1688:	
+  1891                           ;watchreset.c: 205: {
+  1892                           ;watchreset.c: 206: PORTA=0X07;
+  1893  07D6  3007               	movlw	(07h)
+  1894  07D7  0085               	movwf	(5)	;volatile
+  1895                           	line	207
+  1896                           	
+  1897  07D8                     l1084:	
+  1898                           	line	208
+  1899                           ;watchreset.c: 207: }
+  1900                           ;watchreset.c: 208: if(temp4==9 && x==3)
+  1901  07D8  3009               	movlw	09h
+  1902  07D9  0676               	xorwf	(main@temp4),w
+  1903  07DA  0477               	iorwf	(main@temp4+1),w
+  1904  07DB  1D03               	skipz
+  1905  07DC  2FDE               	goto	u921
+  1906  07DD  2FDF               	goto	u920
+  1907  07DE                     u921:
+  1908  07DE  2FE8               	goto	l1085
+  1909  07DF                     u920:
+  1910                           	
+  1911  07DF                     l1690:	
+  1912  07DF  3003               	movlw	03h
+  1913  07E0  0678               	xorwf	(main@x),w
+  1914  07E1  0479               	iorwf	(main@x+1),w
+  1915  07E2  1D03               	skipz
+  1916  07E3  2FE5               	goto	u931
+  1917  07E4  2FE6               	goto	u930
+  1918  07E5                     u931:
+  1919  07E5  2FE8               	goto	l1085
+  1920  07E6                     u930:
+  1921                           	line	210
+  1922                           	
+  1923  07E6                     l1692:	
+  1924                           ;watchreset.c: 209: {
+  1925                           ;watchreset.c: 210: PORTA=0XFF;
+  1926  07E6  30FF               	movlw	(0FFh)
+  1927  07E7  0085               	movwf	(5)	;volatile
+  1928                           	line	211
+  1929                           	
+  1930  07E8                     l1085:	
+  1931                           	line	212
+  1932                           ;watchreset.c: 211: }
+  1933                           ;watchreset.c: 212: if(temp4==10 && x==3)
+  1934  07E8  300A               	movlw	0Ah
+  1935  07E9  0676               	xorwf	(main@temp4),w
+  1936  07EA  0477               	iorwf	(main@temp4+1),w
+  1937  07EB  1D03               	skipz
+  1938  07EC  2FEE               	goto	u941
+  1939  07ED  2FEF               	goto	u940
+  1940  07EE                     u941:
+  1941  07EE  2CF9               	goto	l1486
+  1942  07EF                     u940:
+  1943                           	
+  1944  07EF                     l1694:	
+  1945  07EF  3003               	movlw	03h
+  1946  07F0  0678               	xorwf	(main@x),w
+  1947  07F1  0479               	iorwf	(main@x+1),w
+  1948  07F2  1D03               	skipz
+  1949  07F3  2FF5               	goto	u951
+  1950  07F4  2FF6               	goto	u950
+  1951  07F5                     u951:
+  1952  07F5  2CF9               	goto	l1486
+  1953  07F6                     u950:
+  1954                           	line	214
+  1955                           	
+  1956  07F6                     l1696:	
+  1957                           ;watchreset.c: 213: {
+  1958                           ;watchreset.c: 214: PORTA=0XE7;
+  1959  07F6  30E7               	movlw	(0E7h)
+  1960  07F7  0085               	movwf	(5)	;volatile
+  1961                           	line	215
+  1962                           	
+  1963  07F8                     l1698:	
+  1964                           ;watchreset.c: 215: temp4=0;
+  1965  07F8  01F6               	clrf	(main@temp4)
+  1966  07F9  01F7               	clrf	(main@temp4+1)
+  1967  07FA  2CF9               	goto	l1486
+  1968                           	line	216
+  1969                           	
+  1970  07FB                     l1086:	
+  1971  07FB  2CF9               	goto	l1486
+  1972                           	line	221
+  1973                           	
+  1974  07FC                     l1087:	
+  1975                           	line	19
+  1976  07FC  2CF9               	goto	l1486
+  1977                           	
+  1978  07FD                     l1088:	
+  1979                           	line	222
+  1980                           	
+  1981  07FD                     l1089:	
+  1982                           	global	start
+  1983  07FD  120A  118A  2800   	ljmp	start
+  1984                           	opt stack 0
+  1985                           GLOBAL	__end_of_main
+  1986  0800                     	__end_of_main:
+  1987 ;; =============== function _main ends ============
+  1988                           
+  1989                           	signat	_main,88
+  1990                           psect	maintext
+  1991                           	global	btemp
+  1992  007E                     	btemp set 07Eh
+  1993                           
+  1994                           	DABS	1,126,2	;btemp
+  1995                           	global	wtemp0
+  1996  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Fri Apr 30 12:01:49 2021
+
+                  u10 04FF                    u11 04FE                    u20 0505                    u21 0504  
+                  u30 0513                    u31 0512                    u40 051B                    u41 051A  
+                  u50 0521                    u51 0520                    u60 0527                    u61 0526  
+                  u70 0533                    u71 0532                    u80 053A                    u81 0539  
+                  u90 0540                    u91 053F                   _RA7 002F                   u100 054C  
+                 u101 054B                   _RC7 003F                   u110 0553                   u111 0552  
+                 u200 059E                   u120 0559                   u201 059D                   u121 0558  
+                 u210 05A4                   u130 0565                   u211 05A3                   u131 0564  
+                 u300 05E9                   u220 05AD                   u140 056C                   u301 05E8  
+                 u221 05AC                   u141 056B                   u310 05EF                   u230 05B3  
+                 u150 0572                   u311 05EE                   u231 05B2                   u151 0571  
+                 u400 0639                   u320 05F8                   u240 05BC                   u160 0580  
+                 u401 0638                   u321 05F7                   u241 05BB                   u161 057F  
+                 u410 0640                   u330 05FE                   u250 05C2                   u170 0586  
+                 u411 063F                   u331 05FD                   u251 05C1                   u171 0585  
+                 u500 0689                   u420 0649                   u340 0607                   u260 05CB  
+                 u180 058F                   u501 0688                   u421 0648                   u341 0606  
+                 u261 05CA                   u181 058E                   u510 0690                   u430 0650  
+                 u350 060D                   u270 05D1                   u190 0595                   u511 068F  
+                 u431 064F                   u351 060C                   u271 05D0                   u191 0594  
+                 u600 06DC                   u520 0699                   u440 0659                   u360 0619  
+                 u280 05DA                   u601 06DB                   u521 0698                   u441 0658  
+                 u361 0618                   u281 05D9                   u610 06E3                   u530 06A0  
+                 u450 0660                   u370 0620                   u290 05E0                   u611 06E2  
+                 u531 069F                   u451 065F                   u371 061F                   u291 05DF  
+                 u700 072C                   u620 06EC                   u540 06A9                   u460 0669  
+                 u380 0629                   u701 072B                   u621 06EB                   u541 06A8  
+                 u461 0668                   u381 0628                   u710 0733                   u630 06F3  
+                 u550 06B0                   u470 0670                   u390 0630                   u711 0732  
+                 u631 06F2                   u551 06AF                   u471 066F                   u391 062F  
+                 u800 077F                   u720 073C                   u640 06FC                   u560 06BC  
+                 u480 0679                   u801 077E                   u721 073B                   u641 06FB  
+                 u561 06BB                   u481 0678                   u810 0786                   u730 0743  
+                 u650 0703                   u570 06C3                   u490 0680                   u811 0785  
+                 u731 0742                   u651 0702                   u571 06C2                   u491 067F  
+                 u900 07CF                   u820 078F                   u740 074C                   u660 070C  
+                 u580 06CC                   u901 07CE                   u821 078E                   u741 074B  
+                 u661 070B                   u581 06CB                   u910 07D6                   u830 0796  
+                 u750 0753                   u670 0713                   u590 06D3                   u911 07D5  
+                 u831 0795                   u751 0752                   u671 0712                   u591 06D2  
+                 u920 07DF                   u840 079F                   u760 075F                   u680 071C  
+                 u921 07DE                   u841 079E                   u761 075E                   u681 071B  
+                 u930 07E6                   u850 07A6                   u770 0766                   u690 0723  
+                 u931 07E5                   u851 07A5                   u771 0765                   u691 0722  
+                 u940 07EF                   u860 07AF                   u780 076F                   u941 07EE  
+                 u861 07AE                   u781 076E                   u950 07F6                   u870 07B6  
+                 u790 0776                   u951 07F5                   u871 07B5                   u791 0775  
+                 u880 07BF                   u881 07BE                   u890 07C6                   u891 07C5  
+                l1030 0516                  l1031 052F                  l1040 0555                  l1032 0523  
+                l1041 0555                  l1033 0523                  l1025 04F9                  l1050 05B5  
+                l1042 055A                  l1034 0528                  l1026 0517                  l1051 05C4  
+                l1043 0579                  l1035 0548                  l1027 0501                  l1060 0652  
+                l1052 05D3                  l1044 056E                  l1036 053C                  l1028 0501  
+                l1061 0662                  l1053 05E2                  l1045 056E                  l1037 053C  
+                l1029 0506                  l1070 06F5                  l1062 0672                  l1054 05F1  
+                l1046 0573                  l1038 0541                  l1071 0705                  l1063 0682  
+                l1055 0600                  l1047 0588                  l1039 0561                  l1080 0798  
+                l1072 0715                  l1064 0692                  l1056 0612                  l1048 0597  
+                l1081 07A8                  l1073 0725                  l1065 06A2                  l1057 0622  
+                l1049 05A6                  l1082 07B8                  l1074 0735                  l1066 06B5  
+                l1058 0632                  l1083 07C8                  l1075 0745                  l1067 06C5  
+                l1059 0642                  l1084 07D8                  l1076 0758                  l1068 06D5  
+                l1500 0528                  l1085 07E8                  l1077 0768                  l1069 06E5  
+                l1086 07FB                  l1078 0778                  l1510 0548                  l1502 052F  
+                l1087 07FC                  l1079 0788                  l1088 07FD                  l1600 0690  
+                l1520 0565                  l1512 054C                  l1504 0533                  l1089 07FD  
+                l1610 06B2                  l1602 0699                  l1530 058F                  l1522 056D  
+                l1514 0554                  l1506 053B                  l1620 06D3                  l1612 06B5  
+                l1604 06A0                  l1540 05B3                  l1532 0595                  l1524 0573  
+                l1516 055A                  l1508 0541                  l1460 04D3                  l1630 06FC  
+                l1622 06DC                  l1614 06BC                  l1606 06A9                  l1550 05DA  
+                l1542 05BC                  l1534 059E                  l1526 0580                  l1518 0561  
+                l1470 04E7                  l1462 04D7                  l1640 0723                  l1632 0703  
+                l1624 06E3                  l1616 06C3                  l1608 06B0                  l1560 05FE  
+                l1552 05E0                  l1544 05C2                  l1536 05A4                  l1528 0586  
+                l1480 04F2                  l1472 04EA                  l1464 04DA                  l1650 074C  
+                l1642 072C                  l1634 070C                  l1626 06EC                  l1618 06CC  
+                l1570 0619                  l1562 0607                  l1554 05E9                  l1546 05CB  
+                l1538 05AD                  l1490 0506                  l1482 04F4                  l1474 04ED  
+                l1466 04DD                  l1458 04D0                  l1660 0766                  l1652 0753  
+                l1644 0733                  l1636 0713                  l1628 06F3                  l1580 0640  
+                l1572 0620                  l1564 060D                  l1556 05EF                  l1548 05D1  
+                l1492 0513                  l1484 04F6                  l1476 04EE                  l1468 04E4  
+                l1670 078F                  l1662 076F                  l1654 0755                  l1646 073C  
+                l1638 071C                  l1590 0669                  l1582 0649                  l1574 0629  
+                l1566 060F                  l1558 05F8                  l1494 0517                  l1486 04F9  
+                l1478 04F0                  l1680 07B6                  l1672 0796                  l1664 0776  
+                l1656 0758                  l1648 0743                  l1592 0670                  l1584 0650  
+                l1576 0630                  l1568 0612                  l1496 051B                  l1488 0500  
+                l1690 07DF                  l1682 07BF                  l1674 079F                  l1666 077F  
+                l1658 075F                  l1594 0679                  l1586 0659                  l1578 0639  
+                l1498 0522                  l1692 07E6                  l1684 07C6                  l1676 07A6  
+                l1668 0786                  l1596 0680                  l1588 0660                  l1694 07EF  
+                l1686 07CF                  l1678 07AF                  l1598 0689                  l1696 07F6  
+                l1688 07D6                  l1698 07F8                  _main 04D0                  btemp 007E  
+                start 0000                 ?_main 0070                 _ANSEL 0188                 _PORTA 0005  
+               _PORTB 0006                 _PORTC 0007                 _PORTD 0008                 _TRISA 0085  
+               _TRISB 0086                 _TRISC 0087                 _TRISD 0088                 main@x 0078  
+               status 0003                 wtemp0 007E          __end_of_main 0800                ??_main 0070  
+              _ANSELH 0189        __pcstackCOMMON 0070            __pmaintext 04D0  end_of_initialization 04CC  
+ start_initialization 04CC             main@temp1 0070             main@temp2 0072             main@temp3 0074  
+           main@temp4 0076         __size_of_main 0330  

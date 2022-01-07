@@ -1,0 +1,120 @@
+#include<pic.h>
+void main()
+{
+	PORTA=0X00;
+	TRISA=0X07;
+	PORTB=0X00;
+	TRISB=0X00;
+	ANSEL=0X00;
+	ANSELH=0X00;
+	int x[3];
+	int temp=1;
+	long count=0;
+	int i=0;
+	int blink=0;
+	while(1)
+	{	
+		if(temp==1)
+		{
+		count++;
+			if(RA0==1)
+			{
+				x[i]=1;
+				while(RA0==1);
+				i++;
+			}
+			if(RA1==1)
+			{
+				x[i]=2;
+				while(RA1==1);
+				i++;
+			}
+			if(RA2==1)
+			{
+				x[i]=3;
+				while(RA2==1);
+				i++;
+			}	
+		}
+		if(count>50000)
+		{
+			temp=2;
+		}
+		if(temp==2)
+		{
+			for(i=0;i<3;i++)
+			{
+				if(x[i]==1)
+				{
+					while(blink<30000)
+					{
+						blink++;
+						RB0=1;
+						if(RA0==1 || RA1==1 || RA2==1)
+						{
+							RB0=0;
+							RB1=0;
+							RB2=0;
+							temp=1;
+							count=0;
+							x[0]=0;
+							x[1]=0;
+							x[2]=0;
+							i=3;
+							break;
+						}	
+					}
+					RB0=0;
+					blink=0;
+				}
+				if(x[i]==2)
+				{
+					while(blink<30000)
+					{
+						blink++;
+						RB1=1;
+						if(RA0==1 || RA1==1 || RA2==1)
+						{
+							RB0=0;
+							RB1=0;
+						    RB2=0;
+							temp=1;
+							count=0;
+							x[0]=0;
+							x[1]=0;
+							x[2]=0;
+							i=3;
+							break;
+						}	
+					}
+					RB1=0;
+					blink=0;
+				}
+				if(x[i]==3)
+				{
+					while(blink<30000)
+					{
+						blink++;
+						RB2=1;
+						if(RA0==1 || RA1==1 || RA2==1)
+						{
+						RB0=0;
+						RB1=0;
+						RB2=0;
+						temp=1;
+						count=0;
+						x[0]=0;
+						x[1]=0;
+						x[2]=0;
+						i=3;
+						break;
+						}	
+					}
+					RB2=0;
+					blink=0;
+				}	
+			} 
+			i=0;	
+		}
+	}
+}

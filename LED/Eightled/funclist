@@ -1,0 +1,10 @@
+_led3: CODE, 1742 0 29
+_led4: CODE, 1771 0 29
+_led5: CODE, 1800 0 29
+_main: CODE, 1916 0 132
+_led6: CODE, 1829 0 29
+_led7: CODE, 1858 0 29
+_led8: CODE, 1887 0 29
+_led1: CODE, 1684 0 29
+_led2: CODE, 1713 0 29
+Total: 364

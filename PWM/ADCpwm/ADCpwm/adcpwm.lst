@@ -1,0 +1,2064 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Tue Aug 10 17:16:26 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_on
+    43                           	FNCALL	_main,_type
+    44                           	FNCALL	_main,_adc
+    45                           	FNCALL	_main,_pwm
+    46                           	FNCALL	_main,_address
+    47                           	FNCALL	_main,___awmod
+    48                           	FNCALL	_main,_display
+    49                           	FNCALL	_main,___awdiv
+    50                           	FNCALL	_display,_pulse
+    51                           	FNCALL	_address,_pulse
+    52                           	FNCALL	_type,_pulse
+    53                           	FNCALL	_on,_pulse
+    54                           	FNCALL	_pulse,_delay
+    55                           	FNROOT	_main
+    56                           	global	_tot
+    57                           	global	_ADCON0
+    58                           psect	text262,local,class=CODE,delta=2
+    59                           global __ptext262
+    60  0000                     __ptext262:
+    61  001F                     _ADCON0	set	31
+    62                           	global	_ADRESH
+    63  001E                     _ADRESH	set	30
+    64                           	global	_CCP1CON
+    65  0017                     _CCP1CON	set	23
+    66                           	global	_CCPR1L
+    67  0015                     _CCPR1L	set	21
+    68                           	global	_PORTA
+    69  0005                     _PORTA	set	5
+    70                           	global	_PORTB
+    71  0006                     _PORTB	set	6
+    72                           	global	_PORTC
+    73  0007                     _PORTC	set	7
+    74                           	global	_PORTD
+    75  0008                     _PORTD	set	8
+    76                           	global	_T2CON
+    77  0012                     _T2CON	set	18
+    78                           	global	_GO
+    79  00F9                     _GO	set	249
+    80                           	global	_RA0
+    81  0028                     _RA0	set	40
+    82                           	global	_RA1
+    83  0029                     _RA1	set	41
+    84                           	global	_RA2
+    85  002A                     _RA2	set	42
+    86                           	global	_ADCON1
+    87  009F                     _ADCON1	set	159
+    88                           	global	_ADRESL
+    89  009E                     _ADRESL	set	158
+    90                           	global	_TRISA
+    91  0085                     _TRISA	set	133
+    92                           	global	_TRISB
+    93  0086                     _TRISB	set	134
+    94                           	global	_TRISC
+    95  0087                     _TRISC	set	135
+    96                           	global	_TRISD
+    97  0088                     _TRISD	set	136
+    98                           	global	_ANSEL
+    99  0188                     _ANSEL	set	392
+   100                           	global	_ANSELH
+   101  0189                     _ANSELH	set	393
+   102                           	file	"adcpwm.as"
+   103                           	line	#
+   104                           psect cinit,class=CODE,delta=2
+   105                           global start_initialization
+   106  05B2                     start_initialization:
+   107                           
+   108                           psect	bssBANK0,class=BANK0,space=1
+   109                           global __pbssBANK0
+   110  0020                     __pbssBANK0:
+   111  0020                     _tot:
+   112  0020                            ds      2
+   113                           
+   114                           ; Clear objects allocated to BANK0
+   115                           psect cinit,class=CODE,delta=2
+   116  05B2  01A0               	clrf	((__pbssBANK0)+0)&07Fh
+   117  05B3  01A1               	clrf	((__pbssBANK0)+1)&07Fh
+   118                           psect cinit,class=CODE,delta=2
+   119                           global end_of_initialization
+   120                           
+   121                           ;End of C runtime variable initialization code
+   122                           
+   123  05B4                     end_of_initialization:
+   124  05B4  0183               clrf status
+   125  05B5  120A  118A  2F65   ljmp _main	;jump to C main() function
+   126                           psect	cstackCOMMON,class=COMMON,space=1
+   127                           global __pcstackCOMMON
+   128  0070                     __pcstackCOMMON:
+   129                           	global	??_adc
+   130  0070                     ??_adc:	; 0 bytes @ 0x0
+   131                           	global	?_delay
+   132  0070                     ?_delay:	; 0 bytes @ 0x0
+   133                           	global	?_pwm
+   134  0070                     ?_pwm:	; 0 bytes @ 0x0
+   135                           	global	?_pulse
+   136  0070                     ?_pulse:	; 0 bytes @ 0x0
+   137                           	global	?_on
+   138  0070                     ?_on:	; 0 bytes @ 0x0
+   139                           	global	?_type
+   140  0070                     ?_type:	; 0 bytes @ 0x0
+   141                           	global	?_address
+   142  0070                     ?_address:	; 0 bytes @ 0x0
+   143                           	global	?_display
+   144  0070                     ?_display:	; 0 bytes @ 0x0
+   145                           	global	?_main
+   146  0070                     ?_main:	; 0 bytes @ 0x0
+   147                           	global	?_adc
+   148  0070                     ?_adc:	; 2 bytes @ 0x0
+   149                           	global	?___awdiv
+   150  0070                     ?___awdiv:	; 2 bytes @ 0x0
+   151                           	global	?___awmod
+   152  0070                     ?___awmod:	; 2 bytes @ 0x0
+   153                           	global	delay@a
+   154  0070                     delay@a:	; 2 bytes @ 0x0
+   155                           	global	pwm@a
+   156  0070                     pwm@a:	; 2 bytes @ 0x0
+   157                           	global	___awdiv@divisor
+   158  0070                     ___awdiv@divisor:	; 2 bytes @ 0x0
+   159                           	global	___awmod@divisor
+   160  0070                     ___awmod@divisor:	; 2 bytes @ 0x0
+   161  0070                     	ds	2
+   162                           	global	??_delay
+   163  0072                     ??_delay:	; 0 bytes @ 0x2
+   164                           	global	??_pwm
+   165  0072                     ??_pwm:	; 0 bytes @ 0x2
+   166                           	global	??_pulse
+   167  0072                     ??_pulse:	; 0 bytes @ 0x2
+   168                           	global	??_on
+   169  0072                     ??_on:	; 0 bytes @ 0x2
+   170                           	global	??_type
+   171  0072                     ??_type:	; 0 bytes @ 0x2
+   172                           	global	??_address
+   173  0072                     ??_address:	; 0 bytes @ 0x2
+   174                           	global	??_display
+   175  0072                     ??_display:	; 0 bytes @ 0x2
+   176                           	global	address@data
+   177  0072                     address@data:	; 1 bytes @ 0x2
+   178                           	global	display@data
+   179  0072                     display@data:	; 1 bytes @ 0x2
+   180                           	global	adc@high
+   181  0072                     adc@high:	; 2 bytes @ 0x2
+   182                           	global	___awdiv@dividend
+   183  0072                     ___awdiv@dividend:	; 2 bytes @ 0x2
+   184                           	global	___awmod@dividend
+   185  0072                     ___awmod@dividend:	; 2 bytes @ 0x2
+   186  0072                     	ds	2
+   187                           	global	??___awdiv
+   188  0074                     ??___awdiv:	; 0 bytes @ 0x4
+   189                           	global	??___awmod
+   190  0074                     ??___awmod:	; 0 bytes @ 0x4
+   191                           	global	adc@low
+   192  0074                     adc@low:	; 2 bytes @ 0x4
+   193  0074                     	ds	1
+   194                           	global	___awdiv@counter
+   195  0075                     ___awdiv@counter:	; 1 bytes @ 0x5
+   196                           	global	___awmod@counter
+   197  0075                     ___awmod@counter:	; 1 bytes @ 0x5
+   198  0075                     	ds	1
+   199                           	global	___awdiv@sign
+   200  0076                     ___awdiv@sign:	; 1 bytes @ 0x6
+   201                           	global	___awmod@sign
+   202  0076                     ___awmod@sign:	; 1 bytes @ 0x6
+   203  0076                     	ds	1
+   204                           	global	___awdiv@quotient
+   205  0077                     ___awdiv@quotient:	; 2 bytes @ 0x7
+   206  0077                     	ds	2
+   207                           	global	??_main
+   208  0079                     ??_main:	; 0 bytes @ 0x9
+   209                           	global	main@count
+   210  0079                     main@count:	; 2 bytes @ 0x9
+   211  0079                     	ds	2
+   212                           	global	main@i
+   213  007B                     main@i:	; 2 bytes @ 0xB
+   214  007B                     	ds	2
+   215 ;;Data sizes: Strings 0, constant 0, data 0, bss 2, persistent 0 stack 0
+   216 ;;Auto spaces:   Size  Autos    Used
+   217 ;; COMMON          14     13      13
+   218 ;; BANK0           80      0       2
+   219 ;; BANK1           80      0       0
+   220 ;; BANK3           96      0       0
+   221 ;; BANK2           96      0       0
+   222                           
+   223 ;;
+   224 ;; Pointer list with targets:
+   225                           
+   226 ;; ?___awdiv	int  size(1) Largest target is 0
+   227 ;;
+   228 ;; ?___awmod	int  size(1) Largest target is 0
+   229 ;;
+   230 ;; ?_adc	int  size(1) Largest target is 0
+   231 ;;
+   232                           
+   233                           
+   234 ;;
+   235 ;; Critical Paths under _main in COMMON
+   236 ;;
+   237 ;;   _main->___awdiv
+   238 ;;   _pulse->_delay
+   239 ;;
+   240 ;; Critical Paths under _main in BANK0
+   241 ;;
+   242 ;;   None.
+   243 ;;
+   244 ;; Critical Paths under _main in BANK1
+   245 ;;
+   246 ;;   None.
+   247 ;;
+   248 ;; Critical Paths under _main in BANK3
+   249 ;;
+   250 ;;   None.
+   251 ;;
+   252 ;; Critical Paths under _main in BANK2
+   253 ;;
+   254 ;;   None.
+   255                           
+   256 ;;
+   257 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   258 ;;
+   259                           
+   260 ;;
+   261 ;;Call Graph Tables:
+   262 ;;
+   263 ;; ---------------------------------------------------------------------------------
+   264 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   265 ;; ---------------------------------------------------------------------------------
+   266 ;; (0) _main                                                 4     4      0    1019
+   267 ;;                                              9 COMMON     4     4      0
+   268 ;;                                 _on
+   269 ;;                               _type
+   270 ;;                                _adc
+   271 ;;                                _pwm
+   272 ;;                            _address
+   273 ;;                            ___awmod
+   274 ;;                            _display
+   275 ;;                            ___awdiv
+   276 ;; ---------------------------------------------------------------------------------
+   277 ;; (1) _display                                              1     1      0      44
+   278 ;;                                              2 COMMON     1     1      0
+   279 ;;                              _pulse
+   280 ;; ---------------------------------------------------------------------------------
+   281 ;; (1) _address                                              1     1      0      44
+   282 ;;                                              2 COMMON     1     1      0
+   283 ;;                              _pulse
+   284 ;; ---------------------------------------------------------------------------------
+   285 ;; (1) _type                                                 0     0      0      22
+   286 ;;                              _pulse
+   287 ;; ---------------------------------------------------------------------------------
+   288 ;; (1) _on                                                   0     0      0      22
+   289 ;;                              _pulse
+   290 ;; ---------------------------------------------------------------------------------
+   291 ;; (2) _pulse                                                0     0      0      22
+   292 ;;                              _delay
+   293 ;; ---------------------------------------------------------------------------------
+   294 ;; (1) ___awmod                                              7     3      4     296
+   295 ;;                                              0 COMMON     7     3      4
+   296 ;; ---------------------------------------------------------------------------------
+   297 ;; (1) ___awdiv                                              9     5      4     300
+   298 ;;                                              0 COMMON     9     5      4
+   299 ;; ---------------------------------------------------------------------------------
+   300 ;; (1) _pwm                                                  4     2      2      44
+   301 ;;                                              0 COMMON     4     2      2
+   302 ;; ---------------------------------------------------------------------------------
+   303 ;; (3) _delay                                                2     0      2      22
+   304 ;;                                              0 COMMON     2     0      2
+   305 ;; ---------------------------------------------------------------------------------
+   306 ;; (1) _adc                                                  6     6      0     178
+   307 ;;                                              0 COMMON     6     6      0
+   308 ;; ---------------------------------------------------------------------------------
+   309 ;; Estimated maximum stack depth 3
+   310 ;; ---------------------------------------------------------------------------------
+   311                           
+   312 ;; Call Graph Graphs:
+   313                           
+   314 ;; _main (ROOT)
+   315 ;;   _on
+   316 ;;     _pulse
+   317 ;;       _delay
+   318 ;;   _type
+   319 ;;     _pulse
+   320 ;;       _delay
+   321 ;;   _adc
+   322 ;;   _pwm
+   323 ;;   _address
+   324 ;;     _pulse
+   325 ;;       _delay
+   326 ;;   ___awmod
+   327 ;;   _display
+   328 ;;     _pulse
+   329 ;;       _delay
+   330 ;;   ___awdiv
+   331 ;;
+   332                           
+   333 ;; Address spaces:
+   334                           
+   335 ;;Name               Size   Autos  Total    Cost      Usage
+   336 ;;BITCOMMON            E      0       0       0        0.0%
+   337 ;;EEDATA             100      0       0       0        0.0%
+   338 ;;NULL                 0      0       0       0        0.0%
+   339 ;;CODE                 0      0       0       0        0.0%
+   340 ;;COMMON               E      D       D       1       92.9%
+   341 ;;BITSFR0              0      0       0       1        0.0%
+   342 ;;SFR0                 0      0       0       1        0.0%
+   343 ;;BITSFR1              0      0       0       2        0.0%
+   344 ;;SFR1                 0      0       0       2        0.0%
+   345 ;;STACK                0      0       3       2        0.0%
+   346 ;;ABS                  0      0       F       3        0.0%
+   347 ;;BITBANK0            50      0       0       4        0.0%
+   348 ;;BITSFR3              0      0       0       4        0.0%
+   349 ;;SFR3                 0      0       0       4        0.0%
+   350 ;;BANK0               50      0       2       5        2.5%
+   351 ;;BITSFR2              0      0       0       5        0.0%
+   352 ;;SFR2                 0      0       0       5        0.0%
+   353 ;;BITBANK1            50      0       0       6        0.0%
+   354 ;;BANK1               50      0       0       7        0.0%
+   355 ;;BITBANK3            60      0       0       8        0.0%
+   356 ;;BANK3               60      0       0       9        0.0%
+   357 ;;BITBANK2            60      0       0      10        0.0%
+   358 ;;BANK2               60      0       0      11        0.0%
+   359 ;;DATA                 0      0      12      12        0.0%
+   360                           
+   361                           	global	_main
+   362                           psect	maintext,global,class=CODE,delta=2
+   363                           global __pmaintext
+   364  0765                     __pmaintext:
+   365                           
+   366 ;; *************** function _main *****************
+   367 ;; Defined at:
+   368 ;;		line 73 in file "E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+   369 ;; Parameters:    Size  Location     Type
+   370 ;;		None
+   371 ;; Auto vars:     Size  Location     Type
+   372 ;;  i               2   11[COMMON] int 
+   373 ;;  count           2    9[COMMON] int 
+   374 ;; Return value:  Size  Location     Type
+   375 ;;		None               void
+   376 ;; Registers used:
+   377 ;;		wreg, status,2, status,0, pclath, cstack
+   378 ;; Tracked objects:
+   379 ;;		On entry : 17F/0
+   380 ;;		On exit  : 0/0
+   381 ;;		Unchanged: 0/0
+   382 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   383 ;;      Params:         0       0       0       0       0
+   384 ;;      Locals:         4       0       0       0       0
+   385 ;;      Temps:          0       0       0       0       0
+   386 ;;      Totals:         4       0       0       0       0
+   387 ;;Total ram usage:        4 bytes
+   388 ;; Hardware stack levels required when called:    3
+   389 ;; This function calls:
+   390 ;;		_on
+   391 ;;		_type
+   392 ;;		_adc
+   393 ;;		_pwm
+   394 ;;		_address
+   395 ;;		___awmod
+   396 ;;		_display
+   397 ;;		___awdiv
+   398 ;; This function is called by:
+   399 ;;		Startup code after reset
+   400 ;; This function uses a non-reentrant model
+   401 ;;
+   402                           psect	maintext
+   403                           	file	"E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+   404                           	line	73
+   405                           	global	__size_of_main
+   406  009B                     	__size_of_main	equ	__end_of_main-_main
+   407                           	
+   408  0765                     _main:	
+   409                           	opt	stack 5
+   410                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   411                           	line	74
+   412                           	
+   413  0765                     l2459:	
+   414                           ;adcpwm.c: 74: int count=0;
+   415  0765  01F9               	clrf	(main@count)
+   416  0766  01FA               	clrf	(main@count+1)
+   417                           	line	75
+   418                           ;adcpwm.c: 75: PORTA=0X00;
+   419  0767  1283               	bcf	status, 5	;RP0=0, select bank0
+   420  0768  1303               	bcf	status, 6	;RP1=0, select bank0
+   421  0769  0185               	clrf	(5)	;volatile
+   422                           	line	76
+   423                           ;adcpwm.c: 76: TRISA=0X00;
+   424  076A  1683               	bsf	status, 5	;RP0=1, select bank1
+   425  076B  1303               	bcf	status, 6	;RP1=0, select bank1
+   426  076C  0185               	clrf	(133)^080h	;volatile
+   427                           	line	77
+   428                           ;adcpwm.c: 77: PORTB=0X00;
+   429  076D  1283               	bcf	status, 5	;RP0=0, select bank0
+   430  076E  1303               	bcf	status, 6	;RP1=0, select bank0
+   431  076F  0186               	clrf	(6)	;volatile
+   432                           	line	78
+   433                           	
+   434  0770                     l2461:	
+   435                           ;adcpwm.c: 78: TRISB=0X02;
+   436  0770  3002               	movlw	(02h)
+   437  0771  1683               	bsf	status, 5	;RP0=1, select bank1
+   438  0772  1303               	bcf	status, 6	;RP1=0, select bank1
+   439  0773  0086               	movwf	(134)^080h	;volatile
+   440                           	line	79
+   441                           	
+   442  0774                     l2463:	
+   443                           ;adcpwm.c: 79: PORTD=0X00;
+   444  0774  1283               	bcf	status, 5	;RP0=0, select bank0
+   445  0775  1303               	bcf	status, 6	;RP1=0, select bank0
+   446  0776  0188               	clrf	(8)	;volatile
+   447                           	line	80
+   448                           	
+   449  0777                     l2465:	
+   450                           ;adcpwm.c: 80: TRISD=0X00;
+   451  0777  1683               	bsf	status, 5	;RP0=1, select bank1
+   452  0778  1303               	bcf	status, 6	;RP1=0, select bank1
+   453  0779  0188               	clrf	(136)^080h	;volatile
+   454                           	line	81
+   455                           	
+   456  077A                     l2467:	
+   457                           ;adcpwm.c: 81: ANSEL=0X00;
+   458  077A  1683               	bsf	status, 5	;RP0=1, select bank3
+   459  077B  1703               	bsf	status, 6	;RP1=1, select bank3
+   460  077C  0188               	clrf	(392)^0180h	;volatile
+   461                           	line	82
+   462                           ;adcpwm.c: 82: ANSELH=0X04;
+   463  077D  3004               	movlw	(04h)
+   464  077E  0089               	movwf	(393)^0180h	;volatile
+   465                           	line	83
+   466                           	
+   467  077F                     l2469:	
+   468                           ;adcpwm.c: 83: PORTC=0X00;
+   469  077F  1283               	bcf	status, 5	;RP0=0, select bank0
+   470  0780  1303               	bcf	status, 6	;RP1=0, select bank0
+   471  0781  0187               	clrf	(7)	;volatile
+   472                           	line	84
+   473                           	
+   474  0782                     l2471:	
+   475                           ;adcpwm.c: 84: TRISC=0X00;
+   476  0782  1683               	bsf	status, 5	;RP0=1, select bank1
+   477  0783  1303               	bcf	status, 6	;RP1=0, select bank1
+   478  0784  0187               	clrf	(135)^080h	;volatile
+   479                           	line	85
+   480                           	
+   481  0785                     l2473:	
+   482                           ;adcpwm.c: 85: PORTD=0X00;
+   483  0785  1283               	bcf	status, 5	;RP0=0, select bank0
+   484  0786  1303               	bcf	status, 6	;RP1=0, select bank0
+   485  0787  0188               	clrf	(8)	;volatile
+   486                           	line	86
+   487                           	
+   488  0788                     l2475:	
+   489                           ;adcpwm.c: 86: TRISD=0X00;
+   490  0788  1683               	bsf	status, 5	;RP0=1, select bank1
+   491  0789  1303               	bcf	status, 6	;RP1=0, select bank1
+   492  078A  0188               	clrf	(136)^080h	;volatile
+   493                           	line	87
+   494                           ;adcpwm.c: 87: T2CON=0X07;
+   495  078B  3007               	movlw	(07h)
+   496  078C  1283               	bcf	status, 5	;RP0=0, select bank0
+   497  078D  1303               	bcf	status, 6	;RP1=0, select bank0
+   498  078E  0092               	movwf	(18)	;volatile
+   499                           	line	90
+   500                           ;adcpwm.c: 90: CCP1CON=0X0D;
+   501  078F  300D               	movlw	(0Dh)
+   502  0790  0097               	movwf	(23)	;volatile
+   503                           	line	91
+   504                           	
+   505  0791                     l2477:	
+   506                           ;adcpwm.c: 91: on();
+   507  0791  120A  118A  25B8   	fcall	_on
+              120A  118A         
+   508                           	line	92
+   509                           	
+   510  0796                     l2479:	
+   511                           ;adcpwm.c: 92: type();
+   512  0796  120A  118A  25C4   	fcall	_type
+              120A  118A         
+   513  079B  2F9C               	goto	l2481
+   514                           	line	93
+   515                           ;adcpwm.c: 93: while(1)
+   516                           	
+   517  079C                     l1061:	
+   518                           	line	95
+   519                           	
+   520  079C                     l2481:	
+   521                           ;adcpwm.c: 94: {
+   522                           ;adcpwm.c: 95: adc();
+   523  079C  120A  118A  262B   	fcall	_adc
+              120A  118A         
+   524                           	line	97
+   525                           	
+   526  07A1                     l2483:	
+   527                           ;adcpwm.c: 97: pwm(tot);
+   528  07A1  1283               	bcf	status, 5	;RP0=0, select bank0
+   529  07A2  1303               	bcf	status, 6	;RP1=0, select bank0
+   530  07A3  0821               	movf	(_tot+1),w
+   531  07A4  01F1               	clrf	(?_pwm+1)
+   532  07A5  07F1               	addwf	(?_pwm+1)
+   533  07A6  0820               	movf	(_tot),w
+   534  07A7  01F0               	clrf	(?_pwm)
+   535  07A8  07F0               	addwf	(?_pwm)
+   536                           
+   537  07A9  120A  118A  25FE   	fcall	_pwm
+              120A  118A         
+   538                           	line	98
+   539                           ;adcpwm.c: 98: for(int i=3;i>=0;i--)
+   540  07AE  3003               	movlw	low(03h)
+   541  07AF  00FB               	movwf	(main@i)
+   542  07B0  3000               	movlw	high(03h)
+   543  07B1  00FC               	movwf	((main@i))+1
+   544                           	
+   545  07B2                     l2485:	
+   546  07B2  1FFC               	btfss	(main@i+1),7
+   547  07B3  2FB5               	goto	u2491
+   548  07B4  2FB6               	goto	u2490
+   549  07B5                     u2491:
+   550  07B5  2FB8               	goto	l2489
+   551  07B6                     u2490:
+   552  07B6  2F9C               	goto	l2481
+   553                           	
+   554  07B7                     l2487:	
+   555  07B7  2F9C               	goto	l2481
+   556                           	line	99
+   557                           	
+   558  07B8                     l1062:	
+   559                           	line	100
+   560                           	
+   561  07B8                     l2489:	
+   562                           ;adcpwm.c: 99: {
+   563                           ;adcpwm.c: 100: address(0X80+i);
+   564  07B8  087B               	movf	(main@i),w
+   565  07B9  3E80               	addlw	080h
+   566  07BA  120A  118A  25D0   	fcall	_address
+              120A  118A         
+   567                           	line	101
+   568                           ;adcpwm.c: 101: display(0X30+(tot%10));
+   569  07BF  300A               	movlw	low(0Ah)
+   570  07C0  00F0               	movwf	(?___awmod)
+   571  07C1  3000               	movlw	high(0Ah)
+   572  07C2  00F1               	movwf	((?___awmod))+1
+   573  07C3  1283               	bcf	status, 5	;RP0=0, select bank0
+   574  07C4  1303               	bcf	status, 6	;RP1=0, select bank0
+   575  07C5  0821               	movf	(_tot+1),w
+   576  07C6  01F3               	clrf	1+(?___awmod)+02h
+   577  07C7  07F3               	addwf	1+(?___awmod)+02h
+   578  07C8  0820               	movf	(_tot),w
+   579  07C9  01F2               	clrf	0+(?___awmod)+02h
+   580  07CA  07F2               	addwf	0+(?___awmod)+02h
+   581                           
+   582  07CB  120A  118A  268B   	fcall	___awmod
+              120A  118A         
+   583  07D0  0870               	movf	(0+(?___awmod)),w
+   584  07D1  3E30               	addlw	030h
+   585  07D2  120A  118A  25DD   	fcall	_display
+              120A  118A         
+   586                           	line	102
+   587                           ;adcpwm.c: 102: tot=tot/10;
+   588  07D7  300A               	movlw	low(0Ah)
+   589  07D8  00F0               	movwf	(?___awdiv)
+   590  07D9  3000               	movlw	high(0Ah)
+   591  07DA  00F1               	movwf	((?___awdiv))+1
+   592  07DB  1283               	bcf	status, 5	;RP0=0, select bank0
+   593  07DC  1303               	bcf	status, 6	;RP1=0, select bank0
+   594  07DD  0821               	movf	(_tot+1),w
+   595  07DE  01F3               	clrf	1+(?___awdiv)+02h
+   596  07DF  07F3               	addwf	1+(?___awdiv)+02h
+   597  07E0  0820               	movf	(_tot),w
+   598  07E1  01F2               	clrf	0+(?___awdiv)+02h
+   599  07E2  07F2               	addwf	0+(?___awdiv)+02h
+   600                           
+   601  07E3  120A  118A  26F1   	fcall	___awdiv
+              120A  118A         
+   602  07E8  0871               	movf	(1+(?___awdiv)),w
+   603  07E9  1283               	bcf	status, 5	;RP0=0, select bank0
+   604  07EA  1303               	bcf	status, 6	;RP1=0, select bank0
+   605  07EB  01A1               	clrf	(_tot+1)
+   606  07EC  07A1               	addwf	(_tot+1)
+   607  07ED  0870               	movf	(0+(?___awdiv)),w
+   608  07EE  01A0               	clrf	(_tot)
+   609  07EF  07A0               	addwf	(_tot)
+   610                           
+   611                           	line	98
+   612                           	
+   613  07F0                     l2491:	
+   614  07F0  30FF               	movlw	low(-1)
+   615  07F1  07FB               	addwf	(main@i),f
+   616  07F2  1803               	skipnc
+   617  07F3  0AFC               	incf	(main@i+1),f
+   618  07F4  30FF               	movlw	high(-1)
+   619  07F5  07FC               	addwf	(main@i+1),f
+   620                           	
+   621  07F6                     l2493:	
+   622  07F6  1FFC               	btfss	(main@i+1),7
+   623  07F7  2FF9               	goto	u2501
+   624  07F8  2FFA               	goto	u2500
+   625  07F9                     u2501:
+   626  07F9  2FB8               	goto	l2489
+   627  07FA                     u2500:
+   628  07FA  2F9C               	goto	l2481
+   629                           	
+   630  07FB                     l1063:	
+   631  07FB  2F9C               	goto	l2481
+   632                           	line	105
+   633                           	
+   634  07FC                     l1064:	
+   635                           	line	93
+   636  07FC  2F9C               	goto	l2481
+   637                           	
+   638  07FD                     l1065:	
+   639                           	line	106
+   640                           	
+   641  07FD                     l1066:	
+   642                           	global	start
+   643  07FD  120A  118A  2800   	ljmp	start
+   644                           	opt stack 0
+   645                           GLOBAL	__end_of_main
+   646  0800                     	__end_of_main:
+   647 ;; =============== function _main ends ============
+   648                           
+   649                           	signat	_main,88
+   650                           	global	_display
+   651                           psect	text263,local,class=CODE,delta=2
+   652                           global __ptext263
+   653  05DD                     __ptext263:
+   654                           
+   655 ;; *************** function _display *****************
+   656 ;; Defined at:
+   657 ;;		line 64 in file "E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+   658 ;; Parameters:    Size  Location     Type
+   659 ;;  data            1    wreg     unsigned char 
+   660 ;; Auto vars:     Size  Location     Type
+   661 ;;  data            1    2[COMMON] unsigned char 
+   662 ;; Return value:  Size  Location     Type
+   663 ;;		None               void
+   664 ;; Registers used:
+   665 ;;		wreg, status,2, status,0, pclath, cstack
+   666 ;; Tracked objects:
+   667 ;;		On entry : 0/0
+   668 ;;		On exit  : 0/0
+   669 ;;		Unchanged: 0/0
+   670 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   671 ;;      Params:         0       0       0       0       0
+   672 ;;      Locals:         1       0       0       0       0
+   673 ;;      Temps:          0       0       0       0       0
+   674 ;;      Totals:         1       0       0       0       0
+   675 ;;Total ram usage:        1 bytes
+   676 ;; Hardware stack levels used:    1
+   677 ;; Hardware stack levels required when called:    2
+   678 ;; This function calls:
+   679 ;;		_pulse
+   680 ;; This function is called by:
+   681 ;;		_main
+   682 ;; This function uses a non-reentrant model
+   683 ;;
+   684                           psect	text263
+   685                           	file	"E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+   686                           	line	64
+   687                           	global	__size_of_display
+   688  000D                     	__size_of_display	equ	__end_of_display-_display
+   689                           	
+   690  05DD                     _display:	
+   691                           	opt	stack 5
+   692                           ; Regs used in _display: [wreg+status,2+status,0+pclath+cstack]
+   693                           ;display@data stored from wreg
+   694  05DD  00F2               	movwf	(display@data)
+   695                           	line	65
+   696                           	
+   697  05DE                     l2453:	
+   698                           ;adcpwm.c: 65: RA0=1;
+   699  05DE  1283               	bcf	status, 5	;RP0=0, select bank0
+   700  05DF  1303               	bcf	status, 6	;RP1=0, select bank0
+   701  05E0  1405               	bsf	(40/8),(40)&7
+   702                           	line	66
+   703                           ;adcpwm.c: 66: RA1=0;
+   704  05E1  1085               	bcf	(41/8),(41)&7
+   705                           	line	67
+   706                           	
+   707  05E2                     l2455:	
+   708                           ;adcpwm.c: 67: PORTD=data;
+   709  05E2  0872               	movf	(display@data),w
+   710  05E3  0088               	movwf	(8)	;volatile
+   711                           	line	68
+   712                           	
+   713  05E4                     l2457:	
+   714                           ;adcpwm.c: 68: pulse();
+   715  05E4  120A  118A  2612   	fcall	_pulse
+              120A  118A         
+   716                           	line	69
+   717                           	
+   718  05E9                     l1058:	
+   719  05E9  0008               	return
+   720                           	opt stack 0
+   721                           GLOBAL	__end_of_display
+   722  05EA                     	__end_of_display:
+   723 ;; =============== function _display ends ============
+   724                           
+   725                           	signat	_display,4216
+   726                           	global	_address
+   727                           psect	text264,local,class=CODE,delta=2
+   728                           global __ptext264
+   729  05D0                     __ptext264:
+   730                           
+   731 ;; *************** function _address *****************
+   732 ;; Defined at:
+   733 ;;		line 57 in file "E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+   734 ;; Parameters:    Size  Location     Type
+   735 ;;  data            1    wreg     unsigned char 
+   736 ;; Auto vars:     Size  Location     Type
+   737 ;;  data            1    2[COMMON] unsigned char 
+   738 ;; Return value:  Size  Location     Type
+   739 ;;		None               void
+   740 ;; Registers used:
+   741 ;;		wreg, status,2, status,0, pclath, cstack
+   742 ;; Tracked objects:
+   743 ;;		On entry : 0/0
+   744 ;;		On exit  : 0/0
+   745 ;;		Unchanged: 0/0
+   746 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   747 ;;      Params:         0       0       0       0       0
+   748 ;;      Locals:         1       0       0       0       0
+   749 ;;      Temps:          0       0       0       0       0
+   750 ;;      Totals:         1       0       0       0       0
+   751 ;;Total ram usage:        1 bytes
+   752 ;; Hardware stack levels used:    1
+   753 ;; Hardware stack levels required when called:    2
+   754 ;; This function calls:
+   755 ;;		_pulse
+   756 ;; This function is called by:
+   757 ;;		_main
+   758 ;; This function uses a non-reentrant model
+   759 ;;
+   760                           psect	text264
+   761                           	file	"E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+   762                           	line	57
+   763                           	global	__size_of_address
+   764  000D                     	__size_of_address	equ	__end_of_address-_address
+   765                           	
+   766  05D0                     _address:	
+   767                           	opt	stack 5
+   768                           ; Regs used in _address: [wreg+status,2+status,0+pclath+cstack]
+   769                           ;address@data stored from wreg
+   770  05D0  00F2               	movwf	(address@data)
+   771                           	line	58
+   772                           	
+   773  05D1                     l2447:	
+   774                           ;adcpwm.c: 58: RA0=0;
+   775  05D1  1283               	bcf	status, 5	;RP0=0, select bank0
+   776  05D2  1303               	bcf	status, 6	;RP1=0, select bank0
+   777  05D3  1005               	bcf	(40/8),(40)&7
+   778                           	line	59
+   779                           ;adcpwm.c: 59: RA1=0;
+   780  05D4  1085               	bcf	(41/8),(41)&7
+   781                           	line	60
+   782                           	
+   783  05D5                     l2449:	
+   784                           ;adcpwm.c: 60: PORTD= data;
+   785  05D5  0872               	movf	(address@data),w
+   786  05D6  0088               	movwf	(8)	;volatile
+   787                           	line	61
+   788                           	
+   789  05D7                     l2451:	
+   790                           ;adcpwm.c: 61: pulse();
+   791  05D7  120A  118A  2612   	fcall	_pulse
+              120A  118A         
+   792                           	line	62
+   793                           	
+   794  05DC                     l1055:	
+   795  05DC  0008               	return
+   796                           	opt stack 0
+   797                           GLOBAL	__end_of_address
+   798  05DD                     	__end_of_address:
+   799 ;; =============== function _address ends ============
+   800                           
+   801                           	signat	_address,4216
+   802                           	global	_type
+   803                           psect	text265,local,class=CODE,delta=2
+   804                           global __ptext265
+   805  05C4                     __ptext265:
+   806                           
+   807 ;; *************** function _type *****************
+   808 ;; Defined at:
+   809 ;;		line 50 in file "E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+   810 ;; Parameters:    Size  Location     Type
+   811 ;;		None
+   812 ;; Auto vars:     Size  Location     Type
+   813 ;;		None
+   814 ;; Return value:  Size  Location     Type
+   815 ;;		None               void
+   816 ;; Registers used:
+   817 ;;		wreg, status,2, status,0, pclath, cstack
+   818 ;; Tracked objects:
+   819 ;;		On entry : 0/0
+   820 ;;		On exit  : 0/0
+   821 ;;		Unchanged: 0/0
+   822 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   823 ;;      Params:         0       0       0       0       0
+   824 ;;      Locals:         0       0       0       0       0
+   825 ;;      Temps:          0       0       0       0       0
+   826 ;;      Totals:         0       0       0       0       0
+   827 ;;Total ram usage:        0 bytes
+   828 ;; Hardware stack levels used:    1
+   829 ;; Hardware stack levels required when called:    2
+   830 ;; This function calls:
+   831 ;;		_pulse
+   832 ;; This function is called by:
+   833 ;;		_main
+   834 ;; This function uses a non-reentrant model
+   835 ;;
+   836                           psect	text265
+   837                           	file	"E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+   838                           	line	50
+   839                           	global	__size_of_type
+   840  000C                     	__size_of_type	equ	__end_of_type-_type
+   841                           	
+   842  05C4                     _type:	
+   843                           	opt	stack 5
+   844                           ; Regs used in _type: [wreg+status,2+status,0+pclath+cstack]
+   845                           	line	51
+   846                           	
+   847  05C4                     l2441:	
+   848                           ;adcpwm.c: 51: RA0=0;
+   849  05C4  1283               	bcf	status, 5	;RP0=0, select bank0
+   850  05C5  1303               	bcf	status, 6	;RP1=0, select bank0
+   851  05C6  1005               	bcf	(40/8),(40)&7
+   852                           	line	52
+   853                           ;adcpwm.c: 52: RA1=0;
+   854  05C7  1085               	bcf	(41/8),(41)&7
+   855                           	line	53
+   856                           	
+   857  05C8                     l2443:	
+   858                           ;adcpwm.c: 53: PORTD=0X38;
+   859  05C8  3038               	movlw	(038h)
+   860  05C9  0088               	movwf	(8)	;volatile
+   861                           	line	54
+   862                           	
+   863  05CA                     l2445:	
+   864                           ;adcpwm.c: 54: pulse();
+   865  05CA  120A  118A  2612   	fcall	_pulse
+              120A  118A         
+   866                           	line	55
+   867                           	
+   868  05CF                     l1052:	
+   869  05CF  0008               	return
+   870                           	opt stack 0
+   871                           GLOBAL	__end_of_type
+   872  05D0                     	__end_of_type:
+   873 ;; =============== function _type ends ============
+   874                           
+   875                           	signat	_type,88
+   876                           	global	_on
+   877                           psect	text266,local,class=CODE,delta=2
+   878                           global __ptext266
+   879  05B8                     __ptext266:
+   880                           
+   881 ;; *************** function _on *****************
+   882 ;; Defined at:
+   883 ;;		line 43 in file "E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+   884 ;; Parameters:    Size  Location     Type
+   885 ;;		None
+   886 ;; Auto vars:     Size  Location     Type
+   887 ;;		None
+   888 ;; Return value:  Size  Location     Type
+   889 ;;		None               void
+   890 ;; Registers used:
+   891 ;;		wreg, status,2, status,0, pclath, cstack
+   892 ;; Tracked objects:
+   893 ;;		On entry : 0/0
+   894 ;;		On exit  : 0/0
+   895 ;;		Unchanged: 0/0
+   896 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   897 ;;      Params:         0       0       0       0       0
+   898 ;;      Locals:         0       0       0       0       0
+   899 ;;      Temps:          0       0       0       0       0
+   900 ;;      Totals:         0       0       0       0       0
+   901 ;;Total ram usage:        0 bytes
+   902 ;; Hardware stack levels used:    1
+   903 ;; Hardware stack levels required when called:    2
+   904 ;; This function calls:
+   905 ;;		_pulse
+   906 ;; This function is called by:
+   907 ;;		_main
+   908 ;; This function uses a non-reentrant model
+   909 ;;
+   910                           psect	text266
+   911                           	file	"E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+   912                           	line	43
+   913                           	global	__size_of_on
+   914  000C                     	__size_of_on	equ	__end_of_on-_on
+   915                           	
+   916  05B8                     _on:	
+   917                           	opt	stack 5
+   918                           ; Regs used in _on: [wreg+status,2+status,0+pclath+cstack]
+   919                           	line	44
+   920                           	
+   921  05B8                     l2435:	
+   922                           ;adcpwm.c: 44: RA0=0;
+   923  05B8  1283               	bcf	status, 5	;RP0=0, select bank0
+   924  05B9  1303               	bcf	status, 6	;RP1=0, select bank0
+   925  05BA  1005               	bcf	(40/8),(40)&7
+   926                           	line	45
+   927                           ;adcpwm.c: 45: RA1=0;
+   928  05BB  1085               	bcf	(41/8),(41)&7
+   929                           	line	46
+   930                           	
+   931  05BC                     l2437:	
+   932                           ;adcpwm.c: 46: PORTD=0X0E;
+   933  05BC  300E               	movlw	(0Eh)
+   934  05BD  0088               	movwf	(8)	;volatile
+   935                           	line	47
+   936                           	
+   937  05BE                     l2439:	
+   938                           ;adcpwm.c: 47: pulse();
+   939  05BE  120A  118A  2612   	fcall	_pulse
+              120A  118A         
+   940                           	line	48
+   941                           	
+   942  05C3                     l1049:	
+   943  05C3  0008               	return
+   944                           	opt stack 0
+   945                           GLOBAL	__end_of_on
+   946  05C4                     	__end_of_on:
+   947 ;; =============== function _on ends ============
+   948                           
+   949                           	signat	_on,88
+   950                           	global	_pulse
+   951                           psect	text267,local,class=CODE,delta=2
+   952                           global __ptext267
+   953  0612                     __ptext267:
+   954                           
+   955 ;; *************** function _pulse *****************
+   956 ;; Defined at:
+   957 ;;		line 36 in file "E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+   958 ;; Parameters:    Size  Location     Type
+   959 ;;		None
+   960 ;; Auto vars:     Size  Location     Type
+   961 ;;		None
+   962 ;; Return value:  Size  Location     Type
+   963 ;;		None               void
+   964 ;; Registers used:
+   965 ;;		wreg, status,2, status,0, pclath, cstack
+   966 ;; Tracked objects:
+   967 ;;		On entry : 0/0
+   968 ;;		On exit  : 0/0
+   969 ;;		Unchanged: 0/0
+   970 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   971 ;;      Params:         0       0       0       0       0
+   972 ;;      Locals:         0       0       0       0       0
+   973 ;;      Temps:          0       0       0       0       0
+   974 ;;      Totals:         0       0       0       0       0
+   975 ;;Total ram usage:        0 bytes
+   976 ;; Hardware stack levels used:    1
+   977 ;; Hardware stack levels required when called:    1
+   978 ;; This function calls:
+   979 ;;		_delay
+   980 ;; This function is called by:
+   981 ;;		_on
+   982 ;;		_type
+   983 ;;		_address
+   984 ;;		_display
+   985 ;; This function uses a non-reentrant model
+   986 ;;
+   987                           psect	text267
+   988                           	file	"E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+   989                           	line	36
+   990                           	global	__size_of_pulse
+   991  0019                     	__size_of_pulse	equ	__end_of_pulse-_pulse
+   992                           	
+   993  0612                     _pulse:	
+   994                           	opt	stack 5
+   995                           ; Regs used in _pulse: [wreg+status,2+status,0+pclath+cstack]
+   996                           	line	37
+   997                           	
+   998  0612                     l2429:	
+   999                           ;adcpwm.c: 37: RA2=1;
+  1000  0612  1283               	bcf	status, 5	;RP0=0, select bank0
+  1001  0613  1303               	bcf	status, 6	;RP1=0, select bank0
+  1002  0614  1505               	bsf	(42/8),(42)&7
+  1003                           	line	38
+  1004                           	
+  1005  0615                     l2431:	
+  1006                           ;adcpwm.c: 38: delay(1000);
+  1007  0615  30E8               	movlw	low(03E8h)
+  1008  0616  00F0               	movwf	(?_delay)
+  1009  0617  3003               	movlw	high(03E8h)
+  1010  0618  00F1               	movwf	((?_delay))+1
+  1011  0619  120A  118A  25EA   	fcall	_delay
+              120A  118A         
+  1012                           	line	39
+  1013                           	
+  1014  061E                     l2433:	
+  1015                           ;adcpwm.c: 39: RA2=0;
+  1016  061E  1283               	bcf	status, 5	;RP0=0, select bank0
+  1017  061F  1303               	bcf	status, 6	;RP1=0, select bank0
+  1018  0620  1105               	bcf	(42/8),(42)&7
+  1019                           	line	40
+  1020                           ;adcpwm.c: 40: delay(1000);
+  1021  0621  30E8               	movlw	low(03E8h)
+  1022  0622  00F0               	movwf	(?_delay)
+  1023  0623  3003               	movlw	high(03E8h)
+  1024  0624  00F1               	movwf	((?_delay))+1
+  1025  0625  120A  118A  25EA   	fcall	_delay
+              120A  118A         
+  1026                           	line	41
+  1027                           	
+  1028  062A                     l1046:	
+  1029  062A  0008               	return
+  1030                           	opt stack 0
+  1031                           GLOBAL	__end_of_pulse
+  1032  062B                     	__end_of_pulse:
+  1033 ;; =============== function _pulse ends ============
+  1034                           
+  1035                           	signat	_pulse,88
+  1036                           	global	___awmod
+  1037                           psect	text268,local,class=CODE,delta=2
+  1038                           global __ptext268
+  1039  068B                     __ptext268:
+  1040                           
+  1041 ;; *************** function ___awmod *****************
+  1042 ;; Defined at:
+  1043 ;;		line 5 in file "C:\Program Files (x86)\HI-TECH Software\PICC\9.81\sources\awmod.c"
+  1044 ;; Parameters:    Size  Location     Type
+  1045 ;;  divisor         2    0[COMMON] int 
+  1046 ;;  dividend        2    2[COMMON] int 
+  1047 ;; Auto vars:     Size  Location     Type
+  1048 ;;  sign            1    6[COMMON] unsigned char 
+  1049 ;;  counter         1    5[COMMON] unsigned char 
+  1050 ;; Return value:  Size  Location     Type
+  1051 ;;                  2    0[COMMON] int 
+  1052 ;; Registers used:
+  1053 ;;		wreg, status,2, status,0
+  1054 ;; Tracked objects:
+  1055 ;;		On entry : 0/0
+  1056 ;;		On exit  : 0/0
+  1057 ;;		Unchanged: 0/0
+  1058 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1059 ;;      Params:         4       0       0       0       0
+  1060 ;;      Locals:         2       0       0       0       0
+  1061 ;;      Temps:          1       0       0       0       0
+  1062 ;;      Totals:         7       0       0       0       0
+  1063 ;;Total ram usage:        7 bytes
+  1064 ;; Hardware stack levels used:    1
+  1065 ;; This function calls:
+  1066 ;;		Nothing
+  1067 ;; This function is called by:
+  1068 ;;		_main
+  1069 ;; This function uses a non-reentrant model
+  1070 ;;
+  1071                           psect	text268
+  1072                           	file	"C:\Program Files (x86)\HI-TECH Software\PICC\9.81\sources\awmod.c"
+  1073                           	line	5
+  1074                           	global	__size_of___awmod
+  1075  0066                     	__size_of___awmod	equ	__end_of___awmod-___awmod
+  1076                           	
+  1077  068B                     ___awmod:	
+  1078                           	opt	stack 7
+  1079                           ; Regs used in ___awmod: [wreg+status,2+status,0]
+  1080                           	line	8
+  1081                           	
+  1082  068B                     l2395:	
+  1083  068B  01F6               	clrf	(___awmod@sign)
+  1084                           	line	9
+  1085  068C  1FF3               	btfss	(___awmod@dividend+1),7
+  1086  068D  2E8F               	goto	u2401
+  1087  068E  2E90               	goto	u2400
+  1088  068F                     u2401:
+  1089  068F  2E99               	goto	l2399
+  1090  0690                     u2400:
+  1091                           	line	10
+  1092                           	
+  1093  0690                     l2397:	
+  1094  0690  09F2               	comf	(___awmod@dividend),f
+  1095  0691  09F3               	comf	(___awmod@dividend+1),f
+  1096  0692  0AF2               	incf	(___awmod@dividend),f
+  1097  0693  1903               	skipnz
+  1098  0694  0AF3               	incf	(___awmod@dividend+1),f
+  1099                           	line	11
+  1100  0695  01F6               	clrf	(___awmod@sign)
+  1101  0696  1403               	bsf	status,0
+  1102  0697  0DF6               	rlf	(___awmod@sign),f
+  1103  0698  2E99               	goto	l2399
+  1104                           	line	12
+  1105                           	
+  1106  0699                     l1283:	
+  1107                           	line	13
+  1108                           	
+  1109  0699                     l2399:	
+  1110  0699  1FF1               	btfss	(___awmod@divisor+1),7
+  1111  069A  2E9C               	goto	u2411
+  1112  069B  2E9D               	goto	u2410
+  1113  069C                     u2411:
+  1114  069C  2EA3               	goto	l2403
+  1115  069D                     u2410:
+  1116                           	line	14
+  1117                           	
+  1118  069D                     l2401:	
+  1119  069D  09F0               	comf	(___awmod@divisor),f
+  1120  069E  09F1               	comf	(___awmod@divisor+1),f
+  1121  069F  0AF0               	incf	(___awmod@divisor),f
+  1122  06A0  1903               	skipnz
+  1123  06A1  0AF1               	incf	(___awmod@divisor+1),f
+  1124  06A2  2EA3               	goto	l2403
+  1125                           	
+  1126  06A3                     l1284:	
+  1127                           	line	15
+  1128                           	
+  1129  06A3                     l2403:	
+  1130  06A3  0871               	movf	(___awmod@divisor+1),w
+  1131  06A4  0470               	iorwf	(___awmod@divisor),w
+  1132  06A5  1903               	skipnz
+  1133  06A6  2EA8               	goto	u2421
+  1134  06A7  2EA9               	goto	u2420
+  1135  06A8                     u2421:
+  1136  06A8  2EDF               	goto	l2421
+  1137  06A9                     u2420:
+  1138                           	line	16
+  1139                           	
+  1140  06A9                     l2405:	
+  1141  06A9  01F5               	clrf	(___awmod@counter)
+  1142  06AA  1403               	bsf	status,0
+  1143  06AB  0DF5               	rlf	(___awmod@counter),f
+  1144                           	line	17
+  1145  06AC  2EB9               	goto	l2411
+  1146                           	
+  1147  06AD                     l1287:	
+  1148                           	line	18
+  1149                           	
+  1150  06AD                     l2407:	
+  1151  06AD  3001               	movlw	01h
+  1152                           	
+  1153  06AE                     u2435:
+  1154  06AE  1003               	clrc
+  1155  06AF  0DF0               	rlf	(___awmod@divisor),f
+  1156  06B0  0DF1               	rlf	(___awmod@divisor+1),f
+  1157  06B1  3EFF               	addlw	-1
+  1158  06B2  1D03               	skipz
+  1159  06B3  2EAE               	goto	u2435
+  1160                           	line	19
+  1161                           	
+  1162  06B4                     l2409:	
+  1163  06B4  3001               	movlw	(01h)
+  1164  06B5  00F4               	movwf	(??___awmod+0)+0
+  1165  06B6  0874               	movf	(??___awmod+0)+0,w
+  1166  06B7  07F5               	addwf	(___awmod@counter),f
+  1167  06B8  2EB9               	goto	l2411
+  1168                           	line	20
+  1169                           	
+  1170  06B9                     l1286:	
+  1171                           	line	17
+  1172                           	
+  1173  06B9                     l2411:	
+  1174  06B9  1FF1               	btfss	(___awmod@divisor+1),(15)&7
+  1175  06BA  2EBC               	goto	u2441
+  1176  06BB  2EBD               	goto	u2440
+  1177  06BC                     u2441:
+  1178  06BC  2EAD               	goto	l2407
+  1179  06BD                     u2440:
+  1180  06BD  2EBF               	goto	l2413
+  1181                           	
+  1182  06BE                     l1288:	
+  1183  06BE  2EBF               	goto	l2413
+  1184                           	line	21
+  1185                           	
+  1186  06BF                     l1289:	
+  1187                           	line	22
+  1188                           	
+  1189  06BF                     l2413:	
+  1190  06BF  0871               	movf	(___awmod@divisor+1),w
+  1191  06C0  0273               	subwf	(___awmod@dividend+1),w
+  1192  06C1  1D03               	skipz
+  1193  06C2  2EC5               	goto	u2455
+  1194  06C3  0870               	movf	(___awmod@divisor),w
+  1195  06C4  0272               	subwf	(___awmod@dividend),w
+  1196  06C5                     u2455:
+  1197  06C5  1C03               	skipc
+  1198  06C6  2EC8               	goto	u2451
+  1199  06C7  2EC9               	goto	u2450
+  1200  06C8                     u2451:
+  1201  06C8  2ED0               	goto	l2417
+  1202  06C9                     u2450:
+  1203                           	line	23
+  1204                           	
+  1205  06C9                     l2415:	
+  1206  06C9  0870               	movf	(___awmod@divisor),w
+  1207  06CA  02F2               	subwf	(___awmod@dividend),f
+  1208  06CB  0871               	movf	(___awmod@divisor+1),w
+  1209  06CC  1C03               	skipc
+  1210  06CD  03F3               	decf	(___awmod@dividend+1),f
+  1211  06CE  02F3               	subwf	(___awmod@dividend+1),f
+  1212  06CF  2ED0               	goto	l2417
+  1213                           	
+  1214  06D0                     l1290:	
+  1215                           	line	24
+  1216                           	
+  1217  06D0                     l2417:	
+  1218  06D0  3001               	movlw	01h
+  1219                           	
+  1220  06D1                     u2465:
+  1221  06D1  1003               	clrc
+  1222  06D2  0CF1               	rrf	(___awmod@divisor+1),f
+  1223  06D3  0CF0               	rrf	(___awmod@divisor),f
+  1224  06D4  3EFF               	addlw	-1
+  1225  06D5  1D03               	skipz
+  1226  06D6  2ED1               	goto	u2465
+  1227                           	line	25
+  1228                           	
+  1229  06D7                     l2419:	
+  1230  06D7  3001               	movlw	low(01h)
+  1231  06D8  02F5               	subwf	(___awmod@counter),f
+  1232  06D9  1D03               	btfss	status,2
+  1233  06DA  2EDC               	goto	u2471
+  1234  06DB  2EDD               	goto	u2470
+  1235  06DC                     u2471:
+  1236  06DC  2EBF               	goto	l2413
+  1237  06DD                     u2470:
+  1238  06DD  2EDF               	goto	l2421
+  1239                           	
+  1240  06DE                     l1291:	
+  1241  06DE  2EDF               	goto	l2421
+  1242                           	line	26
+  1243                           	
+  1244  06DF                     l1285:	
+  1245                           	line	27
+  1246                           	
+  1247  06DF                     l2421:	
+  1248  06DF  0876               	movf	(___awmod@sign),w
+  1249  06E0  1D03               	skipz
+  1250  06E1  2EE3               	goto	u2480
+  1251  06E2  2EE9               	goto	l2425
+  1252  06E3                     u2480:
+  1253                           	line	28
+  1254                           	
+  1255  06E3                     l2423:	
+  1256  06E3  09F2               	comf	(___awmod@dividend),f
+  1257  06E4  09F3               	comf	(___awmod@dividend+1),f
+  1258  06E5  0AF2               	incf	(___awmod@dividend),f
+  1259  06E6  1903               	skipnz
+  1260  06E7  0AF3               	incf	(___awmod@dividend+1),f
+  1261  06E8  2EE9               	goto	l2425
+  1262                           	
+  1263  06E9                     l1292:	
+  1264                           	line	29
+  1265                           	
+  1266  06E9                     l2425:	
+  1267  06E9  0873               	movf	(___awmod@dividend+1),w
+  1268  06EA  01F1               	clrf	(?___awmod+1)
+  1269  06EB  07F1               	addwf	(?___awmod+1)
+  1270  06EC  0872               	movf	(___awmod@dividend),w
+  1271  06ED  01F0               	clrf	(?___awmod)
+  1272  06EE  07F0               	addwf	(?___awmod)
+  1273                           
+  1274  06EF  2EF0               	goto	l1293
+  1275                           	
+  1276  06F0                     l2427:	
+  1277                           	line	30
+  1278                           	
+  1279  06F0                     l1293:	
+  1280  06F0  0008               	return
+  1281                           	opt stack 0
+  1282                           GLOBAL	__end_of___awmod
+  1283  06F1                     	__end_of___awmod:
+  1284 ;; =============== function ___awmod ends ============
+  1285                           
+  1286                           	signat	___awmod,8314
+  1287                           	global	___awdiv
+  1288                           psect	text269,local,class=CODE,delta=2
+  1289                           global __ptext269
+  1290  06F1                     __ptext269:
+  1291                           
+  1292 ;; *************** function ___awdiv *****************
+  1293 ;; Defined at:
+  1294 ;;		line 5 in file "C:\Program Files (x86)\HI-TECH Software\PICC\9.81\sources\awdiv.c"
+  1295 ;; Parameters:    Size  Location     Type
+  1296 ;;  divisor         2    0[COMMON] int 
+  1297 ;;  dividend        2    2[COMMON] int 
+  1298 ;; Auto vars:     Size  Location     Type
+  1299 ;;  quotient        2    7[COMMON] int 
+  1300 ;;  sign            1    6[COMMON] unsigned char 
+  1301 ;;  counter         1    5[COMMON] unsigned char 
+  1302 ;; Return value:  Size  Location     Type
+  1303 ;;                  2    0[COMMON] int 
+  1304 ;; Registers used:
+  1305 ;;		wreg, status,2, status,0
+  1306 ;; Tracked objects:
+  1307 ;;		On entry : 0/0
+  1308 ;;		On exit  : 0/0
+  1309 ;;		Unchanged: 0/0
+  1310 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1311 ;;      Params:         4       0       0       0       0
+  1312 ;;      Locals:         4       0       0       0       0
+  1313 ;;      Temps:          1       0       0       0       0
+  1314 ;;      Totals:         9       0       0       0       0
+  1315 ;;Total ram usage:        9 bytes
+  1316 ;; Hardware stack levels used:    1
+  1317 ;; This function calls:
+  1318 ;;		Nothing
+  1319 ;; This function is called by:
+  1320 ;;		_main
+  1321 ;; This function uses a non-reentrant model
+  1322 ;;
+  1323                           psect	text269
+  1324                           	file	"C:\Program Files (x86)\HI-TECH Software\PICC\9.81\sources\awdiv.c"
+  1325                           	line	5
+  1326                           	global	__size_of___awdiv
+  1327  0074                     	__size_of___awdiv	equ	__end_of___awdiv-___awdiv
+  1328                           	
+  1329  06F1                     ___awdiv:	
+  1330                           	opt	stack 7
+  1331                           ; Regs used in ___awdiv: [wreg+status,2+status,0]
+  1332                           	line	9
+  1333                           	
+  1334  06F1                     l2355:	
+  1335  06F1  01F6               	clrf	(___awdiv@sign)
+  1336                           	line	10
+  1337  06F2  1FF1               	btfss	(___awdiv@divisor+1),7
+  1338  06F3  2EF5               	goto	u2301
+  1339  06F4  2EF6               	goto	u2300
+  1340  06F5                     u2301:
+  1341  06F5  2EFF               	goto	l2359
+  1342  06F6                     u2300:
+  1343                           	line	11
+  1344                           	
+  1345  06F6                     l2357:	
+  1346  06F6  09F0               	comf	(___awdiv@divisor),f
+  1347  06F7  09F1               	comf	(___awdiv@divisor+1),f
+  1348  06F8  0AF0               	incf	(___awdiv@divisor),f
+  1349  06F9  1903               	skipnz
+  1350  06FA  0AF1               	incf	(___awdiv@divisor+1),f
+  1351                           	line	12
+  1352  06FB  01F6               	clrf	(___awdiv@sign)
+  1353  06FC  1403               	bsf	status,0
+  1354  06FD  0DF6               	rlf	(___awdiv@sign),f
+  1355  06FE  2EFF               	goto	l2359
+  1356                           	line	13
+  1357                           	
+  1358  06FF                     l1215:	
+  1359                           	line	14
+  1360                           	
+  1361  06FF                     l2359:	
+  1362  06FF  1FF3               	btfss	(___awdiv@dividend+1),7
+  1363  0700  2F02               	goto	u2311
+  1364  0701  2F03               	goto	u2310
+  1365  0702                     u2311:
+  1366  0702  2F0D               	goto	l2365
+  1367  0703                     u2310:
+  1368                           	line	15
+  1369                           	
+  1370  0703                     l2361:	
+  1371  0703  09F2               	comf	(___awdiv@dividend),f
+  1372  0704  09F3               	comf	(___awdiv@dividend+1),f
+  1373  0705  0AF2               	incf	(___awdiv@dividend),f
+  1374  0706  1903               	skipnz
+  1375  0707  0AF3               	incf	(___awdiv@dividend+1),f
+  1376                           	line	16
+  1377                           	
+  1378  0708                     l2363:	
+  1379  0708  3001               	movlw	(01h)
+  1380  0709  00F4               	movwf	(??___awdiv+0)+0
+  1381  070A  0874               	movf	(??___awdiv+0)+0,w
+  1382  070B  06F6               	xorwf	(___awdiv@sign),f
+  1383  070C  2F0D               	goto	l2365
+  1384                           	line	17
+  1385                           	
+  1386  070D                     l1216:	
+  1387                           	line	18
+  1388                           	
+  1389  070D                     l2365:	
+  1390  070D  01F7               	clrf	(___awdiv@quotient)
+  1391  070E  01F8               	clrf	(___awdiv@quotient+1)
+  1392                           	line	19
+  1393                           	
+  1394  070F                     l2367:	
+  1395  070F  0871               	movf	(___awdiv@divisor+1),w
+  1396  0710  0470               	iorwf	(___awdiv@divisor),w
+  1397  0711  1903               	skipnz
+  1398  0712  2F14               	goto	u2321
+  1399  0713  2F15               	goto	u2320
+  1400  0714                     u2321:
+  1401  0714  2F53               	goto	l2387
+  1402  0715                     u2320:
+  1403                           	line	20
+  1404                           	
+  1405  0715                     l2369:	
+  1406  0715  01F5               	clrf	(___awdiv@counter)
+  1407  0716  1403               	bsf	status,0
+  1408  0717  0DF5               	rlf	(___awdiv@counter),f
+  1409                           	line	21
+  1410  0718  2F25               	goto	l2375
+  1411                           	
+  1412  0719                     l1219:	
+  1413                           	line	22
+  1414                           	
+  1415  0719                     l2371:	
+  1416  0719  3001               	movlw	01h
+  1417                           	
+  1418  071A                     u2335:
+  1419  071A  1003               	clrc
+  1420  071B  0DF0               	rlf	(___awdiv@divisor),f
+  1421  071C  0DF1               	rlf	(___awdiv@divisor+1),f
+  1422  071D  3EFF               	addlw	-1
+  1423  071E  1D03               	skipz
+  1424  071F  2F1A               	goto	u2335
+  1425                           	line	23
+  1426                           	
+  1427  0720                     l2373:	
+  1428  0720  3001               	movlw	(01h)
+  1429  0721  00F4               	movwf	(??___awdiv+0)+0
+  1430  0722  0874               	movf	(??___awdiv+0)+0,w
+  1431  0723  07F5               	addwf	(___awdiv@counter),f
+  1432  0724  2F25               	goto	l2375
+  1433                           	line	24
+  1434                           	
+  1435  0725                     l1218:	
+  1436                           	line	21
+  1437                           	
+  1438  0725                     l2375:	
+  1439  0725  1FF1               	btfss	(___awdiv@divisor+1),(15)&7
+  1440  0726  2F28               	goto	u2341
+  1441  0727  2F29               	goto	u2340
+  1442  0728                     u2341:
+  1443  0728  2F19               	goto	l2371
+  1444  0729                     u2340:
+  1445  0729  2F2B               	goto	l2377
+  1446                           	
+  1447  072A                     l1220:	
+  1448  072A  2F2B               	goto	l2377
+  1449                           	line	25
+  1450                           	
+  1451  072B                     l1221:	
+  1452                           	line	26
+  1453                           	
+  1454  072B                     l2377:	
+  1455  072B  3001               	movlw	01h
+  1456                           	
+  1457  072C                     u2355:
+  1458  072C  1003               	clrc
+  1459  072D  0DF7               	rlf	(___awdiv@quotient),f
+  1460  072E  0DF8               	rlf	(___awdiv@quotient+1),f
+  1461  072F  3EFF               	addlw	-1
+  1462  0730  1D03               	skipz
+  1463  0731  2F2C               	goto	u2355
+  1464                           	line	27
+  1465  0732  0871               	movf	(___awdiv@divisor+1),w
+  1466  0733  0273               	subwf	(___awdiv@dividend+1),w
+  1467  0734  1D03               	skipz
+  1468  0735  2F38               	goto	u2365
+  1469  0736  0870               	movf	(___awdiv@divisor),w
+  1470  0737  0272               	subwf	(___awdiv@dividend),w
+  1471  0738                     u2365:
+  1472  0738  1C03               	skipc
+  1473  0739  2F3B               	goto	u2361
+  1474  073A  2F3C               	goto	u2360
+  1475  073B                     u2361:
+  1476  073B  2F44               	goto	l2383
+  1477  073C                     u2360:
+  1478                           	line	28
+  1479                           	
+  1480  073C                     l2379:	
+  1481  073C  0870               	movf	(___awdiv@divisor),w
+  1482  073D  02F2               	subwf	(___awdiv@dividend),f
+  1483  073E  0871               	movf	(___awdiv@divisor+1),w
+  1484  073F  1C03               	skipc
+  1485  0740  03F3               	decf	(___awdiv@dividend+1),f
+  1486  0741  02F3               	subwf	(___awdiv@dividend+1),f
+  1487                           	line	29
+  1488                           	
+  1489  0742                     l2381:	
+  1490  0742  1477               	bsf	(___awdiv@quotient)+(0/8),(0)&7
+  1491  0743  2F44               	goto	l2383
+  1492                           	line	30
+  1493                           	
+  1494  0744                     l1222:	
+  1495                           	line	31
+  1496                           	
+  1497  0744                     l2383:	
+  1498  0744  3001               	movlw	01h
+  1499                           	
+  1500  0745                     u2375:
+  1501  0745  1003               	clrc
+  1502  0746  0CF1               	rrf	(___awdiv@divisor+1),f
+  1503  0747  0CF0               	rrf	(___awdiv@divisor),f
+  1504  0748  3EFF               	addlw	-1
+  1505  0749  1D03               	skipz
+  1506  074A  2F45               	goto	u2375
+  1507                           	line	32
+  1508                           	
+  1509  074B                     l2385:	
+  1510  074B  3001               	movlw	low(01h)
+  1511  074C  02F5               	subwf	(___awdiv@counter),f
+  1512  074D  1D03               	btfss	status,2
+  1513  074E  2F50               	goto	u2381
+  1514  074F  2F51               	goto	u2380
+  1515  0750                     u2381:
+  1516  0750  2F2B               	goto	l2377
+  1517  0751                     u2380:
+  1518  0751  2F53               	goto	l2387
+  1519                           	
+  1520  0752                     l1223:	
+  1521  0752  2F53               	goto	l2387
+  1522                           	line	33
+  1523                           	
+  1524  0753                     l1217:	
+  1525                           	line	34
+  1526                           	
+  1527  0753                     l2387:	
+  1528  0753  0876               	movf	(___awdiv@sign),w
+  1529  0754  1D03               	skipz
+  1530  0755  2F57               	goto	u2390
+  1531  0756  2F5D               	goto	l2391
+  1532  0757                     u2390:
+  1533                           	line	35
+  1534                           	
+  1535  0757                     l2389:	
+  1536  0757  09F7               	comf	(___awdiv@quotient),f
+  1537  0758  09F8               	comf	(___awdiv@quotient+1),f
+  1538  0759  0AF7               	incf	(___awdiv@quotient),f
+  1539  075A  1903               	skipnz
+  1540  075B  0AF8               	incf	(___awdiv@quotient+1),f
+  1541  075C  2F5D               	goto	l2391
+  1542                           	
+  1543  075D                     l1224:	
+  1544                           	line	36
+  1545                           	
+  1546  075D                     l2391:	
+  1547  075D  0878               	movf	(___awdiv@quotient+1),w
+  1548  075E  01F1               	clrf	(?___awdiv+1)
+  1549  075F  07F1               	addwf	(?___awdiv+1)
+  1550  0760  0877               	movf	(___awdiv@quotient),w
+  1551  0761  01F0               	clrf	(?___awdiv)
+  1552  0762  07F0               	addwf	(?___awdiv)
+  1553                           
+  1554  0763  2F64               	goto	l1225
+  1555                           	
+  1556  0764                     l2393:	
+  1557                           	line	37
+  1558                           	
+  1559  0764                     l1225:	
+  1560  0764  0008               	return
+  1561                           	opt stack 0
+  1562                           GLOBAL	__end_of___awdiv
+  1563  0765                     	__end_of___awdiv:
+  1564 ;; =============== function ___awdiv ends ============
+  1565                           
+  1566                           	signat	___awdiv,8314
+  1567                           	global	_pwm
+  1568                           psect	text270,local,class=CODE,delta=2
+  1569                           global __ptext270
+  1570  05FE                     __ptext270:
+  1571                           
+  1572 ;; *************** function _pwm *****************
+  1573 ;; Defined at:
+  1574 ;;		line 29 in file "E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+  1575 ;; Parameters:    Size  Location     Type
+  1576 ;;  a               2    0[COMMON] unsigned int 
+  1577 ;; Auto vars:     Size  Location     Type
+  1578 ;;		None
+  1579 ;; Return value:  Size  Location     Type
+  1580 ;;		None               void
+  1581 ;; Registers used:
+  1582 ;;		wreg, status,2, status,0
+  1583 ;; Tracked objects:
+  1584 ;;		On entry : 0/0
+  1585 ;;		On exit  : 0/0
+  1586 ;;		Unchanged: 0/0
+  1587 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1588 ;;      Params:         2       0       0       0       0
+  1589 ;;      Locals:         0       0       0       0       0
+  1590 ;;      Temps:          2       0       0       0       0
+  1591 ;;      Totals:         4       0       0       0       0
+  1592 ;;Total ram usage:        4 bytes
+  1593 ;; Hardware stack levels used:    1
+  1594 ;; This function calls:
+  1595 ;;		Nothing
+  1596 ;; This function is called by:
+  1597 ;;		_main
+  1598 ;; This function uses a non-reentrant model
+  1599 ;;
+  1600                           psect	text270
+  1601                           	file	"E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+  1602                           	line	29
+  1603                           	global	__size_of_pwm
+  1604  0014                     	__size_of_pwm	equ	__end_of_pwm-_pwm
+  1605                           	
+  1606  05FE                     _pwm:	
+  1607                           	opt	stack 7
+  1608                           ; Regs used in _pwm: [wreg+status,2+status,0]
+  1609                           	line	30
+  1610                           	
+  1611  05FE                     l2353:	
+  1612                           ;adcpwm.c: 30: CCPR1L=a>>2;
+  1613  05FE  0871               	movf	(pwm@a+1),w
+  1614  05FF  00F3               	movwf	(??_pwm+0)+0+1
+  1615  0600  0870               	movf	(pwm@a),w
+  1616  0601  00F2               	movwf	(??_pwm+0)+0
+  1617  0602  3002               	movlw	02h
+  1618  0603                     u2295:
+  1619  0603  1003               	clrc
+  1620  0604  0CF3               	rrf	(??_pwm+0)+1,f
+  1621  0605  0CF2               	rrf	(??_pwm+0)+0,f
+  1622  0606  3EFF               	addlw	-1
+  1623  0607  1D03               	skipz
+  1624  0608  2E03               	goto	u2295
+  1625  0609  0872               	movf	0+(??_pwm+0)+0,w
+  1626  060A  1283               	bcf	status, 5	;RP0=0, select bank0
+  1627  060B  1303               	bcf	status, 6	;RP1=0, select bank0
+  1628  060C  0095               	movwf	(21)	;volatile
+  1629                           	line	31
+  1630                           ;adcpwm.c: 31: CCP1CON=a&0x30|CCP1CON;
+  1631  060D  0870               	movf	(pwm@a),w
+  1632  060E  3930               	andlw	030h
+  1633  060F  0417               	iorwf	(23),w
+  1634  0610  0097               	movwf	(23)	;volatile
+  1635                           	line	32
+  1636                           	
+  1637  0611                     l1043:	
+  1638  0611  0008               	return
+  1639                           	opt stack 0
+  1640                           GLOBAL	__end_of_pwm
+  1641  0612                     	__end_of_pwm:
+  1642 ;; =============== function _pwm ends ============
+  1643                           
+  1644                           	signat	_pwm,4216
+  1645                           	global	_delay
+  1646                           psect	text271,local,class=CODE,delta=2
+  1647                           global __ptext271
+  1648  05EA                     __ptext271:
+  1649                           
+  1650 ;; *************** function _delay *****************
+  1651 ;; Defined at:
+  1652 ;;		line 25 in file "E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+  1653 ;; Parameters:    Size  Location     Type
+  1654 ;;  a               2    0[COMMON] unsigned int 
+  1655 ;; Auto vars:     Size  Location     Type
+  1656 ;;		None
+  1657 ;; Return value:  Size  Location     Type
+  1658 ;;		None               void
+  1659 ;; Registers used:
+  1660 ;;		wreg
+  1661 ;; Tracked objects:
+  1662 ;;		On entry : 0/0
+  1663 ;;		On exit  : 0/0
+  1664 ;;		Unchanged: 0/0
+  1665 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1666 ;;      Params:         2       0       0       0       0
+  1667 ;;      Locals:         0       0       0       0       0
+  1668 ;;      Temps:          0       0       0       0       0
+  1669 ;;      Totals:         2       0       0       0       0
+  1670 ;;Total ram usage:        2 bytes
+  1671 ;; Hardware stack levels used:    1
+  1672 ;; This function calls:
+  1673 ;;		Nothing
+  1674 ;; This function is called by:
+  1675 ;;		_pulse
+  1676 ;; This function uses a non-reentrant model
+  1677 ;;
+  1678                           psect	text271
+  1679                           	file	"E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+  1680                           	line	25
+  1681                           	global	__size_of_delay
+  1682  0014                     	__size_of_delay	equ	__end_of_delay-_delay
+  1683                           	
+  1684  05EA                     _delay:	
+  1685                           	opt	stack 5
+  1686                           ; Regs used in _delay: [wreg]
+  1687                           	line	26
+  1688                           	
+  1689  05EA                     l2349:	
+  1690                           ;adcpwm.c: 26: while(a--);
+  1691  05EA  2DEC               	goto	l2351
+  1692                           	
+  1693  05EB                     l1038:	
+  1694  05EB  2DEC               	goto	l2351
+  1695                           	
+  1696  05EC                     l1037:	
+  1697                           	
+  1698  05EC                     l2351:	
+  1699  05EC  3001               	movlw	low(01h)
+  1700  05ED  02F0               	subwf	(delay@a),f
+  1701  05EE  3000               	movlw	high(01h)
+  1702  05EF  1C03               	skipc
+  1703  05F0  03F1               	decf	(delay@a+1),f
+  1704  05F1  02F1               	subwf	(delay@a+1),f
+  1705  05F2  30FF               	movlw	high(0FFFFh)
+  1706  05F3  0671               	xorwf	((delay@a+1)),w
+  1707  05F4  1D03               	skipz
+  1708  05F5  2DF8               	goto	u2285
+  1709  05F6  30FF               	movlw	low(0FFFFh)
+  1710  05F7  0670               	xorwf	((delay@a)),w
+  1711  05F8                     u2285:
+  1712                           
+  1713  05F8  1D03               	skipz
+  1714  05F9  2DFB               	goto	u2281
+  1715  05FA  2DFC               	goto	u2280
+  1716  05FB                     u2281:
+  1717  05FB  2DEC               	goto	l2351
+  1718  05FC                     u2280:
+  1719  05FC  2DFD               	goto	l1040
+  1720                           	
+  1721  05FD                     l1039:	
+  1722                           	line	27
+  1723                           	
+  1724  05FD                     l1040:	
+  1725  05FD  0008               	return
+  1726                           	opt stack 0
+  1727                           GLOBAL	__end_of_delay
+  1728  05FE                     	__end_of_delay:
+  1729 ;; =============== function _delay ends ============
+  1730                           
+  1731                           	signat	_delay,4216
+  1732                           	global	_adc
+  1733                           psect	text272,local,class=CODE,delta=2
+  1734                           global __ptext272
+  1735  062B                     __ptext272:
+  1736                           
+  1737 ;; *************** function _adc *****************
+  1738 ;; Defined at:
+  1739 ;;		line 7 in file "E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+  1740 ;; Parameters:    Size  Location     Type
+  1741 ;;		None
+  1742 ;; Auto vars:     Size  Location     Type
+  1743 ;;  low             2    4[COMMON] int 
+  1744 ;;  high            2    2[COMMON] int 
+  1745 ;; Return value:  Size  Location     Type
+  1746 ;;                  2  1026[COMMON] int 
+  1747 ;; Registers used:
+  1748 ;;		wreg, status,2, status,0
+  1749 ;; Tracked objects:
+  1750 ;;		On entry : 0/0
+  1751 ;;		On exit  : 0/0
+  1752 ;;		Unchanged: 0/0
+  1753 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1754 ;;      Params:         0       0       0       0       0
+  1755 ;;      Locals:         4       0       0       0       0
+  1756 ;;      Temps:          2       0       0       0       0
+  1757 ;;      Totals:         6       0       0       0       0
+  1758 ;;Total ram usage:        6 bytes
+  1759 ;; Hardware stack levels used:    1
+  1760 ;; This function calls:
+  1761 ;;		Nothing
+  1762 ;; This function is called by:
+  1763 ;;		_main
+  1764 ;; This function uses a non-reentrant model
+  1765 ;;
+  1766                           psect	text272
+  1767                           	file	"E:\KTU\Softwares\MP lab\PWM\ADCpwm\ADCpwm\adcpwm.c"
+  1768                           	line	7
+  1769                           	global	__size_of_adc
+  1770  0060                     	__size_of_adc	equ	__end_of_adc-_adc
+  1771                           	
+  1772  062B                     _adc:	
+  1773                           	opt	stack 7
+  1774                           ; Regs used in _adc: [wreg+status,2+status,0]
+  1775                           	line	9
+  1776                           	
+  1777  062B                     l2327:	
+  1778                           ;adcpwm.c: 8: int high,low;
+  1779                           ;adcpwm.c: 9: ADCON0=0XAB;
+  1780  062B  30AB               	movlw	(0ABh)
+  1781  062C  1283               	bcf	status, 5	;RP0=0, select bank0
+  1782  062D  1303               	bcf	status, 6	;RP1=0, select bank0
+  1783  062E  009F               	movwf	(31)	;volatile
+  1784                           	line	10
+  1785                           ;adcpwm.c: 10: ADCON1=0X80;
+  1786  062F  3080               	movlw	(080h)
+  1787  0630  1683               	bsf	status, 5	;RP0=1, select bank1
+  1788  0631  1303               	bcf	status, 6	;RP1=0, select bank1
+  1789  0632  009F               	movwf	(159)^080h	;volatile
+  1790                           	line	11
+  1791                           ;adcpwm.c: 11: while(GO!=0);
+  1792  0633  2E34               	goto	l1027
+  1793                           	
+  1794  0634                     l1028:	
+  1795                           	
+  1796  0634                     l1027:	
+  1797  0634  1283               	bcf	status, 5	;RP0=0, select bank0
+  1798  0635  189F               	btfsc	(249/8),(249)&7
+  1799  0636  2E38               	goto	u2231
+  1800  0637  2E39               	goto	u2230
+  1801  0638                     u2231:
+  1802  0638  2E34               	goto	l1027
+  1803  0639                     u2230:
+  1804  0639  2E3A               	goto	l2329
+  1805                           	
+  1806  063A                     l1029:	
+  1807                           	line	12
+  1808                           	
+  1809  063A                     l2329:	
+  1810                           ;adcpwm.c: 12: low=ADRESL;
+  1811  063A  1683               	bsf	status, 5	;RP0=1, select bank1
+  1812  063B  1303               	bcf	status, 6	;RP1=0, select bank1
+  1813  063C  081E               	movf	(158)^080h,w	;volatile
+  1814  063D  00F0               	movwf	(??_adc+0)+0
+  1815  063E  01F1               	clrf	(??_adc+0)+0+1
+  1816  063F  0870               	movf	0+(??_adc+0)+0,w
+  1817  0640  00F4               	movwf	(adc@low)
+  1818  0641  0871               	movf	1+(??_adc+0)+0,w
+  1819  0642  00F5               	movwf	(adc@low+1)
+  1820                           	line	13
+  1821                           ;adcpwm.c: 13: high=ADRESH;
+  1822  0643  1283               	bcf	status, 5	;RP0=0, select bank0
+  1823  0644  1303               	bcf	status, 6	;RP1=0, select bank0
+  1824  0645  081E               	movf	(30),w	;volatile
+  1825  0646  00F0               	movwf	(??_adc+0)+0
+  1826  0647  01F1               	clrf	(??_adc+0)+0+1
+  1827  0648  0870               	movf	0+(??_adc+0)+0,w
+  1828  0649  00F2               	movwf	(adc@high)
+  1829  064A  0871               	movf	1+(??_adc+0)+0,w
+  1830  064B  00F3               	movwf	(adc@high+1)
+  1831                           	line	14
+  1832                           	
+  1833  064C                     l2331:	
+  1834                           ;adcpwm.c: 14: if(high==0)
+  1835  064C  0873               	movf	((adc@high+1)),w
+  1836  064D  0472               	iorwf	((adc@high)),w
+  1837  064E  1D03               	skipz
+  1838  064F  2E51               	goto	u2241
+  1839  0650  2E52               	goto	u2240
+  1840  0651                     u2241:
+  1841  0651  2E59               	goto	l2335
+  1842  0652                     u2240:
+  1843                           	line	15
+  1844                           	
+  1845  0652                     l2333:	
+  1846                           ;adcpwm.c: 15: tot = low+0;
+  1847  0652  0875               	movf	(adc@low+1),w
+  1848  0653  01A1               	clrf	(_tot+1)
+  1849  0654  07A1               	addwf	(_tot+1)
+  1850  0655  0874               	movf	(adc@low),w
+  1851  0656  01A0               	clrf	(_tot)
+  1852  0657  07A0               	addwf	(_tot)
+  1853                           
+  1854  0658  2E59               	goto	l2335
+  1855                           	
+  1856  0659                     l1030:	
+  1857                           	line	16
+  1858                           	
+  1859  0659                     l2335:	
+  1860                           ;adcpwm.c: 16: if(high==1)
+  1861  0659  3001               	movlw	01h
+  1862  065A  0672               	xorwf	(adc@high),w
+  1863  065B  0473               	iorwf	(adc@high+1),w
+  1864  065C  1D03               	skipz
+  1865  065D  2E5F               	goto	u2251
+  1866  065E  2E60               	goto	u2250
+  1867  065F                     u2251:
+  1868  065F  2E69               	goto	l2339
+  1869  0660                     u2250:
+  1870                           	line	17
+  1871                           	
+  1872  0660                     l2337:	
+  1873                           ;adcpwm.c: 17: tot = low+256;
+  1874  0660  0874               	movf	(adc@low),w
+  1875  0661  3E00               	addlw	low(0100h)
+  1876  0662  00A0               	movwf	(_tot)
+  1877  0663  0875               	movf	(adc@low+1),w
+  1878  0664  1803               	skipnc
+  1879  0665  3E01               	addlw	1
+  1880  0666  3E01               	addlw	high(0100h)
+  1881  0667  00A1               	movwf	1+(_tot)
+  1882  0668  2E69               	goto	l2339
+  1883                           	
+  1884  0669                     l1031:	
+  1885                           	line	18
+  1886                           	
+  1887  0669                     l2339:	
+  1888                           ;adcpwm.c: 18: if(high==2)
+  1889  0669  3002               	movlw	02h
+  1890  066A  0672               	xorwf	(adc@high),w
+  1891  066B  0473               	iorwf	(adc@high+1),w
+  1892  066C  1D03               	skipz
+  1893  066D  2E6F               	goto	u2261
+  1894  066E  2E70               	goto	u2260
+  1895  066F                     u2261:
+  1896  066F  2E79               	goto	l2343
+  1897  0670                     u2260:
+  1898                           	line	19
+  1899                           	
+  1900  0670                     l2341:	
+  1901                           ;adcpwm.c: 19: tot = low+512;
+  1902  0670  0874               	movf	(adc@low),w
+  1903  0671  3E00               	addlw	low(0200h)
+  1904  0672  00A0               	movwf	(_tot)
+  1905  0673  0875               	movf	(adc@low+1),w
+  1906  0674  1803               	skipnc
+  1907  0675  3E01               	addlw	1
+  1908  0676  3E02               	addlw	high(0200h)
+  1909  0677  00A1               	movwf	1+(_tot)
+  1910  0678  2E79               	goto	l2343
+  1911                           	
+  1912  0679                     l1032:	
+  1913                           	line	20
+  1914                           	
+  1915  0679                     l2343:	
+  1916                           ;adcpwm.c: 20: if(high==3)
+  1917  0679  3003               	movlw	03h
+  1918  067A  0672               	xorwf	(adc@high),w
+  1919  067B  0473               	iorwf	(adc@high+1),w
+  1920  067C  1D03               	skipz
+  1921  067D  2E7F               	goto	u2271
+  1922  067E  2E80               	goto	u2270
+  1923  067F                     u2271:
+  1924  067F  2E8A               	goto	l1034
+  1925  0680                     u2270:
+  1926                           	line	21
+  1927                           	
+  1928  0680                     l2345:	
+  1929                           ;adcpwm.c: 21: tot = low+768;
+  1930  0680  0874               	movf	(adc@low),w
+  1931  0681  3E00               	addlw	low(0300h)
+  1932  0682  00A0               	movwf	(_tot)
+  1933  0683  0875               	movf	(adc@low+1),w
+  1934  0684  1803               	skipnc
+  1935  0685  3E01               	addlw	1
+  1936  0686  3E03               	addlw	high(0300h)
+  1937  0687  00A1               	movwf	1+(_tot)
+  1938  0688  2E8A               	goto	l1034
+  1939                           	
+  1940  0689                     l1033:	
+  1941  0689  2E8A               	goto	l1034
+  1942                           	line	22
+  1943                           	
+  1944  068A                     l2347:	
+  1945                           	line	23
+  1946                           ;adcpwm.c: 22: return tot;
+  1947                           ;	Return value of _adc is never used
+  1948                           	
+  1949  068A                     l1034:	
+  1950  068A  0008               	return
+  1951                           	opt stack 0
+  1952                           GLOBAL	__end_of_adc
+  1953  068B                     	__end_of_adc:
+  1954 ;; =============== function _adc ends ============
+  1955                           
+  1956                           	signat	_adc,90
+  1957                           psect	text273,local,class=CODE,delta=2
+  1958                           global __ptext273
+  1959  0000                     __ptext273:
+  1960                           	global	btemp
+  1961  007E                     	btemp set 07Eh
+  1962                           
+  1963                           	DABS	1,126,2	;btemp
+  1964                           	global	wtemp0
+  1965  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Tue Aug 10 17:16:26 2021
+
+                  _GO 00F9          ___awdiv@sign 0076                    _on 05B8                   ?_on 0070  
+                 _RA0 0028                   _RA1 0029                   _RA2 002A                   _adc 062B  
+                 _pwm 05FE                   _tot 0020          ___awmod@sign 0076                  ??_on 0072  
+                ?_adc 0070                  l1030 0659                  l1031 0669                  l1032 0679  
+                l1040 05FD                  l1033 0689                  l1034 068A                  l1027 0634  
+                l1043 0611                  l1028 0634                  l1220 072A                  l1052 05CF  
+                l1029 063A                  l1037 05EC                  l1221 072B                  l1061 079C  
+                l1038 05EB                  l1222 0744                  l1046 062A                  l1062 07B8  
+                l1039 05FD                  l1223 0752                  l1215 06FF                  l1055 05DC  
+                l1063 07FB                  l1224 075D                  l1216 070D                  l1064 07FC  
+                l1225 0764                  l1217 0753                  l1049 05C3                  l1065 07FD  
+                l1218 0725                  l1058 05E9                  l1066 07FD                  l1219 0719  
+                l2401 069D                  l1290 06D0                  l2331 064C                  l1291 06DE  
+                l2411 06B9                  l2403 06A3                  l1283 0699                  l1292 06E9  
+                l1284 06A3                  l2341 0670                  l2333 0652                  l1293 06F0  
+                l1285 06DF                  l2413 06BF                  l2405 06A9                  l2421 06DF  
+                l1286 06B9                  l2343 0679                  l2335 0659                  l2327 062B  
+                l2351 05EC                  l2423 06E3                  l2415 06C9                  l2407 06AD  
+                l1287 06AD                  l2431 0615                  l1288 06BE                  l2345 0680  
+                l2337 0660                  l2329 063A                  l2353 05FE                  l2361 0703  
+                l2425 06E9                  l2417 06D0                  l1289 06BF                  l2409 06B4  
+                l2433 061E                  l2441 05C4                  l2347 068A                  l2339 0669  
+                l2371 0719                  l2363 0708                  l2355 06F1                  l2427 06F0  
+                l2419 06D7                  l2435 05B8                  l2443 05C8                  l2451 05D7  
+                l2349 05EA                  l2381 0742                  l2373 0720                  l2365 070D  
+                l2357 06F6                  l2429 0612                  l2437 05BC                  l2445 05CA  
+                l2453 05DE                  l2461 0770                  l2391 075D                  l2383 0744  
+                l2375 0725                  l2367 070F                  l2359 06FF                  l2439 05BE  
+                l2447 05D1                  l2455 05E2                  l2471 0782                  l2463 0774  
+                l2393 0764                  l2385 074B                  l2377 072B                  l2369 0715  
+                l2449 05D5                  l2457 05E4                  l2481 079C                  l2473 0785  
+                l2465 0777                  l2379 073C                  l2387 0753                  l2395 068B  
+                l2491 07F0                  l2483 07A1                  l2475 0788                  l2467 077A  
+                l2459 0765                  l2389 0757                  l2397 0690                  l2493 07F6  
+                l2485 07B2                  l2477 0791                  l2469 077F                  l2399 0699  
+                l2487 07B7                  l2479 0796                  l2489 07B8                  ?_pwm 0070  
+                u2300 06F6                  u2301 06F5                  u2230 0639                  u2310 0703  
+                u2231 0638                  u2311 0702                  u2240 0652                  u2320 0715  
+                u2400 0690                  u2241 0651                  u2321 0714                  u2401 068F  
+                u2250 0660                  u2410 069D                  u2251 065F                  u2411 069C  
+                u2260 0670                  u2340 0729                  u2420 06A9                  u2500 07FA  
+                u2261 066F                  u2341 0728                  u2421 06A8                  u2501 07F9  
+                u2270 0680                  u2271 067F                  u2335 071A                  u2280 05FC  
+                u2360 073C                  u2440 06BD                  u2281 05FB                  u2361 073B  
+                u2441 06BC                  u2450 06C9                  u2355 072C                  u2451 06C8  
+                u2435 06AE                  u2380 0751                  u2285 05F8                  u2381 0750  
+                u2365 0738                  u2390 0757                  u2470 06DD                  u2295 0603  
+                u2375 0745                  u2471 06DC                  u2455 06C5                  u2480 06E3  
+                u2465 06D1                  u2490 07B6                  u2491 07B5           display@data 0072  
+                _main 0765                  btemp 007E                  _type 05C4                  pwm@a 0070  
+                start 0000                 ??_adc 0070                 ??_pwm 0072                 ?_main 0070  
+     __end_of___awdiv 0765       __end_of___awmod 06F1                 _ANSEL 0188                 ?_type 0070  
+     ___awdiv@divisor 0070                 _T2CON 0012       ___awdiv@counter 0075       __end_of_address 05DD  
+               _PORTA 0005                 _PORTB 0006                 _PORTC 0007                 _PORTD 0008  
+               _TRISA 0085                 _TRISB 0086                 _TRISC 0087                 _TRISD 0088  
+     __end_of_display 05EA                 _delay 05EA                 _pulse 0612                 main@i 007B  
+               status 0003                 wtemp0 007E          __end_of_main 0800          __end_of_type 05D0  
+              ??_main 0079                ??_type 0072                ?_delay 0070                _ADCON0 001F  
+              _ADCON1 009F                _ADRESH 001E                _ADRESL 009E                _CCPR1L 0015  
+    ___awdiv@dividend 0072                ?_pulse 0070                _ANSELH 0189                adc@low 0074  
+           ??___awdiv 0074             ??___awmod 0074             ??_address 0072                delay@a 0070  
+    ___awdiv@quotient 0077       ___awmod@divisor 0070       ___awmod@counter 0075             ??_display 0072  
+      __pcstackCOMMON 0070         __end_of_delay 05FE         __end_of_pulse 062B            __end_of_on 05C4  
+             ??_delay 0072               ??_pulse 0072            __pbssBANK0 0020            __pmaintext 0765  
+             _CCP1CON 0017               ___awdiv 06F1               ___awmod 068B               adc@high 0072  
+             _address 05D0               _display 05DD          __size_of_adc 0060          __size_of_pwm 0014  
+    ___awmod@dividend 0072  end_of_initialization 05B4   start_initialization 05B2           __end_of_adc 068B  
+         __end_of_pwm 0612              ?___awdiv 0070             __ptext270 05FE             __ptext262 0000  
+           __ptext271 05EA             __ptext263 05DD             __ptext272 062B             __ptext264 05D0  
+           __ptext273 0000             __ptext265 05C4             __ptext266 05B8             __ptext267 0612  
+            ?___awmod 0070             __ptext268 068B             __ptext269 06F1              ?_address 0070  
+            ?_display 0070        __size_of_delay 0014        __size_of_pulse 0019           __size_of_on 000C  
+         address@data 0072             main@count 0079      __size_of___awdiv 0074      __size_of___awmod 0066  
+    __size_of_address 000D      __size_of_display 000D         __size_of_main 009B         __size_of_type 000C  

@@ -1,0 +1,11 @@
+_timer0: CODE, 853 0 15
+_delay: CODE, 885 0 20
+_display: CODE, 840 0 13
+_main: CODE, 1045 0 1003
+_address: CODE, 827 0 13
+_type: CODE, 803 0 12
+_on: CODE, 791 0 12
+_pulse: CODE, 905 0 25
+_clear: CODE, 815 0 12
+___wmul: CODE, 1003 0 42
+Total: 1167

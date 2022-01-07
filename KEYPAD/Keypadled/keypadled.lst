@@ -1,0 +1,1270 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Sat May 22 00:07:01 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNROOT	_main
+    43                           	global	_PORTA
+    44                           psect	maintext,global,class=CODE,delta=2
+    45                           global __pmaintext
+    46  06D6                     __pmaintext:
+    47  0005                     _PORTA	set	5
+    48                           	global	_PORTB
+    49  0006                     _PORTB	set	6
+    50                           	global	_PORTC
+    51  0007                     _PORTC	set	7
+    52                           	global	_PORTD
+    53  0008                     _PORTD	set	8
+    54                           	global	_PORTE
+    55  0009                     _PORTE	set	9
+    56                           	global	_RA0
+    57  0028                     _RA0	set	40
+    58                           	global	_RA1
+    59  0029                     _RA1	set	41
+    60                           	global	_RA2
+    61  002A                     _RA2	set	42
+    62                           	global	_RB0
+    63  0030                     _RB0	set	48
+    64                           	global	_RB1
+    65  0031                     _RB1	set	49
+    66                           	global	_RB2
+    67  0032                     _RB2	set	50
+    68                           	global	_RB3
+    69  0033                     _RB3	set	51
+    70                           	global	_RD0
+    71  0040                     _RD0	set	64
+    72                           	global	_RD1
+    73  0041                     _RD1	set	65
+    74                           	global	_RD2
+    75  0042                     _RD2	set	66
+    76                           	global	_RD3
+    77  0043                     _RD3	set	67
+    78                           	global	_RD4
+    79  0044                     _RD4	set	68
+    80                           	global	_RD5
+    81  0045                     _RD5	set	69
+    82                           	global	_RD6
+    83  0046                     _RD6	set	70
+    84                           	global	_RD7
+    85  0047                     _RD7	set	71
+    86                           	global	_RE0
+    87  0048                     _RE0	set	72
+    88                           	global	_RE1
+    89  0049                     _RE1	set	73
+    90                           	global	_TRISA
+    91  0085                     _TRISA	set	133
+    92                           	global	_TRISB
+    93  0086                     _TRISB	set	134
+    94                           	global	_TRISC
+    95  0087                     _TRISC	set	135
+    96                           	global	_TRISD
+    97  0088                     _TRISD	set	136
+    98                           	global	_TRISE
+    99  0089                     _TRISE	set	137
+   100                           	global	_ANSEL
+   101  0188                     _ANSEL	set	392
+   102                           	global	_ANSELH
+   103  0189                     _ANSELH	set	393
+   104                           	file	"keypadled.as"
+   105                           	line	#
+   106                           psect cinit,class=CODE,delta=2
+   107                           global start_initialization
+   108  06D2                     start_initialization:
+   109                           
+   110                           psect cinit,class=CODE,delta=2
+   111                           global end_of_initialization
+   112                           
+   113                           ;End of C runtime variable initialization code
+   114                           
+   115  06D2                     end_of_initialization:
+   116  06D2  0183               clrf status
+   117  06D3  120A  118A  2ED6   ljmp _main	;jump to C main() function
+   118                           psect	cstackCOMMON,class=COMMON,space=1
+   119                           global __pcstackCOMMON
+   120  0000                     __pcstackCOMMON:
+   121                           	global	?_main
+   122  0000                     ?_main:	; 0 bytes @ 0x0
+   123                           	global	??_main
+   124  0000                     ??_main:	; 0 bytes @ 0x0
+   125 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+   126 ;;Auto spaces:   Size  Autos    Used
+   127 ;; COMMON          14      0       0
+   128 ;; BANK0           80      0       0
+   129 ;; BANK1           80      0       0
+   130 ;; BANK3           96      0       0
+   131 ;; BANK2           96      0       0
+   132                           
+   133 ;;
+   134 ;; Pointer list with targets:
+   135                           
+   136                           
+   137                           
+   138 ;;
+   139 ;; Critical Paths under _main in COMMON
+   140 ;;
+   141 ;;   None.
+   142 ;;
+   143 ;; Critical Paths under _main in BANK0
+   144 ;;
+   145 ;;   None.
+   146 ;;
+   147 ;; Critical Paths under _main in BANK1
+   148 ;;
+   149 ;;   None.
+   150 ;;
+   151 ;; Critical Paths under _main in BANK3
+   152 ;;
+   153 ;;   None.
+   154 ;;
+   155 ;; Critical Paths under _main in BANK2
+   156 ;;
+   157 ;;   None.
+   158                           
+   159 ;;
+   160 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   161 ;;
+   162                           
+   163 ;;
+   164 ;;Call Graph Tables:
+   165 ;;
+   166 ;; ---------------------------------------------------------------------------------
+   167 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   168 ;; ---------------------------------------------------------------------------------
+   169 ;; (0) _main                                                 0     0      0       0
+   170 ;; ---------------------------------------------------------------------------------
+   171 ;; Estimated maximum stack depth 0
+   172 ;; ---------------------------------------------------------------------------------
+   173                           
+   174 ;; Call Graph Graphs:
+   175                           
+   176 ;; _main (ROOT)
+   177 ;;
+   178                           
+   179 ;; Address spaces:
+   180                           
+   181 ;;Name               Size   Autos  Total    Cost      Usage
+   182 ;;BITCOMMON            E      0       0       0        0.0%
+   183 ;;EEDATA             100      0       0       0        0.0%
+   184 ;;NULL                 0      0       0       0        0.0%
+   185 ;;CODE                 0      0       0       0        0.0%
+   186 ;;COMMON               E      0       0       1        0.0%
+   187 ;;BITSFR0              0      0       0       1        0.0%
+   188 ;;SFR0                 0      0       0       1        0.0%
+   189 ;;BITSFR1              0      0       0       2        0.0%
+   190 ;;SFR1                 0      0       0       2        0.0%
+   191 ;;STACK                0      0       0       2        0.0%
+   192 ;;ABS                  0      0       0       3        0.0%
+   193 ;;BITBANK0            50      0       0       4        0.0%
+   194 ;;BITSFR3              0      0       0       4        0.0%
+   195 ;;SFR3                 0      0       0       4        0.0%
+   196 ;;BANK0               50      0       0       5        0.0%
+   197 ;;BITSFR2              0      0       0       5        0.0%
+   198 ;;SFR2                 0      0       0       5        0.0%
+   199 ;;BITBANK1            50      0       0       6        0.0%
+   200 ;;BANK1               50      0       0       7        0.0%
+   201 ;;BITBANK3            60      0       0       8        0.0%
+   202 ;;BANK3               60      0       0       9        0.0%
+   203 ;;BITBANK2            60      0       0      10        0.0%
+   204 ;;BANK2               60      0       0      11        0.0%
+   205 ;;DATA                 0      0       0      12        0.0%
+   206                           
+   207                           	global	_main
+   208                           psect	maintext
+   209                           
+   210 ;; *************** function _main *****************
+   211 ;; Defined at:
+   212 ;;		line 3 in file "E:\KTU\Softwares\mplab\Keypadled\keypadled.c"
+   213 ;; Parameters:    Size  Location     Type
+   214 ;;		None
+   215 ;; Auto vars:     Size  Location     Type
+   216 ;;		None
+   217 ;; Return value:  Size  Location     Type
+   218 ;;		None               void
+   219 ;; Registers used:
+   220 ;;		wreg, status,2
+   221 ;; Tracked objects:
+   222 ;;		On entry : 17F/0
+   223 ;;		On exit  : 0/0
+   224 ;;		Unchanged: 0/0
+   225 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   226 ;;      Params:         0       0       0       0       0
+   227 ;;      Locals:         0       0       0       0       0
+   228 ;;      Temps:          0       0       0       0       0
+   229 ;;      Totals:         0       0       0       0       0
+   230 ;;Total ram usage:        0 bytes
+   231 ;; This function calls:
+   232 ;;		Nothing
+   233 ;; This function is called by:
+   234 ;;		Startup code after reset
+   235 ;; This function uses a non-reentrant model
+   236 ;;
+   237                           psect	maintext
+   238                           	file	"E:\KTU\Softwares\mplab\Keypadled\keypadled.c"
+   239                           	line	3
+   240                           	global	__size_of_main
+   241  012A                     	__size_of_main	equ	__end_of_main-_main
+   242                           	
+   243  06D6                     _main:	
+   244                           	opt	stack 8
+   245                           ; Regs used in _main: [wreg+status,2]
+   246                           	line	4
+   247                           	
+   248  06D6                     l1437:	
+   249                           ;keypadled.c: 4: PORTA=0X00;
+   250  06D6  1283               	bcf	status, 5	;RP0=0, select bank0
+   251  06D7  1303               	bcf	status, 6	;RP1=0, select bank0
+   252  06D8  0185               	clrf	(5)	;volatile
+   253                           	line	5
+   254                           	
+   255  06D9                     l1439:	
+   256                           ;keypadled.c: 5: TRISA=0X07;
+   257  06D9  3007               	movlw	(07h)
+   258  06DA  1683               	bsf	status, 5	;RP0=1, select bank1
+   259  06DB  1303               	bcf	status, 6	;RP1=0, select bank1
+   260  06DC  0085               	movwf	(133)^080h	;volatile
+   261                           	line	6
+   262                           	
+   263  06DD                     l1441:	
+   264                           ;keypadled.c: 6: PORTB=0X00;
+   265  06DD  1283               	bcf	status, 5	;RP0=0, select bank0
+   266  06DE  1303               	bcf	status, 6	;RP1=0, select bank0
+   267  06DF  0186               	clrf	(6)	;volatile
+   268                           	line	7
+   269                           	
+   270  06E0                     l1443:	
+   271                           ;keypadled.c: 7: TRISB=0X00;
+   272  06E0  1683               	bsf	status, 5	;RP0=1, select bank1
+   273  06E1  1303               	bcf	status, 6	;RP1=0, select bank1
+   274  06E2  0186               	clrf	(134)^080h	;volatile
+   275                           	line	8
+   276                           	
+   277  06E3                     l1445:	
+   278                           ;keypadled.c: 8: PORTC=0X00;
+   279  06E3  1283               	bcf	status, 5	;RP0=0, select bank0
+   280  06E4  1303               	bcf	status, 6	;RP1=0, select bank0
+   281  06E5  0187               	clrf	(7)	;volatile
+   282                           	line	9
+   283                           	
+   284  06E6                     l1447:	
+   285                           ;keypadled.c: 9: TRISC=0X00;
+   286  06E6  1683               	bsf	status, 5	;RP0=1, select bank1
+   287  06E7  1303               	bcf	status, 6	;RP1=0, select bank1
+   288  06E8  0187               	clrf	(135)^080h	;volatile
+   289                           	line	10
+   290                           	
+   291  06E9                     l1449:	
+   292                           ;keypadled.c: 10: PORTD=0X00;
+   293  06E9  1283               	bcf	status, 5	;RP0=0, select bank0
+   294  06EA  1303               	bcf	status, 6	;RP1=0, select bank0
+   295  06EB  0188               	clrf	(8)	;volatile
+   296                           	line	11
+   297                           	
+   298  06EC                     l1451:	
+   299                           ;keypadled.c: 11: TRISD=0X00;
+   300  06EC  1683               	bsf	status, 5	;RP0=1, select bank1
+   301  06ED  1303               	bcf	status, 6	;RP1=0, select bank1
+   302  06EE  0188               	clrf	(136)^080h	;volatile
+   303                           	line	12
+   304                           	
+   305  06EF                     l1453:	
+   306                           ;keypadled.c: 12: PORTE=0X00;
+   307  06EF  1283               	bcf	status, 5	;RP0=0, select bank0
+   308  06F0  1303               	bcf	status, 6	;RP1=0, select bank0
+   309  06F1  0189               	clrf	(9)	;volatile
+   310                           	line	13
+   311                           	
+   312  06F2                     l1455:	
+   313                           ;keypadled.c: 13: TRISE=0X00;
+   314  06F2  1683               	bsf	status, 5	;RP0=1, select bank1
+   315  06F3  1303               	bcf	status, 6	;RP1=0, select bank1
+   316  06F4  0189               	clrf	(137)^080h	;volatile
+   317                           	line	14
+   318                           	
+   319  06F5                     l1457:	
+   320                           ;keypadled.c: 14: ANSEL=0X00;
+   321  06F5  1683               	bsf	status, 5	;RP0=1, select bank3
+   322  06F6  1703               	bsf	status, 6	;RP1=1, select bank3
+   323  06F7  0188               	clrf	(392)^0180h	;volatile
+   324                           	line	15
+   325                           	
+   326  06F8                     l1459:	
+   327                           ;keypadled.c: 15: ANSELH=0X00;
+   328  06F8  0189               	clrf	(393)^0180h	;volatile
+   329  06F9  2EFA               	goto	l1461
+   330                           	line	16
+   331                           ;keypadled.c: 16: while(1)
+   332                           	
+   333  06FA                     l1025:	
+   334                           	line	18
+   335                           	
+   336  06FA                     l1461:	
+   337                           ;keypadled.c: 17: {
+   338                           ;keypadled.c: 18: RB0=1;
+   339  06FA  1283               	bcf	status, 5	;RP0=0, select bank0
+   340  06FB  1303               	bcf	status, 6	;RP1=0, select bank0
+   341  06FC  1406               	bsf	(48/8),(48)&7
+   342                           	line	19
+   343                           	
+   344  06FD                     l1463:	
+   345                           ;keypadled.c: 19: RB1=0;
+   346  06FD  1086               	bcf	(49/8),(49)&7
+   347                           	line	20
+   348                           	
+   349  06FE                     l1465:	
+   350                           ;keypadled.c: 20: RB2=0;
+   351  06FE  1106               	bcf	(50/8),(50)&7
+   352                           	line	21
+   353                           	
+   354  06FF                     l1467:	
+   355                           ;keypadled.c: 21: RB3=0;
+   356  06FF  1186               	bcf	(51/8),(51)&7
+   357                           	line	22
+   358                           	
+   359  0700                     l1469:	
+   360                           ;keypadled.c: 22: if(RA0==1)
+   361  0700  1C05               	btfss	(40/8),(40)&7
+   362  0701  2F03               	goto	u11
+   363  0702  2F04               	goto	u10
+   364  0703                     u11:
+   365  0703  2F18               	goto	l1495
+   366  0704                     u10:
+   367  0704  2F06               	goto	l1027
+   368                           	line	24
+   369                           	
+   370  0705                     l1471:	
+   371                           ;keypadled.c: 23: {
+   372                           ;keypadled.c: 24: while(RA0==1);
+   373  0705  2F06               	goto	l1027
+   374                           	
+   375  0706                     l1028:	
+   376                           	
+   377  0706                     l1027:	
+   378  0706  1805               	btfsc	(40/8),(40)&7
+   379  0707  2F09               	goto	u21
+   380  0708  2F0A               	goto	u20
+   381  0709                     u21:
+   382  0709  2F06               	goto	l1027
+   383  070A                     u20:
+   384  070A  2F0B               	goto	l1473
+   385                           	
+   386  070B                     l1029:	
+   387                           	line	25
+   388                           	
+   389  070B                     l1473:	
+   390                           ;keypadled.c: 25: PORTC=0X06;
+   391  070B  3006               	movlw	(06h)
+   392  070C  0087               	movwf	(7)	;volatile
+   393                           	line	26
+   394                           	
+   395  070D                     l1475:	
+   396                           ;keypadled.c: 26: RD0=1;RD1=0;RD2=0;RD3=0;RD4=0;RD5=0;RD6=0;
+   397  070D  1408               	bsf	(64/8),(64)&7
+   398                           	
+   399  070E                     l1477:	
+   400  070E  1088               	bcf	(65/8),(65)&7
+   401                           	
+   402  070F                     l1479:	
+   403  070F  1108               	bcf	(66/8),(66)&7
+   404                           	
+   405  0710                     l1481:	
+   406  0710  1188               	bcf	(67/8),(67)&7
+   407                           	
+   408  0711                     l1483:	
+   409  0711  1208               	bcf	(68/8),(68)&7
+   410                           	
+   411  0712                     l1485:	
+   412  0712  1288               	bcf	(69/8),(69)&7
+   413                           	
+   414  0713                     l1487:	
+   415  0713  1308               	bcf	(70/8),(70)&7
+   416                           	line	27
+   417                           	
+   418  0714                     l1489:	
+   419                           ;keypadled.c: 27: RD7=0;RE0=0;RE1=0;
+   420  0714  1388               	bcf	(71/8),(71)&7
+   421                           	
+   422  0715                     l1491:	
+   423  0715  1009               	bcf	(72/8),(72)&7
+   424                           	
+   425  0716                     l1493:	
+   426  0716  1089               	bcf	(73/8),(73)&7
+   427  0717  2F18               	goto	l1495
+   428                           	line	28
+   429                           	
+   430  0718                     l1026:	
+   431                           	line	29
+   432                           	
+   433  0718                     l1495:	
+   434                           ;keypadled.c: 28: }
+   435                           ;keypadled.c: 29: if(RA1==1)
+   436  0718  1C85               	btfss	(41/8),(41)&7
+   437  0719  2F1B               	goto	u31
+   438  071A  2F1C               	goto	u30
+   439  071B                     u31:
+   440  071B  2F30               	goto	l1521
+   441  071C                     u30:
+   442  071C  2F1E               	goto	l1031
+   443                           	line	31
+   444                           	
+   445  071D                     l1497:	
+   446                           ;keypadled.c: 30: {
+   447                           ;keypadled.c: 31: while(RA1==1);
+   448  071D  2F1E               	goto	l1031
+   449                           	
+   450  071E                     l1032:	
+   451                           	
+   452  071E                     l1031:	
+   453  071E  1885               	btfsc	(41/8),(41)&7
+   454  071F  2F21               	goto	u41
+   455  0720  2F22               	goto	u40
+   456  0721                     u41:
+   457  0721  2F1E               	goto	l1031
+   458  0722                     u40:
+   459  0722  2F23               	goto	l1499
+   460                           	
+   461  0723                     l1033:	
+   462                           	line	32
+   463                           	
+   464  0723                     l1499:	
+   465                           ;keypadled.c: 32: PORTC=0X5B;
+   466  0723  305B               	movlw	(05Bh)
+   467  0724  0087               	movwf	(7)	;volatile
+   468                           	line	33
+   469                           	
+   470  0725                     l1501:	
+   471                           ;keypadled.c: 33: RD0=1;RD1=1;RD2=0;RD3=0;RD4=0;RD5=0;RD6=0;
+   472  0725  1408               	bsf	(64/8),(64)&7
+   473                           	
+   474  0726                     l1503:	
+   475  0726  1488               	bsf	(65/8),(65)&7
+   476                           	
+   477  0727                     l1505:	
+   478  0727  1108               	bcf	(66/8),(66)&7
+   479                           	
+   480  0728                     l1507:	
+   481  0728  1188               	bcf	(67/8),(67)&7
+   482                           	
+   483  0729                     l1509:	
+   484  0729  1208               	bcf	(68/8),(68)&7
+   485                           	
+   486  072A                     l1511:	
+   487  072A  1288               	bcf	(69/8),(69)&7
+   488                           	
+   489  072B                     l1513:	
+   490  072B  1308               	bcf	(70/8),(70)&7
+   491                           	line	34
+   492                           	
+   493  072C                     l1515:	
+   494                           ;keypadled.c: 34: RD7=0;RE0=0;RE1=0;
+   495  072C  1388               	bcf	(71/8),(71)&7
+   496                           	
+   497  072D                     l1517:	
+   498  072D  1009               	bcf	(72/8),(72)&7
+   499                           	
+   500  072E                     l1519:	
+   501  072E  1089               	bcf	(73/8),(73)&7
+   502  072F  2F30               	goto	l1521
+   503                           	line	35
+   504                           	
+   505  0730                     l1030:	
+   506                           	line	36
+   507                           	
+   508  0730                     l1521:	
+   509                           ;keypadled.c: 35: }
+   510                           ;keypadled.c: 36: if(RA2==1)
+   511  0730  1D05               	btfss	(42/8),(42)&7
+   512  0731  2F33               	goto	u51
+   513  0732  2F34               	goto	u50
+   514  0733                     u51:
+   515  0733  2F48               	goto	l1547
+   516  0734                     u50:
+   517  0734  2F36               	goto	l1035
+   518                           	line	38
+   519                           	
+   520  0735                     l1523:	
+   521                           ;keypadled.c: 37: {
+   522                           ;keypadled.c: 38: while(RA2==1);
+   523  0735  2F36               	goto	l1035
+   524                           	
+   525  0736                     l1036:	
+   526                           	
+   527  0736                     l1035:	
+   528  0736  1905               	btfsc	(42/8),(42)&7
+   529  0737  2F39               	goto	u61
+   530  0738  2F3A               	goto	u60
+   531  0739                     u61:
+   532  0739  2F36               	goto	l1035
+   533  073A                     u60:
+   534  073A  2F3B               	goto	l1525
+   535                           	
+   536  073B                     l1037:	
+   537                           	line	39
+   538                           	
+   539  073B                     l1525:	
+   540                           ;keypadled.c: 39: PORTC=0X4F;
+   541  073B  304F               	movlw	(04Fh)
+   542  073C  0087               	movwf	(7)	;volatile
+   543                           	line	40
+   544                           	
+   545  073D                     l1527:	
+   546                           ;keypadled.c: 40: RD0=1;RD1=1;RD2=1;RD3=0;RD4=0;RD5=0;RD6=0;
+   547  073D  1408               	bsf	(64/8),(64)&7
+   548                           	
+   549  073E                     l1529:	
+   550  073E  1488               	bsf	(65/8),(65)&7
+   551                           	
+   552  073F                     l1531:	
+   553  073F  1508               	bsf	(66/8),(66)&7
+   554                           	
+   555  0740                     l1533:	
+   556  0740  1188               	bcf	(67/8),(67)&7
+   557                           	
+   558  0741                     l1535:	
+   559  0741  1208               	bcf	(68/8),(68)&7
+   560                           	
+   561  0742                     l1537:	
+   562  0742  1288               	bcf	(69/8),(69)&7
+   563                           	
+   564  0743                     l1539:	
+   565  0743  1308               	bcf	(70/8),(70)&7
+   566                           	line	41
+   567                           	
+   568  0744                     l1541:	
+   569                           ;keypadled.c: 41: RD7=0;RE0=0;RE1=0;
+   570  0744  1388               	bcf	(71/8),(71)&7
+   571                           	
+   572  0745                     l1543:	
+   573  0745  1009               	bcf	(72/8),(72)&7
+   574                           	
+   575  0746                     l1545:	
+   576  0746  1089               	bcf	(73/8),(73)&7
+   577  0747  2F48               	goto	l1547
+   578                           	line	42
+   579                           	
+   580  0748                     l1034:	
+   581                           	line	43
+   582                           	
+   583  0748                     l1547:	
+   584                           ;keypadled.c: 42: }
+   585                           ;keypadled.c: 43: RB0=0;
+   586  0748  1006               	bcf	(48/8),(48)&7
+   587                           	line	44
+   588                           	
+   589  0749                     l1549:	
+   590                           ;keypadled.c: 44: RB1=1;
+   591  0749  1486               	bsf	(49/8),(49)&7
+   592                           	line	45
+   593                           	
+   594  074A                     l1551:	
+   595                           ;keypadled.c: 45: RB2=0;
+   596  074A  1106               	bcf	(50/8),(50)&7
+   597                           	line	46
+   598                           	
+   599  074B                     l1553:	
+   600                           ;keypadled.c: 46: RB3=0;
+   601  074B  1186               	bcf	(51/8),(51)&7
+   602                           	line	47
+   603                           	
+   604  074C                     l1555:	
+   605                           ;keypadled.c: 47: if(RA0==1)
+   606  074C  1C05               	btfss	(40/8),(40)&7
+   607  074D  2F4F               	goto	u71
+   608  074E  2F50               	goto	u70
+   609  074F                     u71:
+   610  074F  2F64               	goto	l1581
+   611  0750                     u70:
+   612  0750  2F52               	goto	l1039
+   613                           	line	49
+   614                           	
+   615  0751                     l1557:	
+   616                           ;keypadled.c: 48: {
+   617                           ;keypadled.c: 49: while(RA0==1);
+   618  0751  2F52               	goto	l1039
+   619                           	
+   620  0752                     l1040:	
+   621                           	
+   622  0752                     l1039:	
+   623  0752  1805               	btfsc	(40/8),(40)&7
+   624  0753  2F55               	goto	u81
+   625  0754  2F56               	goto	u80
+   626  0755                     u81:
+   627  0755  2F52               	goto	l1039
+   628  0756                     u80:
+   629  0756  2F57               	goto	l1559
+   630                           	
+   631  0757                     l1041:	
+   632                           	line	50
+   633                           	
+   634  0757                     l1559:	
+   635                           ;keypadled.c: 50: PORTC=0X66;
+   636  0757  3066               	movlw	(066h)
+   637  0758  0087               	movwf	(7)	;volatile
+   638                           	line	51
+   639                           	
+   640  0759                     l1561:	
+   641                           ;keypadled.c: 51: RD0=1;RD1=1;RD2=1;RD3=1;RD4=0;RD5=0;RD6=0;
+   642  0759  1408               	bsf	(64/8),(64)&7
+   643                           	
+   644  075A                     l1563:	
+   645  075A  1488               	bsf	(65/8),(65)&7
+   646                           	
+   647  075B                     l1565:	
+   648  075B  1508               	bsf	(66/8),(66)&7
+   649                           	
+   650  075C                     l1567:	
+   651  075C  1588               	bsf	(67/8),(67)&7
+   652                           	
+   653  075D                     l1569:	
+   654  075D  1208               	bcf	(68/8),(68)&7
+   655                           	
+   656  075E                     l1571:	
+   657  075E  1288               	bcf	(69/8),(69)&7
+   658                           	
+   659  075F                     l1573:	
+   660  075F  1308               	bcf	(70/8),(70)&7
+   661                           	line	52
+   662                           	
+   663  0760                     l1575:	
+   664                           ;keypadled.c: 52: RD7=0;RE0=0;RE1=0;
+   665  0760  1388               	bcf	(71/8),(71)&7
+   666                           	
+   667  0761                     l1577:	
+   668  0761  1009               	bcf	(72/8),(72)&7
+   669                           	
+   670  0762                     l1579:	
+   671  0762  1089               	bcf	(73/8),(73)&7
+   672  0763  2F64               	goto	l1581
+   673                           	line	53
+   674                           	
+   675  0764                     l1038:	
+   676                           	line	54
+   677                           	
+   678  0764                     l1581:	
+   679                           ;keypadled.c: 53: }
+   680                           ;keypadled.c: 54: if(RA1==1)
+   681  0764  1C85               	btfss	(41/8),(41)&7
+   682  0765  2F67               	goto	u91
+   683  0766  2F68               	goto	u90
+   684  0767                     u91:
+   685  0767  2F7C               	goto	l1607
+   686  0768                     u90:
+   687  0768  2F6A               	goto	l1043
+   688                           	line	56
+   689                           	
+   690  0769                     l1583:	
+   691                           ;keypadled.c: 55: {
+   692                           ;keypadled.c: 56: while(RA1==1);
+   693  0769  2F6A               	goto	l1043
+   694                           	
+   695  076A                     l1044:	
+   696                           	
+   697  076A                     l1043:	
+   698  076A  1885               	btfsc	(41/8),(41)&7
+   699  076B  2F6D               	goto	u101
+   700  076C  2F6E               	goto	u100
+   701  076D                     u101:
+   702  076D  2F6A               	goto	l1043
+   703  076E                     u100:
+   704  076E  2F6F               	goto	l1585
+   705                           	
+   706  076F                     l1045:	
+   707                           	line	57
+   708                           	
+   709  076F                     l1585:	
+   710                           ;keypadled.c: 57: PORTC=0X6D;
+   711  076F  306D               	movlw	(06Dh)
+   712  0770  0087               	movwf	(7)	;volatile
+   713                           	line	58
+   714                           	
+   715  0771                     l1587:	
+   716                           ;keypadled.c: 58: RD0=1;RD1=1;RD2=1;RD3=1;RD4=1;RD5=0;RD6=0;
+   717  0771  1408               	bsf	(64/8),(64)&7
+   718                           	
+   719  0772                     l1589:	
+   720  0772  1488               	bsf	(65/8),(65)&7
+   721                           	
+   722  0773                     l1591:	
+   723  0773  1508               	bsf	(66/8),(66)&7
+   724                           	
+   725  0774                     l1593:	
+   726  0774  1588               	bsf	(67/8),(67)&7
+   727                           	
+   728  0775                     l1595:	
+   729  0775  1608               	bsf	(68/8),(68)&7
+   730                           	
+   731  0776                     l1597:	
+   732  0776  1288               	bcf	(69/8),(69)&7
+   733                           	
+   734  0777                     l1599:	
+   735  0777  1308               	bcf	(70/8),(70)&7
+   736                           	line	59
+   737                           	
+   738  0778                     l1601:	
+   739                           ;keypadled.c: 59: RD7=0;RE0=0;RE1=0;
+   740  0778  1388               	bcf	(71/8),(71)&7
+   741                           	
+   742  0779                     l1603:	
+   743  0779  1009               	bcf	(72/8),(72)&7
+   744                           	
+   745  077A                     l1605:	
+   746  077A  1089               	bcf	(73/8),(73)&7
+   747  077B  2F7C               	goto	l1607
+   748                           	line	60
+   749                           	
+   750  077C                     l1042:	
+   751                           	line	61
+   752                           	
+   753  077C                     l1607:	
+   754                           ;keypadled.c: 60: }
+   755                           ;keypadled.c: 61: if(RA2==1)
+   756  077C  1D05               	btfss	(42/8),(42)&7
+   757  077D  2F7F               	goto	u111
+   758  077E  2F80               	goto	u110
+   759  077F                     u111:
+   760  077F  2F94               	goto	l1633
+   761  0780                     u110:
+   762  0780  2F82               	goto	l1047
+   763                           	line	63
+   764                           	
+   765  0781                     l1609:	
+   766                           ;keypadled.c: 62: {
+   767                           ;keypadled.c: 63: while(RA2==1);
+   768  0781  2F82               	goto	l1047
+   769                           	
+   770  0782                     l1048:	
+   771                           	
+   772  0782                     l1047:	
+   773  0782  1905               	btfsc	(42/8),(42)&7
+   774  0783  2F85               	goto	u121
+   775  0784  2F86               	goto	u120
+   776  0785                     u121:
+   777  0785  2F82               	goto	l1047
+   778  0786                     u120:
+   779  0786  2F87               	goto	l1611
+   780                           	
+   781  0787                     l1049:	
+   782                           	line	64
+   783                           	
+   784  0787                     l1611:	
+   785                           ;keypadled.c: 64: PORTC=0X7C;
+   786  0787  307C               	movlw	(07Ch)
+   787  0788  0087               	movwf	(7)	;volatile
+   788                           	line	65
+   789                           	
+   790  0789                     l1613:	
+   791                           ;keypadled.c: 65: RD0=1;RD1=1;RD2=1;RD3=1;RD4=1;RD5=1;RD6=0;
+   792  0789  1408               	bsf	(64/8),(64)&7
+   793                           	
+   794  078A                     l1615:	
+   795  078A  1488               	bsf	(65/8),(65)&7
+   796                           	
+   797  078B                     l1617:	
+   798  078B  1508               	bsf	(66/8),(66)&7
+   799                           	
+   800  078C                     l1619:	
+   801  078C  1588               	bsf	(67/8),(67)&7
+   802                           	
+   803  078D                     l1621:	
+   804  078D  1608               	bsf	(68/8),(68)&7
+   805                           	
+   806  078E                     l1623:	
+   807  078E  1688               	bsf	(69/8),(69)&7
+   808                           	
+   809  078F                     l1625:	
+   810  078F  1308               	bcf	(70/8),(70)&7
+   811                           	line	66
+   812                           	
+   813  0790                     l1627:	
+   814                           ;keypadled.c: 66: RD7=0;RE0=0;RE1=0;
+   815  0790  1388               	bcf	(71/8),(71)&7
+   816                           	
+   817  0791                     l1629:	
+   818  0791  1009               	bcf	(72/8),(72)&7
+   819                           	
+   820  0792                     l1631:	
+   821  0792  1089               	bcf	(73/8),(73)&7
+   822  0793  2F94               	goto	l1633
+   823                           	line	67
+   824                           	
+   825  0794                     l1046:	
+   826                           	line	68
+   827                           	
+   828  0794                     l1633:	
+   829                           ;keypadled.c: 67: }
+   830                           ;keypadled.c: 68: RB0=0;
+   831  0794  1006               	bcf	(48/8),(48)&7
+   832                           	line	69
+   833                           	
+   834  0795                     l1635:	
+   835                           ;keypadled.c: 69: RB1=0;
+   836  0795  1086               	bcf	(49/8),(49)&7
+   837                           	line	70
+   838                           	
+   839  0796                     l1637:	
+   840                           ;keypadled.c: 70: RB2=1;
+   841  0796  1506               	bsf	(50/8),(50)&7
+   842                           	line	71
+   843                           	
+   844  0797                     l1639:	
+   845                           ;keypadled.c: 71: RB3=0;
+   846  0797  1186               	bcf	(51/8),(51)&7
+   847                           	line	72
+   848                           	
+   849  0798                     l1641:	
+   850                           ;keypadled.c: 72: if(RA0==1)
+   851  0798  1C05               	btfss	(40/8),(40)&7
+   852  0799  2F9B               	goto	u131
+   853  079A  2F9C               	goto	u130
+   854  079B                     u131:
+   855  079B  2FB0               	goto	l1667
+   856  079C                     u130:
+   857  079C  2F9E               	goto	l1051
+   858                           	line	74
+   859                           	
+   860  079D                     l1643:	
+   861                           ;keypadled.c: 73: {
+   862                           ;keypadled.c: 74: while(RA0==1);
+   863  079D  2F9E               	goto	l1051
+   864                           	
+   865  079E                     l1052:	
+   866                           	
+   867  079E                     l1051:	
+   868  079E  1805               	btfsc	(40/8),(40)&7
+   869  079F  2FA1               	goto	u141
+   870  07A0  2FA2               	goto	u140
+   871  07A1                     u141:
+   872  07A1  2F9E               	goto	l1051
+   873  07A2                     u140:
+   874  07A2  2FA3               	goto	l1645
+   875                           	
+   876  07A3                     l1053:	
+   877                           	line	75
+   878                           	
+   879  07A3                     l1645:	
+   880                           ;keypadled.c: 75: PORTC=0X07;
+   881  07A3  3007               	movlw	(07h)
+   882  07A4  0087               	movwf	(7)	;volatile
+   883                           	line	76
+   884                           	
+   885  07A5                     l1647:	
+   886                           ;keypadled.c: 76: RD0=1;RD1=1;RD2=1;RD3=1;RD4=1;RD5=1;RD6=1;
+   887  07A5  1408               	bsf	(64/8),(64)&7
+   888                           	
+   889  07A6                     l1649:	
+   890  07A6  1488               	bsf	(65/8),(65)&7
+   891                           	
+   892  07A7                     l1651:	
+   893  07A7  1508               	bsf	(66/8),(66)&7
+   894                           	
+   895  07A8                     l1653:	
+   896  07A8  1588               	bsf	(67/8),(67)&7
+   897                           	
+   898  07A9                     l1655:	
+   899  07A9  1608               	bsf	(68/8),(68)&7
+   900                           	
+   901  07AA                     l1657:	
+   902  07AA  1688               	bsf	(69/8),(69)&7
+   903                           	
+   904  07AB                     l1659:	
+   905  07AB  1708               	bsf	(70/8),(70)&7
+   906                           	line	77
+   907                           	
+   908  07AC                     l1661:	
+   909                           ;keypadled.c: 77: RD7=0;RE0=0;RE1=0;
+   910  07AC  1388               	bcf	(71/8),(71)&7
+   911                           	
+   912  07AD                     l1663:	
+   913  07AD  1009               	bcf	(72/8),(72)&7
+   914                           	
+   915  07AE                     l1665:	
+   916  07AE  1089               	bcf	(73/8),(73)&7
+   917  07AF  2FB0               	goto	l1667
+   918                           	line	78
+   919                           	
+   920  07B0                     l1050:	
+   921                           	line	79
+   922                           	
+   923  07B0                     l1667:	
+   924                           ;keypadled.c: 78: }
+   925                           ;keypadled.c: 79: if(RA1==1)
+   926  07B0  1C85               	btfss	(41/8),(41)&7
+   927  07B1  2FB3               	goto	u151
+   928  07B2  2FB4               	goto	u150
+   929  07B3                     u151:
+   930  07B3  2FC8               	goto	l1693
+   931  07B4                     u150:
+   932  07B4  2FB6               	goto	l1055
+   933                           	line	81
+   934                           	
+   935  07B5                     l1669:	
+   936                           ;keypadled.c: 80: {
+   937                           ;keypadled.c: 81: while(RA1==1);
+   938  07B5  2FB6               	goto	l1055
+   939                           	
+   940  07B6                     l1056:	
+   941                           	
+   942  07B6                     l1055:	
+   943  07B6  1885               	btfsc	(41/8),(41)&7
+   944  07B7  2FB9               	goto	u161
+   945  07B8  2FBA               	goto	u160
+   946  07B9                     u161:
+   947  07B9  2FB6               	goto	l1055
+   948  07BA                     u160:
+   949  07BA  2FBB               	goto	l1671
+   950                           	
+   951  07BB                     l1057:	
+   952                           	line	82
+   953                           	
+   954  07BB                     l1671:	
+   955                           ;keypadled.c: 82: PORTC=0XFF;
+   956  07BB  30FF               	movlw	(0FFh)
+   957  07BC  0087               	movwf	(7)	;volatile
+   958                           	line	83
+   959                           	
+   960  07BD                     l1673:	
+   961                           ;keypadled.c: 83: RD0=1;RD1=1;RD2=1;RD3=1;RD4=1;RD5=1;RD6=1;
+   962  07BD  1408               	bsf	(64/8),(64)&7
+   963                           	
+   964  07BE                     l1675:	
+   965  07BE  1488               	bsf	(65/8),(65)&7
+   966                           	
+   967  07BF                     l1677:	
+   968  07BF  1508               	bsf	(66/8),(66)&7
+   969                           	
+   970  07C0                     l1679:	
+   971  07C0  1588               	bsf	(67/8),(67)&7
+   972                           	
+   973  07C1                     l1681:	
+   974  07C1  1608               	bsf	(68/8),(68)&7
+   975                           	
+   976  07C2                     l1683:	
+   977  07C2  1688               	bsf	(69/8),(69)&7
+   978                           	
+   979  07C3                     l1685:	
+   980  07C3  1708               	bsf	(70/8),(70)&7
+   981                           	line	84
+   982                           	
+   983  07C4                     l1687:	
+   984                           ;keypadled.c: 84: RD7=1;RE0=0;RE1=0;
+   985  07C4  1788               	bsf	(71/8),(71)&7
+   986                           	
+   987  07C5                     l1689:	
+   988  07C5  1009               	bcf	(72/8),(72)&7
+   989                           	
+   990  07C6                     l1691:	
+   991  07C6  1089               	bcf	(73/8),(73)&7
+   992  07C7  2FC8               	goto	l1693
+   993                           	line	85
+   994                           	
+   995  07C8                     l1054:	
+   996                           	line	86
+   997                           	
+   998  07C8                     l1693:	
+   999                           ;keypadled.c: 85: }
+  1000                           ;keypadled.c: 86: if(RA2==1)
+  1001  07C8  1D05               	btfss	(42/8),(42)&7
+  1002  07C9  2FCB               	goto	u171
+  1003  07CA  2FCC               	goto	u170
+  1004  07CB                     u171:
+  1005  07CB  2FDF               	goto	l1717
+  1006  07CC                     u170:
+  1007  07CC  2FCE               	goto	l1059
+  1008                           	line	88
+  1009                           	
+  1010  07CD                     l1695:	
+  1011                           ;keypadled.c: 87: {
+  1012                           ;keypadled.c: 88: while(RA2==1);
+  1013  07CD  2FCE               	goto	l1059
+  1014                           	
+  1015  07CE                     l1060:	
+  1016                           	
+  1017  07CE                     l1059:	
+  1018  07CE  1905               	btfsc	(42/8),(42)&7
+  1019  07CF  2FD1               	goto	u181
+  1020  07D0  2FD2               	goto	u180
+  1021  07D1                     u181:
+  1022  07D1  2FCE               	goto	l1059
+  1023  07D2                     u180:
+  1024  07D2  2FD3               	goto	l1697
+  1025                           	
+  1026  07D3                     l1061:	
+  1027                           	line	89
+  1028                           	
+  1029  07D3                     l1697:	
+  1030                           ;keypadled.c: 89: PORTC=0XE7;
+  1031  07D3  30E7               	movlw	(0E7h)
+  1032  07D4  0087               	movwf	(7)	;volatile
+  1033                           	line	90
+  1034                           	
+  1035  07D5                     l1699:	
+  1036                           ;keypadled.c: 90: RD0=1;RD1=1;RD2=1;RD3=1;RD4=1;RD5=1;RD6=1;
+  1037  07D5  1408               	bsf	(64/8),(64)&7
+  1038                           	
+  1039  07D6                     l1701:	
+  1040  07D6  1488               	bsf	(65/8),(65)&7
+  1041                           	
+  1042  07D7                     l1703:	
+  1043  07D7  1508               	bsf	(66/8),(66)&7
+  1044                           	
+  1045  07D8                     l1705:	
+  1046  07D8  1588               	bsf	(67/8),(67)&7
+  1047                           	
+  1048  07D9                     l1707:	
+  1049  07D9  1608               	bsf	(68/8),(68)&7
+  1050                           	
+  1051  07DA                     l1709:	
+  1052  07DA  1688               	bsf	(69/8),(69)&7
+  1053                           	
+  1054  07DB                     l1711:	
+  1055  07DB  1708               	bsf	(70/8),(70)&7
+  1056                           	line	91
+  1057                           	
+  1058  07DC                     l1713:	
+  1059                           ;keypadled.c: 91: RD7=1;RE0=1;
+  1060  07DC  1788               	bsf	(71/8),(71)&7
+  1061                           	
+  1062  07DD                     l1715:	
+  1063  07DD  1409               	bsf	(72/8),(72)&7
+  1064  07DE  2FDF               	goto	l1717
+  1065                           	line	92
+  1066                           	
+  1067  07DF                     l1058:	
+  1068                           	line	93
+  1069                           	
+  1070  07DF                     l1717:	
+  1071                           ;keypadled.c: 92: }
+  1072                           ;keypadled.c: 93: RB0=0;
+  1073  07DF  1006               	bcf	(48/8),(48)&7
+  1074                           	line	94
+  1075                           	
+  1076  07E0                     l1719:	
+  1077                           ;keypadled.c: 94: RB1=0;
+  1078  07E0  1086               	bcf	(49/8),(49)&7
+  1079                           	line	95
+  1080                           	
+  1081  07E1                     l1721:	
+  1082                           ;keypadled.c: 95: RB2=0;
+  1083  07E1  1106               	bcf	(50/8),(50)&7
+  1084                           	line	96
+  1085                           	
+  1086  07E2                     l1723:	
+  1087                           ;keypadled.c: 96: RB3=1;
+  1088  07E2  1586               	bsf	(51/8),(51)&7
+  1089                           	line	97
+  1090                           	
+  1091  07E3                     l1725:	
+  1092                           ;keypadled.c: 97: if(RA1==1)
+  1093  07E3  1C85               	btfss	(41/8),(41)&7
+  1094  07E4  2FE6               	goto	u191
+  1095  07E5  2FE7               	goto	u190
+  1096  07E6                     u191:
+  1097  07E6  2EFA               	goto	l1461
+  1098  07E7                     u190:
+  1099  07E7  2FE9               	goto	l1063
+  1100                           	line	99
+  1101                           	
+  1102  07E8                     l1727:	
+  1103                           ;keypadled.c: 98: {
+  1104                           ;keypadled.c: 99: while(RA1==1);
+  1105  07E8  2FE9               	goto	l1063
+  1106                           	
+  1107  07E9                     l1064:	
+  1108                           	
+  1109  07E9                     l1063:	
+  1110  07E9  1885               	btfsc	(41/8),(41)&7
+  1111  07EA  2FEC               	goto	u201
+  1112  07EB  2FED               	goto	u200
+  1113  07EC                     u201:
+  1114  07EC  2FE9               	goto	l1063
+  1115  07ED                     u200:
+  1116  07ED  2FEE               	goto	l1729
+  1117                           	
+  1118  07EE                     l1065:	
+  1119                           	line	100
+  1120                           	
+  1121  07EE                     l1729:	
+  1122                           ;keypadled.c: 100: PORTC=0XBF;
+  1123  07EE  30BF               	movlw	(0BFh)
+  1124  07EF  0087               	movwf	(7)	;volatile
+  1125                           	line	101
+  1126                           	
+  1127  07F0                     l1731:	
+  1128                           ;keypadled.c: 101: RD0=0;RD1=0;RD2=0;RD3=0;RD4=0;RD5=0;RD6=0;
+  1129  07F0  1008               	bcf	(64/8),(64)&7
+  1130                           	
+  1131  07F1                     l1733:	
+  1132  07F1  1088               	bcf	(65/8),(65)&7
+  1133                           	
+  1134  07F2                     l1735:	
+  1135  07F2  1108               	bcf	(66/8),(66)&7
+  1136                           	
+  1137  07F3                     l1737:	
+  1138  07F3  1188               	bcf	(67/8),(67)&7
+  1139                           	
+  1140  07F4                     l1739:	
+  1141  07F4  1208               	bcf	(68/8),(68)&7
+  1142                           	
+  1143  07F5                     l1741:	
+  1144  07F5  1288               	bcf	(69/8),(69)&7
+  1145                           	
+  1146  07F6                     l1743:	
+  1147  07F6  1308               	bcf	(70/8),(70)&7
+  1148                           	line	102
+  1149                           	
+  1150  07F7                     l1745:	
+  1151                           ;keypadled.c: 102: RD7=0;RE0=0;RE1=0;
+  1152  07F7  1388               	bcf	(71/8),(71)&7
+  1153                           	
+  1154  07F8                     l1747:	
+  1155  07F8  1009               	bcf	(72/8),(72)&7
+  1156                           	
+  1157  07F9                     l1749:	
+  1158  07F9  1089               	bcf	(73/8),(73)&7
+  1159  07FA  2EFA               	goto	l1461
+  1160                           	line	103
+  1161                           	
+  1162  07FB                     l1062:	
+  1163  07FB  2EFA               	goto	l1461
+  1164                           	line	104
+  1165                           	
+  1166  07FC                     l1066:	
+  1167                           	line	16
+  1168  07FC  2EFA               	goto	l1461
+  1169                           	
+  1170  07FD                     l1067:	
+  1171                           	line	105
+  1172                           	
+  1173  07FD                     l1068:	
+  1174                           	global	start
+  1175  07FD  120A  118A  2800   	ljmp	start
+  1176                           	opt stack 0
+  1177                           GLOBAL	__end_of_main
+  1178  0800                     	__end_of_main:
+  1179 ;; =============== function _main ends ============
+  1180                           
+  1181                           	signat	_main,88
+  1182                           psect	maintext
+  1183                           	global	btemp
+  1184  007E                     	btemp set 07Eh
+  1185                           
+  1186                           	DABS	1,126,2	;btemp
+  1187                           	global	wtemp0
+  1188  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Sat May 22 00:07:01 2021
+
+                  u10 0704                    u11 0703                    u20 070A                    u21 0709  
+                  u30 071C                    u31 071B                    u40 0722                    u41 0721  
+                  u50 0734                    u51 0733                    u60 073A                    u61 0739  
+                  u70 0750                    u71 074F                    u80 0756                    u81 0755  
+                  u90 0768                    u91 0767                   _RA0 0028                   _RA1 0029  
+                 _RB0 0030                   _RA2 002A                   _RB1 0031                   _RB2 0032  
+                 _RB3 0033                   _RD0 0040                   _RD1 0041                   _RE0 0048  
+                 _RD2 0042                   _RE1 0049                   _RD3 0043                   u100 076E  
+                 _RD4 0044                   u101 076D                   _RD5 0045                   u110 0780  
+                 _RD6 0046                   u111 077F                   _RD7 0047                   u200 07ED  
+                 u120 0786                   u201 07EC                   u121 0785                   u130 079C  
+                 u131 079B                   u140 07A2                   u141 07A1                   u150 07B4  
+                 u151 07B3                   u160 07BA                   u161 07B9                   u170 07CC  
+                 u171 07CB                   u180 07D2                   u181 07D1                   u190 07E7  
+                 u191 07E6                  l1030 0730                  l1031 071E                  l1040 0752  
+                l1032 071E                  l1041 0757                  l1033 0723                  l1025 06FA  
+                l1050 07B0                  l1042 077C                  l1034 0748                  l1026 0718  
+                l1051 079E                  l1043 076A                  l1035 0736                  l1027 0706  
+                l1060 07CE                  l1052 079E                  l1044 076A                  l1036 0736  
+                l1028 0706                  l1061 07D3                  l1053 07A3                  l1045 076F  
+                l1037 073B                  l1029 070B                  l1062 07FB                  l1054 07C8  
+                l1046 0794                  l1038 0764                  l1063 07E9                  l1055 07B6  
+                l1047 0782                  l1039 0752                  l1064 07E9                  l1056 07B6  
+                l1048 0782                  l1065 07EE                  l1057 07BB                  l1049 0787  
+                l1066 07FC                  l1058 07DF                  l1067 07FD                  l1059 07CE  
+                l1068 07FD                  l1501 0725                  l1511 072A                  l1503 0726  
+                l1601 0778                  l1513 072B                  l1505 0727                  l1521 0730  
+                l1441 06DD                  l1611 0787                  l1603 0779                  l1531 073F  
+                l1523 0735                  l1515 072C                  l1507 0728                  l1451 06EC  
+                l1443 06E0                  l1701 07D6                  l1621 078D                  l1613 0789  
+                l1605 077A                  l1541 0744                  l1533 0740                  l1525 073B  
+                l1517 072D                  l1509 0729                  l1461 06FA                  l1453 06EF  
+                l1445 06E3                  l1437 06D6                  l1711 07DB                  l1703 07D7  
+                l1631 0792                  l1623 078E                  l1615 078A                  l1607 077C  
+                l1551 074A                  l1543 0745                  l1535 0741                  l1527 073D  
+                l1519 072E                  l1471 0705                  l1463 06FD                  l1455 06F2  
+                l1447 06E6                  l1439 06D9                  l1721 07E1                  l1713 07DC  
+                l1705 07D8                  l1641 0798                  l1625 078F                  l1617 078B  
+                l1609 0781                  l1633 0794                  l1561 0759                  l1553 074B  
+                l1545 0746                  l1537 0742                  l1529 073E                  l1481 0710  
+                l1473 070B                  l1465 06FE                  l1457 06F5                  l1449 06E9  
+                l1731 07F0                  l1723 07E2                  l1715 07DD                  l1707 07D9  
+                l1651 07A7                  l1643 079D                  l1635 0795                  l1627 0790  
+                l1619 078C                  l1571 075E                  l1563 075A                  l1555 074C  
+                l1539 0743                  l1547 0748                  l1491 0715                  l1483 0711  
+                l1475 070D                  l1467 06FF                  l1459 06F8                  l1741 07F5  
+                l1733 07F1                  l1725 07E3                  l1709 07DA                  l1717 07DF  
+                l1661 07AC                  l1653 07A8                  l1645 07A3                  l1637 0796  
+                l1629 0791                  l1573 075F                  l1565 075B                  l1557 0751  
+                l1581 0764                  l1549 0749                  l1493 0716                  l1485 0712  
+                l1477 070E                  l1469 0700                  l1743 07F6                  l1735 07F2  
+                l1727 07E8                  l1719 07E0                  l1671 07BB                  l1663 07AD  
+                l1655 07A9                  l1647 07A5                  l1639 0797                  l1591 0773  
+                l1583 0769                  l1575 0760                  l1567 075C                  l1559 0757  
+                l1487 0713                  l1479 070F                  l1495 0718                  l1745 07F7  
+                l1737 07F3                  l1729 07EE                  l1681 07C1                  l1673 07BD  
+                l1665 07AE                  l1657 07AA                  l1649 07A6                  l1593 0774  
+                l1585 076F                  l1577 0761                  l1569 075D                  l1497 071D  
+                l1489 0714                  l1747 07F8                  l1739 07F4                  l1691 07C6  
+                l1683 07C2                  l1675 07BE                  l1659 07AB                  l1667 07B0  
+                l1595 0775                  l1587 0771                  l1579 0762                  l1499 0723  
+                l1749 07F9                  l1685 07C3                  l1677 07BF                  l1669 07B5  
+                l1693 07C8                  l1597 0776                  l1589 0772                  l1695 07CD  
+                l1687 07C4                  l1679 07C0                  l1599 0777                  l1697 07D3  
+                l1689 07C5                  l1699 07D5                  _main 06D6                  btemp 007E  
+                start 0000                 ?_main 0000                 _ANSEL 0188                 _PORTA 0005  
+               _PORTB 0006                 _PORTC 0007                 _PORTD 0008                 _PORTE 0009  
+               _TRISA 0085                 _TRISB 0086                 _TRISC 0087                 _TRISD 0088  
+               _TRISE 0089                 status 0003                 wtemp0 007E          __end_of_main 0800  
+              ??_main 0000                _ANSELH 0189        __pcstackCOMMON 0000            __pmaintext 06D6  
+end_of_initialization 06D2   start_initialization 06D2         __size_of_main 012A  

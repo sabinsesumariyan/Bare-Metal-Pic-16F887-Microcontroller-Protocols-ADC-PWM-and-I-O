@@ -1,0 +1,1458 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Sat Apr 03 12:12:08 2021
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F887
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_led1
+    43                           	FNCALL	_main,_led2
+    44                           	FNCALL	_main,_led3
+    45                           	FNCALL	_main,_led4
+    46                           	FNCALL	_main,_led5
+    47                           	FNCALL	_main,_led6
+    48                           	FNCALL	_main,_led7
+    49                           	FNCALL	_main,_led8
+    50                           	FNROOT	_main
+    51                           	global	_PORTA
+    52                           psect	text144,local,class=CODE,delta=2
+    53                           global __ptext144
+    54  0000                     __ptext144:
+    55  0005                     _PORTA	set	5
+    56                           	global	_PORTB
+    57  0006                     _PORTB	set	6
+    58                           	global	_TRISA
+    59  0085                     _TRISA	set	133
+    60                           	global	_TRISB
+    61  0086                     _TRISB	set	134
+    62                           	global	_ANSEL
+    63  0188                     _ANSEL	set	392
+    64                           	global	_ANSELH
+    65  0189                     _ANSELH	set	393
+    66                           	file	"Eightled.as"
+    67                           	line	#
+    68                           psect cinit,class=CODE,delta=2
+    69                           global start_initialization
+    70  0690                     start_initialization:
+    71                           
+    72                           psect cinit,class=CODE,delta=2
+    73                           global end_of_initialization
+    74                           
+    75                           ;End of C runtime variable initialization code
+    76                           
+    77  0690                     end_of_initialization:
+    78  0690  0183               clrf status
+    79  0691  120A  118A  2F7C   ljmp _main	;jump to C main() function
+    80                           psect	cstackCOMMON,class=COMMON,space=1
+    81                           global __pcstackCOMMON
+    82  0070                     __pcstackCOMMON:
+    83                           	global	?_led1
+    84  0070                     ?_led1:	; 0 bytes @ 0x0
+    85                           	global	??_led1
+    86  0070                     ??_led1:	; 0 bytes @ 0x0
+    87                           	global	?_led2
+    88  0070                     ?_led2:	; 0 bytes @ 0x0
+    89                           	global	??_led2
+    90  0070                     ??_led2:	; 0 bytes @ 0x0
+    91                           	global	?_led3
+    92  0070                     ?_led3:	; 0 bytes @ 0x0
+    93                           	global	??_led3
+    94  0070                     ??_led3:	; 0 bytes @ 0x0
+    95                           	global	?_led4
+    96  0070                     ?_led4:	; 0 bytes @ 0x0
+    97                           	global	??_led4
+    98  0070                     ??_led4:	; 0 bytes @ 0x0
+    99                           	global	?_led5
+   100  0070                     ?_led5:	; 0 bytes @ 0x0
+   101                           	global	??_led5
+   102  0070                     ??_led5:	; 0 bytes @ 0x0
+   103                           	global	?_led6
+   104  0070                     ?_led6:	; 0 bytes @ 0x0
+   105                           	global	??_led6
+   106  0070                     ??_led6:	; 0 bytes @ 0x0
+   107                           	global	?_led7
+   108  0070                     ?_led7:	; 0 bytes @ 0x0
+   109                           	global	??_led7
+   110  0070                     ??_led7:	; 0 bytes @ 0x0
+   111                           	global	?_led8
+   112  0070                     ?_led8:	; 0 bytes @ 0x0
+   113                           	global	??_led8
+   114  0070                     ??_led8:	; 0 bytes @ 0x0
+   115                           	global	?_main
+   116  0070                     ?_main:	; 0 bytes @ 0x0
+   117                           	global	led1@count
+   118  0070                     led1@count:	; 2 bytes @ 0x0
+   119                           	global	led2@count
+   120  0070                     led2@count:	; 2 bytes @ 0x0
+   121                           	global	led3@count
+   122  0070                     led3@count:	; 2 bytes @ 0x0
+   123                           	global	led4@count
+   124  0070                     led4@count:	; 2 bytes @ 0x0
+   125                           	global	led5@count
+   126  0070                     led5@count:	; 2 bytes @ 0x0
+   127                           	global	led6@count
+   128  0070                     led6@count:	; 2 bytes @ 0x0
+   129                           	global	led7@count
+   130  0070                     led7@count:	; 2 bytes @ 0x0
+   131                           	global	led8@count
+   132  0070                     led8@count:	; 2 bytes @ 0x0
+   133  0070                     	ds	2
+   134                           	global	??_main
+   135  0072                     ??_main:	; 0 bytes @ 0x2
+   136                           	global	main@i
+   137  0072                     main@i:	; 2 bytes @ 0x2
+   138  0072                     	ds	2
+   139 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+   140 ;;Auto spaces:   Size  Autos    Used
+   141 ;; COMMON          14      4       4
+   142 ;; BANK0           80      0       0
+   143 ;; BANK1           80      0       0
+   144 ;; BANK3           96      0       0
+   145 ;; BANK2           96      0       0
+   146                           
+   147 ;;
+   148 ;; Pointer list with targets:
+   149                           
+   150                           
+   151                           
+   152 ;;
+   153 ;; Critical Paths under _main in COMMON
+   154 ;;
+   155 ;;   _main->_led1
+   156 ;;   _main->_led2
+   157 ;;   _main->_led3
+   158 ;;   _main->_led4
+   159 ;;   _main->_led5
+   160 ;;   _main->_led6
+   161 ;;   _main->_led7
+   162 ;;   _main->_led8
+   163 ;;
+   164 ;; Critical Paths under _main in BANK0
+   165 ;;
+   166 ;;   None.
+   167 ;;
+   168 ;; Critical Paths under _main in BANK1
+   169 ;;
+   170 ;;   None.
+   171 ;;
+   172 ;; Critical Paths under _main in BANK3
+   173 ;;
+   174 ;;   None.
+   175 ;;
+   176 ;; Critical Paths under _main in BANK2
+   177 ;;
+   178 ;;   None.
+   179                           
+   180 ;;
+   181 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   182 ;;
+   183                           
+   184 ;;
+   185 ;;Call Graph Tables:
+   186 ;;
+   187 ;; ---------------------------------------------------------------------------------
+   188 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   189 ;; ---------------------------------------------------------------------------------
+   190 ;; (0) _main                                                 2     2      0     120
+   191 ;;                                              2 COMMON     2     2      0
+   192 ;;                               _led1
+   193 ;;                               _led2
+   194 ;;                               _led3
+   195 ;;                               _led4
+   196 ;;                               _led5
+   197 ;;                               _led6
+   198 ;;                               _led7
+   199 ;;                               _led8
+   200 ;; ---------------------------------------------------------------------------------
+   201 ;; (1) _led8                                                 2     2      0      15
+   202 ;;                                              0 COMMON     2     2      0
+   203 ;; ---------------------------------------------------------------------------------
+   204 ;; (1) _led7                                                 2     2      0      15
+   205 ;;                                              0 COMMON     2     2      0
+   206 ;; ---------------------------------------------------------------------------------
+   207 ;; (1) _led6                                                 2     2      0      15
+   208 ;;                                              0 COMMON     2     2      0
+   209 ;; ---------------------------------------------------------------------------------
+   210 ;; (1) _led5                                                 2     2      0      15
+   211 ;;                                              0 COMMON     2     2      0
+   212 ;; ---------------------------------------------------------------------------------
+   213 ;; (1) _led4                                                 2     2      0      15
+   214 ;;                                              0 COMMON     2     2      0
+   215 ;; ---------------------------------------------------------------------------------
+   216 ;; (1) _led3                                                 2     2      0      15
+   217 ;;                                              0 COMMON     2     2      0
+   218 ;; ---------------------------------------------------------------------------------
+   219 ;; (1) _led2                                                 2     2      0      15
+   220 ;;                                              0 COMMON     2     2      0
+   221 ;; ---------------------------------------------------------------------------------
+   222 ;; (1) _led1                                                 2     2      0      15
+   223 ;;                                              0 COMMON     2     2      0
+   224 ;; ---------------------------------------------------------------------------------
+   225 ;; Estimated maximum stack depth 1
+   226 ;; ---------------------------------------------------------------------------------
+   227                           
+   228 ;; Call Graph Graphs:
+   229                           
+   230 ;; _main (ROOT)
+   231 ;;   _led1
+   232 ;;   _led2
+   233 ;;   _led3
+   234 ;;   _led4
+   235 ;;   _led5
+   236 ;;   _led6
+   237 ;;   _led7
+   238 ;;   _led8
+   239 ;;
+   240                           
+   241 ;; Address spaces:
+   242                           
+   243 ;;Name               Size   Autos  Total    Cost      Usage
+   244 ;;BITCOMMON            E      0       0       0        0.0%
+   245 ;;EEDATA             100      0       0       0        0.0%
+   246 ;;NULL                 0      0       0       0        0.0%
+   247 ;;CODE                 0      0       0       0        0.0%
+   248 ;;COMMON               E      4       4       1       28.6%
+   249 ;;BITSFR0              0      0       0       1        0.0%
+   250 ;;SFR0                 0      0       0       1        0.0%
+   251 ;;BITSFR1              0      0       0       2        0.0%
+   252 ;;SFR1                 0      0       0       2        0.0%
+   253 ;;STACK                0      0       1       2        0.0%
+   254 ;;ABS                  0      0       0       3        0.0%
+   255 ;;BITBANK0            50      0       0       4        0.0%
+   256 ;;BITSFR3              0      0       0       4        0.0%
+   257 ;;SFR3                 0      0       0       4        0.0%
+   258 ;;BANK0               50      0       0       5        0.0%
+   259 ;;BITSFR2              0      0       0       5        0.0%
+   260 ;;SFR2                 0      0       0       5        0.0%
+   261 ;;BITBANK1            50      0       0       6        0.0%
+   262 ;;BANK1               50      0       0       7        0.0%
+   263 ;;BITBANK3            60      0       0       8        0.0%
+   264 ;;BANK3               60      0       0       9        0.0%
+   265 ;;BITBANK2            60      0       0      10        0.0%
+   266 ;;BANK2               60      0       0      11        0.0%
+   267 ;;DATA                 0      0       0      12        0.0%
+   268                           
+   269                           	global	_main
+   270                           psect	maintext,global,class=CODE,delta=2
+   271                           global __pmaintext
+   272  077C                     __pmaintext:
+   273                           
+   274 ;; *************** function _main *****************
+   275 ;; Defined at:
+   276 ;;		line 76 in file "E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+   277 ;; Parameters:    Size  Location     Type
+   278 ;;		None
+   279 ;; Auto vars:     Size  Location     Type
+   280 ;;  i               2    2[COMMON] int 
+   281 ;; Return value:  Size  Location     Type
+   282 ;;		None               void
+   283 ;; Registers used:
+   284 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   285 ;; Tracked objects:
+   286 ;;		On entry : 17F/0
+   287 ;;		On exit  : 0/0
+   288 ;;		Unchanged: 0/0
+   289 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   290 ;;      Params:         0       0       0       0       0
+   291 ;;      Locals:         2       0       0       0       0
+   292 ;;      Temps:          0       0       0       0       0
+   293 ;;      Totals:         2       0       0       0       0
+   294 ;;Total ram usage:        2 bytes
+   295 ;; Hardware stack levels required when called:    1
+   296 ;; This function calls:
+   297 ;;		_led1
+   298 ;;		_led2
+   299 ;;		_led3
+   300 ;;		_led4
+   301 ;;		_led5
+   302 ;;		_led6
+   303 ;;		_led7
+   304 ;;		_led8
+   305 ;; This function is called by:
+   306 ;;		Startup code after reset
+   307 ;; This function uses a non-reentrant model
+   308 ;;
+   309                           psect	maintext
+   310                           	file	"E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+   311                           	line	76
+   312                           	global	__size_of_main
+   313  0084                     	__size_of_main	equ	__end_of_main-_main
+   314                           	
+   315  077C                     _main:	
+   316                           	opt	stack 7
+   317                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   318                           	line	77
+   319                           	
+   320  077C                     l2259:	
+   321                           ;Eightled.c: 77: PORTA=0X00;
+   322  077C  1283               	bcf	status, 5	;RP0=0, select bank0
+   323  077D  1303               	bcf	status, 6	;RP1=0, select bank0
+   324  077E  0185               	clrf	(5)	;volatile
+   325                           	line	78
+   326                           ;Eightled.c: 78: PORTB=0X00;
+   327  077F  0186               	clrf	(6)	;volatile
+   328                           	line	79
+   329                           ;Eightled.c: 79: TRISA=0X00;
+   330  0780  1683               	bsf	status, 5	;RP0=1, select bank1
+   331  0781  1303               	bcf	status, 6	;RP1=0, select bank1
+   332  0782  0185               	clrf	(133)^080h	;volatile
+   333                           	line	80
+   334                           ;Eightled.c: 80: TRISB=0X00;
+   335  0783  0186               	clrf	(134)^080h	;volatile
+   336                           	line	81
+   337                           ;Eightled.c: 81: ANSEL=0X00;
+   338  0784  1683               	bsf	status, 5	;RP0=1, select bank3
+   339  0785  1703               	bsf	status, 6	;RP1=1, select bank3
+   340  0786  0188               	clrf	(392)^0180h	;volatile
+   341                           	line	82
+   342                           ;Eightled.c: 82: ANSELH=0X00;
+   343  0787  0189               	clrf	(393)^0180h	;volatile
+   344                           	line	83
+   345                           ;Eightled.c: 83: int i=0;
+   346  0788  01F2               	clrf	(main@i)
+   347  0789  01F3               	clrf	(main@i+1)
+   348  078A  2F8B               	goto	l2261
+   349                           	line	84
+   350                           ;Eightled.c: 84: while(1)
+   351                           	
+   352  078B                     l1073:	
+   353                           	line	86
+   354                           	
+   355  078B                     l2261:	
+   356                           ;Eightled.c: 85: {
+   357                           ;Eightled.c: 86: led1();
+   358  078B  120A  118A  2694   	fcall	_led1
+              120A  118A         
+   359                           	line	87
+   360                           	
+   361  0790                     l2263:	
+   362                           ;Eightled.c: 87: PORTA=0X00;
+   363  0790  1283               	bcf	status, 5	;RP0=0, select bank0
+   364  0791  1303               	bcf	status, 6	;RP1=0, select bank0
+   365  0792  0185               	clrf	(5)	;volatile
+   366                           	line	88
+   367                           ;Eightled.c: 88: led2();
+   368  0793  120A  118A  26B1   	fcall	_led2
+              120A  118A         
+   369                           	line	89
+   370                           	
+   371  0798                     l2265:	
+   372                           ;Eightled.c: 89: PORTA=0X00;
+   373  0798  1283               	bcf	status, 5	;RP0=0, select bank0
+   374  0799  1303               	bcf	status, 6	;RP1=0, select bank0
+   375  079A  0185               	clrf	(5)	;volatile
+   376                           	line	90
+   377                           	
+   378  079B                     l2267:	
+   379                           ;Eightled.c: 90: led3();
+   380  079B  120A  118A  26CE   	fcall	_led3
+              120A  118A         
+   381                           	line	91
+   382                           ;Eightled.c: 91: PORTA=0X00;
+   383  07A0  1283               	bcf	status, 5	;RP0=0, select bank0
+   384  07A1  1303               	bcf	status, 6	;RP1=0, select bank0
+   385  07A2  0185               	clrf	(5)	;volatile
+   386                           	line	92
+   387                           	
+   388  07A3                     l2269:	
+   389                           ;Eightled.c: 92: led4();
+   390  07A3  120A  118A  26EB   	fcall	_led4
+              120A  118A         
+   391                           	line	93
+   392                           	
+   393  07A8                     l2271:	
+   394                           ;Eightled.c: 93: PORTA=0X00;
+   395  07A8  1283               	bcf	status, 5	;RP0=0, select bank0
+   396  07A9  1303               	bcf	status, 6	;RP1=0, select bank0
+   397  07AA  0185               	clrf	(5)	;volatile
+   398                           	line	94
+   399                           ;Eightled.c: 94: led5();
+   400  07AB  120A  118A  2708   	fcall	_led5
+              120A  118A         
+   401                           	line	95
+   402                           	
+   403  07B0                     l2273:	
+   404                           ;Eightled.c: 95: PORTB=0X00;
+   405  07B0  1283               	bcf	status, 5	;RP0=0, select bank0
+   406  07B1  1303               	bcf	status, 6	;RP1=0, select bank0
+   407  07B2  0186               	clrf	(6)	;volatile
+   408                           	line	96
+   409                           	
+   410  07B3                     l2275:	
+   411                           ;Eightled.c: 96: led6();
+   412  07B3  120A  118A  2725   	fcall	_led6
+              120A  118A         
+   413                           	line	97
+   414                           ;Eightled.c: 97: PORTB=0X00;
+   415  07B8  1283               	bcf	status, 5	;RP0=0, select bank0
+   416  07B9  1303               	bcf	status, 6	;RP1=0, select bank0
+   417  07BA  0186               	clrf	(6)	;volatile
+   418                           	line	98
+   419                           	
+   420  07BB                     l2277:	
+   421                           ;Eightled.c: 98: led7();
+   422  07BB  120A  118A  2742   	fcall	_led7
+              120A  118A         
+   423                           	line	99
+   424                           	
+   425  07C0                     l2279:	
+   426                           ;Eightled.c: 99: PORTB=0X00;
+   427  07C0  1283               	bcf	status, 5	;RP0=0, select bank0
+   428  07C1  1303               	bcf	status, 6	;RP1=0, select bank0
+   429  07C2  0186               	clrf	(6)	;volatile
+   430                           	line	100
+   431                           ;Eightled.c: 100: led8();
+   432  07C3  120A  118A  275F   	fcall	_led8
+              120A  118A         
+   433                           	line	101
+   434                           	
+   435  07C8                     l2281:	
+   436                           ;Eightled.c: 101: PORTB=0X00;
+   437  07C8  1283               	bcf	status, 5	;RP0=0, select bank0
+   438  07C9  1303               	bcf	status, 6	;RP1=0, select bank0
+   439  07CA  0186               	clrf	(6)	;volatile
+   440                           	line	102
+   441                           	
+   442  07CB                     l2283:	
+   443                           ;Eightled.c: 102: led7();
+   444  07CB  120A  118A  2742   	fcall	_led7
+              120A  118A         
+   445                           	line	103
+   446                           ;Eightled.c: 103: PORTB=0X00;
+   447  07D0  1283               	bcf	status, 5	;RP0=0, select bank0
+   448  07D1  1303               	bcf	status, 6	;RP1=0, select bank0
+   449  07D2  0186               	clrf	(6)	;volatile
+   450                           	line	104
+   451                           	
+   452  07D3                     l2285:	
+   453                           ;Eightled.c: 104: led6();
+   454  07D3  120A  118A  2725   	fcall	_led6
+              120A  118A         
+   455                           	line	105
+   456                           	
+   457  07D8                     l2287:	
+   458                           ;Eightled.c: 105: PORTB=0X00;
+   459  07D8  1283               	bcf	status, 5	;RP0=0, select bank0
+   460  07D9  1303               	bcf	status, 6	;RP1=0, select bank0
+   461  07DA  0186               	clrf	(6)	;volatile
+   462                           	line	106
+   463                           ;Eightled.c: 106: led5();
+   464  07DB  120A  118A  2708   	fcall	_led5
+              120A  118A         
+   465                           	line	107
+   466                           	
+   467  07E0                     l2289:	
+   468                           ;Eightled.c: 107: PORTB=0X00;
+   469  07E0  1283               	bcf	status, 5	;RP0=0, select bank0
+   470  07E1  1303               	bcf	status, 6	;RP1=0, select bank0
+   471  07E2  0186               	clrf	(6)	;volatile
+   472                           	line	109
+   473                           	
+   474  07E3                     l2291:	
+   475                           ;Eightled.c: 109: led4();
+   476  07E3  120A  118A  26EB   	fcall	_led4
+              120A  118A         
+   477                           	line	110
+   478                           ;Eightled.c: 110: PORTA=0X00;
+   479  07E8  1283               	bcf	status, 5	;RP0=0, select bank0
+   480  07E9  1303               	bcf	status, 6	;RP1=0, select bank0
+   481  07EA  0185               	clrf	(5)	;volatile
+   482                           	line	111
+   483                           	
+   484  07EB                     l2293:	
+   485                           ;Eightled.c: 111: led3();
+   486  07EB  120A  118A  26CE   	fcall	_led3
+              120A  118A         
+   487                           	line	112
+   488                           	
+   489  07F0                     l2295:	
+   490                           ;Eightled.c: 112: PORTA=0X00;
+   491  07F0  1283               	bcf	status, 5	;RP0=0, select bank0
+   492  07F1  1303               	bcf	status, 6	;RP1=0, select bank0
+   493  07F2  0185               	clrf	(5)	;volatile
+   494                           	line	113
+   495                           ;Eightled.c: 113: led2();
+   496  07F3  120A  118A  26B1   	fcall	_led2
+              120A  118A         
+   497                           	line	114
+   498                           	
+   499  07F8                     l2297:	
+   500                           ;Eightled.c: 114: PORTA=0X00;
+   501  07F8  1283               	bcf	status, 5	;RP0=0, select bank0
+   502  07F9  1303               	bcf	status, 6	;RP1=0, select bank0
+   503  07FA  0185               	clrf	(5)	;volatile
+   504  07FB  2F8B               	goto	l2261
+   505                           	line	115
+   506                           	
+   507  07FC                     l1074:	
+   508                           	line	84
+   509  07FC  2F8B               	goto	l2261
+   510                           	
+   511  07FD                     l1075:	
+   512                           	line	116
+   513                           	
+   514  07FD                     l1076:	
+   515                           	global	start
+   516  07FD  120A  118A  2800   	ljmp	start
+   517                           	opt stack 0
+   518                           GLOBAL	__end_of_main
+   519  0800                     	__end_of_main:
+   520 ;; =============== function _main ends ============
+   521                           
+   522                           	signat	_main,88
+   523                           	global	_led8
+   524                           psect	text145,local,class=CODE,delta=2
+   525                           global __ptext145
+   526  075F                     __ptext145:
+   527                           
+   528 ;; *************** function _led8 *****************
+   529 ;; Defined at:
+   530 ;;		line 66 in file "E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+   531 ;; Parameters:    Size  Location     Type
+   532 ;;		None
+   533 ;; Auto vars:     Size  Location     Type
+   534 ;;  count           2    0[COMMON] int 
+   535 ;; Return value:  Size  Location     Type
+   536 ;;		None               void
+   537 ;; Registers used:
+   538 ;;		wreg, status,2, btemp+1
+   539 ;; Tracked objects:
+   540 ;;		On entry : 0/0
+   541 ;;		On exit  : 0/0
+   542 ;;		Unchanged: 0/0
+   543 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   544 ;;      Params:         0       0       0       0       0
+   545 ;;      Locals:         2       0       0       0       0
+   546 ;;      Temps:          0       0       0       0       0
+   547 ;;      Totals:         2       0       0       0       0
+   548 ;;Total ram usage:        2 bytes
+   549 ;; Hardware stack levels used:    1
+   550 ;; This function calls:
+   551 ;;		Nothing
+   552 ;; This function is called by:
+   553 ;;		_main
+   554 ;; This function uses a non-reentrant model
+   555 ;;
+   556                           psect	text145
+   557                           	file	"E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+   558                           	line	66
+   559                           	global	__size_of_led8
+   560  001D                     	__size_of_led8	equ	__end_of_led8-_led8
+   561                           	
+   562  075F                     _led8:	
+   563                           	opt	stack 7
+   564                           ; Regs used in _led8: [wreg+status,2+btemp+1]
+   565                           	line	67
+   566                           	
+   567  075F                     l1487:	
+   568                           ;Eightled.c: 67: int count=0;;
+   569  075F  01F0               	clrf	(led8@count)
+   570  0760  01F1               	clrf	(led8@count+1)
+   571                           	line	68
+   572                           ;Eightled.c: 68: while(count<31500)
+   573  0761  2F6D               	goto	l1491
+   574                           	
+   575  0762                     l1068:	
+   576                           	line	70
+   577                           	
+   578  0762                     l1489:	
+   579                           ;Eightled.c: 69: {
+   580                           ;Eightled.c: 70: PORTB=0X08;
+   581  0762  3008               	movlw	(08h)
+   582  0763  1283               	bcf	status, 5	;RP0=0, select bank0
+   583  0764  1303               	bcf	status, 6	;RP1=0, select bank0
+   584  0765  0086               	movwf	(6)	;volatile
+   585                           	line	71
+   586                           ;Eightled.c: 71: count++;
+   587  0766  3001               	movlw	low(01h)
+   588  0767  07F0               	addwf	(led8@count),f
+   589  0768  1803               	skipnc
+   590  0769  0AF1               	incf	(led8@count+1),f
+   591  076A  3000               	movlw	high(01h)
+   592  076B  07F1               	addwf	(led8@count+1),f
+   593  076C  2F6D               	goto	l1491
+   594                           	line	72
+   595                           	
+   596  076D                     l1067:	
+   597                           	line	68
+   598                           	
+   599  076D                     l1491:	
+   600  076D  0871               	movf	(led8@count+1),w
+   601  076E  3A80               	xorlw	80h
+   602  076F  00FF               	movwf	btemp+1
+   603  0770  30FB               	movlw	(high(07B0Ch))^80h
+   604  0771  027F               	subwf	btemp+1,w
+   605  0772  1D03               	skipz
+   606  0773  2F76               	goto	u85
+   607  0774  300C               	movlw	low(07B0Ch)
+   608  0775  0270               	subwf	(led8@count),w
+   609  0776                     u85:
+   610                           
+   611  0776  1C03               	skipc
+   612  0777  2F79               	goto	u81
+   613  0778  2F7A               	goto	u80
+   614  0779                     u81:
+   615  0779  2F62               	goto	l1489
+   616  077A                     u80:
+   617  077A  2F7B               	goto	l1070
+   618                           	
+   619  077B                     l1069:	
+   620                           	line	73
+   621                           	
+   622  077B                     l1070:	
+   623  077B  0008               	return
+   624                           	opt stack 0
+   625                           GLOBAL	__end_of_led8
+   626  077C                     	__end_of_led8:
+   627 ;; =============== function _led8 ends ============
+   628                           
+   629                           	signat	_led8,88
+   630                           	global	_led7
+   631                           psect	text146,local,class=CODE,delta=2
+   632                           global __ptext146
+   633  0742                     __ptext146:
+   634                           
+   635 ;; *************** function _led7 *****************
+   636 ;; Defined at:
+   637 ;;		line 57 in file "E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+   638 ;; Parameters:    Size  Location     Type
+   639 ;;		None
+   640 ;; Auto vars:     Size  Location     Type
+   641 ;;  count           2    0[COMMON] int 
+   642 ;; Return value:  Size  Location     Type
+   643 ;;		None               void
+   644 ;; Registers used:
+   645 ;;		wreg, status,2, btemp+1
+   646 ;; Tracked objects:
+   647 ;;		On entry : 0/0
+   648 ;;		On exit  : 0/0
+   649 ;;		Unchanged: 0/0
+   650 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   651 ;;      Params:         0       0       0       0       0
+   652 ;;      Locals:         2       0       0       0       0
+   653 ;;      Temps:          0       0       0       0       0
+   654 ;;      Totals:         2       0       0       0       0
+   655 ;;Total ram usage:        2 bytes
+   656 ;; Hardware stack levels used:    1
+   657 ;; This function calls:
+   658 ;;		Nothing
+   659 ;; This function is called by:
+   660 ;;		_main
+   661 ;; This function uses a non-reentrant model
+   662 ;;
+   663                           psect	text146
+   664                           	file	"E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+   665                           	line	57
+   666                           	global	__size_of_led7
+   667  001D                     	__size_of_led7	equ	__end_of_led7-_led7
+   668                           	
+   669  0742                     _led7:	
+   670                           	opt	stack 7
+   671                           ; Regs used in _led7: [wreg+status,2+btemp+1]
+   672                           	line	58
+   673                           	
+   674  0742                     l1481:	
+   675                           ;Eightled.c: 58: int count=0;;
+   676  0742  01F0               	clrf	(led7@count)
+   677  0743  01F1               	clrf	(led7@count+1)
+   678                           	line	59
+   679                           ;Eightled.c: 59: while(count<31500)
+   680  0744  2F50               	goto	l1485
+   681                           	
+   682  0745                     l1062:	
+   683                           	line	61
+   684                           	
+   685  0745                     l1483:	
+   686                           ;Eightled.c: 60: {
+   687                           ;Eightled.c: 61: PORTB=0X04;
+   688  0745  3004               	movlw	(04h)
+   689  0746  1283               	bcf	status, 5	;RP0=0, select bank0
+   690  0747  1303               	bcf	status, 6	;RP1=0, select bank0
+   691  0748  0086               	movwf	(6)	;volatile
+   692                           	line	62
+   693                           ;Eightled.c: 62: count++;
+   694  0749  3001               	movlw	low(01h)
+   695  074A  07F0               	addwf	(led7@count),f
+   696  074B  1803               	skipnc
+   697  074C  0AF1               	incf	(led7@count+1),f
+   698  074D  3000               	movlw	high(01h)
+   699  074E  07F1               	addwf	(led7@count+1),f
+   700  074F  2F50               	goto	l1485
+   701                           	line	63
+   702                           	
+   703  0750                     l1061:	
+   704                           	line	59
+   705                           	
+   706  0750                     l1485:	
+   707  0750  0871               	movf	(led7@count+1),w
+   708  0751  3A80               	xorlw	80h
+   709  0752  00FF               	movwf	btemp+1
+   710  0753  30FB               	movlw	(high(07B0Ch))^80h
+   711  0754  027F               	subwf	btemp+1,w
+   712  0755  1D03               	skipz
+   713  0756  2F59               	goto	u75
+   714  0757  300C               	movlw	low(07B0Ch)
+   715  0758  0270               	subwf	(led7@count),w
+   716  0759                     u75:
+   717                           
+   718  0759  1C03               	skipc
+   719  075A  2F5C               	goto	u71
+   720  075B  2F5D               	goto	u70
+   721  075C                     u71:
+   722  075C  2F45               	goto	l1483
+   723  075D                     u70:
+   724  075D  2F5E               	goto	l1064
+   725                           	
+   726  075E                     l1063:	
+   727                           	line	64
+   728                           	
+   729  075E                     l1064:	
+   730  075E  0008               	return
+   731                           	opt stack 0
+   732                           GLOBAL	__end_of_led7
+   733  075F                     	__end_of_led7:
+   734 ;; =============== function _led7 ends ============
+   735                           
+   736                           	signat	_led7,88
+   737                           	global	_led6
+   738                           psect	text147,local,class=CODE,delta=2
+   739                           global __ptext147
+   740  0725                     __ptext147:
+   741                           
+   742 ;; *************** function _led6 *****************
+   743 ;; Defined at:
+   744 ;;		line 48 in file "E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+   745 ;; Parameters:    Size  Location     Type
+   746 ;;		None
+   747 ;; Auto vars:     Size  Location     Type
+   748 ;;  count           2    0[COMMON] int 
+   749 ;; Return value:  Size  Location     Type
+   750 ;;		None               void
+   751 ;; Registers used:
+   752 ;;		wreg, status,2, btemp+1
+   753 ;; Tracked objects:
+   754 ;;		On entry : 0/0
+   755 ;;		On exit  : 0/0
+   756 ;;		Unchanged: 0/0
+   757 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   758 ;;      Params:         0       0       0       0       0
+   759 ;;      Locals:         2       0       0       0       0
+   760 ;;      Temps:          0       0       0       0       0
+   761 ;;      Totals:         2       0       0       0       0
+   762 ;;Total ram usage:        2 bytes
+   763 ;; Hardware stack levels used:    1
+   764 ;; This function calls:
+   765 ;;		Nothing
+   766 ;; This function is called by:
+   767 ;;		_main
+   768 ;; This function uses a non-reentrant model
+   769 ;;
+   770                           psect	text147
+   771                           	file	"E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+   772                           	line	48
+   773                           	global	__size_of_led6
+   774  001D                     	__size_of_led6	equ	__end_of_led6-_led6
+   775                           	
+   776  0725                     _led6:	
+   777                           	opt	stack 7
+   778                           ; Regs used in _led6: [wreg+status,2+btemp+1]
+   779                           	line	49
+   780                           	
+   781  0725                     l1475:	
+   782                           ;Eightled.c: 49: int count=0;;
+   783  0725  01F0               	clrf	(led6@count)
+   784  0726  01F1               	clrf	(led6@count+1)
+   785                           	line	50
+   786                           ;Eightled.c: 50: while(count<31500)
+   787  0727  2F33               	goto	l1479
+   788                           	
+   789  0728                     l1056:	
+   790                           	line	52
+   791                           	
+   792  0728                     l1477:	
+   793                           ;Eightled.c: 51: {
+   794                           ;Eightled.c: 52: PORTB=0X02;
+   795  0728  3002               	movlw	(02h)
+   796  0729  1283               	bcf	status, 5	;RP0=0, select bank0
+   797  072A  1303               	bcf	status, 6	;RP1=0, select bank0
+   798  072B  0086               	movwf	(6)	;volatile
+   799                           	line	53
+   800                           ;Eightled.c: 53: count++;
+   801  072C  3001               	movlw	low(01h)
+   802  072D  07F0               	addwf	(led6@count),f
+   803  072E  1803               	skipnc
+   804  072F  0AF1               	incf	(led6@count+1),f
+   805  0730  3000               	movlw	high(01h)
+   806  0731  07F1               	addwf	(led6@count+1),f
+   807  0732  2F33               	goto	l1479
+   808                           	line	54
+   809                           	
+   810  0733                     l1055:	
+   811                           	line	50
+   812                           	
+   813  0733                     l1479:	
+   814  0733  0871               	movf	(led6@count+1),w
+   815  0734  3A80               	xorlw	80h
+   816  0735  00FF               	movwf	btemp+1
+   817  0736  30FB               	movlw	(high(07B0Ch))^80h
+   818  0737  027F               	subwf	btemp+1,w
+   819  0738  1D03               	skipz
+   820  0739  2F3C               	goto	u65
+   821  073A  300C               	movlw	low(07B0Ch)
+   822  073B  0270               	subwf	(led6@count),w
+   823  073C                     u65:
+   824                           
+   825  073C  1C03               	skipc
+   826  073D  2F3F               	goto	u61
+   827  073E  2F40               	goto	u60
+   828  073F                     u61:
+   829  073F  2F28               	goto	l1477
+   830  0740                     u60:
+   831  0740  2F41               	goto	l1058
+   832                           	
+   833  0741                     l1057:	
+   834                           	line	55
+   835                           	
+   836  0741                     l1058:	
+   837  0741  0008               	return
+   838                           	opt stack 0
+   839                           GLOBAL	__end_of_led6
+   840  0742                     	__end_of_led6:
+   841 ;; =============== function _led6 ends ============
+   842                           
+   843                           	signat	_led6,88
+   844                           	global	_led5
+   845                           psect	text148,local,class=CODE,delta=2
+   846                           global __ptext148
+   847  0708                     __ptext148:
+   848                           
+   849 ;; *************** function _led5 *****************
+   850 ;; Defined at:
+   851 ;;		line 39 in file "E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+   852 ;; Parameters:    Size  Location     Type
+   853 ;;		None
+   854 ;; Auto vars:     Size  Location     Type
+   855 ;;  count           2    0[COMMON] int 
+   856 ;; Return value:  Size  Location     Type
+   857 ;;		None               void
+   858 ;; Registers used:
+   859 ;;		wreg, status,2, btemp+1
+   860 ;; Tracked objects:
+   861 ;;		On entry : 0/0
+   862 ;;		On exit  : 0/0
+   863 ;;		Unchanged: 0/0
+   864 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   865 ;;      Params:         0       0       0       0       0
+   866 ;;      Locals:         2       0       0       0       0
+   867 ;;      Temps:          0       0       0       0       0
+   868 ;;      Totals:         2       0       0       0       0
+   869 ;;Total ram usage:        2 bytes
+   870 ;; Hardware stack levels used:    1
+   871 ;; This function calls:
+   872 ;;		Nothing
+   873 ;; This function is called by:
+   874 ;;		_main
+   875 ;; This function uses a non-reentrant model
+   876 ;;
+   877                           psect	text148
+   878                           	file	"E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+   879                           	line	39
+   880                           	global	__size_of_led5
+   881  001D                     	__size_of_led5	equ	__end_of_led5-_led5
+   882                           	
+   883  0708                     _led5:	
+   884                           	opt	stack 7
+   885                           ; Regs used in _led5: [wreg+status,2+btemp+1]
+   886                           	line	40
+   887                           	
+   888  0708                     l1469:	
+   889                           ;Eightled.c: 40: int count=0;;
+   890  0708  01F0               	clrf	(led5@count)
+   891  0709  01F1               	clrf	(led5@count+1)
+   892                           	line	41
+   893                           ;Eightled.c: 41: while(count<31500)
+   894  070A  2F16               	goto	l1473
+   895                           	
+   896  070B                     l1050:	
+   897                           	line	43
+   898                           	
+   899  070B                     l1471:	
+   900                           ;Eightled.c: 42: {
+   901                           ;Eightled.c: 43: PORTB=0X01;
+   902  070B  3001               	movlw	(01h)
+   903  070C  1283               	bcf	status, 5	;RP0=0, select bank0
+   904  070D  1303               	bcf	status, 6	;RP1=0, select bank0
+   905  070E  0086               	movwf	(6)	;volatile
+   906                           	line	44
+   907                           ;Eightled.c: 44: count++;
+   908  070F  3001               	movlw	low(01h)
+   909  0710  07F0               	addwf	(led5@count),f
+   910  0711  1803               	skipnc
+   911  0712  0AF1               	incf	(led5@count+1),f
+   912  0713  3000               	movlw	high(01h)
+   913  0714  07F1               	addwf	(led5@count+1),f
+   914  0715  2F16               	goto	l1473
+   915                           	line	45
+   916                           	
+   917  0716                     l1049:	
+   918                           	line	41
+   919                           	
+   920  0716                     l1473:	
+   921  0716  0871               	movf	(led5@count+1),w
+   922  0717  3A80               	xorlw	80h
+   923  0718  00FF               	movwf	btemp+1
+   924  0719  30FB               	movlw	(high(07B0Ch))^80h
+   925  071A  027F               	subwf	btemp+1,w
+   926  071B  1D03               	skipz
+   927  071C  2F1F               	goto	u55
+   928  071D  300C               	movlw	low(07B0Ch)
+   929  071E  0270               	subwf	(led5@count),w
+   930  071F                     u55:
+   931                           
+   932  071F  1C03               	skipc
+   933  0720  2F22               	goto	u51
+   934  0721  2F23               	goto	u50
+   935  0722                     u51:
+   936  0722  2F0B               	goto	l1471
+   937  0723                     u50:
+   938  0723  2F24               	goto	l1052
+   939                           	
+   940  0724                     l1051:	
+   941                           	line	46
+   942                           	
+   943  0724                     l1052:	
+   944  0724  0008               	return
+   945                           	opt stack 0
+   946                           GLOBAL	__end_of_led5
+   947  0725                     	__end_of_led5:
+   948 ;; =============== function _led5 ends ============
+   949                           
+   950                           	signat	_led5,88
+   951                           	global	_led4
+   952                           psect	text149,local,class=CODE,delta=2
+   953                           global __ptext149
+   954  06EB                     __ptext149:
+   955                           
+   956 ;; *************** function _led4 *****************
+   957 ;; Defined at:
+   958 ;;		line 30 in file "E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+   959 ;; Parameters:    Size  Location     Type
+   960 ;;		None
+   961 ;; Auto vars:     Size  Location     Type
+   962 ;;  count           2    0[COMMON] int 
+   963 ;; Return value:  Size  Location     Type
+   964 ;;		None               void
+   965 ;; Registers used:
+   966 ;;		wreg, status,2, btemp+1
+   967 ;; Tracked objects:
+   968 ;;		On entry : 0/0
+   969 ;;		On exit  : 0/0
+   970 ;;		Unchanged: 0/0
+   971 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   972 ;;      Params:         0       0       0       0       0
+   973 ;;      Locals:         2       0       0       0       0
+   974 ;;      Temps:          0       0       0       0       0
+   975 ;;      Totals:         2       0       0       0       0
+   976 ;;Total ram usage:        2 bytes
+   977 ;; Hardware stack levels used:    1
+   978 ;; This function calls:
+   979 ;;		Nothing
+   980 ;; This function is called by:
+   981 ;;		_main
+   982 ;; This function uses a non-reentrant model
+   983 ;;
+   984                           psect	text149
+   985                           	file	"E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+   986                           	line	30
+   987                           	global	__size_of_led4
+   988  001D                     	__size_of_led4	equ	__end_of_led4-_led4
+   989                           	
+   990  06EB                     _led4:	
+   991                           	opt	stack 7
+   992                           ; Regs used in _led4: [wreg+status,2+btemp+1]
+   993                           	line	31
+   994                           	
+   995  06EB                     l1463:	
+   996                           ;Eightled.c: 31: int count=0;;
+   997  06EB  01F0               	clrf	(led4@count)
+   998  06EC  01F1               	clrf	(led4@count+1)
+   999                           	line	32
+  1000                           ;Eightled.c: 32: while(count<31500)
+  1001  06ED  2EF9               	goto	l1467
+  1002                           	
+  1003  06EE                     l1044:	
+  1004                           	line	34
+  1005                           	
+  1006  06EE                     l1465:	
+  1007                           ;Eightled.c: 33: {
+  1008                           ;Eightled.c: 34: PORTA=0X08;
+  1009  06EE  3008               	movlw	(08h)
+  1010  06EF  1283               	bcf	status, 5	;RP0=0, select bank0
+  1011  06F0  1303               	bcf	status, 6	;RP1=0, select bank0
+  1012  06F1  0085               	movwf	(5)	;volatile
+  1013                           	line	35
+  1014                           ;Eightled.c: 35: count++;
+  1015  06F2  3001               	movlw	low(01h)
+  1016  06F3  07F0               	addwf	(led4@count),f
+  1017  06F4  1803               	skipnc
+  1018  06F5  0AF1               	incf	(led4@count+1),f
+  1019  06F6  3000               	movlw	high(01h)
+  1020  06F7  07F1               	addwf	(led4@count+1),f
+  1021  06F8  2EF9               	goto	l1467
+  1022                           	line	36
+  1023                           	
+  1024  06F9                     l1043:	
+  1025                           	line	32
+  1026                           	
+  1027  06F9                     l1467:	
+  1028  06F9  0871               	movf	(led4@count+1),w
+  1029  06FA  3A80               	xorlw	80h
+  1030  06FB  00FF               	movwf	btemp+1
+  1031  06FC  30FB               	movlw	(high(07B0Ch))^80h
+  1032  06FD  027F               	subwf	btemp+1,w
+  1033  06FE  1D03               	skipz
+  1034  06FF  2F02               	goto	u45
+  1035  0700  300C               	movlw	low(07B0Ch)
+  1036  0701  0270               	subwf	(led4@count),w
+  1037  0702                     u45:
+  1038                           
+  1039  0702  1C03               	skipc
+  1040  0703  2F05               	goto	u41
+  1041  0704  2F06               	goto	u40
+  1042  0705                     u41:
+  1043  0705  2EEE               	goto	l1465
+  1044  0706                     u40:
+  1045  0706  2F07               	goto	l1046
+  1046                           	
+  1047  0707                     l1045:	
+  1048                           	line	37
+  1049                           	
+  1050  0707                     l1046:	
+  1051  0707  0008               	return
+  1052                           	opt stack 0
+  1053                           GLOBAL	__end_of_led4
+  1054  0708                     	__end_of_led4:
+  1055 ;; =============== function _led4 ends ============
+  1056                           
+  1057                           	signat	_led4,88
+  1058                           	global	_led3
+  1059                           psect	text150,local,class=CODE,delta=2
+  1060                           global __ptext150
+  1061  06CE                     __ptext150:
+  1062                           
+  1063 ;; *************** function _led3 *****************
+  1064 ;; Defined at:
+  1065 ;;		line 21 in file "E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+  1066 ;; Parameters:    Size  Location     Type
+  1067 ;;		None
+  1068 ;; Auto vars:     Size  Location     Type
+  1069 ;;  count           2    0[COMMON] int 
+  1070 ;; Return value:  Size  Location     Type
+  1071 ;;		None               void
+  1072 ;; Registers used:
+  1073 ;;		wreg, status,2, btemp+1
+  1074 ;; Tracked objects:
+  1075 ;;		On entry : 0/0
+  1076 ;;		On exit  : 0/0
+  1077 ;;		Unchanged: 0/0
+  1078 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1079 ;;      Params:         0       0       0       0       0
+  1080 ;;      Locals:         2       0       0       0       0
+  1081 ;;      Temps:          0       0       0       0       0
+  1082 ;;      Totals:         2       0       0       0       0
+  1083 ;;Total ram usage:        2 bytes
+  1084 ;; Hardware stack levels used:    1
+  1085 ;; This function calls:
+  1086 ;;		Nothing
+  1087 ;; This function is called by:
+  1088 ;;		_main
+  1089 ;; This function uses a non-reentrant model
+  1090 ;;
+  1091                           psect	text150
+  1092                           	file	"E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+  1093                           	line	21
+  1094                           	global	__size_of_led3
+  1095  001D                     	__size_of_led3	equ	__end_of_led3-_led3
+  1096                           	
+  1097  06CE                     _led3:	
+  1098                           	opt	stack 7
+  1099                           ; Regs used in _led3: [wreg+status,2+btemp+1]
+  1100                           	line	22
+  1101                           	
+  1102  06CE                     l1457:	
+  1103                           ;Eightled.c: 22: int count=0;;
+  1104  06CE  01F0               	clrf	(led3@count)
+  1105  06CF  01F1               	clrf	(led3@count+1)
+  1106                           	line	23
+  1107                           ;Eightled.c: 23: while(count<31500)
+  1108  06D0  2EDC               	goto	l1461
+  1109                           	
+  1110  06D1                     l1038:	
+  1111                           	line	25
+  1112                           	
+  1113  06D1                     l1459:	
+  1114                           ;Eightled.c: 24: {
+  1115                           ;Eightled.c: 25: PORTA=0X04;
+  1116  06D1  3004               	movlw	(04h)
+  1117  06D2  1283               	bcf	status, 5	;RP0=0, select bank0
+  1118  06D3  1303               	bcf	status, 6	;RP1=0, select bank0
+  1119  06D4  0085               	movwf	(5)	;volatile
+  1120                           	line	26
+  1121                           ;Eightled.c: 26: count++;
+  1122  06D5  3001               	movlw	low(01h)
+  1123  06D6  07F0               	addwf	(led3@count),f
+  1124  06D7  1803               	skipnc
+  1125  06D8  0AF1               	incf	(led3@count+1),f
+  1126  06D9  3000               	movlw	high(01h)
+  1127  06DA  07F1               	addwf	(led3@count+1),f
+  1128  06DB  2EDC               	goto	l1461
+  1129                           	line	27
+  1130                           	
+  1131  06DC                     l1037:	
+  1132                           	line	23
+  1133                           	
+  1134  06DC                     l1461:	
+  1135  06DC  0871               	movf	(led3@count+1),w
+  1136  06DD  3A80               	xorlw	80h
+  1137  06DE  00FF               	movwf	btemp+1
+  1138  06DF  30FB               	movlw	(high(07B0Ch))^80h
+  1139  06E0  027F               	subwf	btemp+1,w
+  1140  06E1  1D03               	skipz
+  1141  06E2  2EE5               	goto	u35
+  1142  06E3  300C               	movlw	low(07B0Ch)
+  1143  06E4  0270               	subwf	(led3@count),w
+  1144  06E5                     u35:
+  1145                           
+  1146  06E5  1C03               	skipc
+  1147  06E6  2EE8               	goto	u31
+  1148  06E7  2EE9               	goto	u30
+  1149  06E8                     u31:
+  1150  06E8  2ED1               	goto	l1459
+  1151  06E9                     u30:
+  1152  06E9  2EEA               	goto	l1040
+  1153                           	
+  1154  06EA                     l1039:	
+  1155                           	line	28
+  1156                           	
+  1157  06EA                     l1040:	
+  1158  06EA  0008               	return
+  1159                           	opt stack 0
+  1160                           GLOBAL	__end_of_led3
+  1161  06EB                     	__end_of_led3:
+  1162 ;; =============== function _led3 ends ============
+  1163                           
+  1164                           	signat	_led3,88
+  1165                           	global	_led2
+  1166                           psect	text151,local,class=CODE,delta=2
+  1167                           global __ptext151
+  1168  06B1                     __ptext151:
+  1169                           
+  1170 ;; *************** function _led2 *****************
+  1171 ;; Defined at:
+  1172 ;;		line 12 in file "E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+  1173 ;; Parameters:    Size  Location     Type
+  1174 ;;		None
+  1175 ;; Auto vars:     Size  Location     Type
+  1176 ;;  count           2    0[COMMON] int 
+  1177 ;; Return value:  Size  Location     Type
+  1178 ;;		None               void
+  1179 ;; Registers used:
+  1180 ;;		wreg, status,2, btemp+1
+  1181 ;; Tracked objects:
+  1182 ;;		On entry : 0/0
+  1183 ;;		On exit  : 0/0
+  1184 ;;		Unchanged: 0/0
+  1185 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1186 ;;      Params:         0       0       0       0       0
+  1187 ;;      Locals:         2       0       0       0       0
+  1188 ;;      Temps:          0       0       0       0       0
+  1189 ;;      Totals:         2       0       0       0       0
+  1190 ;;Total ram usage:        2 bytes
+  1191 ;; Hardware stack levels used:    1
+  1192 ;; This function calls:
+  1193 ;;		Nothing
+  1194 ;; This function is called by:
+  1195 ;;		_main
+  1196 ;; This function uses a non-reentrant model
+  1197 ;;
+  1198                           psect	text151
+  1199                           	file	"E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+  1200                           	line	12
+  1201                           	global	__size_of_led2
+  1202  001D                     	__size_of_led2	equ	__end_of_led2-_led2
+  1203                           	
+  1204  06B1                     _led2:	
+  1205                           	opt	stack 7
+  1206                           ; Regs used in _led2: [wreg+status,2+btemp+1]
+  1207                           	line	13
+  1208                           	
+  1209  06B1                     l1451:	
+  1210                           ;Eightled.c: 13: int count=0;;
+  1211  06B1  01F0               	clrf	(led2@count)
+  1212  06B2  01F1               	clrf	(led2@count+1)
+  1213                           	line	14
+  1214                           ;Eightled.c: 14: while(count<31500)
+  1215  06B3  2EBF               	goto	l1455
+  1216                           	
+  1217  06B4                     l1032:	
+  1218                           	line	16
+  1219                           	
+  1220  06B4                     l1453:	
+  1221                           ;Eightled.c: 15: {
+  1222                           ;Eightled.c: 16: PORTA=0X02;
+  1223  06B4  3002               	movlw	(02h)
+  1224  06B5  1283               	bcf	status, 5	;RP0=0, select bank0
+  1225  06B6  1303               	bcf	status, 6	;RP1=0, select bank0
+  1226  06B7  0085               	movwf	(5)	;volatile
+  1227                           	line	17
+  1228                           ;Eightled.c: 17: count++;
+  1229  06B8  3001               	movlw	low(01h)
+  1230  06B9  07F0               	addwf	(led2@count),f
+  1231  06BA  1803               	skipnc
+  1232  06BB  0AF1               	incf	(led2@count+1),f
+  1233  06BC  3000               	movlw	high(01h)
+  1234  06BD  07F1               	addwf	(led2@count+1),f
+  1235  06BE  2EBF               	goto	l1455
+  1236                           	line	18
+  1237                           	
+  1238  06BF                     l1031:	
+  1239                           	line	14
+  1240                           	
+  1241  06BF                     l1455:	
+  1242  06BF  0871               	movf	(led2@count+1),w
+  1243  06C0  3A80               	xorlw	80h
+  1244  06C1  00FF               	movwf	btemp+1
+  1245  06C2  30FB               	movlw	(high(07B0Ch))^80h
+  1246  06C3  027F               	subwf	btemp+1,w
+  1247  06C4  1D03               	skipz
+  1248  06C5  2EC8               	goto	u25
+  1249  06C6  300C               	movlw	low(07B0Ch)
+  1250  06C7  0270               	subwf	(led2@count),w
+  1251  06C8                     u25:
+  1252                           
+  1253  06C8  1C03               	skipc
+  1254  06C9  2ECB               	goto	u21
+  1255  06CA  2ECC               	goto	u20
+  1256  06CB                     u21:
+  1257  06CB  2EB4               	goto	l1453
+  1258  06CC                     u20:
+  1259  06CC  2ECD               	goto	l1034
+  1260                           	
+  1261  06CD                     l1033:	
+  1262                           	line	19
+  1263                           	
+  1264  06CD                     l1034:	
+  1265  06CD  0008               	return
+  1266                           	opt stack 0
+  1267                           GLOBAL	__end_of_led2
+  1268  06CE                     	__end_of_led2:
+  1269 ;; =============== function _led2 ends ============
+  1270                           
+  1271                           	signat	_led2,88
+  1272                           	global	_led1
+  1273                           psect	text152,local,class=CODE,delta=2
+  1274                           global __ptext152
+  1275  0694                     __ptext152:
+  1276                           
+  1277 ;; *************** function _led1 *****************
+  1278 ;; Defined at:
+  1279 ;;		line 3 in file "E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+  1280 ;; Parameters:    Size  Location     Type
+  1281 ;;		None
+  1282 ;; Auto vars:     Size  Location     Type
+  1283 ;;  count           2    0[COMMON] int 
+  1284 ;; Return value:  Size  Location     Type
+  1285 ;;		None               void
+  1286 ;; Registers used:
+  1287 ;;		wreg, status,2, btemp+1
+  1288 ;; Tracked objects:
+  1289 ;;		On entry : 0/0
+  1290 ;;		On exit  : 0/0
+  1291 ;;		Unchanged: 0/0
+  1292 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1293 ;;      Params:         0       0       0       0       0
+  1294 ;;      Locals:         2       0       0       0       0
+  1295 ;;      Temps:          0       0       0       0       0
+  1296 ;;      Totals:         2       0       0       0       0
+  1297 ;;Total ram usage:        2 bytes
+  1298 ;; Hardware stack levels used:    1
+  1299 ;; This function calls:
+  1300 ;;		Nothing
+  1301 ;; This function is called by:
+  1302 ;;		_main
+  1303 ;; This function uses a non-reentrant model
+  1304 ;;
+  1305                           psect	text152
+  1306                           	file	"E:\KTU\Softwares\mplab\Eightled\Eightled.c"
+  1307                           	line	3
+  1308                           	global	__size_of_led1
+  1309  001D                     	__size_of_led1	equ	__end_of_led1-_led1
+  1310                           	
+  1311  0694                     _led1:	
+  1312                           	opt	stack 7
+  1313                           ; Regs used in _led1: [wreg+status,2+btemp+1]
+  1314                           	line	4
+  1315                           	
+  1316  0694                     l1445:	
+  1317                           ;Eightled.c: 4: int count=0;;
+  1318  0694  01F0               	clrf	(led1@count)
+  1319  0695  01F1               	clrf	(led1@count+1)
+  1320                           	line	5
+  1321                           ;Eightled.c: 5: while(count<31500)
+  1322  0696  2EA2               	goto	l1449
+  1323                           	
+  1324  0697                     l1026:	
+  1325                           	line	7
+  1326                           	
+  1327  0697                     l1447:	
+  1328                           ;Eightled.c: 6: {
+  1329                           ;Eightled.c: 7: PORTA=0X01;
+  1330  0697  3001               	movlw	(01h)
+  1331  0698  1283               	bcf	status, 5	;RP0=0, select bank0
+  1332  0699  1303               	bcf	status, 6	;RP1=0, select bank0
+  1333  069A  0085               	movwf	(5)	;volatile
+  1334                           	line	8
+  1335                           ;Eightled.c: 8: count++;
+  1336  069B  3001               	movlw	low(01h)
+  1337  069C  07F0               	addwf	(led1@count),f
+  1338  069D  1803               	skipnc
+  1339  069E  0AF1               	incf	(led1@count+1),f
+  1340  069F  3000               	movlw	high(01h)
+  1341  06A0  07F1               	addwf	(led1@count+1),f
+  1342  06A1  2EA2               	goto	l1449
+  1343                           	line	9
+  1344                           	
+  1345  06A2                     l1025:	
+  1346                           	line	5
+  1347                           	
+  1348  06A2                     l1449:	
+  1349  06A2  0871               	movf	(led1@count+1),w
+  1350  06A3  3A80               	xorlw	80h
+  1351  06A4  00FF               	movwf	btemp+1
+  1352  06A5  30FB               	movlw	(high(07B0Ch))^80h
+  1353  06A6  027F               	subwf	btemp+1,w
+  1354  06A7  1D03               	skipz
+  1355  06A8  2EAB               	goto	u15
+  1356  06A9  300C               	movlw	low(07B0Ch)
+  1357  06AA  0270               	subwf	(led1@count),w
+  1358  06AB                     u15:
+  1359                           
+  1360  06AB  1C03               	skipc
+  1361  06AC  2EAE               	goto	u11
+  1362  06AD  2EAF               	goto	u10
+  1363  06AE                     u11:
+  1364  06AE  2E97               	goto	l1447
+  1365  06AF                     u10:
+  1366  06AF  2EB0               	goto	l1028
+  1367                           	
+  1368  06B0                     l1027:	
+  1369                           	line	10
+  1370                           	
+  1371  06B0                     l1028:	
+  1372  06B0  0008               	return
+  1373                           	opt stack 0
+  1374                           GLOBAL	__end_of_led1
+  1375  06B1                     	__end_of_led1:
+  1376 ;; =============== function _led1 ends ============
+  1377                           
+  1378                           	signat	_led1,88
+  1379                           psect	text153,local,class=CODE,delta=2
+  1380                           global __ptext153
+  1381  0000                     __ptext153:
+  1382                           	global	btemp
+  1383  007E                     	btemp set 07Eh
+  1384                           
+  1385                           	DABS	1,126,2	;btemp
+  1386                           	global	wtemp0
+  1387  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Sat Apr 03 12:12:08 2021
+
+                  u10 06AF                    u11 06AE                    u20 06CC                    u21 06CB  
+                  u30 06E9                    u15 06AB                    u31 06E8                    u40 0706  
+                  u25 06C8                    u41 0705                    u50 0723                    u35 06E5  
+                  u51 0722                    u60 0740                    u45 0702                    u61 073F  
+                  u70 075D                    u55 071F                    u71 075C                    u80 077A  
+                  u65 073C                    u81 0779                    u75 0759                    u85 0776  
+                l1031 06BF                  l1032 06B4                  l1040 06EA                  l1025 06A2  
+                l1033 06CD                  l1026 0697                  l1034 06CD                  l1050 070B  
+                l1027 06B0                  l1043 06F9                  l1051 0724                  l1028 06B0  
+                l1044 06EE                  l1052 0724                  l1037 06DC                  l1045 0707  
+                l1061 0750                  l1038 06D1                  l1046 0707                  l1062 0745  
+                l1070 077B                  l1039 06EA                  l1055 0733                  l1063 075E  
+                l1056 0728                  l1064 075E                  l1049 0716                  l1057 0741  
+                l1073 078B                  l1058 0741                  l1074 07FC                  l1067 076D  
+                l1075 07FD                  l1068 0762                  l1076 07FD                  l1069 077B  
+                l1451 06B1                  l1445 0694                  l1453 06B4                  l1461 06DC  
+                l2261 078B                  l1447 0697                  l1455 06BF                  l1463 06EB  
+                l1471 070B                  l2271 07A8                  l2263 0790                  l1449 06A2  
+                l1457 06CE                  l1465 06EE                  l1473 0716                  l1481 0742  
+                l2281 07C8                  l2273 07B0                  l2265 0798                  l1459 06D1  
+                l1467 06F9                  l1475 0725                  l1483 0745                  l1491 076D  
+                l2291 07E3                  l2283 07CB                  l2275 07B3                  l2267 079B  
+                l2259 077C                  l1469 0708                  l1477 0728                  l1485 0750  
+                l2293 07EB                  l2285 07D3                  l2277 07BB                  l2269 07A3  
+                l1479 0733                  l1487 075F                  l2295 07F0                  l2287 07D8  
+                l2279 07C0                  l1489 0762                  l2297 07F8                  l2289 07E0  
+                _led1 0694                  _led2 06B1                  _led3 06CE                  _led4 06EB  
+                _led5 0708                  _led6 0725                  _led7 0742                  _led8 075F  
+                _main 077C                  btemp 007E                  start 0000                 ?_led1 0070  
+               ?_led2 0070                 ?_led3 0070                 ?_led4 0070                 ?_led5 0070  
+               ?_led6 0070                 ?_led7 0070                 ?_led8 0070                 ?_main 0070  
+               _ANSEL 0188                 _PORTA 0005                 _PORTB 0006                 _TRISA 0085  
+               _TRISB 0086                 main@i 0072                 status 0003                 wtemp0 007E  
+        __end_of_led1 06B1          __end_of_led2 06CE          __end_of_led3 06EB          __end_of_led4 0708  
+        __end_of_led5 0725          __end_of_led6 0742          __end_of_led7 075F          __end_of_led8 077C  
+        __end_of_main 0800                ??_led1 0070                ??_led2 0070                ??_led3 0070  
+              ??_led4 0070                ??_led5 0070                ??_led6 0070                ??_led7 0070  
+              ??_led8 0070                ??_main 0072                _ANSELH 0189        __pcstackCOMMON 0070  
+          __pmaintext 077C  end_of_initialization 0690   start_initialization 0690             __ptext150 06CE  
+           __ptext151 06B1             __ptext152 0694             __ptext144 0000             __ptext153 0000  
+           __ptext145 075F             __ptext146 0742             __ptext147 0725             __ptext148 0708  
+           __ptext149 06EB             led1@count 0070             led2@count 0070             led3@count 0070  
+           led4@count 0070             led5@count 0070             led6@count 0070             led7@count 0070  
+           led8@count 0070         __size_of_led1 001D         __size_of_led2 001D         __size_of_led3 001D  
+       __size_of_led4 001D         __size_of_led5 001D         __size_of_led6 001D         __size_of_led7 001D  
+       __size_of_led8 001D         __size_of_main 0084  
